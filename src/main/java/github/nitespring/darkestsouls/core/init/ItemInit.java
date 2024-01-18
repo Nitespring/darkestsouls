@@ -1,28 +1,27 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-
-import net.minecraft.world.food.FoodProperties;
-
 import net.minecraft.world.item.Item;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemInit {
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
+			DarkestSouls.MODID);
 	
-	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(DarkestSouls.MODID);
 	
-	
-	
-	public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item");
-
-
-    public static final DeferredItem<Item> EXAMPLE_FOOD_ITEM = ITEMS.registerSimpleItem("example_food_item", new Item.Properties().food(new FoodProperties.Builder()
-            .alwaysEat().nutrition(1).saturationMod(2f).build()));
-    
-    
-    
- 
-    
+	//Items
+	/*
+	public static final RegistryObject<Item> SNOWMAN = ITEMS.register("evil_snowman_spawn_egg", 
+			() -> new ForgeSpawnEggItem(EntityInit.SNOWMAN, 14283506, 16737400, new Item.Properties()));
+	*/
+	/*
+	public static final RegistryObject<Item> SNOWFLAKE = ITEMS.register("snowflake", 
+			() -> new Item(new Item.Properties()));
+	*/
+	/*
+	public static final RegistryObject<CandybarGreatsword> CANDY_SWORD = ITEMS.register("candy_sword", 
+			() -> new CandybarGreatsword(YuleTiers.CANDY, 3, -2.5F, new Item.Properties()));
+	*/
 
 }
