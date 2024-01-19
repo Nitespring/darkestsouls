@@ -15,8 +15,8 @@ public class EntitySpawnRegistration {
 	@SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            
-            /*SpawnPlacements.register(EntityInit.SNOWMAN.get(), 
+            /*
+            SpawnPlacements.register(EntityInit.SNOWMAN.get(),
             		SpawnPlacements.Type.ON_GROUND, 
             		Types.MOTION_BLOCKING_NO_LEAVES, 
             		AbstractYuleEntity::checkYuleMonsterSpawnRules);

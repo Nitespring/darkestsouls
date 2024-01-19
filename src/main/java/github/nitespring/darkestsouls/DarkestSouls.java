@@ -1,5 +1,7 @@
 package github.nitespring.darkestsouls;
 
+import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,7 +23,8 @@ public class DarkestSouls
 
         modEventBus.addListener(this::setup);
         GeckoLib.initialize();
-
+        ItemInit.ITEMS.register(modEventBus);
+        EntityInit.ENTITIES.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
         
