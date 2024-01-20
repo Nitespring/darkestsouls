@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.core.event;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +22,7 @@ public class CreativeTabsRegistration {
 	    {
 	        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 	        {
-	            //event.accept(ItemInit.SNOWMAN);
+	            event.accept(ItemInit.SIN);
 	            
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
