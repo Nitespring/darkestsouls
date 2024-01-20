@@ -22,6 +22,9 @@ public class DamageHitboxEntity extends Entity{
 	private LivingEntity owner;
 	@Nullable
 	private UUID ownerUUID;
+	@Nullable
+	private LivingEntity target;
+	private int maxTargets=0; //if 0 there is no max number of targets
 	private int delayTicks = 1;
 	private float damage = 4.0f;
 	private float hitboxScaleAbsolute=1.0f;
@@ -48,20 +51,22 @@ public class DamageHitboxEntity extends Entity{
 		this(e, level, pos, dmg, delayTicks, scale);
 		this.hitboxScaleHeight=height;
 	}
-
-	@Override
-	protected void defineSynchedData() {
-		
+	public DamageHitboxEntity(EntityType<?> e, Level level, Vec3 pos, float dmg, int delayTicks, float scale, float height, int maxTargets) {
+		this(e, level, pos, dmg, delayTicks, scale, height);
+		this.maxTargets=maxTargets;
 	}
-
+	public DamageHitboxEntity(EntityType<?> e, Level level, Vec3 pos, float dmg, int delayTicks, float scale, float height, int maxTargets, LivingEntity target) {
+		this(e, level, pos, dmg, delayTicks, scale, height, maxTargets);
+		this.target=target;
+	}
+	@Override
+	protected void defineSynchedData() {}
 	@Override
 	protected void readAdditionalSaveData(CompoundTag p_20052_) {
 	      if (p_20052_.hasUUID("Owner")) {
 	         this.ownerUUID = p_20052_.getUUID("Owner");
 	      }
-		
 	}
-
 	@Override
 	protected void addAdditionalSaveData(CompoundTag p_20139_) {
 	      if (this.ownerUUID != null) {
@@ -69,7 +74,6 @@ public class DamageHitboxEntity extends Entity{
 	      }
 		
 	}
-	
 	public void setOwner(@Nullable LivingEntity p_36939_) {
 	    this.owner = p_36939_;
 	    this.ownerUUID = p_36939_ == null ? null : p_36939_.getUUID();
@@ -86,20 +90,20 @@ public class DamageHitboxEntity extends Entity{
 
 	   return this.owner;
 	}
-
 	public void setHitboxScaleAbsolute(float hitboxScaleAbsolute) {
 		this.hitboxScaleAbsolute = hitboxScaleAbsolute;
 	}
-
 	public void setHitboxScaleHeight(float hitboxScaleHeight) {
 		this.hitboxScaleHeight = hitboxScaleHeight;
 	}
-
+	public void setTarget(LivingEntity e){this.target=e;}
+	public LivingEntity getTarget(){return this.target;}
+	public void setMaxTargets(int i){this.maxTargets=i;}
+	public int getMaxTargets(){return this.maxTargets;}
 	@Override
 	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return new ClientboundAddEntityPacket(this);
 	}
-
 	@Override
 	public boolean fireImmune() {return true;}
 	@Override
@@ -112,13 +116,17 @@ public class DamageHitboxEntity extends Entity{
 			
 			this.remove(RemovalReason.DISCARDED);
 		}
-		for(LivingEntity livingentity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(hitboxScaleAbsolute, hitboxScaleAbsolute*hitboxScaleHeight, hitboxScaleAbsolute))) {
-            if(this.getOwner()==null || !livingentity.isAlliedTo(this.getOwner())) {
-            	if(!hitEntities.contains(livingentity)) {
-         	    this.dealDamageTo(livingentity);
-         	    hitEntities.add(livingentity);
-            	}
-            }
+		for(LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(hitboxScaleAbsolute, hitboxScaleAbsolute*hitboxScaleHeight, hitboxScaleAbsolute))) {
+            if(this.target==null||localTarget==this.target) {
+				if (this.getMaxTargets() <= 0 || hitEntities.size() < this.getMaxTargets()) {
+					if (this.getOwner() == null || !localTarget.isAlliedTo(this.getOwner()) && localTarget != this.target) {
+						if (!hitEntities.contains(localTarget)) {
+							this.dealDamageTo(localTarget);
+							hitEntities.add(localTarget);
+						}
+					}
+				}
+			}
          }
 		super.tick();
 	}

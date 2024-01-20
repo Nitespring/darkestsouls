@@ -239,7 +239,7 @@
 		},
 		"animation.sin.crawl": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 1,
+			"animation_length": 1.29167,
 			"bones": {
 				"head": {
 					"rotation": {
@@ -713,7 +713,7 @@
 		},
 		"animation.sin.sit": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 1.08333,
+			"animation_length": 4.125,
 			"bones": {
 				"body": {
 					"rotation": {
