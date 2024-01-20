@@ -18,7 +18,7 @@ public class EntityInit {
 
 	public static final RegistryObject<EntityType<MonstruosityOfSin>> SIN = ENTITIES.register("monstruosity_of_sin",
 			() -> EntityType.Builder.<MonstruosityOfSin>of(MonstruosityOfSin::new, MobCategory.MONSTER)
-			.sized(1.4f, 2.8f)
+			.sized(2.8f, 2.2f)
 			.build("monstruosity_of_sin"));
 
 

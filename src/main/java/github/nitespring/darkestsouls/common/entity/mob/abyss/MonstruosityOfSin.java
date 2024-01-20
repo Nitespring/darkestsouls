@@ -11,6 +11,9 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
@@ -44,8 +47,8 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	
 	@Override
 	public void registerControllers(ControllerRegistrar data) {
-		data.add(new AnimationController<>(this, "main_controller", 8, this::predicate));
-		data.add(new AnimationController<>(this, "fingers_controller", 8, this::fingersPredicate));
+		data.add(new AnimationController<>(this, "main_controller", 4, this::predicate));
+		data.add(new AnimationController<>(this, "fingers_controller", 4, this::fingersPredicate));
 		data.add(new AnimationController<>(this, "stun_controller", 2, this::hitStunPredicate));
 		}
 
@@ -104,11 +107,12 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			default:
 				switch(combatState) {
 				case 1:
-				 if(!(event.getLimbSwingAmount() > -0.06F && event.getLimbSwingAmount() < 0.06F)){
+				 if(!(event.getLimbSwingAmount() > -0.012 && event.getLimbSwingAmount() < 0.012f)){
 					event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.sin.walk"));	 
 					}else {
 					event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.sin.idle2"));
 					}
+				 break;
 				default: 
 					event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.sin.idle1"));
 				}
@@ -120,6 +124,18 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 
 	@Override
 	protected void registerGoals() {
+
+		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
+
+
+
+		this.targetSelector.addGoal(1, new DarkestSoulsAbstractEntity.CopyOwnerTargetGoal(this));
+
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Villager.class, true));
+
+		this.goalSelector.addGoal(1, new MonstruosityOfSin.AttackGoal(this));
+
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, 1.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
@@ -152,10 +168,10 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			case 21:
 				if(animationTick==8) {
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-							this.position().add((1.0f)*this.getLookAngle().x,
+							this.position().add((1.5f)*this.getLookAngle().x,
 									0.25,
-									(1.0f)*this.getLookAngle().z),
-							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+									(1.5f)*this.getLookAngle().z),
+							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5, 1.5f, 0.75f,0,this.getTarget());
 					h.setOwner(this);
 					this.level().addFreshEntity(h);
 
@@ -176,12 +192,13 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 				if(animationTick==16) {
 
 
-					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX_LARGE.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
 									(1.0f)*this.getLookAngle().z),
 							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
 					h.setOwner(this);
+					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 
 
@@ -197,7 +214,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	public class AttackGoal extends Goal {
 
 
-		private final double speedModifier = 1.1f;
+		private final double speedModifier = 1.0f;
 		private final boolean followingTargetEvenIfNotSeen = true;
 		protected final MonstruosityOfSin mob;
 		private Path path;
@@ -279,7 +296,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			this.mob.getNavigation().moveTo(this.path, this.speedModifier);
 			this.mob.setAggressive(true);
 			this.ticksUntilNextPathRecalculation = 0;
-			this.ticksUntilNextAttack = 10;
+			this.ticksUntilNextAttack = 60;
 
 			this.mob.setAnimationState(0);
 		}
@@ -301,9 +318,17 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			LivingEntity target = this.mob.getTarget();
 			double distance = this.mob.distanceToSqr(target.getX(), target.getY(), target.getZ());
 			double reach = this.getAttackReachSqr(target);
-
-			this.doMovement(target, reach);
-			this.checkForCloseRangeAttack(distance, reach);
+			if(getCombatState()==1) {
+				this.doMovement(target, reach);
+				this.checkForAttackFromCrawling(distance, reach);
+				int r = this.mob.getRandom().nextInt(2048);
+			}else{
+				this.mob.getNavigation().stop();
+				int r = this.mob.getRandom().nextInt(2048);
+				if(r<=50) {
+					this.mob.setAnimationState(11);
+				}
+			}
 			this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
 
 		}
@@ -359,7 +384,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 
 
 
-		protected void checkForCloseRangeAttack(double distance, double reach){
+		protected void checkForAttackFromCrawling(double distance, double reach){
 			if (distance <= reach && this.ticksUntilNextAttack <= 0) {
 				int r = this.mob.getRandom().nextInt(2048);
 				if(r<=500) {
@@ -374,13 +399,24 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			}
 		}
 
+		protected void checkForAttackFromSitting(double distance, double reach){
+			if (distance <= reach && this.ticksUntilNextAttack <= 0) {
+				int r = this.mob.getRandom().nextInt(2048);
+				if(r<=400) {
+
+					this.mob.setAnimationState(23);
+
+				}
+			}
+		}
+
 		protected void resetAttackCooldown() {
 			this.ticksUntilNextAttack = 20;
 		}
 
 
 		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			return (double)(this.mob.getBbWidth() * 3.0F * this.mob.getBbWidth() * 2.0F + p_179512_1_.getBbWidth());
+			return (double)(this.mob.getBbWidth() * 4.0F * this.mob.getBbWidth());
 		}
 
 	}

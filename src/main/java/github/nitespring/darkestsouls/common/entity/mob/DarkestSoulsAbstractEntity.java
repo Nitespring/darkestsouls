@@ -230,7 +230,6 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob{
 		      
 		    this.targetSelector.addGoal(2, new DarkestSoulsAbstractEntity.CopyOwnerTargetGoal(this));
 
-		    this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 	     
 		    this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.8D));
 		      

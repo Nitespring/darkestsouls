@@ -10,7 +10,7 @@ public class EntityAttributes {
 	public static  AttributeSupplier.Builder setMonstruosityOfSinAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 70.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.14D)
+				.add(Attributes.MOVEMENT_SPEED, 0.20D)
 				.add(Attributes.ATTACK_DAMAGE, 10.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)

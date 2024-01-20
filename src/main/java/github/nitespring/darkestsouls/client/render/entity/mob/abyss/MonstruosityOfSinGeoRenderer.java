@@ -43,9 +43,15 @@ public class MonstruosityOfSinGeoRenderer extends GeoEntityRenderer<Monstruosity
 	 @Override
 	public void render(MonstruosityOfSin entity, float entityYaw, float partialTick, PoseStack poseStack,
 			MultiBufferSource bufferSource, int packedLight) {
-		 
-		super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+		 float scaleFactor = 1.2f;
+		 poseStack.pushPose();
+		 poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
+
+		 poseStack.translate(0, 0, 0);
+
+		 super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+		 poseStack.popPose();
 	}
-	 
-	 
+
+
 }
