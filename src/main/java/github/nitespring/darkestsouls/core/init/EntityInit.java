@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.core.init;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.entity.mob.abyss.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
@@ -20,6 +21,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<MonstruosityOfSin>of(MonstruosityOfSin::new, MobCategory.MONSTER)
 			.sized(2.8f, 2.2f)
 			.build("monstruosity_of_sin"));
+	public static final RegistryObject<EntityType<Bonewheel>> BONEWHEEL = ENTITIES.register("bonewheel",
+			() -> EntityType.Builder.<Bonewheel>of(Bonewheel::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("bonewheel"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",

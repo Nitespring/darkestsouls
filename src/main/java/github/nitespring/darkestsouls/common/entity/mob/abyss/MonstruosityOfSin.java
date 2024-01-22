@@ -89,6 +89,9 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sin.death"));
 		}else {
 			switch(animState) {
+			case 1:
+					event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sin.stun"));
+					break;
 			case 11:
 				event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sin.crawl"));
 				break;
@@ -196,7 +199,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
 									(1.0f)*this.getLookAngle().z),
-							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.2f, 5);
 					h.setOwner(this);
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
@@ -296,7 +299,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			this.mob.getNavigation().moveTo(this.path, this.speedModifier);
 			this.mob.setAggressive(true);
 			this.ticksUntilNextPathRecalculation = 0;
-			this.ticksUntilNextAttack = 60;
+			this.ticksUntilNextAttack = 100;
 
 			this.mob.setAnimationState(0);
 		}
@@ -321,10 +324,11 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			if(getCombatState()==1) {
 				this.doMovement(target, reach);
 				this.checkForAttackFromCrawling(distance, reach);
-				int r = this.mob.getRandom().nextInt(2048);
+
 			}else{
 				this.mob.getNavigation().stop();
 				int r = this.mob.getRandom().nextInt(2048);
+				this.checkForAttackFromSitting(distance, reach);
 				if(r<=50) {
 					this.mob.setAnimationState(11);
 				}

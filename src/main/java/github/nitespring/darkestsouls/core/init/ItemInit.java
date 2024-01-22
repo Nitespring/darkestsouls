@@ -16,6 +16,8 @@ public class ItemInit {
 
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SIN, 14283506, 16737400, new Item.Properties()));
+	public static final RegistryObject<Item> BONEWHEEL = ITEMS.register("bonewheel_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, 14283506, 16737400, new Item.Properties()));
 
 	/*
 	public static final RegistryObject<Item> SNOWFLAKE = ITEMS.register("snowflake", 

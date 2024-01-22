@@ -27,8 +27,8 @@ public class DamageHitboxEntity extends Entity {
 	private int maxTargets = 0; //if 0 there is no max number of targets
 	private int delayTicks = 1;
 	private float damage = 4.0f;
-	private float hitboxScaleAbsolute = 1.0f;
-	private float hitboxScaleHeight = 1.0f;
+	private float hitboxScaleAbsolute = 0.0f;
+	private float hitboxScaleHeight = 0.0f;
 	private List<LivingEntity> hitEntities = new ArrayList<LivingEntity>();
 
 	public DamageHitboxEntity(EntityType<?> e, Level level) {

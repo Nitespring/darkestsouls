@@ -23,6 +23,7 @@ public class CreativeTabsRegistration {
 	        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 	        {
 	            event.accept(ItemInit.SIN);
+				event.accept(ItemInit.BONEWHEEL);
 	            
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
