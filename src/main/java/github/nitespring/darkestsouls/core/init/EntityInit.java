@@ -6,6 +6,7 @@ import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -45,5 +46,9 @@ public class EntityInit {
 			() -> EntityType.Builder.<FrayedBladeAttackEntity>of(FrayedBladeAttackEntity::new, MobCategory.MISC)
 					.sized(2.0f, 2.0f)
 					.build("frayed_blade"));
+	public static final RegistryObject<EntityType<FrayedBladeFlameEntity>> FRAYED_BLADE_FLAME = ENTITIES.register("frayed_blade_flame",
+			() -> EntityType.Builder.<FrayedBladeFlameEntity>of(FrayedBladeFlameEntity::new, MobCategory.MISC)
+					.sized(1.0f, 1.5f)
+					.build("frayed_blade_flame"));
 
 }

@@ -1,9 +1,10 @@
-package github.nitespring.darkestsouls.client.render.entity.projectile;
+package github.nitespring.darkestsouls.client.render.entity.projectile.frayedblade;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -106,7 +107,7 @@ public class FrayedBladeRenderer<T extends FrayedBladeAttackEntity> extends Enti
 
 		  stack.translate(0, -5.5, -0.5);
 	      stack.scale(3.25f, 3.25f, 3.25f);
-	      vertexconsumer = p_114532_.getBuffer(RenderType.entityCutout(getTextureLocation(entity)));
+	      vertexconsumer = p_114532_.getBuffer(RenderType.eyes(getTextureLocation(entity)));
 
 	         
 	         this.model.renderToBuffer(stack, vertexconsumer, p_114533_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
