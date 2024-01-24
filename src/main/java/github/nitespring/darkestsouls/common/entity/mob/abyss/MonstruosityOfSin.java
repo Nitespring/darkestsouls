@@ -299,7 +299,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			this.mob.getNavigation().moveTo(this.path, this.speedModifier);
 			this.mob.setAggressive(true);
 			this.ticksUntilNextPathRecalculation = 0;
-			this.ticksUntilNextAttack = 100;
+			this.ticksUntilNextAttack = 60;
 
 			this.mob.setAnimationState(0);
 		}
@@ -420,7 +420,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 
 
 		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-			return (double)(this.mob.getBbWidth() * 4.0F * this.mob.getBbWidth());
+			return (double)(this.mob.getBbWidth() * 6.0F * this.mob.getBbWidth());
 		}
 
 	}

@@ -21,13 +21,13 @@ public class FrayedBlade extends Weapon{
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
 
-        Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x()*2.5, 0.4, playerIn.getLookAngle().z()*2.5);
+        Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x()*1.5, 0.4, playerIn.getLookAngle().z()*1.5);
 
         Level levelIn = playerIn.level();
         FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(),
                 levelIn,
                 pos,
-                4.0f,
+                3.0f,
                 (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
         entity.setOwner(playerIn);
         levelIn.addFreshEntity(entity);

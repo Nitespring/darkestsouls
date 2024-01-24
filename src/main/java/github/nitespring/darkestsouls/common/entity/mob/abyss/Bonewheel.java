@@ -249,7 +249,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     public class AttackGoal extends Goal {
 
 
-        private final double speedModifier = 1.2f;
+        private final double speedModifier = 1.4f;
         private final boolean followingTargetEvenIfNotSeen = true;
         protected final Bonewheel mob;
         private Path path;
@@ -331,7 +331,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
             this.mob.getNavigation().moveTo(this.path, this.speedModifier);
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
-            this.ticksUntilNextAttack = 10;
+            this.ticksUntilNextAttack = 5;
 
             this.mob.setAnimationState(0);
         }
@@ -430,7 +430,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
                 }
             }
                     int r = this.mob.getRandom().nextInt(2048);
-                    if (r <= 30) {
+                    if (r <= 40) {
 
                         this.mob.setAnimationState(23);
 
@@ -446,7 +446,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 
 
         protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-            return (double)(this.mob.getBbWidth() * 6.0F * this.mob.getBbWidth());
+            return (double)(this.mob.getBbWidth() * 8.0F * this.mob.getBbWidth());
         }
 
     }
