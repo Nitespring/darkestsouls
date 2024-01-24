@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls;
 
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.networking.DarkestSoulsPacketHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,7 +34,9 @@ public class DarkestSouls
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        
+
+        DarkestSoulsPacketHandler.register();
+
     }
 
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
