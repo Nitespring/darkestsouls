@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.FrayedBlade;
+import github.nitespring.darkestsouls.common.item.Weapon;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
@@ -20,6 +21,12 @@ public class ItemInit {
 
 	public static final RegistryObject<FrayedBlade> SNOWFLAKE = ITEMS.register("frayed_blade",
 			() -> new FrayedBlade(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+	public static final RegistryObject<Weapon> SCIMITAR = ITEMS.register("scimitar",
+			() -> new Weapon(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+	public static final RegistryObject<Weapon> FALCHION = ITEMS.register("falchion",
+			() -> new Weapon(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+	public static final RegistryObject<Weapon> CLAYMORE = ITEMS.register("claymore",
+			() -> new Weapon(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
 
 
 	//Items
