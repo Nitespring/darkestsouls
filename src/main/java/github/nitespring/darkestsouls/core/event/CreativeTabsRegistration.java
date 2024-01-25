@@ -33,7 +33,10 @@ public class CreativeTabsRegistration {
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.COMBAT)
 	        {
-	            //event.accept(ItemInit.CANDY_SWORD);
+				event.accept(ItemInit.FRAYED_BLADE);
+	            event.accept(ItemInit.SCIMITAR);
+				event.accept(ItemInit.FALCHION);
+				event.accept(ItemInit.CLAYMORE);
 	            
 	        }
 	      

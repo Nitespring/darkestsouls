@@ -3,9 +3,13 @@ package github.nitespring.darkestsouls.common.item;
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -24,6 +28,13 @@ public class FrayedBlade extends Weapon{
     }
 
 
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level p_41432_, Player playerIn, InteractionHand handIn) {
+        playerIn.swing(handIn);
+        playerIn.getCooldowns().addCooldown(ItemInit.FRAYED_BLADE.get(), 40);
+        playerIn.level().playLocalSound(playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.BLAZE_SHOOT, playerIn.getSoundSource(), 1.0F, playerIn.getRandom().nextFloat() * 0.2F + 0.85F, false);
+        return super.use(p_41432_, playerIn, handIn);
+    }
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
@@ -42,6 +53,9 @@ public class FrayedBlade extends Weapon{
     }
     @Override
     public void doRightClickAction(Player playerIn, ItemStack item) {
+
+
+
         Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
         double d0 = Math.min(posTarget.y, playerIn.getY());
         double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;

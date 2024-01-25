@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.client.render.entity.projectile.frayedblade;
+package github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;

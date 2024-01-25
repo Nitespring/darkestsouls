@@ -5,8 +5,7 @@ package github.nitespring.darkestsouls.core.init;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.*;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -50,5 +49,17 @@ public class EntityInit {
 			() -> EntityType.Builder.<FrayedBladeFlameEntity>of(FrayedBladeFlameEntity::new, MobCategory.MISC)
 					.sized(1.0f, 1.5f)
 					.build("frayed_blade_flame"));
+	public static final RegistryObject<EntityType<ScimitarAttackEntity>> SCIMITAR = ENTITIES.register("scimitar",
+			() -> EntityType.Builder.<ScimitarAttackEntity>of(ScimitarAttackEntity::new, MobCategory.MISC)
+					.sized(1.0f, 1.0f)
+					.build("scimitar"));
+	public static final RegistryObject<EntityType<FalchionAttackEntity>> FALCHION = ENTITIES.register("falchion",
+			() -> EntityType.Builder.<FalchionAttackEntity>of(FalchionAttackEntity::new, MobCategory.MISC)
+					.sized(1.0f, 1.0f)
+					.build("falchion"));
+	public static final RegistryObject<EntityType<ClaymoreAttackEntity>> CLAYMORE = ENTITIES.register("claymore",
+			() -> EntityType.Builder.<ClaymoreAttackEntity>of(ClaymoreAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 2.0f)
+					.build("claymore"));
 
 }

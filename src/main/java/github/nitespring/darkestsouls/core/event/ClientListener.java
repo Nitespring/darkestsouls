@@ -5,9 +5,12 @@ package github.nitespring.darkestsouls.core.event;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.MonstruosityOfSinGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.frayedblade.FrayedBladeFlameModel;
-import github.nitespring.darkestsouls.client.render.entity.projectile.frayedblade.FrayedBladeFlameRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.frayedblade.FrayedBladeRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.ClaymoreRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.FalchionRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.ScimitarRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -47,6 +50,9 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.HITBOX_LARGE.get(), InvisibleProjectileRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FRAYED_BLADE.get(), FrayedBladeRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FRAYED_BLADE_FLAME.get(), FrayedBladeFlameRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SCIMITAR.get(), ScimitarRenderer::new);
+		 event.registerEntityRenderer(EntityInit.FALCHION.get(), FalchionRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CLAYMORE.get(), ClaymoreRenderer::new);
 
 		 
 	 }

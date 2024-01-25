@@ -1,11 +1,9 @@
-package github.nitespring.darkestsouls.client.render.entity.projectile.frayedblade;
+package github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
