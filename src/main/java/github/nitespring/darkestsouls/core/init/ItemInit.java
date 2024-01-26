@@ -2,9 +2,10 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.*;
+import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tiers;
+
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,13 +20,13 @@ public class ItemInit {
 	//Weapons
 
 	public static final RegistryObject<FrayedBlade> FRAYED_BLADE = ITEMS.register("frayed_blade",
-			() -> new FrayedBlade(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.1f, 1350,0.11f, new Item.Properties()));
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
-			() -> new Scimitar(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 225,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
-			() -> new Falchion(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+			() -> new Falchion(Tiers.TITANITE, 5.5f, 1.8f, -0.1f, 275,0.13f, 2,new Item.Properties()));
 	public static final RegistryObject<Claymore> CLAYMORE = ITEMS.register("claymore",
-			() -> new Claymore(Tiers.DIAMOND,3, -2.8f, new Item.Properties()));
+			() -> new Claymore(Tiers.TITANITE, 9.0f, 1.2f, 0.4f, 500,0.09f, 3,new Item.Properties()));
 
 
 	//Items

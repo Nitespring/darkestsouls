@@ -14,6 +14,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -27,7 +28,10 @@ public class FalchionAttackEntity extends Entity{
 	private UUID ownerUUID;
 	private int lifeTicks = 0;
 	private float damage = 1.5f;
-
+	@Nullable
+	private ItemStack itemStack;
+	private int hitEntities = 0;
+	private int maxTargets;
 
 	private static final EntityDataAccessor<Integer> ANIMATIONSTATE = SynchedEntityData.defineId(FalchionAttackEntity.class, EntityDataSerializers.INT);
 
@@ -144,19 +148,42 @@ public class FalchionAttackEntity extends Entity{
 		  private void dealDamageTo(LivingEntity p_36945_) {
 		      LivingEntity livingentity = this.getOwner();
 		      if (p_36945_.isAlive() && !p_36945_.isInvulnerable() && p_36945_ != livingentity) {
-		         if (livingentity == null) {
-		            p_36945_.hurt(this.level().damageSources().generic(), damage);
-		         } else {
-		            if (livingentity.isAlliedTo(p_36945_)) {
-		               return;
-		            }
+				  if(this.hitEntities<=maxTargets) {
+						 if (livingentity == null) {
+							p_36945_.hurt(this.level().damageSources().generic(), damage);
+						 } else {
+							if (livingentity.isAlliedTo(p_36945_)) {
+							   return;
+							}
 
-		            p_36945_.hurt(this.level().damageSources().mobAttack(livingentity), damage);
-		         }
+							p_36945_.hurt(this.level().damageSources().mobAttack(livingentity), damage);
+							 this.damageWeapon();
+						 }
+					  this.hitEntities++;
+				  }
 
 		      }
 		   }
-		  
-		 
+	public ItemStack getItemStack() {
+		return itemStack;
+	}
+
+	public void setItemStack(ItemStack itemStack) {
+		this.itemStack = itemStack;
+	}
+	private void damageWeapon(){
+		if(this.getItemStack()!=null&&this.getOwner()!=null) {
+			this.getItemStack().hurtAndBreak(1, this.getOwner(), (p_43296_) -> {
+				p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
+			});
+		}
+	}
+	public int getMaxTargets() {
+		return maxTargets;
+	}
+
+	public void setMaxTargets(int maxTargets) {
+		this.maxTargets = maxTargets;
+	}
 
 }

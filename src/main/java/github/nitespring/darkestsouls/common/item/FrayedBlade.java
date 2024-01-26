@@ -23,8 +23,12 @@ import java.util.Random;
 public class FrayedBlade extends Weapon{
 
 
-    public FrayedBlade(Tier tier, int attack, float speed, Properties properties) {
-        super(tier, attack, speed, properties);
+    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, Properties properties) {
+        super(tier, attack, speed, knockback, durability, movementSpeed, properties);
+    }
+
+    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, durability, movementSpeed, maxTargets, properties);
     }
 
 
@@ -45,14 +49,15 @@ public class FrayedBlade extends Weapon{
         FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(),
                 levelIn,
                 pos,
-                3.0f,
+                this.getAttackDamage(playerIn,stackIn)/2,
                 (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
         entity.setOwner(playerIn);
+        entity.setItemStack(stackIn);
         levelIn.addFreshEntity(entity);
 
     }
     @Override
-    public void doRightClickAction(Player playerIn, ItemStack item) {
+    public void doRightClickAction(Player playerIn, ItemStack stackIn) {
 
 
 
@@ -63,12 +68,15 @@ public class FrayedBlade extends Weapon{
         for(int l = 0; l < 18; ++l) {
             double d2 = 0.5D * (double)(l + 1);
             int j = l/2;
-            this.createSpellEntity(playerIn, playerIn.getX() + (double)Mth.cos(f) * d2, playerIn.getZ() + (double)Mth.sin(f) * d2, d0, d1, f, j);
+            this.createSpellEntity(playerIn, playerIn.getX() + (double)Mth.cos(f) * d2, playerIn.getZ() + (double)Mth.sin(f) * d2, d0, d1, f, j,stackIn);
         }
+        stackIn.hurtAndBreak(5, playerIn, (p_43296_) -> {
+            p_43296_.broadcastBreakEvent(stackIn.getEquipmentSlot());
+        });
 
     }
 
-    private void createSpellEntity(Player playerIn, double p_32673_, double p_32674_, double p_32675_, double p_32676_, float p_32677_, int p_32678_) {
+    private void createSpellEntity(Player playerIn, double p_32673_, double p_32674_, double p_32675_, double p_32676_, float p_32677_, int p_32678_, ItemStack stackIn) {
         BlockPos blockpos = new BlockPos((int)p_32673_, (int)p_32676_, (int)p_32674_);
         boolean flag = false;
         double d0 = 0.0D;
@@ -93,7 +101,7 @@ public class FrayedBlade extends Weapon{
         } while(blockpos.getY() >= Mth.floor(p_32675_) - 1);
 
         if (flag) {
-            FrayedBladeFlameEntity e = new FrayedBladeFlameEntity(playerIn.level(), 4.0f, p_32673_, (double)blockpos.getY() + d0, p_32674_, p_32677_, p_32678_, playerIn);
+            FrayedBladeFlameEntity e = new FrayedBladeFlameEntity(playerIn.level(), this.getAttackDamage(playerIn,stackIn), p_32673_, (double)blockpos.getY() + d0, p_32674_, p_32677_, p_32678_, playerIn);
             playerIn.level().addFreshEntity(e);
 
 

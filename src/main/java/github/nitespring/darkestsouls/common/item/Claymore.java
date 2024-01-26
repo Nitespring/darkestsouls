@@ -13,11 +13,13 @@ import net.minecraft.world.phys.Vec3;
 public class Claymore extends Weapon{
 
 
-    public Claymore(Tier tier, int attack, float speed, Properties properties) {
-        super(tier, attack, speed, properties);
+    public Claymore(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, Properties properties) {
+        super(tier, attack, speed, knockback, durability, movementSpeed, properties);
     }
 
-
+    public Claymore(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, durability, movementSpeed, maxTargets, properties);
+    }
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
@@ -28,9 +30,11 @@ public class Claymore extends Weapon{
         ClaymoreAttackEntity entity = new ClaymoreAttackEntity(EntityInit.CLAYMORE.get(),
                 levelIn,
                 pos,
-                7.0f,
+                this.getAttackDamage(playerIn,stackIn),
                 (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
         entity.setOwner(playerIn);
+        entity.setItemStack(stackIn);
+        entity.setMaxTargets(this.getMaxTargets(stackIn));
         levelIn.addFreshEntity(entity);
 
     }

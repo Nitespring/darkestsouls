@@ -14,7 +14,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -29,6 +31,8 @@ public class FrayedBladeAttackEntity extends Entity{
 	private UUID ownerUUID;
 	private int lifeTicks = 0;
 	private float damage = 1.5f;
+	@Nullable
+	private ItemStack itemStack;
 	
 	
 	private static final EntityDataAccessor<Integer> ANIMATIONSTATE = SynchedEntityData.defineId(FrayedBladeAttackEntity.class, EntityDataSerializers.INT);
@@ -151,11 +155,27 @@ public class FrayedBladeAttackEntity extends Entity{
 		            }
 
 		            p_36945_.hurt(this.level().damageSources().mobAttack(livingentity), damage);
+					this.damageWeapon();
 		         }
 
 		      }
 		   }
-		  
+
+	public ItemStack getItemStack() {
+		return itemStack;
+	}
+
+	public void setItemStack(ItemStack itemStack) {
+		this.itemStack = itemStack;
+	}
+
+	private void damageWeapon(){
+		if(this.getItemStack()!=null&&this.getOwner()!=null) {
+			this.getItemStack().hurtAndBreak(1, this.getOwner(), (p_43296_) -> {
+				p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
+			});
+		}
+	 }
 		 
 
 }

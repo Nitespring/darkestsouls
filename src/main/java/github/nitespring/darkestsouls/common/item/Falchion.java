@@ -13,8 +13,12 @@ import net.minecraft.world.phys.Vec3;
 public class Falchion extends Weapon{
 
 
-    public Falchion(Tier tier, int attack, float speed, Properties properties) {
-        super(tier, attack, speed, properties);
+    public Falchion(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, Properties properties) {
+        super(tier, attack, speed, knockback, durability, movementSpeed, properties);
+    }
+
+    public Falchion(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, durability, movementSpeed, maxTargets, properties);
     }
 
 
@@ -28,9 +32,11 @@ public class Falchion extends Weapon{
         FalchionAttackEntity entity = new FalchionAttackEntity(EntityInit.FALCHION.get(),
                 levelIn,
                 pos,
-                5.0f,
+                this.getAttackDamage(playerIn,stackIn),
                 (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
         entity.setOwner(playerIn);
+        entity.setItemStack(stackIn);
+        entity.setMaxTargets(this.getMaxTargets(stackIn));
         levelIn.addFreshEntity(entity);
 
     }
