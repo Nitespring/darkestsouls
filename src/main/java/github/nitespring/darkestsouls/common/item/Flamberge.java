@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.common.item;
 
-import github.nitespring.darkestsouls.common.entity.projectile.ScimitarAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.ClaymoreAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.FlambergeAttackEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -9,18 +10,12 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class Scimitar extends Weapon{
+public class Flamberge extends Weapon{
 
 
-    public Scimitar(Tier tier, float attack, float speed, float knockback, int durability,int enchantability, float movementSpeed, Properties properties) {
-        super(tier, attack, speed, knockback, durability,enchantability, movementSpeed, properties);
+    public Flamberge(Tier tier, float attack, float speed, float knockback, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, blood, durability, enchantability, movementSpeed, maxTargets, properties);
     }
-
-    public Scimitar(Tier tier, float attack, float speed, float knockback, int durability,int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, durability,enchantability, movementSpeed, maxTargets, properties);
-    }
-
-
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
@@ -28,7 +23,7 @@ public class Scimitar extends Weapon{
         Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x()*1.5, 0.4, playerIn.getLookAngle().z()*1.5);
 
         Level levelIn = playerIn.level();
-        ScimitarAttackEntity entity = new ScimitarAttackEntity(EntityInit.SCIMITAR.get(),
+        FlambergeAttackEntity entity = new FlambergeAttackEntity(EntityInit.FLAMBERGE.get(),
                 levelIn,
                 pos,
                 this.getAttackDamage(playerIn,stackIn),

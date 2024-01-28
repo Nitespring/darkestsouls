@@ -6,7 +6,7 @@ import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
 import github.nitespring.darkestsouls.common.entity.projectile.ClaymoreAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.FlambergeAttackEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,21 +15,21 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-public class ClaymoreRenderer<T extends ClaymoreAttackEntity> extends EntityRenderer<T>{
+public class FlambergeRenderer<T extends FlambergeAttackEntity> extends EntityRenderer<T>{
 
 	public static final ResourceLocation TEXTURE_LOCATION_0 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/frayed_blade/frayed_blade0.png");
-	public static final ResourceLocation TEXTURE_LOCATION_1 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore0.png");
-	public static final ResourceLocation TEXTURE_LOCATION_2 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore1.png");
-	public static final ResourceLocation TEXTURE_LOCATION_3 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore2.png");
-	public static final ResourceLocation TEXTURE_LOCATION_4 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore3.png");
-	public static final ResourceLocation TEXTURE_LOCATION_5 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore4.png");
-	public static final ResourceLocation TEXTURE_LOCATION_6 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore5.png");
+	public static final ResourceLocation TEXTURE_LOCATION_1 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/flamberge/flamberge0.png");
+	public static final ResourceLocation TEXTURE_LOCATION_2 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/flamberge/flamberge1.png");
+	public static final ResourceLocation TEXTURE_LOCATION_3 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/flamberge/flamberge2.png");
+	public static final ResourceLocation TEXTURE_LOCATION_4 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/flamberge/flamberge3.png");
+	public static final ResourceLocation TEXTURE_LOCATION_5 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/flamberge/flamberge4.png");
+	public static final ResourceLocation TEXTURE_LOCATION_6 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/flamberge/flamberge5.png");
 	private final SquareTextureEntityModel<T> model;
 
 	//EvokerFangsRenderer
 
 
-	public ClaymoreRenderer(Context context) {
+	public FlambergeRenderer(Context context) {
 		super(context);
 		this.model = new SquareTextureEntityModel<>(context.bakeLayer(ClientListener.SQUARE_TEXTURE));
 		
@@ -68,7 +68,7 @@ public class ClaymoreRenderer<T extends ClaymoreAttackEntity> extends EntityRend
 
 
 		stack.translate(-0.25, -5.25, -0.75);
-		stack.scale(3.25f, 3.25f, 3.25f);
+	      stack.scale(3.25f, 3.25f, 3.25f);
 	      vertexconsumer = p_114532_.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(entity)));
 
 	         

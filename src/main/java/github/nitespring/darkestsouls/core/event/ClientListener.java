@@ -7,6 +7,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.abyss.Monstruosit
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.ClaymoreRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.FalchionRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.FlambergeRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.ScimitarRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
@@ -53,6 +54,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SCIMITAR.get(), ScimitarRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FALCHION.get(), FalchionRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CLAYMORE.get(), ClaymoreRenderer::new);
+		 event.registerEntityRenderer(EntityInit.FLAMBERGE.get(), FlambergeRenderer::new);
 
 		 
 	 }

@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.entity.mob.abyss;
+package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;

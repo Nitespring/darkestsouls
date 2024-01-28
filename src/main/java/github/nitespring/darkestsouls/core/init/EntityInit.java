@@ -3,7 +3,7 @@ package github.nitespring.darkestsouls.core.init;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.entity.mob.abyss.Bonewheel;
+import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.projectile.*;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
@@ -61,5 +61,9 @@ public class EntityInit {
 			() -> EntityType.Builder.<ClaymoreAttackEntity>of(ClaymoreAttackEntity::new, MobCategory.MISC)
 					.sized(2.0f, 2.0f)
 					.build("claymore"));
+	public static final RegistryObject<EntityType<FlambergeAttackEntity>> FLAMBERGE = ENTITIES.register("flamberge",
+			() -> EntityType.Builder.<FlambergeAttackEntity>of(FlambergeAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 2.0f)
+					.build("flamberge"));
 
 }

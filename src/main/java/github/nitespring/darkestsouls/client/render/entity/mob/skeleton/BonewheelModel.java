@@ -1,8 +1,7 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.entity.mob.abyss.Bonewheel;
-import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
+import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;

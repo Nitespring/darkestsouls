@@ -40,13 +40,15 @@ public class Weapon extends Item implements Vanishable {
     private final float movementSpeed;
     private final int durability;
     private int maxTargets=-1;
+    private int bloodAttack=0;
+    private final int enchantability;
     private final Tier tier;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
     protected static final UUID BASE_ATTACK_KNOCKBACK_UUID=UUID.randomUUID();
     protected static final UUID BASE_MOVEMENT_SPEED_UUID=UUID.randomUUID();
 
-    public Weapon(Tier tier, float attack, float speed, float knockback, int durability,float movementSpeed, Properties properties) {
+    public Weapon(Tier tier, float attack, float speed, float knockback, int durability, int enchantability, float movementSpeed, Properties properties) {
         super(properties);
         this.tier=tier;
         this.attackDamage=attack-1.0f;
@@ -54,6 +56,8 @@ public class Weapon extends Item implements Vanishable {
         this.attackKnockback=knockback;
         this.durability=durability;
         this.movementSpeed=movementSpeed-0.1f;
+        this.enchantability=enchantability;
+
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
@@ -61,9 +65,13 @@ public class Weapon extends Item implements Vanishable {
         builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(BASE_MOVEMENT_SPEED_UUID, "Weapon modifier", (double)this.movementSpeed, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
     }
-    public Weapon(Tier tier, float attack, float speed, float knockback, int durability,float movementSpeed, int maxTargets, Properties properties) {
-        this(tier, attack, speed, knockback, durability, movementSpeed, properties);
+    public Weapon(Tier tier, float attack, float speed, float knockback, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        this(tier, attack, speed, knockback, durability,enchantability, movementSpeed, properties);
         this.maxTargets=maxTargets;
+    }
+    public Weapon(Tier tier, float attack, float speed, float knockback, int blood, int durability,int enchantability,float movementSpeed, int maxTargets, Properties properties) {
+        this(tier, attack, speed, knockback, durability,enchantability, movementSpeed,maxTargets, properties);
+        this.bloodAttack=blood;
     }
 
     public float getAttackDamage() {return this.attackDamage;}
@@ -111,7 +119,7 @@ public class Weapon extends Item implements Vanishable {
     }
     @Override
     public int getEnchantmentValue() {
-        return this.tier.getEnchantmentValue();
+        return this.enchantability;
     }
     @Override
     public boolean isValidRepairItem(ItemStack p_43311_, ItemStack p_43312_) {
@@ -196,7 +204,12 @@ public class Weapon extends Item implements Vanishable {
     public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
 
         if(this.getMaxTargets()>=1) {
-            String info = "\u00A78\u00A7o+ " + this.getMaxTargets(stack) + "\u00A78\u00A7o Max Targets";
+            String info = "§8§o+ " + this.getMaxTargets(stack) + "§8§o Max Targets";
+            tooltip.add(Component.literal(info));
+        }
+
+        if(this.bloodAttack>=1) {
+            String info = "§4§o+ " + this.bloodAttack + "§4§o Blood Loss";
             tooltip.add(Component.literal(info));
         }
 

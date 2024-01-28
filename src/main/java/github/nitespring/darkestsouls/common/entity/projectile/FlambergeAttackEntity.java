@@ -21,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class FalchionAttackEntity extends Entity{
+public class FlambergeAttackEntity extends Entity{
 	@Nullable
 	private LivingEntity owner;
 	@Nullable
@@ -30,16 +30,16 @@ public class FalchionAttackEntity extends Entity{
 	private float damage = 1.5f;
 	@Nullable
 	private ItemStack itemStack;
-	public int hitEntities = 0;
+	private int hitEntities = 0;
 	private int maxTargets;
 
-	private static final EntityDataAccessor<Integer> ANIMATIONSTATE = SynchedEntityData.defineId(FalchionAttackEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> ANIMATIONSTATE = SynchedEntityData.defineId(FlambergeAttackEntity.class, EntityDataSerializers.INT);
 
-	public FalchionAttackEntity(EntityType<?> p_19870_, Level p_19871_) {
+	public FlambergeAttackEntity(EntityType<?> p_19870_, Level p_19871_) {
 		super(p_19870_, p_19871_);
 
 	}
-	public FalchionAttackEntity(EntityType<?> p_19870_, Level p_19871_, Vec3 pos, float dmg, float rot) {
+	public FlambergeAttackEntity(EntityType<?> p_19870_, Level p_19871_, Vec3 pos, float dmg, float rot) {
 		this(p_19870_, p_19871_);
 		this.setPos(pos);
 		this.damage=dmg;
@@ -113,11 +113,11 @@ public class FalchionAttackEntity extends Entity{
 		      super.tick();
 		      this.lifeTicks++;
 
-			if(lifeTicks%3==0) {
+			if(lifeTicks%2==0) {
 				this.setAnimationState(this.getAnimationState()+1);
 			}
 
-			 if(lifeTicks==3){
+			 if(lifeTicks==6){
 				this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, this.getSoundSource(), 0.25F, this.random.nextFloat() * 0.2F + 1.0F, false);
 				for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1.2D, 0.0D, 1.2D))) {
 					this.dealDamageTo(livingentity);
@@ -132,17 +132,17 @@ public class FalchionAttackEntity extends Entity{
 					this.level().addParticle(ParticleTypes.AMBIENT_ENTITY_EFFECT, d0, d1 + 1.0D, d2, d3, d4, d5);
 				}
 			}
+
+
+		      if (this.lifeTicks >= 11) {
+		    	  this.discard();
+		      }
 			 if(this.owner!=null&&lifeTicks%3==0) {
 				 Vec3 pos = this.owner.position().add(this.owner.getLookAngle().x() * 1.5, 0.4, this.owner.getLookAngle().z() * 1.5);
 				 this.setPos(pos);
 				 float rot = (float) Mth.atan2(pos.z - this.owner.getZ(), pos.x - this.owner.getX());
 				 this.setYRot(rot * (180F / (float) Math.PI));
 			 }
-
-		      if (this.lifeTicks >= 10) {
-		    	  this.discard();
-		      }
-
 		   }
 
 		  private void dealDamageTo(LivingEntity p_36945_) {

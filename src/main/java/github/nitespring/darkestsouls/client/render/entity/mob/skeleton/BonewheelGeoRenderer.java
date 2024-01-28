@@ -1,8 +1,7 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.skeleton;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import github.nitespring.darkestsouls.common.entity.mob.abyss.Bonewheel;
-import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
+import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

@@ -23,14 +23,9 @@ import java.util.Random;
 public class FrayedBlade extends Weapon{
 
 
-    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, Properties properties) {
-        super(tier, attack, speed, knockback, durability, movementSpeed, properties);
+    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, blood, durability, enchantability, movementSpeed, maxTargets, properties);
     }
-
-    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, durability, movementSpeed, maxTargets, properties);
-    }
-
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level p_41432_, Player playerIn, InteractionHand handIn) {

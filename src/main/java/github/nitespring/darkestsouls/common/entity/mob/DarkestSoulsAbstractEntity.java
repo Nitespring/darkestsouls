@@ -44,7 +44,8 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob{
 	private static final EntityDataAccessor<Integer> ENTITY_PHASE = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> TEAM = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS));
-	
+
+
 	@Nullable
 	private LivingEntity owner;
 	@Nullable
@@ -65,6 +66,9 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob{
 	 
 	public int getDSTeam() {return this.entityData.get(TEAM);}
 	public void setDSTeam(int anim) {this.entityData.set(TEAM, anim);}
+
+	public int getBloodResistance(){return 10;}
+
 	
 	@Override
 	 protected void defineSynchedData() {

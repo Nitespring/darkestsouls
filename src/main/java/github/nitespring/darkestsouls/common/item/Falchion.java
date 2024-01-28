@@ -13,12 +13,12 @@ import net.minecraft.world.phys.Vec3;
 public class Falchion extends Weapon{
 
 
-    public Falchion(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, Properties properties) {
-        super(tier, attack, speed, knockback, durability, movementSpeed, properties);
+    public Falchion(Tier tier, float attack, float speed, float knockback, int durability,int enchantability, float movementSpeed, Properties properties) {
+        super(tier, attack, speed, knockback, durability,enchantability, movementSpeed, properties);
     }
 
-    public Falchion(Tier tier, float attack, float speed, float knockback, int durability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, durability, movementSpeed, maxTargets, properties);
+    public Falchion(Tier tier, float attack, float speed, float knockback, int durability,int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, durability,enchantability, movementSpeed, maxTargets, properties);
     }
 
 
