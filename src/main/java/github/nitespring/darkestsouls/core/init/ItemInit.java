@@ -29,6 +29,8 @@ public class ItemInit {
 			() -> new Claymore(Tiers.TITANITE, 9.0f, 1.2f, 0.4f, 500,7,0.09f, 3,new Item.Properties()));
 	public static final RegistryObject<Flamberge> FLAMBERGE = ITEMS.register("flamberge",
 			() -> new Flamberge(Tiers.TITANITE, 8.5f, 1.2f, 0.3f,4, 400,6,0.09f, 3,new Item.Properties()));
+	public static final RegistryObject<Zweihander> ZWEIHANDER = ITEMS.register("zweihander",
+			() -> new Zweihander(Tiers.TITANITE, 10.5f, 1.0f, 0.8f, 1024,15,0.07f, 5,new Item.Properties()));
 
 
 	//Items

@@ -59,11 +59,15 @@ public class EntityInit {
 					.build("falchion"));
 	public static final RegistryObject<EntityType<ClaymoreAttackEntity>> CLAYMORE = ENTITIES.register("claymore",
 			() -> EntityType.Builder.<ClaymoreAttackEntity>of(ClaymoreAttackEntity::new, MobCategory.MISC)
-					.sized(2.0f, 2.0f)
+					.sized(2.0f, 1.75f)
 					.build("claymore"));
 	public static final RegistryObject<EntityType<FlambergeAttackEntity>> FLAMBERGE = ENTITIES.register("flamberge",
 			() -> EntityType.Builder.<FlambergeAttackEntity>of(FlambergeAttackEntity::new, MobCategory.MISC)
-					.sized(2.0f, 2.0f)
+					.sized(2.0f, 1.75f)
 					.build("flamberge"));
+	public static final RegistryObject<EntityType<ZweihanderAttackEntity>> ZWEIHANDER = ENTITIES.register("zweihander",
+			() -> EntityType.Builder.<ZweihanderAttackEntity>of(ZweihanderAttackEntity::new, MobCategory.MISC)
+					.sized(2.5f, 1.75f)
+					.build("zweihander"));
 
 }

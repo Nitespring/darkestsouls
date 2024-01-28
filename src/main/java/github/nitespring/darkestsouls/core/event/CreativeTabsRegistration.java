@@ -38,6 +38,7 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.FALCHION);
 				event.accept(ItemInit.CLAYMORE);
 				event.accept(ItemInit.FLAMBERGE);
+				event.accept(ItemInit.ZWEIHANDER);
 	            
 	        }
 	      
