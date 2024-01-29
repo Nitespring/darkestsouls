@@ -16,17 +16,24 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 3.0D)
 				.add(Attributes.FOLLOW_RANGE, 25);
-
 	  }
-
-
 	public static  AttributeSupplier.Builder setBonewheelAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 36.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.24D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
 				.add(Attributes.ATTACK_DAMAGE, 4.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.2D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.FOLLOW_RANGE, 25);
+	}
+	public static  AttributeSupplier.Builder setSewerCentipedeAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 40.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.24D)
+				.add(Attributes.ATTACK_DAMAGE, 5.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
 				.add(Attributes.FOLLOW_RANGE, 25);
 

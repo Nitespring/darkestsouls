@@ -24,6 +24,7 @@ public class CreativeTabsRegistration {
 	        {
 	            event.accept(ItemInit.SIN);
 				event.accept(ItemInit.BONEWHEEL);
+				event.accept(ItemInit.SEWER_CENTIPEDE);
 	            
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
