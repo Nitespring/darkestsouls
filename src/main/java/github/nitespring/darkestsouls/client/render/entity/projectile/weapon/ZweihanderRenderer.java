@@ -69,6 +69,16 @@ public class ZweihanderRenderer<T extends ZweihanderAttackEntity> extends Entity
 
 		stack.translate(-0.15, -6.15, -0.45);
 		stack.scale(3.75f, 3.75f, 3.75f);
+
+		/*stack.mulPose(Axis.YP.rotationDegrees(90-entity.getYRot()));
+		stack.mulPose(Axis.ZP.rotationDegrees(170));
+		stack.mulPose(Axis.XP.rotationDegrees(-80));
+
+
+		stack.translate(0, -5.5, -0.5);
+		stack.scale(3.95f, 3.95f, 3.95f);
+		*/
+		
 	      vertexconsumer = p_114532_.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(entity)));
 
 	         
