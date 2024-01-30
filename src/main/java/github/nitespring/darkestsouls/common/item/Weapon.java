@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -40,6 +41,8 @@ public class Weapon extends Item implements Vanishable {
     private final float movementSpeed;
     private final int durability;
     private int maxTargets=-1;
+
+    public final float poiseDmgModifier;
     private int bloodAttack=0;
     private final int enchantability;
     private final Tier tier;
@@ -48,12 +51,13 @@ public class Weapon extends Item implements Vanishable {
     protected static final UUID BASE_ATTACK_KNOCKBACK_UUID=UUID.randomUUID();
     protected static final UUID BASE_MOVEMENT_SPEED_UUID=UUID.randomUUID();
 
-    public Weapon(Tier tier, float attack, float speed, float knockback, int durability, int enchantability, float movementSpeed, Properties properties) {
+    public Weapon(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int durability, int enchantability, float movementSpeed, Properties properties) {
         super(properties);
         this.tier=tier;
         this.attackDamage=attack-1.0f;
         this.attackSpeed=speed-4.0f;
         this.attackKnockback=knockback;
+        this.poiseDmgModifier=poiseDmgModifier;
         this.durability=durability;
         this.movementSpeed=movementSpeed-0.1f;
         this.enchantability=enchantability;
@@ -65,12 +69,12 @@ public class Weapon extends Item implements Vanishable {
         builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(BASE_MOVEMENT_SPEED_UUID, "Weapon modifier", (double)this.movementSpeed, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
     }
-    public Weapon(Tier tier, float attack, float speed, float knockback, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        this(tier, attack, speed, knockback, durability,enchantability, movementSpeed, properties);
+    public Weapon(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        this(tier, attack, speed, knockback, poiseDmgModifier, durability, enchantability, movementSpeed, properties);
         this.maxTargets=maxTargets;
     }
-    public Weapon(Tier tier, float attack, float speed, float knockback, int blood, int durability,int enchantability,float movementSpeed, int maxTargets, Properties properties) {
-        this(tier, attack, speed, knockback, durability,enchantability, movementSpeed,maxTargets, properties);
+    public Weapon(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int blood, int durability,int enchantability,float movementSpeed, int maxTargets, Properties properties) {
+        this(tier, attack, speed, knockback,poiseDmgModifier,durability,enchantability, movementSpeed,maxTargets, properties);
         this.bloodAttack=blood;
     }
 
@@ -137,10 +141,13 @@ public class Weapon extends Item implements Vanishable {
         }
     }
     @Override
-    public boolean hurtEnemy(ItemStack p_43278_, LivingEntity p_43279_, LivingEntity p_43280_) {
+    public boolean hurtEnemy(ItemStack p_43278_, LivingEntity target, LivingEntity p_43280_) {
         p_43278_.hurtAndBreak(1, p_43280_, (p_43296_) -> {
             p_43296_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
+        if (target instanceof DarkestSoulsAbstractEntity){
+            ((DarkestSoulsAbstractEntity) target).damagePoiseHealth((int) ((this.poiseDmgModifier-1)*this.getAttackDamage((Player) p_43280_,p_43278_)));
+        }
         return true;
     }
     @Override

@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fluids.FluidType;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -45,7 +46,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "main_controller", 4, this::predicate));
         data.add(new AnimationController<>(this, "rotation_controller", 0, this::rotationPredicate));
-        data.add(new AnimationController<>(this, "stun_controller", 2, this::hitStunPredicate));
+        data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
     private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
@@ -124,6 +125,15 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     }
 
     @Override
+    public boolean canDrownInFluidType(FluidType type) {return false;}
+
+    @Override
+    public int getMaxPoise() {return 20;}
+
+    @Override
+    public int getBloodResistance() {return -1;}
+
+    @Override
     public void tick() {
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
@@ -136,8 +146,10 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=20) {
+                if(animationTick>=30) {
+                    this.getNavigation().stop();
                     animationTick=0;
+                    this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;

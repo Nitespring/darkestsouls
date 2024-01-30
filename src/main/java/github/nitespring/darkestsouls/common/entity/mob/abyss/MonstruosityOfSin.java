@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.entity.mob.abyss;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -49,7 +50,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	public void registerControllers(ControllerRegistrar data) {
 		data.add(new AnimationController<>(this, "main_controller", 4, this::predicate));
 		data.add(new AnimationController<>(this, "fingers_controller", 4, this::fingersPredicate));
-		data.add(new AnimationController<>(this, "stun_controller", 2, this::hitStunPredicate));
+		data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
 		}
 
 	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
@@ -90,8 +91,8 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 		}else {
 			switch(animState) {
 			case 1:
-					event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sin.stun"));
-					break;
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sin.stun"));
+				break;
 			case 11:
 				event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sin.crawl"));
 				break;
@@ -142,17 +143,35 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, 1.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
+
+	@Override
+	public int getMaxPoise() {return 46;}
+
+	@Override
+	public int getBloodResistance() {return 5;}
 	@Override
 	public void tick() {
+
+		if(this.hasEffect(MobEffects.POISON)){this.removeEffect(MobEffects.POISON);}
+
 		if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
 			this.playAnimation();
 		}
 		super.tick();
+
 	}
 	protected void playAnimation() {
 		animationTick++;
 		this.getNavigation().stop();
 		switch(this.getAnimationState()) {
+			case 1:
+				if(animationTick>=50) {
+					this.getNavigation().stop();
+					animationTick=0;
+					this.resetPoiseHealth();
+					setAnimationState(0);
+				}
+				break;
 			case 11:
 				if(animationTick>=20) {
 					animationTick=0;

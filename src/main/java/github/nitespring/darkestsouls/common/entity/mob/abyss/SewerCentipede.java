@@ -3,21 +3,20 @@ package github.nitespring.darkestsouls.common.entity.mob.abyss;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
+import net.minecraftforge.fluids.FluidType;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -50,7 +49,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 	public void registerControllers(ControllerRegistrar data) {
 		data.add(new AnimationController<>(this, "main_controller", 5, this::predicate));
 		data.add(new AnimationController<>(this, "limbs_controller", 2, this::limbsPredicate));
-		data.add(new AnimationController<>(this, "stun_controller", 2, this::hitStunPredicate));
+		data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
 		}
 
 	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
@@ -91,8 +90,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		}else {
 			switch(animState) {
 			case 1:
-					event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sewer_centipede.stun"));
-					break;
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sewer_centipede.stun"));
+				break;
 			case 21:
 				event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sewer_centipede.attack1"));
 				break;
@@ -158,14 +157,31 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, 1.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+		this.goalSelector.addGoal(3, new DarkestSoulsAbstractEntity.RandomStrollGoal(this, 0.8D));
 	}
+
+	@Override
+	protected boolean isAffectedByFluids() {return false;}
+	@Override
+	public boolean canDrownInFluidType(FluidType type) {return false;}
+	@Override
+	public boolean canSwimInFluidType(FluidType type) {return true;}
+
+	@Override
+	public int getMaxPoise() {return 28;}
+
+	@Override
+	public int getBloodResistance() {return 12;}
+
 	@Override
 	public void tick() {
-		if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
-			this.playAnimation();
-		}
+
+		if(this.hasEffect(MobEffects.POISON)){this.removeEffect(MobEffects.POISON);}
+
+		if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {this.playAnimation();}
+
 		super.tick();
+
 	}
 	protected void playAnimation() {
 		animationTick++;
@@ -174,6 +190,14 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		boolean flag1 = flag && this.distanceTo(this.getTarget())<=6.0f;
 
 		switch(this.getAnimationState()) {
+			case 1:
+				if(animationTick>=50) {
+					this.resetPoiseHealth();
+					this.getNavigation().stop();
+					animationTick=0;
+					setAnimationState(0);
+				}
+				break;
 			//Attack
 			case 21:
 				this.moveToTarget();

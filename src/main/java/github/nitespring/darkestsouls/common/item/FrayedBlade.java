@@ -23,8 +23,8 @@ import java.util.Random;
 public class FrayedBlade extends Weapon{
 
 
-    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, blood, durability, enchantability, movementSpeed, maxTargets, properties);
+    public FrayedBlade(Tier tier, float attack, float speed, float knockback,float poiseDmgModifier, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, poiseDmgModifier, blood, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override

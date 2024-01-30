@@ -1,5 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.projectile;
 
+import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
+import github.nitespring.darkestsouls.common.item.Weapon;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -14,6 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -145,20 +148,23 @@ public class ClaymoreAttackEntity extends Entity{
 			 }
 		   }
 
-		  private void dealDamageTo(LivingEntity p_36945_) {
+		  private void dealDamageTo(LivingEntity target) {
 		      LivingEntity livingentity = this.getOwner();
-		      if (p_36945_.isAlive() && !p_36945_.isInvulnerable() && p_36945_ != livingentity) {
+		      if (target.isAlive() && !target.isInvulnerable() && target != livingentity) {
 				  if(this.hitEntities<=maxTargets) {
 						 if (livingentity == null) {
-							p_36945_.hurt(this.level().damageSources().generic(), damage);
+							 target.hurt(this.level().damageSources().generic(), damage);
 						 } else {
-							if (livingentity.isAlliedTo(p_36945_)) {
+							if (livingentity.isAlliedTo(target)) {
 							   return;
 							}
 
-							p_36945_.hurt(this.level().damageSources().mobAttack(livingentity), damage);
+							 target.hurt(this.level().damageSources().mobAttack(livingentity), damage);
 							 this.damageWeapon();
 						 }
+					  if (target instanceof DarkestSoulsAbstractEntity && this.itemStack!=null && this.getOwner()!=null){
+						  ((DarkestSoulsAbstractEntity) target).damagePoiseHealth((int) ((((Weapon)this.itemStack.getItem()).poiseDmgModifier-1)*((Weapon)this.itemStack.getItem()).getAttackDamage((Player) this.getOwner(),this.itemStack)));
+					  }
 					  this.hitEntities++;
 				  }
 

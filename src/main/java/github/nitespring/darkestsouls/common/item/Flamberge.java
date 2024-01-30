@@ -13,8 +13,8 @@ import net.minecraft.world.phys.Vec3;
 public class Flamberge extends Weapon{
 
 
-    public Flamberge(Tier tier, float attack, float speed, float knockback, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, blood, durability, enchantability, movementSpeed, maxTargets, properties);
+    public Flamberge(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, poiseDmgModifier, blood, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override

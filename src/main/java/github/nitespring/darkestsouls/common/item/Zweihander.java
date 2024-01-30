@@ -13,8 +13,8 @@ import net.minecraft.world.phys.Vec3;
 public class Zweihander extends Weapon{
 
 
-    public Zweihander(Tier tier, float attack, float speed, float knockback, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, durability, enchantability, movementSpeed, maxTargets, properties);
+    public Zweihander(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, poiseDmgModifier, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override

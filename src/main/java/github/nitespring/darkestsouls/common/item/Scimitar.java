@@ -12,12 +12,9 @@ import net.minecraft.world.phys.Vec3;
 public class Scimitar extends Weapon{
 
 
-    public Scimitar(Tier tier, float attack, float speed, float knockback, int durability,int enchantability, float movementSpeed, Properties properties) {
-        super(tier, attack, speed, knockback, durability,enchantability, movementSpeed, properties);
-    }
 
-    public Scimitar(Tier tier, float attack, float speed, float knockback, int durability,int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, durability,enchantability, movementSpeed, maxTargets, properties);
+    public Scimitar(Tier tier, float attack, float speed, float knockback,float poiseDmgModifier, int durability,int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, poiseDmgModifier, durability,enchantability, movementSpeed, maxTargets, properties);
     }
 
 

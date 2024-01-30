@@ -9,7 +9,7 @@ public class EntityAttributes {
 	
 	public static  AttributeSupplier.Builder setMonstruosityOfSinAttributes(){
 		return Monster.createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 70.0D)
+				.add(Attributes.MAX_HEALTH, 80.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.20D)
 				.add(Attributes.ATTACK_DAMAGE, 10.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
@@ -29,7 +29,7 @@ public class EntityAttributes {
 	}
 	public static  AttributeSupplier.Builder setSewerCentipedeAttributes(){
 		return Monster.createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 40.0D)
+				.add(Attributes.MAX_HEALTH, 48.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.24D)
 				.add(Attributes.ATTACK_DAMAGE, 5.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
