@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.entity.projectile;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -256,7 +257,16 @@ public class WeaponAttackEntity extends Entity {
                     target.addEffect(new MobEffectInstance(MobEffects.POISON,40+this.poison*40,this.poison-1), this.getOwner());
                 }
 
-
+                if(this.bleed>=1){
+                    if(target.hasEffect(EffectInit.BLEED.get())){
+                        int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ this.bleed;
+                        target.removeEffect(EffectInit.BLEED.get());
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 60, amount));
+                    }else{
+                        int amount = this.bleed-1;
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 60, amount));
+                    }
+                }
 
                 if (target instanceof DarkestSoulsAbstractEntity && this.itemStack!=null && this.getOwner()!=null){
                     ((DarkestSoulsAbstractEntity) target).damagePoiseHealth(this.poiseDmg);

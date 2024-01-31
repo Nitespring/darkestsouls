@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -69,10 +70,10 @@ public class Weapon extends Item implements Vanishable {
         this.enchantability=enchantability;
 
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(BASE_ATTACK_KNOCKBACK_UUID, "Weapon modifier", (double)this.attackKnockback, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(BASE_MOVEMENT_SPEED_UUID, "Weapon modifier", (double)this.movementSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", this.attackSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(BASE_ATTACK_KNOCKBACK_UUID, "Weapon modifier", this.attackKnockback, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(BASE_MOVEMENT_SPEED_UUID, "Weapon modifier", this.movementSpeed, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
     }
     public Weapon(Tier tier, float attack, float speed, float knockback, int poise, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
@@ -93,7 +94,6 @@ public class Weapon extends Item implements Vanishable {
     public float getAttackDamage() {return this.attackDamage;}
     public float getAttackDamage(Player playerIn, ItemStack stackIn) {
 
-        float effectModifier = 1;
         float enchantmentsModifier = 0;
 
         //playerIn.getAttackStrengthScale();
@@ -184,6 +184,18 @@ public class Weapon extends Item implements Vanishable {
         if(this.getPoisonAttack(stackIn)>=1){
             target.addEffect(new MobEffectInstance(MobEffects.POISON,90+this.getPoisonAttack(stackIn)*45,this.getPoisonAttack(stackIn)-1), playerIn);
         }
+
+        if(this.getBloodAttack(stackIn)>=1){
+            if(target.hasEffect(EffectInit.BLEED.get())){
+                int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ this.getBloodAttack(stackIn);
+                target.removeEffect(EffectInit.BLEED.get());
+                target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 60, amount));
+            }else{
+                int amount = this.getBloodAttack(stackIn)-1;
+                target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 60, amount));
+            }
+        }
+
         return true;
     }
 

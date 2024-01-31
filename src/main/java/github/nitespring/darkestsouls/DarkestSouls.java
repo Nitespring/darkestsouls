@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls;
 
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import github.nitespring.darkestsouls.networking.DarkestSoulsPacketHandler;
@@ -26,6 +27,7 @@ public class DarkestSouls
         GeckoLib.initialize();
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
+        EffectInit.EFFECTS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
         

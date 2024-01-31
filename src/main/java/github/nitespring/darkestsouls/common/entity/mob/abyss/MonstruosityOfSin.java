@@ -37,6 +37,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	
 	public MonstruosityOfSin(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
+		this.setAnimationState(11);
 	}
 
 	@Override

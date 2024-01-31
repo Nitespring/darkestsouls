@@ -131,7 +131,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     public int getMaxPoise() {return 20;}
 
     @Override
-    public int getBloodResistance() {return -1;}
+    public int getBloodResistance() {return 999;}
 
     @Override
     public void tick() {
