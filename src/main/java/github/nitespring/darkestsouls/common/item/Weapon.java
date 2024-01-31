@@ -8,10 +8,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -42,8 +42,14 @@ public class Weapon extends Item implements Vanishable {
     private final int durability;
     private int maxTargets=-1;
 
-    public final float poiseDmgModifier;
+    public final int poisedmg;
     private int bloodAttack=0;
+    private int poisonAttack=0;
+    private int rotAttack=0;
+    private int deathAttack=0;
+    private int frostAttack=0;
+    private int fire=0;
+    private float holy=0;
     private final int enchantability;
     private final Tier tier;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
@@ -51,13 +57,13 @@ public class Weapon extends Item implements Vanishable {
     protected static final UUID BASE_ATTACK_KNOCKBACK_UUID=UUID.randomUUID();
     protected static final UUID BASE_MOVEMENT_SPEED_UUID=UUID.randomUUID();
 
-    public Weapon(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int durability, int enchantability, float movementSpeed, Properties properties) {
+    public Weapon(Tier tier, float attack, float speed, float knockback, int poise, int durability, int enchantability, float movementSpeed, Properties properties) {
         super(properties);
         this.tier=tier;
         this.attackDamage=attack-1.0f;
         this.attackSpeed=speed-4.0f;
         this.attackKnockback=knockback;
-        this.poiseDmgModifier=poiseDmgModifier;
+        this.poisedmg=poise;
         this.durability=durability;
         this.movementSpeed=movementSpeed-0.1f;
         this.enchantability=enchantability;
@@ -69,13 +75,19 @@ public class Weapon extends Item implements Vanishable {
         builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(BASE_MOVEMENT_SPEED_UUID, "Weapon modifier", (double)this.movementSpeed, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
     }
-    public Weapon(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        this(tier, attack, speed, knockback, poiseDmgModifier, durability, enchantability, movementSpeed, properties);
+    public Weapon(Tier tier, float attack, float speed, float knockback, int poise, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        this(tier, attack, speed, knockback, poise, durability, enchantability, movementSpeed, properties);
         this.maxTargets=maxTargets;
     }
-    public Weapon(Tier tier, float attack, float speed, float knockback, float poiseDmgModifier, int blood, int durability,int enchantability,float movementSpeed, int maxTargets, Properties properties) {
-        this(tier, attack, speed, knockback,poiseDmgModifier,durability,enchantability, movementSpeed,maxTargets, properties);
+    public Weapon(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        this(tier, attack, speed, knockback, poise,durability,enchantability, movementSpeed,maxTargets, properties);
         this.bloodAttack=blood;
+        this.poisonAttack=poison;
+        this.frostAttack=frost;
+        this.rotAttack=rot;
+        this.deathAttack=death;
+        this.fire=fire;
+        this.holy=holy;
     }
 
     public float getAttackDamage() {return this.attackDamage;}
@@ -84,23 +96,27 @@ public class Weapon extends Item implements Vanishable {
         float effectModifier = 1;
         float enchantmentsModifier = 0;
 
+        //playerIn.getAttackStrengthScale();
+
+        double strengthModifier = playerIn.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
+        /*
         if(playerIn.hasEffect(MobEffects.DAMAGE_BOOST)){
             effectModifier = effectModifier + (1 + playerIn.getEffect(MobEffects.DAMAGE_BOOST).getAmplifier())*0.2f;
         }
         if(playerIn.hasEffect(MobEffects.WEAKNESS)){
             effectModifier = effectModifier - (1 + playerIn.getEffect(MobEffects.WEAKNESS).getAmplifier())*0.2f;
         }
-
+        */
         if(stackIn.isEnchanted()) {
 
             enchantmentsModifier = enchantmentsModifier + 0.5f*EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stackIn);
 
         }
 
-        float f=effectModifier + enchantmentsModifier;
+        float f = (float) (strengthModifier + enchantmentsModifier);
 
 
-        return f*this.getAttackDamage();
+        return f+this.getAttackDamage();
 
     }
     public float getAttackSpeed() {return this.attackSpeed;}
@@ -115,7 +131,24 @@ public class Weapon extends Item implements Vanishable {
             return this.getMaxTargets();
         }
     }
+
+    public int getPoiseDamage(Player playerIn, ItemStack item) {
+        if (playerIn.hasEffect(MobEffects.DAMAGE_BOOST)) {
+            return this.poisedmg + (int) 2 * playerIn.getEffect(MobEffects.DAMAGE_BOOST).getAmplifier();
+        }else{
+            return this.poisedmg;
+        }
+    }
     public int getDurability() {return this.durability;}
+    public int getBloodAttack(ItemStack item){return bloodAttack;}
+    public int getPoisonAttack(ItemStack item){return poisonAttack;}
+    public int getFrostAttack(ItemStack item){return frostAttack;}
+    public int getRotAttack(ItemStack item){return rotAttack;}
+    public int getDeathAttack(ItemStack item){return deathAttack;}
+    public int getFireAttack(ItemStack item){return fire + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FIRE_ASPECT, item);}
+    public float getSmiteAttack(ItemStack item){return holy + 2.5f*EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SMITE, item);}
+    public float getBaneOfArthropodsAttack(ItemStack item){return 2.5f*EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS, item);}
+
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot p_43274_) {
@@ -141,15 +174,19 @@ public class Weapon extends Item implements Vanishable {
         }
     }
     @Override
-    public boolean hurtEnemy(ItemStack p_43278_, LivingEntity target, LivingEntity p_43280_) {
-        p_43278_.hurtAndBreak(1, p_43280_, (p_43296_) -> {
+    public boolean hurtEnemy(ItemStack stackIn, LivingEntity target, LivingEntity playerIn) {
+        stackIn.hurtAndBreak(1, playerIn, (p_43296_) -> {
             p_43296_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
-        if (target instanceof DarkestSoulsAbstractEntity){
-            ((DarkestSoulsAbstractEntity) target).damagePoiseHealth((int) ((this.poiseDmgModifier-1)*this.getAttackDamage((Player) p_43280_,p_43278_)));
+        if (target instanceof DarkestSoulsAbstractEntity && playerIn instanceof Player){
+            ((DarkestSoulsAbstractEntity) target).damagePoiseHealth(this.getPoiseDamage((Player) playerIn, stackIn));
+        }
+        if(this.getPoisonAttack(stackIn)>=1){
+            target.addEffect(new MobEffectInstance(MobEffects.POISON,90+this.getPoisonAttack(stackIn)*45,this.getPoisonAttack(stackIn)-1), playerIn);
         }
         return true;
     }
+
     @Override
     public boolean mineBlock(ItemStack p_43282_, Level p_43283_, BlockState p_43284_, BlockPos p_43285_, LivingEntity p_43286_) {
         if (p_43284_.getDestroySpeed(p_43283_, p_43285_) != 0.0F) {

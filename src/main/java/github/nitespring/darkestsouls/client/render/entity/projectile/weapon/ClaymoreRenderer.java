@@ -5,8 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
-import github.nitespring.darkestsouls.common.entity.projectile.ClaymoreAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.WeaponAttackEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -14,8 +13,9 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
-public class ClaymoreRenderer<T extends ClaymoreAttackEntity> extends EntityRenderer<T>{
+public class ClaymoreRenderer<T extends WeaponAttackEntity> extends EntityRenderer<T>{
 
 	public static final ResourceLocation TEXTURE_LOCATION_0 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/frayed_blade/frayed_blade0.png");
 	public static final ResourceLocation TEXTURE_LOCATION_1 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/claymore/claymore0.png");

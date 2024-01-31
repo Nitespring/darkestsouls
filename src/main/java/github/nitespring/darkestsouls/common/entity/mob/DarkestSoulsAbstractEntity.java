@@ -264,24 +264,26 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 			}
 		}
 
-		float poiseDmgMod = 1;
 
-		if (source.is(DamageTypes.ARROW)||source.is(DamageTypes.MAGIC)) {
-			poiseDmgMod = poiseDmgMod / 2;
+		if(!source.is(DamageTypes.PLAYER_ATTACK)) {
+			float poiseDmgMod = 1;
+
+			if (source.is(DamageTypes.ARROW) || source.is(DamageTypes.MAGIC)) {
+				poiseDmgMod = poiseDmgMod / 2;
+			}
+
+			if (source.is(DamageTypes.EXPLOSION)) {
+				poiseDmgMod = poiseDmgMod * 2;
+			}
+
+			if (source.is(DamageTypes.DRY_OUT) || source.is(DamageTypes.DRY_OUT)) {
+				poiseDmgMod = 0;
+			}
+
+			int finalPoiseDmg = (int) (f * poiseDmgMod);
+
+			this.damagePoiseHealth(finalPoiseDmg);
 		}
-
-		if (source.is(DamageTypes.EXPLOSION)) {
-			poiseDmgMod = poiseDmgMod * 2;
-		}
-
-		if (source.is(DamageTypes.DROWN) || source.is(DamageTypes.DRY_OUT)) {
-			poiseDmgMod = 0;
-		}
-
-		int finalPoiseDmg = (int) (f * poiseDmgMod);
-
-		this.damagePoiseHealth(finalPoiseDmg);
-
 		return super.hurt(source, f);
 	}
 

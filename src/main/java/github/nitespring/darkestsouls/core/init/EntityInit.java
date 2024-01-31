@@ -54,24 +54,24 @@ public class EntityInit {
 			() -> EntityType.Builder.<FrayedBladeFlameEntity>of(FrayedBladeFlameEntity::new, MobCategory.MISC)
 					.sized(1.0f, 1.5f)
 					.build("frayed_blade_flame"));
-	public static final RegistryObject<EntityType<ScimitarAttackEntity>> SCIMITAR = ENTITIES.register("scimitar",
-			() -> EntityType.Builder.<ScimitarAttackEntity>of(ScimitarAttackEntity::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SCIMITAR = ENTITIES.register("scimitar",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.0f, 1.0f)
 					.build("scimitar"));
-	public static final RegistryObject<EntityType<FalchionAttackEntity>> FALCHION = ENTITIES.register("falchion",
-			() -> EntityType.Builder.<FalchionAttackEntity>of(FalchionAttackEntity::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> FALCHION = ENTITIES.register("falchion",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.0f, 1.0f)
 					.build("falchion"));
-	public static final RegistryObject<EntityType<ClaymoreAttackEntity>> CLAYMORE = ENTITIES.register("claymore",
-			() -> EntityType.Builder.<ClaymoreAttackEntity>of(ClaymoreAttackEntity::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> CLAYMORE = ENTITIES.register("claymore",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.0f, 1.75f)
 					.build("claymore"));
-	public static final RegistryObject<EntityType<FlambergeAttackEntity>> FLAMBERGE = ENTITIES.register("flamberge",
-			() -> EntityType.Builder.<FlambergeAttackEntity>of(FlambergeAttackEntity::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> FLAMBERGE = ENTITIES.register("flamberge",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.0f, 1.75f)
 					.build("flamberge"));
-	public static final RegistryObject<EntityType<ZweihanderAttackEntity>> ZWEIHANDER = ENTITIES.register("zweihander",
-			() -> EntityType.Builder.<ZweihanderAttackEntity>of(ZweihanderAttackEntity::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> ZWEIHANDER = ENTITIES.register("zweihander",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.5f, 1.75f)
 					.build("zweihander"));
 

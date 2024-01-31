@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.item;
 
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.WeaponAttackEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -23,8 +24,8 @@ import java.util.Random;
 public class FrayedBlade extends Weapon{
 
 
-    public FrayedBlade(Tier tier, float attack, float speed, float knockback,float poiseDmgModifier, int blood, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, poiseDmgModifier, blood, durability, enchantability, movementSpeed, maxTargets, properties);
+    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, knockback, poise, blood, poison, frost, rot, death, fire, holy, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override
@@ -41,14 +42,25 @@ public class FrayedBlade extends Weapon{
         Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x()*1.5, 0.4, playerIn.getLookAngle().z()*1.5);
 
         Level levelIn = playerIn.level();
-        FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(),
-                levelIn,
-                pos,
-                this.getAttackDamage(playerIn,stackIn)/2,
-                (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+        FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos,(float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
         entity.setOwner(playerIn);
         entity.setItemStack(stackIn);
+        entity.setMaxTargets(this.getMaxTargets(stackIn));
+        entity.setDamage(
+                2.0f,
+                1,
+                this.getFireAttack(stackIn),
+                this.getSmiteAttack(stackIn),
+                this.getBaneOfArthropodsAttack(stackIn),
+                1,
+                this.getPoisonAttack(stackIn),
+                this.getRotAttack(stackIn),
+                this.getFrostAttack(stackIn),
+                this.getDeathAttack(stackIn));
+        entity.setHitboxModifications(1.2f,0f, 0.4f, 1.5f);
+        entity.configureTicks(14,22,1,2);
         levelIn.addFreshEntity(entity);
+
 
     }
     @Override
