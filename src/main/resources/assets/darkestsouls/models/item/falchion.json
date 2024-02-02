@@ -24,6 +24,6 @@
         }
     },
 "textures": {
-    "layer0": "darkestsouls:item/falchion"
+    "layer0": "darkestsouls:item/weapon/falchion"
     }
 }

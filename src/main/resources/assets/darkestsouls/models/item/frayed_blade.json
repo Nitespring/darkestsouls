@@ -1,7 +1,7 @@
 {
 "parent": "minecraft:item/handheld",
 "textures": {
-    "layer0": "darkestsouls:item/frayed_blade"
+    "layer0": "darkestsouls:item/weapon/frayed_blade"
     },
 "display": {
         "thirdperson_righthand": {

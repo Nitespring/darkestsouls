@@ -24,6 +24,6 @@
     }
 ,
 "textures": {
-    "layer0": "darkestsouls:item/scimitar"
+    "layer0": "darkestsouls:item/weapon/scimitar"
     }
 }

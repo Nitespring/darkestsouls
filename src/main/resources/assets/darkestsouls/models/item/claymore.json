@@ -23,6 +23,6 @@
         }
     },
     "textures": {
-    "layer0": "darkestsouls:item/claymore"
+    "layer0": "darkestsouls:item/weapon/claymore"
     }
 }

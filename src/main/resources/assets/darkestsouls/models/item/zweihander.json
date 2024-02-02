@@ -23,6 +23,6 @@
         }
     },
     "textures": {
-    "layer0": "darkestsouls:item/zweihander"
+    "layer0": "darkestsouls:item/weapon/zweihander"
     }
 }

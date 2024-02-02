@@ -20,7 +20,7 @@ public class ItemInit {
 	//Weapons
 
 	public static final RegistryObject<FrayedBlade> FRAYED_BLADE = ITEMS.register("frayed_blade",
-			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.1f, 1, 3,0,0,0,0,0,0,1350,12,0.11f,-1, new Item.Properties()));
+			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.1f, 8, 3,0,0,0,0,0,0,1350,12,0.11f,-1, new Item.Properties()));
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
@@ -43,13 +43,74 @@ public class ItemInit {
 	public static final RegistryObject<Item> SEWER_CENTIPEDE = ITEMS.register("sewer_centipede_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 14283506, 16737400, new Item.Properties()));
 
-	/*
-	public static final RegistryObject<Item> SNOWFLAKE = ITEMS.register("snowflake", 
+
+
+	public static final RegistryObject<Item> SOUL_FRAGMENT = ITEMS.register("soul_fragment",
 			() -> new Item(new Item.Properties()));
-	*/
-	/*
-	public static final RegistryObject<CandybarGreatsword> CANDY_SWORD = ITEMS.register("candy_sword",
-			() -> new CandybarGreatsword(YuleTiers.CANDY, 3, -2.5F, new Item.Properties()));
-	*/
+	public static final RegistryObject<Item> DARK_FRAGMENT = ITEMS.register("dark_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SIDERITE_FRAGMENT = ITEMS.register("siderite_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_STONE_FRAGMENT = ITEMS.register("blood_stone_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_GEM = ITEMS.register("blood_gem",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BEAST_BLOOD_CLUMP = ITEMS.register("beast_blood_clump",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> QUICKSILVER = ITEMS.register("quicksilver",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SIDERITE_NUGGET = ITEMS.register("siderite_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SIDERITE_INGOT = ITEMS.register("siderite_ingot",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> SOUL_ESSENCE = ITEMS.register("soul_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DARK_ESSENCE = ITEMS.register("dark_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> FIRE_ESSENCE = ITEMS.register("fire_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CHAOS_ESSENCE = ITEMS.register("chaos_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> LIGHTNING_ESSENCE = ITEMS.register("lightning_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> LIGHT_ESSENCE = ITEMS.register("light_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_ESSENCE = ITEMS.register("blood_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> POISON_ESSENCE = ITEMS.register("poison_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> FROST_ESSENCE = ITEMS.register("frost_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROT_ESSENCE = ITEMS.register("rot_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BEAST_ESSENCE = ITEMS.register("beast_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> NIGHTMARE_ESSENCE = ITEMS.register("nightmare_essence",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> EYE = ITEMS.register("eye",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BEAST_EYE = ITEMS.register("beast_eye",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLIND_EYE = ITEMS.register("blind_eye",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOSSOMED_EYE = ITEMS.register("blossomed_eye",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOOD_STONE_SHARD = ITEMS.register("blood_stone_shard",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TWIN_BLOOD_STONE_SHARDS = ITEMS.register("twin_blood_stone_shards",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_STONE_CHUNK = ITEMS.register("blood_stone_chunk",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_ROCK = ITEMS.register("blood_rock",
+			() -> new Item(new Item.Properties()));
+
+
 
 }

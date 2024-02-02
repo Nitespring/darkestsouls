@@ -23,6 +23,6 @@
         }
     },
     "textures": {
-    "layer0": "darkestsouls:item/flamberge"
+    "layer0": "darkestsouls:item/weapon/flamberge"
     }
 }
