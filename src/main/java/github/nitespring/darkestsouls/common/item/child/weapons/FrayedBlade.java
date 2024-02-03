@@ -1,8 +1,8 @@
-package github.nitespring.darkestsouls.common.item;
+package github.nitespring.darkestsouls.common.item.child.weapons;
 
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.FrayedBladeFlameEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.WeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -19,9 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
-public class FrayedBlade extends Weapon{
+public class FrayedBlade extends Weapon {
 
 
     public FrayedBlade(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {

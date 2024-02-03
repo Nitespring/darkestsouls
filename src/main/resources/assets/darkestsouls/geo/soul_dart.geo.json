@@ -1,0 +1,191 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 8,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [0, 2.5, 0]
+				},
+				{
+					"name": "root",
+					"parent": "bone",
+					"pivot": [0, 2.5, 0]
+				},
+				{
+					"name": "outsidering0",
+					"parent": "root",
+					"pivot": [0, 2.5, -18],
+					"cubes": [
+						{"origin": [-15, -12, -18], "size": [30, 30, 0], "uv": [140, 72]}
+					]
+				},
+				{
+					"name": "outsidering1",
+					"parent": "root",
+					"pivot": [0, 2.5, -11],
+					"cubes": [
+						{"origin": [-18, -15.5, -11], "size": [36, 36, 0], "uv": [96, 36]}
+					]
+				},
+				{
+					"name": "outsidering2",
+					"parent": "root",
+					"pivot": [0.025, 2.5, -4],
+					"cubes": [
+						{"origin": [-24, -21.5, -4], "size": [48, 48, 0], "uv": [0, 48]}
+					]
+				},
+				{
+					"name": "outsidering3",
+					"parent": "root",
+					"pivot": [0.025, 2.5, 4],
+					"cubes": [
+						{"origin": [-24, -21.5, 4], "size": [48, 48, 0], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "outsidering4",
+					"parent": "root",
+					"pivot": [0.025, 2.5, 12],
+					"cubes": [
+						{"origin": [-19.75, -18, 12], "size": [40, 40, 0], "uv": [0, 96]}
+					]
+				},
+				{
+					"name": "outsidering5",
+					"parent": "root",
+					"pivot": [0, 2.5, 19],
+					"cubes": [
+						{"origin": [-18, -15.5, 19], "size": [36, 36, 0], "uv": [96, 0]}
+					]
+				},
+				{
+					"name": "outsidering6",
+					"parent": "root",
+					"pivot": [0, 2.5, 28],
+					"cubes": [
+						{"origin": [-15, -12, 28], "size": [30, 30, 0], "uv": [0, 136]}
+					]
+				},
+				{
+					"name": "outsidering7",
+					"parent": "root",
+					"pivot": [0, 2.5, 36],
+					"cubes": [
+						{"origin": [-15, -12, 36], "size": [30, 30, 0], "uv": [80, 126]}
+					]
+				},
+				{
+					"name": "outsidering8",
+					"parent": "root",
+					"pivot": [0, 2.5, 44],
+					"cubes": [
+						{"origin": [-15, -12, 44], "size": [30, 30, 0], "uv": [80, 96]}
+					]
+				},
+				{
+					"name": "cube1",
+					"parent": "root",
+					"pivot": [0, 2.5, 19],
+					"cubes": [
+						{"origin": [-3.5, -1, 15.5], "size": [7, 7, 7], "uv": [140, 148]}
+					]
+				},
+				{
+					"name": "cube2",
+					"parent": "root",
+					"pivot": [0, 2.5, 34],
+					"cubes": [
+						{"origin": [-3.5, -1, 30.5], "size": [7, 7, 7], "uv": [140, 134]}
+					]
+				},
+				{
+					"name": "cube3",
+					"parent": "root",
+					"pivot": [0, 2.5, 48],
+					"cubes": [
+						{"origin": [-3.5, -1, 44.5], "size": [7, 7, 7], "uv": [140, 120]}
+					]
+				},
+				{
+					"name": "inside",
+					"parent": "root",
+					"pivot": [0, 2.5, 0]
+				},
+				{
+					"name": "small_cube",
+					"parent": "inside",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-2.5, 0, -2.5], "size": [5, 5, 5], "uv": [175, 152]}
+					]
+				},
+				{
+					"name": "large_cube",
+					"parent": "inside",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-3.5, -1, -3.5], "size": [7, 7, 7], "uv": [96, 156]}
+					]
+				},
+				{
+					"name": "insidering1",
+					"parent": "inside",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-9, 2.5, -9], "size": [18, 0, 18], "uv": [78, 72]}
+					]
+				},
+				{
+					"name": "insidering2",
+					"parent": "inside",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-9, -6.5, 0], "size": [18, 18, 0], "uv": [140, 102]}
+					]
+				},
+				{
+					"name": "insidering3",
+					"parent": "inside",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [0, -6.5, -9], "size": [0, 18, 18], "uv": [60, 138]}
+					]
+				},
+				{
+					"name": "smallcube1",
+					"parent": "root",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-0.5, 2, 0], "size": [1, 1, 1], "uv": [105, 164]}
+					]
+				},
+				{
+					"name": "smallcube2",
+					"parent": "root",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-0.5, 2, 0], "size": [1, 1, 1], "uv": [105, 164]}
+					]
+				},
+				{
+					"name": "smallcube3",
+					"parent": "root",
+					"pivot": [0, 2.5, 0],
+					"cubes": [
+						{"origin": [-0.5, 2, 0], "size": [1, 1, 1], "uv": [105, 164]}
+					]
+				}
+			]
+		}
+	]
+}

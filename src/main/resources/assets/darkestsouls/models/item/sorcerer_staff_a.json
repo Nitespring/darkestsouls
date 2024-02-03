@@ -1,0 +1,28 @@
+{
+    "parent": "item/generated",
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 0, 6.0, -1.0 ],
+            "scale": [ 1.70, 1.70, 0.85 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 0, 6.0, -1.0 ],
+            "scale": [ 1.70, 1.70, 0.85 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 1.13, 3.5, -0.63 ],
+            "scale": [ 1.16, 1.16, 0.58 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 1.13, 3.5, -0.63 ],
+            "scale": [ 1.16, 1.16, 0.58 ]
+        }
+    },
+    "textures": {
+    "layer0": "darkestsouls:item/weapon/sorcerer_staff_a"
+    }
+}

@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.networking;
 
 
 
+import github.nitespring.darkestsouls.common.item.ILeftClickItem;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +26,7 @@ public class ItemLeftClickAction {
 	            			return;
 	            	ItemStack mainHand = playerIn.getMainHandItem();
 	    			
-	    			if(mainHand.getItem() instanceof Weapon) {
+	    			if(mainHand.getItem() instanceof ILeftClickItem) {
 	    				  if (playerIn.getAttackStrengthScale(0)>=0.8) {
 	    			((Weapon)mainHand.getItem()).doLeftClickAction(playerIn, mainHand);
 	    				  }

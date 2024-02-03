@@ -1,7 +1,6 @@
-package github.nitespring.darkestsouls.common.entity.projectile;
+package github.nitespring.darkestsouls.common.entity.projectile.weapon;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
-import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

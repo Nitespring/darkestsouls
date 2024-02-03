@@ -6,7 +6,10 @@ import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
-import github.nitespring.darkestsouls.common.entity.projectile.*;
+import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -74,5 +77,12 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.5f, 1.75f)
 					.build("zweihander"));
+
+	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
+			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)
+					.sized(1.0f, 1.0f)
+					.build("soul_dart"));
+
+
 
 }

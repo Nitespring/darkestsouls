@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
-import github.nitespring.darkestsouls.common.entity.projectile.WeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 
 public class ClaymoreRenderer<T extends WeaponAttackEntity> extends EntityRenderer<T>{
 

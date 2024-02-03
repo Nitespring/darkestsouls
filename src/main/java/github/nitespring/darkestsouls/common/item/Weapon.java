@@ -33,7 +33,7 @@ import net.minecraftforge.common.ToolActions;
 import java.util.List;
 import java.util.UUID;
 
-public class Weapon extends Item implements Vanishable {
+public class Weapon extends Item implements Vanishable,ILeftClickItem {
 
 
     private final float attackDamage;
@@ -275,11 +275,11 @@ public class Weapon extends Item implements Vanishable {
 
 
 
-
-
-
-
+    @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn){}
+
+
+
 
     public void doRightClickAction(Player playerIn, ItemStack stackIn){}
 

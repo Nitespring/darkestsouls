@@ -1,10 +1,10 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.item.*;
+import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
+import github.nitespring.darkestsouls.common.item.child.weapons.*;
 import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,7 +33,12 @@ public class ItemInit {
 			() -> new Zweihander(Tiers.TITANITE, 10.5f, 1.0f, 0.8f, 14, 1024,15,0.07f, 5,new Item.Properties()));
 
 
-	//Items
+
+	//Staves
+	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_A = ITEMS.register("sorcerer_staff_a",
+			() -> new SorcererStaff(2.0f, 256, new Item.Properties()));
+
+
 
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
@@ -44,7 +49,7 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 14283506, 16737400, new Item.Properties()));
 
 
-
+    //Items
 	public static final RegistryObject<Item> SOUL_FRAGMENT = ITEMS.register("soul_fragment",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DARK_FRAGMENT = ITEMS.register("dark_fragment",
