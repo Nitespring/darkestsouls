@@ -28,7 +28,7 @@ public class ItemLeftClickAction {
 	    			
 	    			if(mainHand.getItem() instanceof ILeftClickItem) {
 	    				  if (playerIn.getAttackStrengthScale(0)>=0.8) {
-	    			((Weapon)mainHand.getItem()).doLeftClickAction(playerIn, mainHand);
+	    			((ILeftClickItem)mainHand.getItem()).doLeftClickAction(playerIn, mainHand);
 	    				  }
 	    			}
 

@@ -36,12 +36,13 @@ public class Staff extends Item implements ILeftClickItem{
     }
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
-        this.doSpellA(playerIn, stackIn, InteractionHand.MAIN_HAND);
+        doSpellA(playerIn, stackIn, InteractionHand.MAIN_HAND);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
             this.doSpellB(playerIn, playerIn.getItemInHand(handIn), handIn);
+
         return super.use(levelIn, playerIn, handIn);
     }
 
@@ -49,6 +50,7 @@ public class Staff extends Item implements ILeftClickItem{
     public void doSpellB(Player playerIn, ItemStack stackIn, InteractionHand handIn){};
 
     @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {return true;}
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        return true;}
 
 }
