@@ -33,13 +33,34 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.DARK_FRAGMENT);
 				event.accept(ItemInit.SIDERITE_FRAGMENT);
 				event.accept(ItemInit.BLOOD_STONE_FRAGMENT);
+				event.accept(ItemInit.CHAOS_FRAGMENT);
 				event.accept(ItemInit.BLOOD_GEM);
 				event.accept(ItemInit.BEAST_BLOOD_CLUMP);
 				event.accept(ItemInit.QUICKSILVER);
-				event.accept(ItemInit.STEEL_NUGGET);
+				event.accept(ItemInit.TITANITE_INGOT);
+				event.accept(ItemInit.TITANITE_NUGGET);
+				event.accept(ItemInit.GOLDEN_INGOT);
+				event.accept(ItemInit.GOLDEN_NUGGET);
 				event.accept(ItemInit.STEEL_INGOT);
-				event.accept(ItemInit.SIDERITE_NUGGET);
+				event.accept(ItemInit.STEEL_NUGGET);
 				event.accept(ItemInit.SIDERITE_INGOT);
+				event.accept(ItemInit.SIDERITE_NUGGET);
+				event.accept(ItemInit.DEMON_INGOT);
+				event.accept(ItemInit.DEMON_NUGGET);
+				event.accept(ItemInit.TWINKLING_INGOT);
+				event.accept(ItemInit.TWINKLING_NUGGET);
+				event.accept(ItemInit.DARK_INGOT);
+				event.accept(ItemInit.DARK_NUGGET);
+				event.accept(ItemInit.NIGHTMARE_INGOT);
+				event.accept(ItemInit.NIGHTMARE_NUGGET);
+				event.accept(ItemInit.BLOOD_INGOT);
+				event.accept(ItemInit.BLOOD_NUGGET);
+				event.accept(ItemInit.HOLY_INGOT);
+				event.accept(ItemInit.HOLY_NUGGET);
+				event.accept(ItemInit.MAGIC_INGOT);
+				event.accept(ItemInit.MAGIC_NUGGET);
+				event.accept(ItemInit.DRAGON_INGOT);
+				event.accept(ItemInit.DRAGON_NUGGET);
 				event.accept(ItemInit.SOUL_ESSENCE);
 				event.accept(ItemInit.DARK_ESSENCE);
 				event.accept(ItemInit.FIRE_ESSENCE);
@@ -64,11 +85,31 @@ public class CreativeTabsRegistration {
 	        if (event.getTabKey() == CreativeModeTabs.COMBAT)
 	        {
 				event.accept(ItemInit.FRAYED_BLADE);
+				event.accept(ItemInit.DRAGONSLAYER_SPEAR);
+				event.accept(ItemInit.DRAGONSLAYER_SWORDSPEAR);
+				event.accept(ItemInit.STORM_CURVED_SWORD);
+				event.accept(ItemInit.SHADOW_BLADE);
+				event.accept(ItemInit.SAW_CLEAVER);
+				event.accept(ItemInit.SAW_CLEAVER_EXTENDED);
+				event.accept(ItemInit.HUNTER_AXE);
+				event.accept(ItemInit.HUNTER_AXE_EXTENDED);
+				event.accept(ItemInit.CHIKAGE);
+				event.accept(ItemInit.CHIKAGE_EXTENDED);
 	            event.accept(ItemInit.SCIMITAR);
 				event.accept(ItemInit.FALCHION);
 				event.accept(ItemInit.CLAYMORE);
 				event.accept(ItemInit.FLAMBERGE);
 				event.accept(ItemInit.ZWEIHANDER);
+				event.accept(ItemInit.HUNTSMAN_CUTLASS);
+				event.accept(ItemInit.HUNTSMAN_PITCHFORK);
+				event.accept(ItemInit.HUNTSMAN_AXE);
+				event.accept(ItemInit.HUNTER_TORCH);
+				event.accept(ItemInit.CHURCH_SCYTHE);
+				event.accept(ItemInit.HUNTER_PISTOL);
+				event.accept(ItemInit.SORCERER_STAFF_A);
+				event.accept(ItemInit.SORCERER_STAFF_B);
+				event.accept(ItemInit.CRYSTAL_STAFF);
+				event.accept(ItemInit.CHAOS_STAFF);
 	            
 	        }
 	      

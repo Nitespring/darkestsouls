@@ -1,6 +1,8 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.item.Staff;
+import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
 import github.nitespring.darkestsouls.common.item.child.weapons.*;
 import github.nitespring.darkestsouls.core.enums.Tiers;
@@ -17,10 +19,33 @@ public class ItemInit {
 	
 
 
-	//Weapons
+	//Special Weapons
 
 	public static final RegistryObject<FrayedBlade> FRAYED_BLADE = ITEMS.register("frayed_blade",
 			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.1f, 8, 3,0,0,0,0,0,0,1350,12,0.11f,-1, new Item.Properties()));
+	public static final RegistryObject<Weapon> SHADOW_BLADE = ITEMS.register("shadow_blade",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> DRAGONSLAYER_SPEAR = ITEMS.register("dragonslayer_spear",
+			() -> new Weapon(Tiers.TITANITE, 6.0f, 2.0f, -0.1f, 4, 1350,10,0.15f, 1,new Item.Properties()));
+	public static final RegistryObject<Weapon> DRAGONSLAYER_SWORDSPEAR = ITEMS.register("dragonslayer_swordspear",
+			() -> new Weapon(Tiers.TITANITE, 7.0f, 1.8f, 0.1f, 7, 1350,10,0.12f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> STORM_CURVED_SWORD = ITEMS.register("storm_curved_sword",
+			() -> new Weapon(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5, 1350,10,0.14f, 2,new Item.Properties()));
+
+	//Trick Weapons
+	public static final RegistryObject<Weapon> SAW_CLEAVER = ITEMS.register("saw_cleaver",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> SAW_CLEAVER_EXTENDED = ITEMS.register("saw_cleaver_extended",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> HUNTER_AXE = ITEMS.register("hunter_axe",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> HUNTER_AXE_EXTENDED = ITEMS.register("hunter_axe_extended",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> CHIKAGE = ITEMS.register("chikage",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> CHIKAGE_EXTENDED = ITEMS.register("chikage_extended",
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
@@ -32,13 +57,30 @@ public class ItemInit {
 	public static final RegistryObject<Zweihander> ZWEIHANDER = ITEMS.register("zweihander",
 			() -> new Zweihander(Tiers.TITANITE, 10.5f, 1.0f, 0.8f, 14, 1024,15,0.07f, 5,new Item.Properties()));
 
-
+	public static final RegistryObject<Weapon> HUNTSMAN_AXE = ITEMS.register("hunting_axe",
+			() -> new Weapon(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> HUNTSMAN_CUTLASS = ITEMS.register("huntsman_cutlass",
+			() -> new Weapon(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> HUNTSMAN_PITCHFORK = ITEMS.register("huntsman_pitchfork",
+			() -> new Weapon(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
+			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> CHURCH_SCYTHE= ITEMS.register("church_scythe",
+			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 
 	//Staves
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_A = ITEMS.register("sorcerer_staff_a",
-			() -> new SorcererStaff(2.0f, 256, new Item.Properties()));
+			() -> new SorcererStaff(2.0f, 128, new Item.Properties()));
+	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_B = ITEMS.register("sorcerer_staff_b",
+			() -> new SorcererStaff(4.0f, 256, new Item.Properties()));
+	public static final RegistryObject<Staff> CRYSTAL_STAFF = ITEMS.register("crystal_staff",
+			() -> new Staff(4.0f, 256, new Item.Properties()));
+	public static final RegistryObject<Staff> CHAOS_STAFF = ITEMS.register("chaos_staff",
+			() -> new Staff(4.0f, 256, new Item.Properties()));
 
-
+	//Guns
+	public static final RegistryObject<Item> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
+			() -> new Item(new Item.Properties()));
 
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
@@ -56,6 +98,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SIDERITE_FRAGMENT = ITEMS.register("siderite_fragment",
 			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CHAOS_FRAGMENT = ITEMS.register("chaos_fragment",
+			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLOOD_STONE_FRAGMENT = ITEMS.register("blood_stone_fragment",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLOOD_GEM = ITEMS.register("blood_gem",
@@ -69,9 +113,53 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SIDERITE_NUGGET = ITEMS.register("siderite_nugget",
 			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TITANITE_NUGGET = ITEMS.register("titanite_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GOLDEN_NUGGET = ITEMS.register("golden_alloy_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TWINKLING_NUGGET = ITEMS.register("twinkling_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEMON_NUGGET = ITEMS.register("demon_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CHAOS_NUGGET = ITEMS.register("chaos_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DARK_NUGGET = ITEMS.register("dark_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> NIGHTMARE_NUGGET = ITEMS.register("nightmare_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_NUGGET = ITEMS.register("blood_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> HOLY_NUGGET = ITEMS.register("holy_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MAGIC_NUGGET = ITEMS.register("magic_nugget",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DRAGON_NUGGET = ITEMS.register("dragon_nugget",
+			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SIDERITE_INGOT = ITEMS.register("siderite_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TITANITE_INGOT = ITEMS.register("titanite_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GOLDEN_INGOT = ITEMS.register("golden_alloy_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TWINKLING_INGOT = ITEMS.register("twinkling_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEMON_INGOT = ITEMS.register("demon_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CHAOS_INGOT = ITEMS.register("chaos_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DARK_INGOT = ITEMS.register("dark_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> NIGHTMARE_INGOT = ITEMS.register("nightmare_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_INGOT = ITEMS.register("blood_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> HOLY_INGOT = ITEMS.register("holy_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MAGIC_INGOT = ITEMS.register("magic_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DRAGON_INGOT = ITEMS.register("dragon_ingot",
 			() -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> SOUL_ESSENCE = ITEMS.register("soul_essence",

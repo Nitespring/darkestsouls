@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public enum Tiers implements Tier {
    TITANITE(2, 250, 9.0F, 0.0F, 15, () -> {
-      return Ingredient.of(ItemInit.BONEWHEEL.get());
+      return Ingredient.of(ItemInit.TITANITE_INGOT.get());
    });
 
    private final int level;

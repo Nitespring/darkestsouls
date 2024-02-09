@@ -1,0 +1,28 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+    "layer0": "darkestsouls:item/weapon/storm_curved_sword"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [0, 10, 0],
+            "scale": [ 1.27, 1.27, 0.65 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 1.23, 6.5, -0.43 ],
+            "scale": [ 0.86, 0.86, 0.36 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [0, 10, 0],
+            "scale": [ 1.27, 1.27, 0.65 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 1.23, 6.5, -0.43 ],
+            "scale": [ 0.86, 0.86, 0.36 ]
+        }
+    }
+}
