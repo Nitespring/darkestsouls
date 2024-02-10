@@ -22,9 +22,11 @@ public class CreativeTabsRegistration {
 	    {
 	        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 	        {
-	            event.accept(ItemInit.SIN);
+
+				event.accept(ItemInit.SKELETON_FALCHION);
 				event.accept(ItemInit.BONEWHEEL);
 				event.accept(ItemInit.SEWER_CENTIPEDE);
+				event.accept(ItemInit.SIN);
 	            
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)

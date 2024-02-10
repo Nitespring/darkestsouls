@@ -208,7 +208,7 @@ public class WeaponAttackEntity extends Entity {
         for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(inflateX, inflateY, inflateZ))) {
             this.dealDamageTo(livingentity);
         }
-        for(int i = 0; i < 6; ++i) {
+        /*for(int i = 0; i < 6; ++i) {
             double d0 = this.getX() + (this.random.nextDouble() * 2.0D - 1.0D) * (double)this.getBbWidth() * 0.5D;
             double d1 = this.getY() -0.75 + this.random.nextDouble()*1.5;
             double d2 = this.getZ() + (this.random.nextDouble() * 2.0D - 1.0D) * (double)this.getBbWidth() * 0.5D;
@@ -216,7 +216,7 @@ public class WeaponAttackEntity extends Entity {
             double d4 = 0.15D + this.random.nextDouble() * 0.6D;
             double d5 = (this.random.nextDouble() * 2.0D - 1.0D) * 0.75D;
             this.level().addParticle(ParticleTypes.AMBIENT_ENTITY_EFFECT, d0, d1 + 1.0D, d2, d3, d4, d5);
-        }
+        }*/
 
 
     }
@@ -270,6 +270,7 @@ public class WeaponAttackEntity extends Entity {
                 if (target instanceof DarkestSoulsAbstractEntity && this.itemStack!=null && this.getOwner()!=null){
                     ((DarkestSoulsAbstractEntity) target).damagePoiseHealth(this.poiseDmg);
                 }
+                System.out.println("entity damage " + damage+ mobTypeBonus);
                 this.hitEntities++;
             }
 
@@ -313,6 +314,7 @@ public class WeaponAttackEntity extends Entity {
 
     public void setDamage(float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death){
         this.damage=dmg;
+        System.out.println(dmg);
         this.poiseDmg=poisedmg;
         this.fire=fire;
         this.smite=smite;

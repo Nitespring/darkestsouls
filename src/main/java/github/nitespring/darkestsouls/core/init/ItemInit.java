@@ -89,7 +89,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, 14283506, 16737400, new Item.Properties()));
 	public static final RegistryObject<Item> SEWER_CENTIPEDE = ITEMS.register("sewer_centipede_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 14283506, 16737400, new Item.Properties()));
-
+	public static final RegistryObject<Item> SKELETON_FALCHION = ITEMS.register("skeleton_falchion_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 14283506, 16737400, new Item.Properties()));
 
     //Items
 	public static final RegistryObject<Item> SOUL_FRAGMENT = ITEMS.register("soul_fragment",

@@ -169,17 +169,17 @@ public class DamageHitboxEntity extends Entity {
 		}
        }
 	 
-	 private void dealDamageTo(LivingEntity p_36945_) {
-	      LivingEntity livingentity = this.getOwner();
-	      if (p_36945_.isAlive() && !p_36945_.isInvulnerable() && p_36945_ != livingentity) {
-	         if (livingentity == null) {
-	            p_36945_.hurt(this.damageSources().generic(), damage);
+	 private void dealDamageTo(LivingEntity target) {
+	      LivingEntity owner = this.getOwner();
+	      if (target.isAlive() && !target.isInvulnerable() && target != owner) {
+	         if (owner == null) {
+				 target.hurt(this.damageSources().generic(), damage);
 	         } else {
-	            if (livingentity.isAlliedTo(p_36945_)||livingentity==p_36945_) {
+	            if (owner.isAlliedTo(target)||owner==target) {
 	               return;
 	            }else {
 
-	            p_36945_.hurt(this.damageSources().mobAttack(livingentity), damage);
+					target.hurt(this.damageSources().mobAttack(owner), damage);
 	            }
 	         }
 
