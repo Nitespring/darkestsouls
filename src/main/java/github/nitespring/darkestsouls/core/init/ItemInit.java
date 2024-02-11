@@ -56,6 +56,8 @@ public class ItemInit {
 			() -> new Flamberge(Tiers.TITANITE, 8.5f, 1.2f, 0.3f, 11,4, 0,0,0,0,0,0,400,6,0.09f, 3,new Item.Properties()));
 	public static final RegistryObject<Zweihander> ZWEIHANDER = ITEMS.register("zweihander",
 			() -> new Zweihander(Tiers.TITANITE, 10.5f, 1.0f, 0.8f, 14, 1024,15,0.07f, 5,new Item.Properties()));
+	public static final RegistryObject<Scimitar> BANDIT_CURVED_SWORD = ITEMS.register("bandit_curved_sword",
+			() -> new Scimitar(Tiers.TITANITE, 6.0f, 1.6f, -0.2f, 4, 250,8,0.14f, 2,new Item.Properties()));
 
 	public static final RegistryObject<Weapon> HUNTSMAN_AXE = ITEMS.register("hunting_axe",
 			() -> new Weapon(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
@@ -91,6 +93,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 14283506, 16737400, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_FALCHION = ITEMS.register("skeleton_falchion_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 14283506, 16737400, new Item.Properties()));
+	public static final RegistryObject<Item> SKELETON_CURVED_SWORDS = ITEMS.register("skeleton_curved_swords_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 14283506, 16737400, new Item.Properties()));
 
     //Items
 	public static final RegistryObject<Item> SOUL_FRAGMENT = ITEMS.register("soul_fragment",

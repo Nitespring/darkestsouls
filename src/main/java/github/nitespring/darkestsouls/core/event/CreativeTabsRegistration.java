@@ -24,6 +24,7 @@ public class CreativeTabsRegistration {
 	        {
 
 				event.accept(ItemInit.SKELETON_FALCHION);
+				event.accept(ItemInit.SKELETON_CURVED_SWORDS);
 				event.accept(ItemInit.BONEWHEEL);
 				event.accept(ItemInit.SEWER_CENTIPEDE);
 				event.accept(ItemInit.SIN);
@@ -99,6 +100,7 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.CHIKAGE_EXTENDED);
 	            event.accept(ItemInit.SCIMITAR);
 				event.accept(ItemInit.FALCHION);
+				event.accept(ItemInit.BANDIT_CURVED_SWORD);
 				event.accept(ItemInit.CLAYMORE);
 				event.accept(ItemInit.FLAMBERGE);
 				event.accept(ItemInit.ZWEIHANDER);

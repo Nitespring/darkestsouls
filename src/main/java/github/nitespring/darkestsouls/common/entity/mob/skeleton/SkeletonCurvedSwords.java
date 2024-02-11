@@ -25,14 +25,14 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 
-public class SkeletonFalchion extends Skeleton implements GeoEntity {
+public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected int animationTick = 0;
 
     protected Vec3 aimVec;
 
-    public SkeletonFalchion(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {super(p_21683_, p_21684_);}
+    public SkeletonCurvedSwords(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {super(p_21683_, p_21684_);}
 
 
     @Override
@@ -40,8 +40,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<>(this, "main_controller", 4, this::predicate));
-        data.add(new AnimationController<>(this, "rotation_controller", 0, this::rotationPredicate));
+        data.add(new AnimationController<>(this, "main_controller", 2, this::predicate));
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
@@ -55,26 +54,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) {
-        int animState = this.getAnimationState();
 
-        switch(animState) {
-            case 11:
-                event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.roll_rotation"));
-                break;
-            case 22:
-                event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.falchion.attack1_continue_rotation"));
-                break;
-            default:
-
-                event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.new"));
-
-                break;
-
-        }
-
-        return PlayState.CONTINUE;
-    }
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         int animState = this.getAnimationState();
@@ -86,27 +66,36 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                 case 1:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.stun"));
                     break;
-                case 11:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.roll"));
-                    break;
                 case 21:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.falchion.attack1"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack1"));
                     break;
                 case 22:
-                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.falchion.attack1_continue"));
+                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.curved_swords.attack2"));
                     break;
                 case 23:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.falchion.attack2"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack3"));
                     break;
                 case 24:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.falchion.attack3"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack4"));
                     break;
                 case 25:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.falchion.attack4"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack5"));
+                    break;
+                case 26:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack6"));
+                    break;
+                case 27:
+                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.curved_swords.attack7"));
+                    break;
+                case 28:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack8"));
+                    break;
+                case 29:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack9"));
                     break;
                 default:
                     if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.falchion.walk"));
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.curved_swords.walk"));
                     }else {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.idle"));
                     }
@@ -118,7 +107,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
     @Override
     protected void registerGoals() {
 
-        this.goalSelector.addGoal(1, new SkeletonFalchion.AttackGoal(this));
+        this.goalSelector.addGoal(1, new SkeletonCurvedSwords.AttackGoal(this));
         super.registerGoals();
 
     }
@@ -138,9 +127,11 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
     protected void playAnimation() {
         animationTick++;
-        this.getNavigation().stop();
+        boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
+
         switch(this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if(animationTick>=30) {
                     this.getNavigation().stop();
                     animationTick=0;
@@ -148,8 +139,222 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     setAnimationState(0);
                 }
                 break;
-            case 11:
-                if(animationTick==1) {
+            //Attack
+            case 21:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=12&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {this.setAnimationState(22);}
+                    else if(r<=800) {this.setAnimationState(24);}
+                    else if(r<=1200) {this.setAnimationState(27);}
+                    else if(r<=1800) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=12&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {this.setAnimationState(23);}
+                    else if(r<=800) {this.setAnimationState(25);}
+                    else if(r<=1200) {this.setAnimationState(27);}
+                    else if(r<=1800) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 23:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=12&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {this.setAnimationState(22);}
+                    else if(r<=800) {this.setAnimationState(24);}
+                    else if(r<=1200) {this.setAnimationState(27);}
+                    else if(r<=1800) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 24:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=12&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {this.setAnimationState(21);}
+                    else if(r<=800) {this.setAnimationState(23);}
+                    else if(r<=1200) {this.setAnimationState(27);}
+                    else if(r<=1800) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+            case 25:
+                if(animationTick>=18) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8||animationTick==12) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=22&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {this.setAnimationState(25);}
+                    else if(r<=800) {this.setAnimationState(26);}
+                    else if(r<=1600) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+                }
+                if(animationTick>=26) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 26:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=12&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=800) {this.setAnimationState(27);}
+                    else if(r<=1600) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 27:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==8) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=12&&flag) {
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=800) {this.setAnimationState(26);}
+                    else if(r<=1600) {this.setAnimationState(28);}
+                    else            {this.setAnimationState(29);}
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 28:
+                if(animationTick>=2) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==9) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=15) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 29:
+                if(animationTick>=4) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(animationTick==7) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -157,115 +362,42 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==2){
+                if(animationTick==8){
                     if(this.aimVec!=null) {
-                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.75));
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
-                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.75));
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.5));
                     }
 
                 }
-                if(animationTick>=12) {
+                if(animationTick==16) {
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+6.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=28) {
                     this.getNavigation().stop();
                     animationTick=0;
 
                     setAnimationState(0);
                 }
                 break;
-            //Attack
-            case 21:
-                if(animationTick==10) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=10) {
-                    if(this.getTarget()!=null) {
-                        this.aimVec= this.getTarget().position().add(this.position().scale(-1.0));
-                    }else{
-                        this.aimVec=this.getLookAngle();
-                    }
-                    animationTick=0;
-                    setAnimationState(22);
-                }
-                break;
-            case 22:
-                if(this.aimVec!=null) {
-                    this.setDeltaMovement(this.aimVec.normalize().scale(0.5));
-                }else {
-                    this.setDeltaMovement(this.getLookAngle().normalize().scale(0.5));
-                }
-
-
-                if(animationTick%4==0) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.6f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-
-                if(animationTick>=18) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 23:
-                if(animationTick==8) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=16) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 24:
-                if(animationTick==8) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=16) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-            case 25:
-                if(animationTick==16) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=26) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
         }
+    }
+
+    public void moveToTarget(){
+        boolean flag = this.getTarget()!=null;
+        if(flag) {
+            this.getLookControl().setLookAt(this.getTarget(), 10.0F, 10.0F);
+            Path path = this.getNavigation().createPath(this.getTarget(), 0);
+            this.getNavigation().moveTo(path, 1.1f);
+        }
+
     }
 
     public class AttackGoal extends Goal {
@@ -273,7 +405,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
         private final double speedModifier = 1.4f;
         private final boolean followingTargetEvenIfNotSeen = true;
-        protected final SkeletonFalchion mob;
+        protected final SkeletonCurvedSwords mob;
         private Path path;
         private double pathedTargetX;
         private double pathedTargetY;
@@ -287,9 +419,9 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
 
 
-        public AttackGoal(SkeletonFalchion entityIn) {
+        public AttackGoal(SkeletonCurvedSwords entityIn) {
             this.mob = entityIn;
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }
 
 
@@ -438,31 +570,22 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
         protected void checkForAttack(double distance, double reach){
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=450) {
-
-                    this.mob.setAnimationState(21);
-
-                }else if(r<=1200){
-
-                    this.mob.setAnimationState(23);
-
-                } else if(r<=1500){
-
-                    this.mob.setAnimationState(24);
-                }else{
-
-                    this.mob.setAnimationState(25);
-                }
+                if(r<=400)      {this.mob.setAnimationState(21);}
+                else if(r<=600) {this.mob.setAnimationState(22);}
+                else if(r<=1000){this.mob.setAnimationState(23);}
+                else if(r<=1200){this.mob.setAnimationState(24);}
+                else if(r<=1300){this.mob.setAnimationState(25);}
+                else if(r<=1600){this.mob.setAnimationState(26);}
+                else if(r<=1800){this.mob.setAnimationState(27);}
+                else if(r<=1900){this.mob.setAnimationState(28);}
+                else            {this.mob.setAnimationState(29);}
             }
-            int r = this.mob.getRandom().nextInt(2048);
-            if (r <= 40) {
 
-                this.mob.setAnimationState(21);
-
-            }else if (r <= 80) {
-
-                this.mob.setAnimationState(11);
-
+            if (distance <= 2*reach && this.ticksUntilNextAttack <= 0) {
+                int r = this.mob.getRandom().nextInt(2048);
+                if (r <= 40) {
+                    this.mob.setAnimationState(29);
+                }
             }
 
         }

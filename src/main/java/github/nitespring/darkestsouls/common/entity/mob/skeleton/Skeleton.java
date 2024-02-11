@@ -10,10 +10,12 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
         super(p_21683_, p_21684_);
     }
 
-
     @Override
     public int getMaxPoise() {return 20;}
-
     @Override
     public int getBloodResistance() {return 999;}
+    @Override
+    public boolean isBoss() {return false;}
+    @Override
+    public int getDSDefaultTeam() {return 0;}
 }
