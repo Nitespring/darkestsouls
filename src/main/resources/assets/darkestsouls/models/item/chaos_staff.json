@@ -1,28 +1,28 @@
 {
-    "parent": "item/generated",
-    "display": {
-        "thirdperson_righthand": {
-            "rotation": [ 0, -90, 55 ],
-            "translation": [ 0, 6.0, -1.0 ],
-            "scale": [ 1.70, 1.70, 0.85 ]
-        },
-        "thirdperson_lefthand": {
-            "rotation": [ 0, 90, -55 ],
-            "translation": [ 0, 6.0, -1.0 ],
-            "scale": [ 1.70, 1.70, 0.85 ]
-        },
-        "firstperson_righthand": {
-            "rotation": [ 0, -90, 55 ],
-            "translation": [ 1.13, 3.5, -0.63 ],
-            "scale": [ 1.16, 1.16, 0.58 ]
-        },
-        "firstperson_lefthand": {
-            "rotation": [ 0, 90, -55 ],
-            "translation": [ 1.13, 3.5, -0.63 ],
-            "scale": [ 1.16, 1.16, 0.58 ]
-        }
-    },
-    "textures": {
+"parent": "minecraft:item/handheld",
+"textures": {
     "layer0": "darkestsouls:item/weapon/chaos_staff"
-    }
+    },
+"display": {
+    "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+    		"translation": [0, 0, 0.5],
+            "scale": [ 1.95, 1.95, 0.65 ]
+      		},
+    "firstperson_righthand": {
+    		"rotation": [ 0, -90, 55 ],
+      		"translation": [ 1.13, 3.2, 1.13 ],
+            "scale": [ 1.36, 1.36, 0.48 ]
+    		},
+   "thirdperson_lefthand": {
+    		"rotation": [ 0, 90, -55 ],
+    		"translation": [0, 0, 0.5],
+            "scale": [ 1.95, 1.95, 0.65 ]
+			},
+    "firstperson_lefthand": {
+    		"rotation": [ 0, 90, -55 ],
+      		"translation": [ 1.13, 3.2, 1.13 ],
+      		"scale": [ 1.36, 1.36, 0.48 ]
+    		}
+}
 }
