@@ -31,6 +31,11 @@ public class DarkestSoulsPacketHandler {
 	                .decoder(ItemLeftClickAction::new)
 	                .consumerMainThread(ItemLeftClickAction::handle)
 	                .add();
+		 	INSTANCE.messageBuilder(TransformWeaponAction.class, NetworkDirection.PLAY_TO_SERVER)
+				 .encoder(TransformWeaponAction::encode)
+				 .decoder(TransformWeaponAction::new)
+				 .consumerMainThread(TransformWeaponAction::handle)
+				 .add();
 	    }
 
 	    public static void sendToServer(Object msg) {

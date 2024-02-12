@@ -20,7 +20,7 @@ public class ItemLeftClickAction {
 	        public void encode(FriendlyByteBuf buffer) {}
 
 	        public void handle(CustomPayloadEvent.Context ctx) {
-
+				ctx.enqueueWork(() -> {
 	            	Player playerIn = ctx.getSender();
 	            	if (playerIn==null)
 	            			return;
@@ -32,7 +32,7 @@ public class ItemLeftClickAction {
 	    				  }
 	    			}
 
-	        	
+				});
 	            
 	        } 
 	      

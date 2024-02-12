@@ -3,8 +3,10 @@ package github.nitespring.darkestsouls.core.init;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.common.item.child.staves.ChaosStaff;
 import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
 import github.nitespring.darkestsouls.common.item.child.weapons.*;
+import github.nitespring.darkestsouls.common.item.child.weapons.sawcleaver.*;
 import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
 
@@ -33,18 +35,18 @@ public class ItemInit {
 			() -> new Weapon(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5, 1350,10,0.14f, 2,new Item.Properties()));
 
 	//Trick Weapons
-	public static final RegistryObject<Weapon> SAW_CLEAVER = ITEMS.register("saw_cleaver",
-			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
-	public static final RegistryObject<Weapon> SAW_CLEAVER_EXTENDED = ITEMS.register("saw_cleaver_extended",
-			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
-	public static final RegistryObject<Weapon> HUNTER_AXE = ITEMS.register("hunter_axe",
-			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
-	public static final RegistryObject<Weapon> HUNTER_AXE_EXTENDED = ITEMS.register("hunter_axe_extended",
-			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
-	public static final RegistryObject<Weapon> CHIKAGE = ITEMS.register("chikage",
-			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
-	public static final RegistryObject<Weapon> CHIKAGE_EXTENDED = ITEMS.register("chikage_extended",
-			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8, 1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<SawCleaver> SAW_CLEAVER = ITEMS.register("saw_cleaver",
+			() -> new SawCleaver(Tiers.TITANITE, 6.0f, 1.7f, 0.1f, 6, 0,0,0,0,0,0,0,1350,15,0.108f, 2,new Item.Properties()));
+	public static final RegistryObject<SawCleaverExtended> SAW_CLEAVER_EXTENDED = ITEMS.register("saw_cleaver_extended",
+			() -> new SawCleaverExtended(Tiers.TITANITE, 7.5f, 1.5f, 0.2f, 8, 0,0,0,0,0,0,0,1350,15,0.104f, 3,new Item.Properties()));
+	public static final RegistryObject<HunterAxe> HUNTER_AXE = ITEMS.register("hunter_axe",
+			() -> new HunterAxe(Tiers.TITANITE, 7.0f, 1.4f, 0.4f, 8, 0,0,0,0,0,0,0,1350,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<HunterAxeExtended> HUNTER_AXE_EXTENDED = ITEMS.register("hunter_axe_extended",
+			() -> new HunterAxeExtended(Tiers.TITANITE, 8.0f, 1.2f, 0.6f, 12,0,0,0,0,0,0,0, 1350,15,0.11f, 3,new Item.Properties()));
+	public static final RegistryObject<Chikage> CHIKAGE = ITEMS.register("chikage",
+			() -> new Chikage(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5,1,0,0,0,0,0,0, 1350,15,0.12f, 2,new Item.Properties()));
+	public static final RegistryObject<ChikageExtended> CHIKAGE_EXTENDED = ITEMS.register("chikage_extended",
+			() -> new ChikageExtended(Tiers.TITANITE, 12.0f, 1.7f, 0.3f, 8,4,0,0,0,0,0,0, 1350,15,0.112f, 2,new Item.Properties()));
 
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
@@ -77,8 +79,8 @@ public class ItemInit {
 			() -> new SorcererStaff(4.0f, 256, new Item.Properties()));
 	public static final RegistryObject<Staff> CRYSTAL_STAFF = ITEMS.register("crystal_staff",
 			() -> new Staff(4.0f, 256, new Item.Properties()));
-	public static final RegistryObject<Staff> CHAOS_STAFF = ITEMS.register("chaos_staff",
-			() -> new Staff(4.0f, 256, new Item.Properties()));
+	public static final RegistryObject<ChaosStaff> CHAOS_STAFF = ITEMS.register("chaos_staff",
+			() -> new ChaosStaff(6.0f, 1024, new Item.Properties()));
 
 	//Guns
 	public static final RegistryObject<Item> HUNTER_PISTOL = ITEMS.register("hunter_pistol",

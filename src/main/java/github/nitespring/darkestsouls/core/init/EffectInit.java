@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.effects.BleedMobEffect;
+import github.nitespring.darkestsouls.common.effects.ChikageEffect;
 import github.nitespring.darkestsouls.common.effects.SimpleMobEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -33,7 +34,8 @@ public class EffectInit {
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED,"7107DE5E-7CE8-4030-940E-514C1F160890",
                             -0.15000000596046448, AttributeModifier.Operation.MULTIPLY_TOTAL)
     );
-
+    public static final RegistryObject<ChikageEffect> CHIKAGE=EFFECTS.register("chikage",
+            () -> new ChikageEffect(MobEffectCategory.HARMFUL, 7673883));
 
     public static final RegistryObject<MobEffect> FAKE_POISON=EFFECTS.register("fake_poison",
             () -> new SimpleMobEffect(MobEffectCategory.NEUTRAL, 5149489));

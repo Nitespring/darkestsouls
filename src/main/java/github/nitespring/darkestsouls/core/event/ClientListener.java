@@ -8,6 +8,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.abyss.SewerCentip
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.spell.FireBallRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.SoulDartRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
@@ -15,6 +16,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.fra
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
+import github.nitespring.darkestsouls.common.entity.projectile.spell.ChaosFireball;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -62,6 +64,8 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.ZWEIHANDER.get(), ZweihanderRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.SOUL_DART.get(), SoulDartRenderer::new);
+		 event.registerEntityRenderer(EntityInit.FIREBALL.get(), FireBallRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHAOS_FIREBALL.get(), FireBallRenderer::new);
 
 		 
 	 }
