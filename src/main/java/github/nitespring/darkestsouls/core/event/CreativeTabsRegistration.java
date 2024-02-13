@@ -33,10 +33,19 @@ public class CreativeTabsRegistration {
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
 	        {
 	            event.accept(ItemInit.SOUL_FRAGMENT);
+				event.accept(ItemInit.TITANITE_FRAGMENT);
+				event.accept(ItemInit.RUNE_FRAGMENT);
 				event.accept(ItemInit.DARK_FRAGMENT);
+				event.accept(ItemInit.BONE_FRAGMENT);
 				event.accept(ItemInit.SIDERITE_FRAGMENT);
 				event.accept(ItemInit.BLOOD_STONE_FRAGMENT);
 				event.accept(ItemInit.CHAOS_FRAGMENT);
+				event.accept(ItemInit.DEMON_FRAGMENT);
+				event.accept(ItemInit.TWINKLING_FRAGMENT);
+				event.accept(ItemInit.DRAGON_SCALE_FRAGMENT);
+				event.accept(ItemInit.DEMON_TITANITE);
+				event.accept(ItemInit.TWINKLING_TITANITE);
+				event.accept(ItemInit.DRAGON_SCALE);
 				event.accept(ItemInit.BLOOD_GEM);
 				event.accept(ItemInit.BEAST_BLOOD_CLUMP);
 				event.accept(ItemInit.QUICKSILVER);
@@ -58,6 +67,8 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.NIGHTMARE_NUGGET);
 				event.accept(ItemInit.BLOOD_INGOT);
 				event.accept(ItemInit.BLOOD_NUGGET);
+				event.accept(ItemInit.CHAOS_INGOT);
+				event.accept(ItemInit.CHAOS_NUGGET);
 				event.accept(ItemInit.HOLY_INGOT);
 				event.accept(ItemInit.HOLY_NUGGET);
 				event.accept(ItemInit.MAGIC_INGOT);

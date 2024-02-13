@@ -99,7 +99,19 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 14283506, 16737400, new Item.Properties()));
 
     //Items
+	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RUNE_FRAGMENT = ITEMS.register("rune_fragment",
+			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SOUL_FRAGMENT = ITEMS.register("soul_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BONE_FRAGMENT = ITEMS.register("bone_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEMON_FRAGMENT = ITEMS.register("demon_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TWINKLING_FRAGMENT = ITEMS.register("twinkling_fragment",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DRAGON_SCALE_FRAGMENT = ITEMS.register("dragon_scale_fragment",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DARK_FRAGMENT = ITEMS.register("dark_fragment",
 			() -> new Item(new Item.Properties()));
@@ -115,7 +127,12 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> QUICKSILVER = ITEMS.register("quicksilver",
 			() -> new Item(new Item.Properties()));
-
+	public static final RegistryObject<Item> DEMON_TITANITE = ITEMS.register("demon_titanite",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TWINKLING_TITANITE = ITEMS.register("twinkling_titanite",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DRAGON_SCALE = ITEMS.register("dragon_scale",
+			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SIDERITE_NUGGET = ITEMS.register("siderite_nugget",
