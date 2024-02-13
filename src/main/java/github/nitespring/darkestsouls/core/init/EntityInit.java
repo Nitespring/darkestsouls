@@ -106,14 +106,14 @@ public class EntityInit {
 					.sized(1.0f, 0.4f)
 					.build("magma"));
 
-	public static final RegistryObject<EntityType<MagmaEntity>> MAGMA_BURST = ENTITIES.register("magma_burst",
-			() -> EntityType.Builder.<MagmaEntity>of(MagmaEntity::new, MobCategory.MISC)
-					.sized(0.6f, 0.6f)
+	public static final RegistryObject<EntityType<MagmaBurstParent>> MAGMA_BURST = ENTITIES.register("magma_burst",
+			() -> EntityType.Builder.<MagmaBurstParent>of(MagmaBurstParent::new, MobCategory.MISC)
+					.sized(0.8f, 0.8f)
 					.build("magma_burst"));
 
-	public static final RegistryObject<EntityType<MagmaEntity>> MAGMA_BURST_CHILD = ENTITIES.register("magma_burst_child",
-			() -> EntityType.Builder.<MagmaEntity>of(MagmaEntity::new, MobCategory.MISC)
-					.sized(0.4f, 0.4f)
+	public static final RegistryObject<EntityType<MagmaBurstEntity>> MAGMA_BURST_CHILD = ENTITIES.register("magma_burst_child",
+			() -> EntityType.Builder.<MagmaBurstEntity>of(MagmaBurstEntity::new, MobCategory.MISC)
+					.sized(0.6f, 0.6f)
 					.build("magma_burst_child"));
 
 

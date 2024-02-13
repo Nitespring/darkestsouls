@@ -126,7 +126,6 @@ public class MagmaEntity extends Entity implements GeoEntity{
 
     @Override
     public boolean fireImmune() {
-
         return true;
     }
 

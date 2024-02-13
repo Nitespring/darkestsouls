@@ -8,6 +8,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.abyss.SewerCentip
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.FireBallRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.MagmaRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.SoulDartRenderer;
@@ -68,6 +69,8 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.FIREBALL.get(), FireBallRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CHAOS_FIREBALL.get(), FireBallRenderer::new);
 		 event.registerEntityRenderer(EntityInit.MAGMA.get(), MagmaRenderer::new);
+		 event.registerEntityRenderer(EntityInit.MAGMA_BURST.get(), LitItemRenderer::new);
+		 event.registerEntityRenderer(EntityInit.MAGMA_BURST_CHILD.get(), LitItemRenderer::new);
 
 		 
 	 }

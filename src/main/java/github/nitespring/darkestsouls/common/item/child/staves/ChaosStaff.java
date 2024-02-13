@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.item.child.staves;
 
 import github.nitespring.darkestsouls.common.entity.projectile.spell.ChaosFireball;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.Fireball;
+import github.nitespring.darkestsouls.common.entity.projectile.spell.MagmaBurstParent;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -30,22 +31,25 @@ public class ChaosStaff extends Staff {
     @Override
     public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
         if(!playerIn.getCooldowns().isOnCooldown(this)) {
+            SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
+            playerIn.level().playSound(playerIn, playerIn, soundevent, SoundSource.PLAYERS, 0.75F, 1.25F);
+            //playerIn.level().playLocalSound(playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.FIRECHARGE_USE, playerIn.getSoundSource(), 0.5F, playerIn.getRandom().nextFloat() * 0.2F + 0.65F, false);
             Level levelIn = playerIn.level();
             Vec3 aim = playerIn.getLookAngle();
             Vec3 pos = playerIn.position();
             Vec3 mov = playerIn.getDeltaMovement();
 
-            SoulDart e = new SoulDart(EntityInit.SOUL_DART.get(), levelIn);
+            MagmaBurstParent e = new MagmaBurstParent(EntityInit.MAGMA_BURST.get(), levelIn);
             e.setDamage(this.getAttackDamage(playerIn, stackIn));
-            e.setDimensionScale(0.1f);
-            e.setMaxLifeTime(12);
-            e.setPos(pos.add(0, 1.5, 0).add(aim.normalize().multiply(1.5f, 1.5f, 1.5f)));
-            e.xPower = 0.25 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
-            e.yPower = 0.25 * aim.y;
-            e.zPower = 0.25 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
-
+            e.setLifeTicks(36);
+            e.setPos(pos.add(0, 1.25, 0).add(aim.normalize().multiply(1.5f, 1.5f, 1.5f)));
+            e.xPower = 0.05 * aim.x * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.4));
+            e.yPower = 0.05 * aim.y + 0.08f;
+            e.zPower = 0.05 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.4);
+            e.setDamage(this.getAttackDamage(playerIn,stackIn));
+            e.setOwner(playerIn);
             levelIn.addFreshEntity(e);
-            playerIn.getCooldowns().addCooldown(this, 5);
+            playerIn.getCooldowns().addCooldown(this, 48);
         }
 
     }
