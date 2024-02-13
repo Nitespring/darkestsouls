@@ -9,6 +9,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.Bonewhee
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.FireBallRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.spell.MagmaRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.SoulDartRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
@@ -66,6 +67,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SOUL_DART.get(), SoulDartRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FIREBALL.get(), FireBallRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CHAOS_FIREBALL.get(), FireBallRenderer::new);
+		 event.registerEntityRenderer(EntityInit.MAGMA.get(), MagmaRenderer::new);
 
 		 
 	 }

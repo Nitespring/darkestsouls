@@ -8,10 +8,7 @@ import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.ChaosFireball;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.FireBallEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.Fireball;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
+import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
@@ -103,6 +100,21 @@ public class EntityInit {
 			() -> EntityType.Builder.<ChaosFireball>of(ChaosFireball::new, MobCategory.MISC)
 					.sized(2.0f, 2.0f)
 					.build("chaos_fireball"));
+
+	public static final RegistryObject<EntityType<MagmaEntity>> MAGMA = ENTITIES.register("magma",
+			() -> EntityType.Builder.<MagmaEntity>of(MagmaEntity::new, MobCategory.MISC)
+					.sized(1.0f, 0.4f)
+					.build("magma"));
+
+	public static final RegistryObject<EntityType<MagmaEntity>> MAGMA_BURST = ENTITIES.register("magma_burst",
+			() -> EntityType.Builder.<MagmaEntity>of(MagmaEntity::new, MobCategory.MISC)
+					.sized(0.6f, 0.6f)
+					.build("magma_burst"));
+
+	public static final RegistryObject<EntityType<MagmaEntity>> MAGMA_BURST_CHILD = ENTITIES.register("magma_burst_child",
+			() -> EntityType.Builder.<MagmaEntity>of(MagmaEntity::new, MobCategory.MISC)
+					.sized(0.4f, 0.4f)
+					.build("magma_burst_child"));
 
 
 

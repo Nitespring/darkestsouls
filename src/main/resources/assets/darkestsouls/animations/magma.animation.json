@@ -1,0 +1,64 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.magma.new": {
+			"loop": true,
+			"bones": {
+				"bone1": {
+					"position": {
+						"vector": ["1.5*Math.cos(query.anim_time*90)", "-2*Math.cos(query.anim_time*180)", "-1.5*Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone": {
+					"position": {
+						"vector": ["Math.sin(query.anim_time*90)", "-Math.cos(query.anim_time*180)", "Math.cos(query.anim_time*90)"]
+					}
+				},
+				"bone2": {
+					"position": {
+						"vector": ["Math.sin(query.anim_time*90)", "-Math.sin(query.anim_time*180)", "1.5*Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone3": {
+					"position": {
+						"vector": ["Math.cos(query.anim_time*90)", "Math.sin(query.anim_time*180)", "Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone4": {
+					"position": {
+						"vector": ["Math.sin(query.anim_time*90)", "Math.cos(query.anim_time*180)", "Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone5": {
+					"position": {
+						"vector": ["Math.sin(query.anim_time*90)", "1.5*Math.sin(query.anim_time*180)", "-Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone6": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": [0, 0, 0.01],
+					"position": {
+						"vector": ["Math.cos(query.anim_time*90)", "0.75*Math.sin(query.anim_time*180)", "-0.5*Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone7": {
+					"position": {
+						"vector": ["1.5*Math.sin(query.anim_time*90)", "-1.5*Math.cos(query.anim_time*180)", "0.5*Math.sin(query.anim_time*90+15 )"]
+					}
+				},
+				"bone8": {
+					"position": {
+						"vector": ["Math.sin(query.anim_time*90)", "-1.25*Math.cos(query.anim_time*180)", "Math.sin(query.anim_time*90)"]
+					}
+				},
+				"bone9": {
+					"position": {
+						"vector": ["-0.5*Math.sin(query.anim_time*90)", "0.25*Math.sin(query.anim_time*180)", "-0.5*Math.cos(query.anim_time*90)"]
+					}
+				}
+			}
+		}
+	}
+}

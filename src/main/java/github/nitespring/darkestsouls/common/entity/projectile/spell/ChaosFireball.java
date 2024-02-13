@@ -68,12 +68,26 @@ public class ChaosFireball extends FireBallEntity implements GeoEntity {
             this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXPLODE, this.getSoundSource(), 2.5F, this.random.nextFloat() * 0.2F + 0.85F, false);
             this.level().playSound(this, this.blockPosition(), SoundEvents.GENERIC_EXPLODE, SoundSource.NEUTRAL, 4.5F, 1.0f);
         }
-            for (int i = 0; i <= 20*this.getDimensionScale(); i++) {
+
+        for (int i = 0; i <= 20*this.getDimensionScale(); i++) {
+            RandomSource r = this.random;
+            Vec3 off = new Vec3(r.nextFloat() - 0.5, r.nextFloat() - 0.5, r.nextFloat() - 0.5).multiply(1.75f, 1.75f, 1.75f);
+            this.level().addParticle(ParticleTypes.FLAME,
+                    this.position().x + 1.5 * this.getDimensionScale() * off.x, this.position().y + 1.5 + 0.5 * this.getDimensionScale() * off.y, this.position().z + 1.5 * this.getDimensionScale() * off.z, off.x * 2.0f*r.nextFloat(), off.y *2.0f* r.nextFloat(), off.z *2.0f* r.nextFloat());
+        }
+        for (int k = 0; k <= 1; k++) {
+            for (int i = 0; i <= 12; i++) {
                 RandomSource r = this.random;
-                Vec3 off = new Vec3(r.nextFloat() - 0.5, r.nextFloat() - 0.5, r.nextFloat() - 0.5).multiply(1.75f, 1.75f, 1.75f);
-                this.level().addParticle(ParticleTypes.FLAME,
-                        this.position().x + 1.5 * this.getDimensionScale() * off.x, this.position().y + 1.5 + 0.5 * this.getDimensionScale() * off.y, this.position().z + 1.5 * this.getDimensionScale() * off.z, off.x * 2.0f*r.nextFloat(), off.y *2.0f* r.nextFloat(), off.z *2.0f* r.nextFloat());
+                double a=  Math.PI/6;
+                double d = 1+1.25*k;
+                Vec3 pos = this.position();
+                Vec3 pos1 = new Vec3(pos.x+d*Math.sin(i*a)+(r.nextFloat()-0.5)*0.25, pos.y-0.15f, pos.z+d*Math.cos(i*a)+(r.nextFloat()-0.5)*0.25);
+                MagmaEntity magma = new MagmaEntity(this.level(), this.damage/2,pos1.x,pos1.y,pos1.z, (LivingEntity) this.getOwner());
+                magma.lifeTicks=160;
+                this.level().addFreshEntity(magma);
             }
+        }
+        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.LAVA_AMBIENT, this.getSoundSource(), 0.2F, this.random.nextFloat() * 0.2F + 0.65F, false);
 
         this.doRemoval();
     }
