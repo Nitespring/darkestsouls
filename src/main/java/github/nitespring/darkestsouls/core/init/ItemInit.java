@@ -48,6 +48,8 @@ public class ItemInit {
 	public static final RegistryObject<ChikageExtended> CHIKAGE_EXTENDED = ITEMS.register("chikage_extended",
 			() -> new ChikageExtended(Tiers.TITANITE, 12.0f, 1.7f, 0.3f, 8,4,0,0,0,0,0,0, 1350,15,0.112f, 2,new Item.Properties()));
 
+	public static final RegistryObject<Weapon> LONGSWORD= ITEMS.register("longsword",
+			() -> new Weapon(Tiers.TITANITE, 7.0f, 1.6f, 0.0f, 6, 0,0,0,0,0,0,0,225,8,0.1f, 2,new Item.Properties()));
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
@@ -60,6 +62,12 @@ public class ItemInit {
 			() -> new Zweihander(Tiers.TITANITE, 10.5f, 1.0f, 0.8f, 14, 1024,15,0.07f, 5,new Item.Properties()));
 	public static final RegistryObject<Scimitar> BANDIT_CURVED_SWORD = ITEMS.register("bandit_curved_sword",
 			() -> new Scimitar(Tiers.TITANITE, 6.0f, 1.6f, -0.2f, 4, 250,8,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> SPEAR = ITEMS.register("spear",
+			() -> new Weapon(Tiers.TITANITE, 5.0f, 2.0f, -0.1f, 4, 1350,10,0.13f, 1,new Item.Properties()));
+	public static final RegistryObject<Weapon> GRAVE_SCYTHE= ITEMS.register("grave_scythe",
+			() -> new Weapon(Tiers.TITANITE, 7.5f, 1.6f, 0.2f, 7, 2,0,0,0,0,0,0,225,8,0.105f, 5,new Item.Properties()));
+	public static final RegistryObject<Chikage> UCHIGATANA = ITEMS.register("uchigatana",
+			() -> new Chikage(Tiers.TITANITE, 6.0f, 1.7f, 0.1f, 5,2,0,0,0,0,0,0, 200,15,0.11f, 2,new Item.Properties()));
 
 	public static final RegistryObject<Weapon> HUNTSMAN_AXE = ITEMS.register("hunting_axe",
 			() -> new Weapon(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
@@ -70,7 +78,7 @@ public class ItemInit {
 	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
 			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Weapon> CHURCH_SCYTHE= ITEMS.register("church_scythe",
-			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
+			() -> new Weapon(Tiers.TITANITE, 8.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 5,new Item.Properties()));
 
 	//Staves
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_A = ITEMS.register("sorcerer_staff_a",

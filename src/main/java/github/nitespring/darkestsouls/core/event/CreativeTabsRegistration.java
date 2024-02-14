@@ -113,12 +113,16 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.SAW_CLEAVER);
 				event.accept(ItemInit.HUNTER_AXE);
 				event.accept(ItemInit.CHIKAGE);
+				event.accept(ItemInit.LONGSWORD);
 	            event.accept(ItemInit.SCIMITAR);
 				event.accept(ItemInit.FALCHION);
 				event.accept(ItemInit.BANDIT_CURVED_SWORD);
+				event.accept(ItemInit.UCHIGATANA);
 				event.accept(ItemInit.CLAYMORE);
 				event.accept(ItemInit.FLAMBERGE);
 				event.accept(ItemInit.ZWEIHANDER);
+				event.accept(ItemInit.SPEAR);
+				event.accept(ItemInit.GRAVE_SCYTHE);
 				event.accept(ItemInit.HUNTSMAN_CUTLASS);
 				event.accept(ItemInit.HUNTSMAN_PITCHFORK);
 				event.accept(ItemInit.HUNTSMAN_AXE);
