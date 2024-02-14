@@ -133,6 +133,21 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DRAGON_SCALE = ITEMS.register("dragon_scale",
 			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BEWITCHED_BRANCH = ITEMS.register("bewitched_branch",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CHAOS_ROOT = ITEMS.register("chaos_root",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CINNABAR = ITEMS.register("cinnabar",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CRYSTAL = ITEMS.register("crystal",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GREEN_CRYSTAL = ITEMS.register("green_crystal",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PURPLE_CRYSTAL = ITEMS.register("purple_crystal",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BLOOD_CRYSTAL = ITEMS.register("blood_crystal",
+			() -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SIDERITE_NUGGET = ITEMS.register("siderite_nugget",

@@ -39,10 +39,17 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.BONE_FRAGMENT);
 				event.accept(ItemInit.SIDERITE_FRAGMENT);
 				event.accept(ItemInit.BLOOD_STONE_FRAGMENT);
-				event.accept(ItemInit.CHAOS_FRAGMENT);
+				event.accept(ItemInit.CHAOS_ROOT);
+				event.accept(ItemInit.BEWITCHED_BRANCH);
+				event.accept(ItemInit.GREEN_CRYSTAL);
+				event.accept(ItemInit.CRYSTAL);
+				event.accept(ItemInit.PURPLE_CRYSTAL);
+				event.accept(ItemInit.BLOOD_CRYSTAL);
 				event.accept(ItemInit.DEMON_FRAGMENT);
 				event.accept(ItemInit.TWINKLING_FRAGMENT);
 				event.accept(ItemInit.DRAGON_SCALE_FRAGMENT);
+				event.accept(ItemInit.CINNABAR);
+				event.accept(ItemInit.CHAOS_FRAGMENT);
 				event.accept(ItemInit.DEMON_TITANITE);
 				event.accept(ItemInit.TWINKLING_TITANITE);
 				event.accept(ItemInit.DRAGON_SCALE);
