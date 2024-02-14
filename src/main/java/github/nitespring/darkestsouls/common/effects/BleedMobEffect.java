@@ -3,6 +3,11 @@ package github.nitespring.darkestsouls.common.effects;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.core.init.EffectInit;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -11,6 +16,10 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class BleedMobEffect extends MobEffect {
 
@@ -24,6 +33,10 @@ public class BleedMobEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity living, int amount) {
         super.applyEffectTick(living, amount);
+
+
+
+
         if(living instanceof Skeleton || living instanceof Bonewheel){
             living.removeEffect(EffectInit.BLEED.get());
         }
@@ -43,6 +56,8 @@ public class BleedMobEffect extends MobEffect {
             }
         }
 
+
+
     }
 
     @Override
@@ -54,6 +69,27 @@ public class BleedMobEffect extends MobEffect {
         System.out.println("Apply bleed to "+ living.getMobType().toString());
         living.hurt(living.level().damageSources().genericKill(), dmg);
         living.removeEffect(EffectInit.BLEED.get());
+
+        ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
+        float width = living.getBbWidth() * 0.5f;
+        float height = living.getBbHeight() * 0.5f;
+        Vec3 pos = new Vec3(living.getX(), living.getEyeY(), living.getZ());
+        Level world = living.level();
+
+        RandomSource rng = living.getRandom();
+
+        double size = width * height;
+
+        for (int i = 0; i < 20+2*size; ++i) {
+
+            Vec3 off = new Vec3(rng.nextDouble() * width - width / 2, rng.nextDouble() * height - height / 2,
+                    rng.nextDouble() * width - width / 2);
+            if(world instanceof ServerLevel) {
+                ((ServerLevel) world).sendParticles( blood, pos.x+off.x, pos.y+off.y, pos.z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
+
+            }
+        }
+
     }
 
 

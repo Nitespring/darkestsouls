@@ -64,6 +64,8 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CLAYMORE.get(), ClaymoreRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FLAMBERGE.get(), FlambergeRenderer::new);
 		 event.registerEntityRenderer(EntityInit.ZWEIHANDER.get(), ZweihanderRenderer::new);
+		 event.registerEntityRenderer(EntityInit.UCHIGATANA.get(), UchigatanaRenderer::new);
+		 event.registerEntityRenderer(EntityInit.LONGSWORD.get(), LongswordRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.SOUL_DART.get(), SoulDartRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FIREBALL.get(), FireBallRenderer::new);

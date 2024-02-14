@@ -73,7 +73,7 @@ public class EntityInit {
 					.build("scimitar"));
 	public static final RegistryObject<EntityType<WeaponAttackEntity>> FALCHION = ENTITIES.register("falchion",
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
-					.sized(1.0f, 1.0f)
+					.sized(1.1f, 1.1f)
 					.build("falchion"));
 	public static final RegistryObject<EntityType<WeaponAttackEntity>> CLAYMORE = ENTITIES.register("claymore",
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
@@ -87,6 +87,14 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.5f, 1.75f)
 					.build("zweihander"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> UCHIGATANA = ENTITIES.register("uchigatana",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 1.5f)
+					.build("uchigatana"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> LONGSWORD = ENTITIES.register("longsword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.25f)
+					.build("uchigatana"));
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)
