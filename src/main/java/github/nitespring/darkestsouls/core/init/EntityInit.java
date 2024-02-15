@@ -94,7 +94,45 @@ public class EntityInit {
 	public static final RegistryObject<EntityType<WeaponAttackEntity>> LONGSWORD = ENTITIES.register("longsword",
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.5f, 1.25f)
-					.build("uchigatana"));
+					.build("longsword"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SAW_CLEAVER = ENTITIES.register("saw_cleaver",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.6f, 1.5f)
+					.build("saw_clear"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SAW_CLEAVER_EXTENDED = ENTITIES.register("saw_cleaver_extended",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 1.5f)
+					.build("saw_cleaver_extended"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> CHIKAGE = ENTITIES.register("chikage",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.8f, 1.25f)
+					.build("chikage"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SHADOW_BLADE = ENTITIES.register("shadow_blade",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 1.5f)
+					.build("shadow_blade"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> GRAVE_SCYTHE = ENTITIES.register("grave_scythe",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.5f, 2.0f)
+					.build("grave_scythe"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> CHURCH_SCYTHE = ENTITIES.register("church_scythe",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.5f, 2.0f)
+					.build("church_scythe"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> HUNTER_AXE_EXTENDED = ENTITIES.register("hunter_axe_extended",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.5f, 2.0f)
+					.build("hunter_axe_extended"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SPEAR = ENTITIES.register("spear",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.25f)
+					.build("spear"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> DRAGONSLAYER_SWORDSPEAR = ENTITIES.register("dragonslayer_swordspear",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 1.5f)
+					.build("dragonslayer_swordspear"));
+
+
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)

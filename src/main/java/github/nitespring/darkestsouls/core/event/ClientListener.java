@@ -18,7 +18,6 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.fra
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.ChaosFireball;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -66,6 +65,15 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.ZWEIHANDER.get(), ZweihanderRenderer::new);
 		 event.registerEntityRenderer(EntityInit.UCHIGATANA.get(), UchigatanaRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LONGSWORD.get(), LongswordRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHIKAGE.get(), ChikageRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SAW_CLEAVER.get(), SawCleaverRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SAW_CLEAVER_EXTENDED.get(), SawCleaverExtendedRenderer::new);
+		 event.registerEntityRenderer(EntityInit.GRAVE_SCYTHE.get(), GraveScytheRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_SCYTHE.get(), ChurchScytheRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SHADOW_BLADE.get(), ShadowBladeRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HUNTER_AXE_EXTENDED.get(), HunterAxeExtendedRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SPEAR.get(), SpearRenderer::new);
+		 event.registerEntityRenderer(EntityInit.DRAGONSLAYER_SWORDSPEAR.get(), DragonslayerSwordspearRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.SOUL_DART.get(), SoulDartRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FIREBALL.get(), FireBallRenderer::new);
