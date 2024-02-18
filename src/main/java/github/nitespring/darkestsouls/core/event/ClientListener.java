@@ -5,6 +5,7 @@ package github.nitespring.darkestsouls.core.event;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.MonstruosityOfSinGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.SewerCentipedeGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowSoldierLongswordGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
@@ -18,6 +19,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.fra
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -52,6 +54,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SEWER_CENTIPEDE.get(), SewerCentipedeGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_FALCHION.get(), SkeletonFalchionGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_CURVED_SWORDS.get(), SkeletonCurvedSwordsGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_LONGSWORD.get(), HollowSoldierLongswordGeoRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.HITBOX_SMALL.get(), InvisibleProjectileRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HITBOX.get(), InvisibleProjectileRenderer::new);

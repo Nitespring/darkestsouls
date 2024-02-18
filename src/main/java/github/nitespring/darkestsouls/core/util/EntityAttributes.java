@@ -5,8 +5,19 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 
 public class EntityAttributes {
-	
-	
+
+	public static  AttributeSupplier.Builder setHollowSoldierLongswordAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 24.0D)
+				.add(Attributes.ARMOR, 2.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.ATTACK_DAMAGE, 2.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.4D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
 	public static  AttributeSupplier.Builder setMonstruosityOfSinAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 80.0D)
@@ -17,7 +28,7 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 3.0D)
-				.add(Attributes.FOLLOW_RANGE, 25);
+				.add(Attributes.FOLLOW_RANGE, 15);
 	  }
 	public static  AttributeSupplier.Builder setBonewheelAttributes() {
 		return Monster.createMonsterAttributes()
