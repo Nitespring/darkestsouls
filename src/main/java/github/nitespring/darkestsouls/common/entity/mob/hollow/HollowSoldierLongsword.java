@@ -2,16 +2,26 @@ package github.nitespring.darkestsouls.common.entity.mob.hollow;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.behavior.Swim;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.monster.Drowned;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fluids.FluidType;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -27,6 +37,8 @@ import java.util.EnumSet;
 public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
     protected int animationTick = 0;
 
     public HollowSoldierLongsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -65,7 +77,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
-            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.death"));
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.death"));
         }else {
             switch(animState) {
                 case 1:
@@ -89,10 +101,11 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 default:
                     if(this.isInWater()) {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.swim"));
-                    }else if(this.isFallFlying()) {
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.fall"));
                     }else if(this.onClimbable()) {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.climb"));
+                    }else if(!this.onGround()) {
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.fall"));
+                        
                     }else if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.walk"));
                     }else {
@@ -103,26 +116,67 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         }
         return PlayState.CONTINUE;
     }
+
     @Override
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new BreakDoorGoal(this, (p_34082_) -> {
+            return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
+        }));
+        this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
 
-        this.goalSelector.addGoal(1, new HollowSoldierLongsword.AttackGoal(this));
+        this.goalSelector.addGoal(2, new HollowSoldierLongsword.AttackGoal(this));
+
+
+        this.goalSelector.addGoal(4, new RandomSwimmingGoal(this,0.2f,1));
         super.registerGoals();
 
     }
 
+
+
     @Override
-    protected AABB getHitbox() {
-        return super.getHitbox();
+    public EntityDimensions getDimensions(Pose p_21047_) {
+
+         if((this.isInWater()&&this.getAnimationState()==0)||this.getAnimationState()==1) {
+             return CRAWLING_BB;
+         }else {
+             return this.getType().getDimensions();
+         }
+    }
+
+    @Override
+    public void sinkInFluid(FluidType type) {
+        /*if(this.canSwimInFluidType(type)){
+            self().setDeltaMovement(self().getDeltaMovement().add(0.0D, (double)0.02F, 0.0D));
+        }*/
+
+        super.sinkInFluid(type);
+    }
+
+
+    @Override
+    public boolean canSwimInFluidType(FluidType type) {
+        return true;
     }
 
     @Override
     public void tick() {
+        if(this.isInWater()&&this.getAnimationState()==0){
+            //self().setDeltaMovement(self().getDeltaMovement().add(0.0D, (double)0.02F, 0.0D));
+        }
+       
+        if(this.tickCount%5==0){this.refreshDimensions();}
+       
+       
+
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }
         super.tick();
     }
+
 
     protected void playAnimation() {
         animationTick++;
@@ -428,5 +482,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         }
 
     }
+
+
 }
 

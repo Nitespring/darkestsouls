@@ -113,6 +113,7 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.SAW_CLEAVER);
 				event.accept(ItemInit.HUNTER_AXE);
 				event.accept(ItemInit.CHIKAGE);
+				event.accept(ItemInit.BROKEN_STRAIGHTSWORD);
 				event.accept(ItemInit.LONGSWORD);
 	            event.accept(ItemInit.SCIMITAR);
 				event.accept(ItemInit.FALCHION);

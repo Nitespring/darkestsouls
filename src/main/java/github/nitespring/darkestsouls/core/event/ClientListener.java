@@ -68,6 +68,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.ZWEIHANDER.get(), ZweihanderRenderer::new);
 		 event.registerEntityRenderer(EntityInit.UCHIGATANA.get(), UchigatanaRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LONGSWORD.get(), LongswordRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BROKEN_STRAIGHTSWORD.get(), BrokenStraightswordRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CHIKAGE.get(), ChikageRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SAW_CLEAVER.get(), SawCleaverRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SAW_CLEAVER_EXTENDED.get(), SawCleaverExtendedRenderer::new);

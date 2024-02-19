@@ -28,6 +28,8 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
@@ -41,6 +43,9 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
 
 	protected int hitStunTicks = 0;
+
+	protected final WaterBoundPathNavigation waterNavigation;
+	protected final GroundPathNavigation groundNavigation;
 
 	public abstract boolean isBoss();
 	//protected int poiseHealth;
@@ -60,11 +65,11 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
 	public DarkestSoulsAbstractEntity(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
+		this.waterNavigation = new WaterBoundPathNavigation(this, p_21684_);
+		this.groundNavigation = new GroundPathNavigation(this, p_21684_);
 	}
 
-	public int getAnimationState() {
-		return this.entityData.get(ANIMATION_STATE);
-	}
+	public int getAnimationState() {return this.entityData.get(ANIMATION_STATE);}
 
 	public void setAnimationState(int anim) {
 		this.entityData.set(ANIMATION_STATE, anim);

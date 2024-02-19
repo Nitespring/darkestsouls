@@ -96,6 +96,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.0f, 1.5f)
 					.build("uchigatana"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> BROKEN_STRAIGHTSWORD = ENTITIES.register("broken_straightsword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.25f, 1.25f)
+					.build("longsword"));
 	public static final RegistryObject<EntityType<WeaponAttackEntity>> LONGSWORD = ENTITIES.register("longsword",
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.5f, 1.25f)
