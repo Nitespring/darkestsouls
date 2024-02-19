@@ -22,6 +22,7 @@ public class CreativeTabsRegistration {
 	    {
 	        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)
 	        {
+				event.accept(ItemInit.HOLLOW_BROKEN_STRAIGHTSWORD);
 				event.accept(ItemInit.HOLLOW_LONGSWORD);
 				event.accept(ItemInit.SKELETON_FALCHION);
 				event.accept(ItemInit.SKELETON_CURVED_SWORDS);

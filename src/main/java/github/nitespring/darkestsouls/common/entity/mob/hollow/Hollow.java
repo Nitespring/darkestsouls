@@ -5,9 +5,16 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public abstract class Hollow extends DarkestSoulsAbstractEntity {
 
@@ -59,4 +66,35 @@ public abstract class Hollow extends DarkestSoulsAbstractEntity {
         tag.putInt("RobeType", this.getRobeType());
         tag.putInt("HatType", this.getHatType());
     }
+
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+        Random rn = new Random();
+        int r = rn.nextInt(12) + 1;
+        switch(r){
+            case 1,2:
+                this.setSkinType(1);
+                break;
+            case 3,4:
+                this.setSkinType(2);
+                break;
+            case 5,6,7:
+                this.setSkinType(3);
+                break;
+            case 8,9:
+                this.setSkinType(4);
+                break;
+            case 10:
+                this.setSkinType(5);
+                break;
+            default:
+                this.setSkinType(0);
+                break;
+        }
+
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+    }
+
+
 }

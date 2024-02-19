@@ -27,8 +27,20 @@ public class HollowModel<T extends Hollow & GeoEntity> extends GeoModel<T> {
 
     @Override
     public ResourceLocation getTextureResource(T object) {
-
-        return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow.png");
+        switch(object.getSkinType()) {
+            case 1:
+                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_yellow.png");
+            case 2:
+                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_gray.png");
+            case 3:
+                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_brown.png");
+            case 4:
+                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_red.png");
+            case 5:
+                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_green.png");
+            default:
+                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow.png");
+        }
     }
 
     @Override
@@ -39,6 +51,17 @@ public class HollowModel<T extends Hollow & GeoEntity> extends GeoModel<T> {
         EntityModelData extraData = (EntityModelData) customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
         head.setRotX(extraData.headPitch() * ((float) Math.PI / 180F));
         head.setRotY(extraData.netHeadYaw() *0.5f* ((float) Math.PI / 180F));
+        CoreGeoBone scarf = this.getAnimationProcessor().getBone("scarf");
+        scarf.setRotX(extraData.headPitch() * ((float) Math.PI / 180F));
+        scarf.setRotY(extraData.netHeadYaw() *0.5f* ((float) Math.PI / 180F));
+        CoreGeoBone cloak = this.getAnimationProcessor().getBone("cloak");
+        if(entity.getRobeType()==4){
+            scarf.setHidden(true);
+            cloak.setHidden(true);
+        }else{
+            scarf.setHidden(false);
+            cloak.setHidden(false);
+        }
 
 
     }

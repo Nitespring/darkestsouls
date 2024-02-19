@@ -5,6 +5,7 @@ package github.nitespring.darkestsouls.core.init;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.MadHollowBrokenStraightsword;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
@@ -47,6 +48,10 @@ public class EntityInit {
 					.build("sewer_centipede"));
 	public static final RegistryObject<EntityType<HollowSoldierLongsword>> HOLLOW_LONGSWORD = ENTITIES.register("hollow_longsword",
 			() -> EntityType.Builder.<HollowSoldierLongsword>of(HollowSoldierLongsword::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("hollow_longsword"));
+	public static final RegistryObject<EntityType<MadHollowBrokenStraightsword>> HOLLOW_BROKEN_STRAIGHTSWORD = ENTITIES.register("hollow_broken_straightsword",
+			() -> EntityType.Builder.<MadHollowBrokenStraightsword>of(MadHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("hollow_longsword"));
 

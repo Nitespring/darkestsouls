@@ -7,23 +7,11 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.behavior.Swim;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.util.DefaultRandomPos;
-import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.entity.monster.Drowned;
-import net.minecraft.world.entity.monster.Pillager;
-import net.minecraft.world.entity.monster.Vindicator;
-import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -39,14 +27,14 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.EnumSet;
 import java.util.Random;
 
-public class HollowSoldierLongsword extends Hollow implements GeoEntity {
+public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
     protected int animationTick = 0;
 
-    public HollowSoldierLongsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+    public MadHollowBrokenStraightsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
 
@@ -137,28 +125,17 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         int r = rn.nextInt(10) + 1;
         switch(r) {
             case 1, 3, 4:
+                this.setRobeType(1);
+                break;
+            case 5, 6:
+                this.setRobeType(2);
+                break;
+            case 7, 8:
                 this.setRobeType(3);
                 break;
-            case 5, 6, 7:
-                this.setRobeType(4);
-                break;
             default:
-                this.setRobeType(5);
+                this.setRobeType(0);
                 break;
-        }
-        if(this.getRobeType()==5){
-            int r1 = rn.nextInt(10) + 1;
-            switch(r1) {
-                case 1, 2:
-                    this.setHatType(2);
-                    break;
-                case 3, 4, 5, 6:
-                    this.setHatType(0);
-                    break;
-                default:
-                    this.setHatType(1);
-                    break;
-            }
         }
         return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
     }
@@ -167,13 +144,10 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(0, new BreakDoorGoal(this, (p_34082_) -> {
-            return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
-        }));
         this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
 
-        this.goalSelector.addGoal(2, new HollowSoldierLongsword.AttackGoal(this));
+        this.goalSelector.addGoal(2, new MadHollowBrokenStraightsword.AttackGoal(this));
 
 
         this.goalSelector.addGoal(4, new RandomSwimmingGoal(this,0.2f,1));
@@ -242,9 +216,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             case 21:
                 if(animationTick==12) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
+                                    (0.8f)*this.getLookAngle().z),
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
@@ -262,9 +236,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             case 22:
                 if(animationTick==4) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
+                                    (0.8f)*this.getLookAngle().z),
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
@@ -278,10 +252,10 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             case 23:
                 if(animationTick==9) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
+                                    (0.8f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
@@ -294,10 +268,10 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             case 24:
                 if(animationTick==6) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.2f)*this.getLookAngle().x,
+                            this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.2f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
@@ -310,10 +284,10 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             case 25:
                 if(animationTick==22) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.1f)*this.getLookAngle().x,
+                            this.position().add((0.9f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.1f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.5f, 5);
+                                    (0.9f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
@@ -332,7 +306,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
         private final double speedModifier = 1.0f;
         private final boolean followingTargetEvenIfNotSeen = true;
-        protected final HollowSoldierLongsword mob;
+        protected final MadHollowBrokenStraightsword mob;
         private Path path;
         private double pathedTargetX;
         private double pathedTargetY;
@@ -346,9 +320,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
 
 
-        public AttackGoal(HollowSoldierLongsword entityIn) {
+        public AttackGoal(MadHollowBrokenStraightsword entityIn) {
             this.mob = entityIn;
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }
 
 
@@ -412,7 +386,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             this.mob.getNavigation().moveTo(this.path, this.speedModifier);
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
-            this.ticksUntilNextAttack = 5;
+            this.ticksUntilNextAttack = 15;
 
             this.mob.setAnimationState(0);
         }

@@ -1,21 +1,24 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.hollow;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.Hollow;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class HollowSoldierLongswordGeoRenderer<T extends HollowSoldierLongsword> extends GeoEntityRenderer<T>{
+public class HollowGeoRenderer<T extends Hollow & GeoEntity> extends GeoEntityRenderer<T>{
 
-	public HollowSoldierLongswordGeoRenderer(EntityRendererProvider.Context renderManager)
+	public HollowGeoRenderer(EntityRendererProvider.Context renderManager)
     {
         super(renderManager, new HollowModel());
         this.addRenderLayer(new HollowItemLayer<T>(this));
+		this.addRenderLayer(new HollowRobeLayer<>(this));
+		this.addRenderLayer(new HollowHatLayer<>(this));
         this.shadowRadius = 0.5F;
      
        
