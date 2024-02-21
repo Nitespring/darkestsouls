@@ -92,8 +92,12 @@ public abstract class Hollow extends DarkestSoulsAbstractEntity {
                 this.setSkinType(0);
                 break;
         }
-
+        this.populateClothing();
         return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+    }
+
+    public void populateClothing(){
+
     }
 
 

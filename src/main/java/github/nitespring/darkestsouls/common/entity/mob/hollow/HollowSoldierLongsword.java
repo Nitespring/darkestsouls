@@ -133,21 +133,26 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+    }
+    @Override
+    public void populateClothing(){
         Random rn = new Random();
-        int r = rn.nextInt(10) + 1;
+        int r = rn.nextInt(12) + 1;
         switch(r) {
             case 1, 3, 4:
-                this.setRobeType(3);
-                break;
-            case 5, 6, 7:
                 this.setRobeType(4);
+                break;
+            case 5, 6, 7, 8, 9:
+                this.setRobeType(6);
                 break;
             default:
                 this.setRobeType(5);
                 break;
         }
         if(this.getRobeType()==5){
-            int r1 = rn.nextInt(10) + 1;
+            int r1 = rn.nextInt(13) + 1;
             switch(r1) {
                 case 1, 2:
                     this.setHatType(2);
@@ -155,14 +160,32 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 case 3, 4, 5, 6:
                     this.setHatType(0);
                     break;
+                case 7, 8:
+                    this.setHatType(3);
+                    break;
                 default:
                     this.setHatType(1);
                     break;
             }
         }
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+        if(this.getRobeType()==6){
+            int r1 = rn.nextInt(12) + 1;
+            switch(r1) {
+                case 1:
+                    this.setHatType(2);
+                    break;
+                case 2, 3, 4, 5, 6:
+                    this.setHatType(0);
+                    break;
+                case 7:
+                    this.setHatType(1);
+                    break;
+                default:
+                    this.setHatType(3);
+                    break;
+            }
+        }
     }
-
 
     @Override
     protected void registerGoals() {
@@ -210,8 +233,12 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
     @Override
     public void tick() {
-        if(this.isInWater()&&this.getAnimationState()==0){
-            //self().setDeltaMovement(self().getDeltaMovement().add(0.0D, (double)0.02F, 0.0D));
+        if(this.onClimbable()&&this.getAnimationState()==0){
+            if(this.getTarget()!=null&&this.getTarget().position().y<this.position().y){
+                self().setDeltaMovement(self().getDeltaMovement().add(0.0D, (double) -0.2F, 0.0D));
+            }else {
+                self().setDeltaMovement(self().getDeltaMovement().add(0.0D, (double) 0.08F, 0.0D));
+            }
         }
        
         if(this.tickCount%5==0){this.refreshDimensions();}

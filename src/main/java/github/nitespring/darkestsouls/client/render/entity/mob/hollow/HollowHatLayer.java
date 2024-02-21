@@ -16,6 +16,7 @@ public class HollowHatLayer<T extends Hollow & GeoEntity> extends GeoRenderLayer
 
 	private static final ResourceLocation BASCINET = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_bascinet.png");
 	private static final ResourceLocation KETTLE_HAT = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_kettle_hat.png");
+	private static final ResourceLocation BARBUTE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_barbute_helmet.png");
 
 
 	public HollowHatLayer(GeoRenderer<T> entityRendererIn) {
@@ -37,6 +38,9 @@ public class HollowHatLayer<T extends Hollow & GeoEntity> extends GeoRenderLayer
 					break;
                 case 2:
                     cameo = RenderType.entityCutoutNoCull(KETTLE_HAT);
+					break;
+				case 3:
+					cameo = RenderType.entityCutoutNoCull(BARBUTE);
 					break;
 			}
 			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);

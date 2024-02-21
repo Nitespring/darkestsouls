@@ -8,26 +8,50 @@ public class EntityAttributes {
 
 	public static  AttributeSupplier.Builder setHollowSoldierLongswordAttributes(){
 		return Monster.createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 24.0D)
-				.add(Attributes.ARMOR, 2.0D)
+				.add(Attributes.MAX_HEALTH, 26.0D)
+				.add(Attributes.ARMOR, 3.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.ATTACK_DAMAGE, 5.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
+	public static  AttributeSupplier.Builder setMadHollowBrokenStraightswordAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 18.0D)
+				.add(Attributes.ARMOR, 0.0D)
 				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.21D)
-				.add(Attributes.ATTACK_DAMAGE, 2.5D)
+				.add(Attributes.ATTACK_DAMAGE, 2.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.0D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.4D)
+				.add(Attributes.FOLLOW_RANGE, 8);
+	}
+	public static  AttributeSupplier.Builder setGravetenderHollowLongswordAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 22.0D)
+				.add(Attributes.ARMOR, 1.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.ATTACK_DAMAGE, 4.5D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
 				.add(Attributes.FOLLOW_RANGE, 20);
 	}
-	public static  AttributeSupplier.Builder setMadHollowBrokenStraightswordAttributes(){
+	public static  AttributeSupplier.Builder setGravetenderHollowBrokenStraightswordAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 20.0D)
-				.add(Attributes.ARMOR, 0.0D)
+				.add(Attributes.ARMOR, 3.5D)
 				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.21D)
-				.add(Attributes.ATTACK_DAMAGE, 1.0D)
+				.add(Attributes.ATTACK_DAMAGE, 3.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.0D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 0.4D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
 				.add(Attributes.FOLLOW_RANGE, 8);
 	}
 	public static  AttributeSupplier.Builder setMonstruosityOfSinAttributes(){

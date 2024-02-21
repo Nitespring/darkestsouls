@@ -99,19 +99,23 @@ public class ItemInit {
 
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SIN, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SIN, 1318437, 16449279, new Item.Properties()));
 	public static final RegistryObject<Item> BONEWHEEL = ITEMS.register("bonewheel_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, 13684684, 11432504, new Item.Properties()));
 	public static final RegistryObject<Item> SEWER_CENTIPEDE = ITEMS.register("sewer_centipede_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 13686464, 7373164, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_FALCHION = ITEMS.register("skeleton_falchion_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 13684684, 14079971, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_CURVED_SWORDS = ITEMS.register("skeleton_curved_swords_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 13684684, 7367532, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_LONGSWORD = ITEMS.register("hollow_longsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 13945528, 5202790, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("hollow_broken_straightsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 14283506, 16737400, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 12630442, new Item.Properties()));
+	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_LONGSWORD = ITEMS.register("gravetender_hollow_longsword_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, 13945528, 2962739, new Item.Properties()));
+	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("gravetender_hollow_broken_straightsword_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 2962739, new Item.Properties()));
 
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",

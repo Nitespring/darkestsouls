@@ -2,12 +2,17 @@ package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.Hollow;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public abstract class Skeleton extends DarkestSoulsAbstractEntity {
@@ -41,6 +46,11 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
         super.defineSynchedData();
         this.entityData.define(ROBE_TYPE, this.getDefaultRobeType());
         this.entityData.define(HAT_TYPE, this.getDefaultHatType());
+    }
+
+    @Override
+    public ParticleOptions getBloodParticles() {
+        return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.BONE_MEAL));
     }
 
     @Override

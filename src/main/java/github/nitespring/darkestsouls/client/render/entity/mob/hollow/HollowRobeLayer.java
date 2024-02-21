@@ -15,10 +15,12 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class HollowRobeLayer<T extends Hollow & GeoEntity> extends GeoRenderLayer<T>{
 
+	private static final ResourceLocation LOINCLOTH = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_loincloth.png");
 	private static final ResourceLocation TROUSERS = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_trousers.png");
 	private static final ResourceLocation VEST = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_vest.png");
 	private static final ResourceLocation CLOAK = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_gravetender_cloak.png");
 	private static final ResourceLocation LOTHRIC = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_lothric_armour.png");
+	private static final ResourceLocation LORDRAN = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_lordran_armour.png");
 
 	public HollowRobeLayer(GeoRenderer<T> entityRendererIn) {
 		super(entityRendererIn);
@@ -45,6 +47,12 @@ public class HollowRobeLayer<T extends Hollow & GeoEntity> extends GeoRenderLaye
 					break;
 				case 4, 5:
 					cameo = RenderType.entityCutoutNoCull(LOTHRIC);
+					break;
+				case 6:
+					cameo = RenderType.entityCutoutNoCull(LORDRAN);
+					break;
+				case 7:
+					cameo = RenderType.entityCutoutNoCull(LOINCLOTH);
 					break;
 			}
 			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);

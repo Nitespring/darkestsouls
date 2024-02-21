@@ -6,17 +6,21 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,9 +39,12 @@ import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
@@ -268,7 +275,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 				hitStunTicks = 5;
 			}
 
-
+			/*
 			if(!source.is(DamageTypes.PLAYER_ATTACK)&&!(source.getEntity()!=null && source.getEntity() instanceof Player)) {
 				float poiseDmgMod = 1;
 
@@ -288,8 +295,41 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
 				this.damagePoiseHealth(finalPoiseDmg);
 			}
+			*/
+			this.spawnBloodParticles(source, f);
+
+
 		}
 		return super.hurt(source, f);
+	}
+
+	public void spawnBloodParticles(DamageSource source, float f){
+		ParticleOptions blood = this.getBloodParticles();
+		if(source.is(DamageTypes.DROWN)||source.is(DamageTypes.IN_WALL)){blood=ParticleTypes.BUBBLE;}
+		if(source.is(DamageTypes.FREEZE)||source.is(DamageTypes.STARVE)||source.is(DamageTypes.DRY_OUT)||source.is(DamageTypes.MAGIC)||source.is(DamageTypes.INDIRECT_MAGIC)){blood=ParticleTypes.DAMAGE_INDICATOR;}
+		if(source.is(DamageTypes.FIREBALL)||source.is(DamageTypes.IN_FIRE)||source.is(DamageTypes.ON_FIRE)||source.is(DamageTypes.EXPLOSION)||source.is(DamageTypes.LIGHTNING_BOLT)||source.is(DamageTypes.LAVA)||source.is(DamageTypes.HOT_FLOOR)||source.is(DamageTypes.DRAGON_BREATH)||source.is(DamageTypes.UNATTRIBUTED_FIREBALL)){blood=ParticleTypes.SMOKE;}
+		if(source.is(DamageTypes.WITHER)||source.is(DamageTypes.WITHER_SKULL)){blood=new DustParticleOptions(new Vector3f(0f,0f,0f),0.5f);}
+
+		float width = this.getBbWidth() * 0.5f;
+		float height = this.getBbHeight() * 0.5f;
+		float size = width*height*0.5f;
+		Vec3 pos = new Vec3(this.getX(), this.getY() + height, this.getZ());
+		Level world = this.level();
+
+		RandomSource rng = this.getRandom();
+		for (int i = 0; i < 20*size*Math.sqrt(f+4)/10; ++i) {
+
+			Vec3 off = new Vec3((rng.nextDouble() * width - width / 2)*f/4, (rng.nextDouble() * height - height / 2)*f/4,
+					(rng.nextDouble() * width - width / 2)*f/4);
+			if(world instanceof ServerLevel) {
+				((ServerLevel) world).sendParticles( blood, pos.x+off.x, pos.y+0.5f+off.y, pos.z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + size*0.006);
+
+			}
+		}
+
+	}
+	public ParticleOptions getBloodParticles(){
+		return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
 	}
 
 	public class CopyOwnerTargetGoal extends TargetGoal {

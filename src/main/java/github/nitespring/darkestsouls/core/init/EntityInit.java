@@ -4,6 +4,8 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowBrokenStraightsword;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowLongsword;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.MadHollowBrokenStraightsword;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
@@ -17,6 +19,8 @@ import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAtta
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -53,7 +57,17 @@ public class EntityInit {
 	public static final RegistryObject<EntityType<MadHollowBrokenStraightsword>> HOLLOW_BROKEN_STRAIGHTSWORD = ENTITIES.register("hollow_broken_straightsword",
 			() -> EntityType.Builder.<MadHollowBrokenStraightsword>of(MadHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
+					.build("hollow_broken_straightsword"));
+
+	public static final RegistryObject<EntityType<GravetenderHollowLongsword>> GRAVETENDER_HOLLOW_LONGSWORD = ENTITIES.register("gravetender_hollow_longsword",
+			() -> EntityType.Builder.<GravetenderHollowLongsword>of(GravetenderHollowLongsword::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
 					.build("hollow_longsword"));
+	public static final RegistryObject<EntityType<GravetenderHollowBrokenStraightsword>> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ENTITIES.register("gravetender_hollow_broken_straightsword",
+			() -> EntityType.Builder.<GravetenderHollowBrokenStraightsword>of(GravetenderHollowBrokenStraightsword::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("gravetender_hollow_broken_straightsword"));
+
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",

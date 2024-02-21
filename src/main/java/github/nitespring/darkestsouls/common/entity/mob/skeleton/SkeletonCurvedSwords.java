@@ -2,10 +2,7 @@ package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +26,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected int animationTick = 0;
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
     protected Vec3 aimVec;
 
@@ -114,7 +112,15 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     @Override
     public boolean canDrownInFluidType(FluidType type) {return false;}
+    @Override
+    public EntityDimensions getDimensions(Pose p_21047_) {
 
+        if(this.getAnimationState()==1) {
+            return CRAWLING_BB;
+        }else {
+            return this.getType().getDimensions();
+        }
+    }
 
 
     @Override
@@ -122,6 +128,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }
+        if(this.tickCount%5==0){this.refreshDimensions();}
         super.tick();
     }
 

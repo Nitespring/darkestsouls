@@ -52,8 +52,8 @@ public class HollowModel<T extends Hollow & GeoEntity> extends GeoModel<T> {
         head.setRotX(extraData.headPitch() * ((float) Math.PI / 180F));
         head.setRotY(extraData.netHeadYaw() *0.5f* ((float) Math.PI / 180F));
         CoreGeoBone scarf = this.getAnimationProcessor().getBone("scarf");
-        scarf.setRotX(extraData.headPitch() * ((float) Math.PI / 180F));
-        scarf.setRotY(extraData.netHeadYaw() *0.5f* ((float) Math.PI / 180F));
+        //scarf.setRotX(extraData.headPitch() * ((float) Math.PI / 180F));
+        //scarf.setRotY(extraData.netHeadYaw() *0.5f* ((float) Math.PI / 180F));
         CoreGeoBone cloak = this.getAnimationProcessor().getBone("cloak");
         if(entity.getRobeType()==4){
             scarf.setHidden(true);

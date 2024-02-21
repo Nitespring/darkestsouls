@@ -121,8 +121,14 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+    }
+
+    @Override
+    public void populateClothing() {
         Random rn = new Random();
-        int r = rn.nextInt(10) + 1;
+        int r = rn.nextInt(13) + 1;
         switch(r) {
             case 1, 3, 4:
                 this.setRobeType(1);
@@ -130,16 +136,14 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
             case 5, 6:
                 this.setRobeType(2);
                 break;
-            case 7, 8:
-                this.setRobeType(3);
+            case 7, 8, 9, 10:
+                this.setRobeType(7);
                 break;
             default:
                 this.setRobeType(0);
                 break;
         }
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
     }
-
 
     @Override
     protected void registerGoals() {
