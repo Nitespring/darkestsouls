@@ -28,6 +28,7 @@ public class EntityAttributeRegistration {
 		event.put(EntityInit.BEAST_PATIENT.get(), EntityAttributes.setBeastPatientAttributes().build());
 		event.put(EntityInit.CLOAKED_BEAST_PATIENT.get(), EntityAttributes.setCloakedBeastPatientAttributes().build());
 		event.put(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(), EntityAttributes.setAshenBloodBeastPatientAttributes().build());
+		event.put(EntityInit.LEECH.get(), EntityAttributes.setLeechAttributes().build());
 
 
 	}

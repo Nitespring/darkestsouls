@@ -3,7 +3,9 @@ package github.nitespring.darkestsouls.core.init;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.entity.mob.abyss.Leech;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
+import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.CloakedBeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowBrokenStraightsword;
@@ -77,10 +79,14 @@ public class EntityInit {
 			() -> EntityType.Builder.<CloakedBeastPatient>of(CloakedBeastPatient::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("cloaked_beast_patient"));
-	public static final RegistryObject<EntityType<BeastPatient>> ASHEN_BLOOD_BEAST_PATIENT = ENTITIES.register("ashen_blood_beast_patient",
-			() -> EntityType.Builder.<BeastPatient>of(BeastPatient::new, MobCategory.MONSTER)
+	public static final RegistryObject<EntityType<AshenBloodBeastPatient>> ASHEN_BLOOD_BEAST_PATIENT = ENTITIES.register("ashen_blood_beast_patient",
+			() -> EntityType.Builder.<AshenBloodBeastPatient>of(AshenBloodBeastPatient::new, MobCategory.MONSTER)
 					.sized(0.8f, 2.4f)
 					.build("ashen_blood_beast_patient"));
+	public static final RegistryObject<EntityType<Leech>> LEECH = ENTITIES.register("leech",
+			() -> EntityType.Builder.<Leech>of(Leech::new, MobCategory.MONSTER)
+					.sized(0.9f, 2.4f)
+					.build("leech"));
 
 
 

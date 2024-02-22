@@ -32,6 +32,7 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.BEAST_PATIENT);
 				event.accept(ItemInit.CLOAKED_BEAST_PATIENT);
 				event.accept(ItemInit.ASHEN_BLOOD_BEAST_PATIENT);
+				event.accept(ItemInit.LEECH);
 				event.accept(ItemInit.SEWER_CENTIPEDE);
 				event.accept(ItemInit.SIN);
 	        }

@@ -322,7 +322,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		Level world = this.level();
 
 		RandomSource rng = this.getRandom();
-		for (int i = 0; i < 20*size*Math.sqrt(f+4)/10; ++i) {
+		for (int i = 0; i < 5+20*size*Math.sqrt(f+4)/10; ++i) {
 
 			Vec3 off = new Vec3((rng.nextDouble() * width - width / 2)*f/4, (rng.nextDouble() * height - height / 2)*f/4,
 					(rng.nextDouble() * width - width / 2)*f/4);
