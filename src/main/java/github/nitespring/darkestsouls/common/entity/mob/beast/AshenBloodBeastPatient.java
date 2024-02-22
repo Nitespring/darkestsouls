@@ -1,9 +1,11 @@
 package github.nitespring.darkestsouls.common.entity.mob.beast;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
@@ -30,7 +32,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected int animationTick = 0;
-    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f, false);
 
     protected Vec3 aimVec;
     public AshenBloodBeastPatient(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -123,7 +125,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
     }
     @Override
-    public int getBeastPatientType() {return 1;}
+    public int getBeastPatientType() {return 2;}
     @Override
     public int getMaxPoise() {return 24;}
     @Override
@@ -145,6 +147,8 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }
+        if(!this.hasEffect(EffectInit.FAKE_POISON.get())){this.addEffect(new MobEffectInstance(EffectInit.FAKE_POISON.get(),40));}
+
         if(this.tickCount%5==0){this.refreshDimensions();}
         super.tick();
     }

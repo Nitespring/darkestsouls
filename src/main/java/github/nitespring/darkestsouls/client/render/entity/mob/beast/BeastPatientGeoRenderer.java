@@ -2,6 +2,8 @@ package github.nitespring.darkestsouls.client.render.entity.mob.beast;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.client.render.entity.mob.abyss.MonstruosityOfSinEmissiveLayer;
+import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatientEntity;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
@@ -25,6 +27,7 @@ public class BeastPatientGeoRenderer<T extends BeastPatientEntity & GeoEntity> e
         super(renderManager, new BeastPatientModel());
         
         this.shadowRadius = 0.5F;
+        this.addRenderLayer(new BeastPatientEmissiveLayer<T>(this));
      
        
     }
@@ -52,6 +55,7 @@ public class BeastPatientGeoRenderer<T extends BeastPatientEntity & GeoEntity> e
 	public void render(T entity, float entityYaw, float partialTick, PoseStack poseStack,
 			MultiBufferSource bufferSource, int packedLight) {
 		 float scaleFactor = 1.0f;
+         if(entity.getBeastPatientType()==2){scaleFactor=1.4f;}
 		 poseStack.pushPose();
 		 poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
 

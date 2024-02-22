@@ -2,9 +2,11 @@ package github.nitespring.darkestsouls.common.entity.mob.beast;
 
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
@@ -146,6 +148,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity{
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }
+        if(this.getEntityState()!=0&&!this.hasEffect(EffectInit.FAKE_POISON.get())){this.addEffect(new MobEffectInstance(EffectInit.FAKE_POISON.get(),40));}
         if(this.tickCount%5==0){this.refreshDimensions();}
         super.tick();
     }
