@@ -29,9 +29,11 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.SKELETON_FALCHION);
 				event.accept(ItemInit.SKELETON_CURVED_SWORDS);
 				event.accept(ItemInit.BONEWHEEL);
+				event.accept(ItemInit.BEAST_PATIENT);
+				event.accept(ItemInit.CLOAKED_BEAST_PATIENT);
+				event.accept(ItemInit.ASHEN_BLOOD_BEAST_PATIENT);
 				event.accept(ItemInit.SEWER_CENTIPEDE);
 				event.accept(ItemInit.SIN);
-	            
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
 	        {

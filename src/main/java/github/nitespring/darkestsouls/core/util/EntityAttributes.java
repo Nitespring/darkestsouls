@@ -56,7 +56,7 @@ public class EntityAttributes {
 	}
 	public static  AttributeSupplier.Builder setMonstruosityOfSinAttributes(){
 		return Monster.createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 80.0D)
+				.add(Attributes.MAX_HEALTH, 100.0D)
 				.add(Attributes.ARMOR, 8.0D)
 				.add(Attributes.ARMOR_TOUGHNESS, 4.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.20D)
@@ -114,6 +114,42 @@ public class EntityAttributes {
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
 				.add(Attributes.FOLLOW_RANGE, 25);
 
+	}
+	public static  AttributeSupplier.Builder setBeastPatientAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 38.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.22D)
+				.add(Attributes.ATTACK_DAMAGE, 6.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
+				.add(Attributes.FOLLOW_RANGE, 30);
+	}
+	public static  AttributeSupplier.Builder setCloakedBeastPatientAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 46.0D)
+				.add(Attributes.ARMOR, 6.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.ATTACK_DAMAGE, 7.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.5D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
+				.add(Attributes.FOLLOW_RANGE, 30);
+	}
+	public static  AttributeSupplier.Builder setAshenBloodBeastPatientAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 80.0D)
+				.add(Attributes.ARMOR, 8.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.ATTACK_DAMAGE, 10.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.8D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
+				.add(Attributes.FOLLOW_RANGE, 50);
 	}
 
 }

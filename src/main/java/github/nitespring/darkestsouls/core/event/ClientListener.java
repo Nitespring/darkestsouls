@@ -5,6 +5,7 @@ package github.nitespring.darkestsouls.core.event;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.MonstruosityOfSinGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.SewerCentipedeGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.mob.beast.BeastPatientGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
@@ -57,6 +58,9 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BEAST_PATIENT.get(), BeastPatientGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CLOAKED_BEAST_PATIENT.get(), BeastPatientGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(), BeastPatientGeoRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.HITBOX_SMALL.get(), InvisibleProjectileRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HITBOX.get(), InvisibleProjectileRenderer::new);

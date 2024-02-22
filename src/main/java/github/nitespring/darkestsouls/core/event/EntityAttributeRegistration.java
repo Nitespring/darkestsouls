@@ -25,7 +25,9 @@ public class EntityAttributeRegistration {
 		event.put(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), EntityAttributes.setMadHollowBrokenStraightswordAttributes().build());
 		event.put(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), EntityAttributes.setGravetenderHollowLongswordAttributes().build());
 		event.put(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), EntityAttributes.setGravetenderHollowBrokenStraightswordAttributes().build());
-
+		event.put(EntityInit.BEAST_PATIENT.get(), EntityAttributes.setBeastPatientAttributes().build());
+		event.put(EntityInit.CLOAKED_BEAST_PATIENT.get(), EntityAttributes.setCloakedBeastPatientAttributes().build());
+		event.put(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(), EntityAttributes.setAshenBloodBeastPatientAttributes().build());
 
 
 	}

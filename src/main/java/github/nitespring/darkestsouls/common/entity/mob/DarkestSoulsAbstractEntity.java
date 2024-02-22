@@ -14,6 +14,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -222,6 +223,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
 		if (this.entityData.get(POISE_HEALTH) <= -1) {
 			this.setStunAnimation();
+
 			System.out.println("should Stun");
 		}
 
@@ -273,6 +275,9 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		if (f > 0 && (e != null && !(e instanceof DarkestSoulsAbstractEntity && ((DarkestSoulsAbstractEntity) e).getOwner() == this))) {
 			if (hitStunTicks <= 0) {
 				hitStunTicks = 5;
+			}
+			if(this.getAnimationState()==this.getStunAnimation()){
+				this.playSound(SoundEvents.BLAZE_HURT);
 			}
 
 			/*
