@@ -2,9 +2,12 @@ package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
@@ -104,7 +107,12 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.falchion.attack4"));
                     break;
                 default:
-                    if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
+                    if(this.onClimbable()) {
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.climb"));
+                    }else if(!this.onGround()) {
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.fall"));
+
+                    }else if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.falchion.walk"));
                     }else {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.idle"));
@@ -116,7 +124,10 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
     }
     @Override
     protected void registerGoals() {
-
+        this.goalSelector.addGoal(0, new BreakDoorGoal(this, (p_34082_) -> {
+            return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
+        }));
+        this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(1, new SkeletonFalchion.AttackGoal(this));
         super.registerGoals();
 

@@ -151,7 +151,29 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
         if(this.tickCount%5==0){this.refreshDimensions();}
         super.tick();
     }
-
+    protected void doAttack(float damageModifier, double range){
+        if(this.getEntityState()==0) {
+            DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                    this.position().add((1.0f+range) * this.getLookAngle().x,
+                            0.25,
+                            (1.0f+range) * this.getLookAngle().z),
+                    (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)+damageModifier, 5);
+            h.setOwner(this);
+            h.setTarget(this.getTarget());
+            h.setHitboxType(0);
+            this.level().addFreshEntity(h);
+        }else{
+            DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                    this.position().add((1.0f+range) * this.getLookAngle().x,
+                            0.25,
+                            (1.0f+range) * this.getLookAngle().z),
+                    (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)+damageModifier+1.0f, 5);
+            h.setOwner(this);
+            h.setTarget(this.getTarget());
+            h.setHitboxType(1);
+            this.level().addFreshEntity(h);
+        }
+    }
     protected void playAnimation() {
         animationTick++;
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
@@ -173,14 +195,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
             case 21:
                 this.getNavigation().stop();
                 if(animationTick==4) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((0.8f)*this.getLookAngle().x,
-                                    0.25,
-                                    (0.8f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=7&&flag) {
                     animationTick=0;
@@ -195,14 +210,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 if(animationTick>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
                 if(animationTick==4) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((0.8f)*this.getLookAngle().x,
-                                    0.25,
-                                    (0.8f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=12) {
                     this.getNavigation().stop();
@@ -240,14 +248,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==7) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(1.0f, 0.0f);
                 }
                 if(animationTick>=16) {
                     this.getNavigation().stop();
@@ -260,14 +261,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 this.getNavigation().stop();
 
                 if(animationTick==4) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((0.8f)*this.getLookAngle().x,
-                                    0.25,
-                                    (0.8f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=7&&flag) {
                     animationTick=0;
@@ -282,14 +276,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 if(animationTick>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
                 if(animationTick==4) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((0.8f)*this.getLookAngle().x,
-                                    0.25,
-                                    (0.8f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=12) {
                 this.getNavigation().stop();
@@ -327,14 +314,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==7) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(1.0f, 0.0f);
                 }
                 if(animationTick>=16) {
                     this.getNavigation().stop();
@@ -363,14 +343,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==8) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(4.0f, 0.0f);
                 }
                 if(animationTick>=15) {
                     this.getNavigation().stop();
@@ -400,14 +373,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==5) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(2.0f, 0.0f);
                 }
                 if(animationTick>=12) {
                     this.getNavigation().stop();
@@ -437,14 +403,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==17) {
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
+                    this.doAttack(4.0f, 0.0f);
                 }
                 if(animationTick>=22) {
                     this.getNavigation().stop();

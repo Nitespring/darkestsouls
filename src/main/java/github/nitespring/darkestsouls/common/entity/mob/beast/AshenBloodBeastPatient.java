@@ -181,6 +181,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=7&&flag) {
@@ -203,6 +204,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=12) {
@@ -248,6 +250,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=16) {
@@ -268,6 +271,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=7&&flag) {
@@ -290,6 +294,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=12) {
@@ -335,6 +340,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=16) {
@@ -371,6 +377,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=15) {
@@ -408,6 +415,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=12) {
@@ -445,6 +453,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
                 if(animationTick>=22) {

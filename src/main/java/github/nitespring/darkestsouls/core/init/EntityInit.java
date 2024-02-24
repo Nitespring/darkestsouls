@@ -179,13 +179,33 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.0f, 1.5f)
 					.build("dragonslayer_swordspear"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> DRAGONSLAYER_SPEAR = ENTITIES.register("dragonslayer_spear",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.25f)
+					.build("dragonslayer_spear"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> HUNTING_AXE = ENTITIES.register("hunting_axe",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.4f, 1.4f)
+					.build("hunting_axe"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> HUNTER_AXE = ENTITIES.register("hunter_axe",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.5f)
+					.build("hunter_axe"));
 
 
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)
-					.sized(1.0f, 1.0f)
+					.sized(0.8f, 0.8f)
 					.build("soul_dart"));
+	public static final RegistryObject<EntityType<SoulArrow>> SOUL_ARROW = ENTITIES.register("soul_arrow",
+			() -> EntityType.Builder.<SoulArrow>of(SoulArrow::new, MobCategory.MISC)
+					.sized(1.2f, 1.2f)
+					.build("soul_arrow"));
+	public static final RegistryObject<EntityType<LightningSpear>> LIGHTNING_SPEAR = ENTITIES.register("lightning_spear",
+			() -> EntityType.Builder.<LightningSpear>of(LightningSpear::new, MobCategory.MISC)
+					.sized(0.8f, 0.8f)
+					.build("lightning_spear"));
 	public static final RegistryObject<EntityType<Fireball>> FIREBALL = ENTITIES.register("fireball",
 			() -> EntityType.Builder.<Fireball>of(Fireball::new, MobCategory.MISC)
 					.sized(1.25f, 1.25f)

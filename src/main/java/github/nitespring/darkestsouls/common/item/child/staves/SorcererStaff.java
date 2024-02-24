@@ -1,12 +1,16 @@
 package github.nitespring.darkestsouls.common.item.child.staves;
 
+import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulArrow;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
@@ -37,9 +41,12 @@ public class SorcererStaff extends Staff {
             e.xPower = 0.25 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
             e.yPower = 0.25 * aim.y;
             e.zPower = 0.25 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
-
+                stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
+                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+                });
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 5);
+            playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.6F, 1.2F);
         }
 
     }
@@ -51,7 +58,7 @@ public class SorcererStaff extends Staff {
         Vec3 pos = playerIn.position();
         Vec3 mov = playerIn.getDeltaMovement();
 
-        SoulDart e = new SoulDart(EntityInit.SOUL_DART.get(), levelIn);
+        SoulArrow e = new SoulArrow(EntityInit.SOUL_ARROW.get(), levelIn);
 
         e.setPos(pos.add(0,1.5,0).add(aim.normalize().multiply(1.5f,1.5f,1.5f)));
 
@@ -71,8 +78,13 @@ public class SorcererStaff extends Staff {
             e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
         }
 
+            stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
+                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
+
         levelIn.addFreshEntity(e);
         playerIn.getCooldowns().addCooldown(this, 15);
+        playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.6F, 1.0F);
     }
 
     public int getCastingDurationSpellB(){return 40;}

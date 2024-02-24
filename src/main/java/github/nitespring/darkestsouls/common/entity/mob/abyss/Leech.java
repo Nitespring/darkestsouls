@@ -176,6 +176,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 3, 1.25f, 8f,0,this.getTarget());
 					h.setOwner(this);
 					h.setTarget(this.getTarget());
+					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
 				if(animationTick>=10) {
@@ -206,6 +207,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 3, 1.25f, 8f,0,this.getTarget());
 					h.setOwner(this);
 					h.setTarget(this.getTarget());
+					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
 				if(animationTick>=10) {
@@ -235,6 +237,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2, 3, 1.25f, 8f,0,this.getTarget());
 					h.setOwner(this);
 					h.setTarget(this.getTarget());
+					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
 				if(animationTick>=12) {
@@ -260,6 +263,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4, 3, 1.25f, 8f,0,this.getTarget());
 					h.setOwner(this);
 					h.setTarget(this.getTarget());
+					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
 				if(animationTick>=26) {

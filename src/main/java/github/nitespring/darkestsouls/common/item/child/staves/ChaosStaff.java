@@ -14,6 +14,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -48,6 +49,9 @@ public class ChaosStaff extends Staff {
             e.zPower = 0.05 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.4);
             e.setDamage(this.getAttackDamage(playerIn,stackIn));
             e.setOwner(playerIn);
+                stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
+                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+                });
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 48);
         }
@@ -84,6 +88,9 @@ public class ChaosStaff extends Staff {
             e.yPower = 0.035 * aim.y + 0.035;
             e.zPower = 0.045 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
         }
+            stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
+                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
 
         levelIn.addFreshEntity(e);
 

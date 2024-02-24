@@ -277,7 +277,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 				hitStunTicks = 5;
 			}
 			if(this.getAnimationState()==this.getStunAnimation()){
-				this.playSound(SoundEvents.BLAZE_HURT);
+				this.playSound(SoundEvents.BLAZE_HURT, 0.4f, 1.0f);
 			}
 
 			/*

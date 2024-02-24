@@ -1,10 +1,13 @@
 package github.nitespring.darkestsouls.common.entity.util;
 
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +29,7 @@ public class DamageHitboxEntity extends Entity {
 	private LivingEntity target;
 	private int maxTargets = 0; //if 0 there is no max number of targets
 	private int delayTicks = 1;
+	private int hitboxType = 0;
 	private float damage = 4.0f;
 	private float hitboxScaleAbsolute = 0.0f;
 	private float hitboxScaleHeight = 0.0f;
@@ -88,6 +92,13 @@ public class DamageHitboxEntity extends Entity {
 	public void setOwner(@Nullable LivingEntity p_36939_) {
 		this.owner = p_36939_;
 		this.ownerUUID = p_36939_ == null ? null : p_36939_.getUUID();
+	}
+
+	public void setHitboxType(int i){
+		this.hitboxType=i;
+	}
+	public int getHitboxType(){
+		return hitboxType;
 	}
 
 	@Nullable
@@ -178,8 +189,27 @@ public class DamageHitboxEntity extends Entity {
 	            if (owner.isAlliedTo(target)||owner==target) {
 	               return;
 	            }else {
-
-					target.hurt(this.damageSources().mobAttack(owner), damage);
+					switch(this.hitboxType) {
+						case 1:
+							target.hurt(this.damageSources().mobAttack(owner), damage);
+							target.addEffect(new MobEffectInstance(MobEffects.POISON, 100,0), this.getOwner());
+							break;
+						case 2:
+							target.hurt(this.damageSources().mobAttack(owner), damage);
+							target.addEffect(new MobEffectInstance(MobEffects.POISON, 140,1), this.getOwner());
+							break;
+						case 3:
+							target.hurt(this.damageSources().mobAttack(owner), damage);
+							if(this.target.hasEffect(EffectInit.BLEED.get())){
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, target.getEffect(EffectInit.BLEED.get()).getAmplifier()+2), this.getOwner());
+							}else {
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, 1), this.getOwner());
+							}
+							break;
+						default:
+							target.hurt(this.damageSources().mobAttack(owner), damage);
+							break;
+					}
 	            }
 	         }
 

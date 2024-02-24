@@ -19,29 +19,29 @@ public class GraveScythe extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
+        if(!playerIn.isUsingItem()) {
+            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 1.75, 0.4, playerIn.getLookAngle().z() * 1.75);
 
-        Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x()*1.75, 0.4, playerIn.getLookAngle().z()*1.75);
-
-        Level levelIn = playerIn.level();
-        WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.GRAVE_SCYTHE.get(), levelIn, pos,(float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
-        entity.setOwner(playerIn);
-        entity.setItemStack(stackIn);
-        entity.setMaxTargets(this.getMaxTargets(stackIn));
-        entity.setDamage(
-                this.getAttackDamage(playerIn,stackIn)/2,
-                this.getPoiseDamage(playerIn,stackIn),
-                this.getFireAttack(stackIn),
-                this.getSmiteAttack(stackIn),
-                this.getBaneOfArthropodsAttack(stackIn),
-                this.getBloodAttack(stackIn),
-                this.getPoisonAttack(stackIn),
-                this.getRotAttack(stackIn),
-                this.getFrostAttack(stackIn),
-                this.getDeathAttack(stackIn));
-        entity.setHitboxModifications(1.2f,0f, 0.4f, 1.75f);
-        entity.configureTicks(6,12,2,3);
-        levelIn.addFreshEntity(entity);
-
+            Level levelIn = playerIn.level();
+            WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.GRAVE_SCYTHE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+            entity.setOwner(playerIn);
+            entity.setItemStack(stackIn);
+            entity.setMaxTargets(this.getMaxTargets(stackIn));
+            entity.setDamage(
+                    this.getAttackDamage(playerIn, stackIn) / 2,
+                    this.getPoiseDamage(playerIn, stackIn),
+                    this.getFireAttack(stackIn),
+                    this.getSmiteAttack(stackIn),
+                    this.getBaneOfArthropodsAttack(stackIn),
+                    this.getBloodAttack(stackIn),
+                    this.getPoisonAttack(stackIn),
+                    this.getRotAttack(stackIn),
+                    this.getFrostAttack(stackIn),
+                    this.getDeathAttack(stackIn));
+            entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.75f);
+            entity.configureTicks(6, 12, 2, 3);
+            levelIn.addFreshEntity(entity);
+        }
     }
     @Override
     public void doRightClickAction(Player playerIn, ItemStack item) {

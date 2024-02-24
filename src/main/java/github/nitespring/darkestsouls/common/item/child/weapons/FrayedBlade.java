@@ -36,29 +36,29 @@ public class FrayedBlade extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
+        if(!playerIn.isUsingItem()) {
+            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 1.5, 0.4, playerIn.getLookAngle().z() * 1.5);
 
-        Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x()*1.5, 0.4, playerIn.getLookAngle().z()*1.5);
-
-        Level levelIn = playerIn.level();
-        FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos,(float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
-        entity.setOwner(playerIn);
-        entity.setItemStack(stackIn);
-        entity.setMaxTargets(this.getMaxTargets(stackIn));
-        entity.setDamage(
-                this.getAttackDamage(playerIn,stackIn)/2-4,
-                this.getPoiseDamage(playerIn, stackIn)-7,
-                this.getFireAttack(stackIn),
-                this.getSmiteAttack(stackIn),
-                this.getBaneOfArthropodsAttack(stackIn),
-                this.getBloodAttack(stackIn)-2,
-                this.getPoisonAttack(stackIn),
-                this.getRotAttack(stackIn),
-                this.getFrostAttack(stackIn),
-                this.getDeathAttack(stackIn));
-        entity.setHitboxModifications(1.2f,0f, 0.4f, 1.5f);
-        entity.configureTicks(14,22,1,2);
-        levelIn.addFreshEntity(entity);
-
+            Level levelIn = playerIn.level();
+            FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+            entity.setOwner(playerIn);
+            entity.setItemStack(stackIn);
+            entity.setMaxTargets(this.getMaxTargets(stackIn));
+            entity.setDamage(
+                    this.getAttackDamage(playerIn, stackIn) / 2 - 4,
+                    this.getPoiseDamage(playerIn, stackIn) - 7,
+                    this.getFireAttack(stackIn),
+                    this.getSmiteAttack(stackIn),
+                    this.getBaneOfArthropodsAttack(stackIn),
+                    this.getBloodAttack(stackIn) - 2,
+                    this.getPoisonAttack(stackIn),
+                    this.getRotAttack(stackIn),
+                    this.getFrostAttack(stackIn),
+                    this.getDeathAttack(stackIn));
+            entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
+            entity.configureTicks(14, 22, 1, 2);
+            levelIn.addFreshEntity(entity);
+        }
 
     }
     @Override
