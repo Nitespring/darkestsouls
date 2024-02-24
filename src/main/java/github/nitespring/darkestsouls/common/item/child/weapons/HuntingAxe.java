@@ -40,7 +40,7 @@ public class HuntingAxe extends Weapon {
                     this.getFrostAttack(stackIn),
                     this.getDeathAttack(stackIn));
             entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.0f);
-            entity.configureTicks(4, 10, 1, 2);
+            entity.configureTicks(6, 10, 1, 2);
             levelIn.addFreshEntity(entity);
         }
     }

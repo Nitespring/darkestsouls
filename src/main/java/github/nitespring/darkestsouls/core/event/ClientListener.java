@@ -25,6 +25,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.SquareText
 import github.nitespring.darkestsouls.common.entity.projectile.spell.LightningSpear;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -100,6 +101,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.MAGMA_BURST.get(), LitItemRenderer::new);
 		 event.registerEntityRenderer(EntityInit.MAGMA_BURST_CHILD.get(), LitItemRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LIGHTNING_SPEAR.get(), LightningBoltRenderer::new);
+		 event.registerEntityRenderer(EntityInit.PARASITES.get(), ThrownItemRenderer::new);
 
 		 
 	 }

@@ -161,7 +161,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 	}
 
 	@Override
-	protected boolean isAffectedByFluids() {return false;}
+	protected boolean isAffectedByFluids() {return true;}
 	@Override
 	public boolean canDrownInFluidType(FluidType type) {return false;}
 	@Override

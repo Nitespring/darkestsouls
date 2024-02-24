@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.abyss;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.Leech;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
@@ -84,11 +85,27 @@ public class LeechGeoRenderer extends GeoEntityRenderer<Leech>{
         @Override
         public void setCustomAnimations(Leech entity, long uniqueID, AnimationState<Leech> customPredicate) {
             super.setCustomAnimations(entity, uniqueID, customPredicate);
-            CoreGeoBone head = this.getAnimationProcessor().getBone("waist_rotation");
+            CoreGeoBone hips = this.getAnimationProcessor().getBone("hips_rotation");
+            CoreGeoBone waist = this.getAnimationProcessor().getBone("waist_rotation");
+            CoreGeoBone neck = this.getAnimationProcessor().getBone("neck_rotation");
+            CoreGeoBone neck1 = this.getAnimationProcessor().getBone("neck1_rotation");
+            CoreGeoBone neck2 = this.getAnimationProcessor().getBone("neck2_rotation");
+            CoreGeoBone head = this.getAnimationProcessor().getBone("head_rotation");
+
             assert customPredicate != null;
             EntityModelData extraData = (EntityModelData) customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
+            hips.setRotX(extraData.headPitch() *0.15f* ((float) Math.PI / 180F));
+            hips.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
+            waist.setRotX(extraData.headPitch() *0.15f* ((float) Math.PI / 180F));
+            waist.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
+            neck.setRotX(extraData.headPitch() *0.15f* ((float) Math.PI / 180F));
+            neck.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
+            neck1.setRotX(extraData.headPitch() *0.15f* ((float) Math.PI / 180F));
+            neck1.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
+            neck2.setRotX(extraData.headPitch() *0.15f* ((float) Math.PI / 180F));
+            neck2.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
             head.setRotX(extraData.headPitch() *0.15f* ((float) Math.PI / 180F));
-            //head.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
+            head.setRotY(extraData.netHeadYaw() *0.15f* ((float) Math.PI / 180F));
 
 
         }

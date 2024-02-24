@@ -189,10 +189,10 @@ public class Weapon extends Item implements Vanishable,ILeftClickItem {
             if(target.hasEffect(EffectInit.BLEED.get())){
                 int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ this.getBloodAttack(stackIn);
                 target.removeEffect(EffectInit.BLEED.get());
-                target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 60, amount));
+                target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 240, amount));
             }else{
                 int amount = this.getBloodAttack(stackIn)-1;
-                target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 60, amount));
+                target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 240, amount));
             }
         }
 

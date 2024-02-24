@@ -53,7 +53,7 @@ public class BleedMobEffect extends MobEffect {
             if(amount>=8){
                 living.invulnerableTime = 0;
                 applyDamage(living, 2.0f+living.getMaxHealth()*0.3f);
-                p.level().playSound((Player)p, p.getX(), p.getY(), p.getZ(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), p.getSoundSource(), 1.0f, 1.0f);
+                p.level().playSound((Player)p, p.getX(), p.getY(), p.getZ(), SoundEvents.PLAYER_SPLASH_HIGH_SPEED, p.getSoundSource(), 1.0f, 1.0f);
                 //p.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
                     ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
                     float width = living.getBbWidth() * 0.75f;

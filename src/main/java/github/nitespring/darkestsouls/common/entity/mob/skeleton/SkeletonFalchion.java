@@ -59,20 +59,22 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
     private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) {
         int animState = this.getAnimationState();
+        if(this.isDeadOrDying()) {
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.new"));
+        }else{
+            switch(animState) {
+                case 11:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.roll_rotation"));
+                    break;
+                case 22:
+                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.falchion.attack1_continue_rotation"));
+                    break;
+                default:
 
-        switch(animState) {
-            case 11:
-                event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.roll_rotation"));
-                break;
-            case 22:
-                event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.falchion.attack1_continue_rotation"));
-                break;
-            default:
+                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.new"));
 
-                event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.new"));
-
-                break;
-
+                    break;
+            }
         }
 
         return PlayState.CONTINUE;

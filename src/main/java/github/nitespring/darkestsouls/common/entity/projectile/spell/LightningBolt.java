@@ -64,12 +64,16 @@ public class LightningBolt extends AbstractHurtingProjectile {
         //this.setYRot((float)(Mth.atan2(-mov.x, -mov.z) * (double)(180F / (float)Math.PI)));
 
 
-        this.level().addAlwaysVisibleParticle(ParticleTypes.ELECTRIC_SPARK, this.position().x, this.position().y + 0.6, this.position().z, 0, 0, 0);
-        for(int i=0; i<=3; i++){
-            RandomSource r = this.random;
-            Vec3 off = new Vec3(r.nextFloat()-0.5, r.nextFloat()-0.5,r.nextFloat()-0.5).multiply(0.75f,0.75f,0.75f);
-            this.level().addAlwaysVisibleParticle(new DustParticleOptions(new Vector3f(1.0f, 1.0f, 0), 0.5f),
-                    this.position().x+0.5*this.getDimensionScale()*off.x, this.position().y + 0.5 + 0.5*this.getDimensionScale()*off.y, this.position().z +0.5*this.getDimensionScale()*off.z, off.x*r.nextFloat(), off.y*r.nextFloat(), off.z*r.nextFloat());
+
+        for(int k=-1; k<=1; k++) {
+            this.level().addAlwaysVisibleParticle(ParticleTypes.ELECTRIC_SPARK, this.position().x+k*0.25F*mov.x, this.position().y + 0.6 + k*0.25F*mov.y, this.position().z + k*0.25F*mov.z, 0, 0, 0);
+            for (int i = 0; i <= 2; i++) {
+                RandomSource r = this.random;
+                Vec3 off = new Vec3(r.nextFloat() - 0.5, r.nextFloat() - 0.5, r.nextFloat() - 0.5).multiply(0.75f, 0.75f, 0.75f);
+                this.level().addAlwaysVisibleParticle(new DustParticleOptions(new Vector3f(1.0f, 1.0f, 0), 0.5f),
+                        this.position().x + 0.5 * this.getDimensionScale() * off.x+k*0.25F*mov.x, this.position().y + 0.6 + 0.5 * this.getDimensionScale() * off.y+k*0.25F*mov.y, this.position().z + 0.5 * this.getDimensionScale() * off.z+k*0.25F*mov.z,
+                        off.x * r.nextFloat(), off.y * r.nextFloat(), off.z * r.nextFloat());
+            }
         }
     }
 

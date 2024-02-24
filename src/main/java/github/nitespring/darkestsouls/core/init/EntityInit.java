@@ -16,6 +16,7 @@ import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
+import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
@@ -229,6 +230,11 @@ public class EntityInit {
 			() -> EntityType.Builder.<MagmaBurstEntity>of(MagmaBurstEntity::new, MobCategory.MISC)
 					.sized(0.6f, 0.6f)
 					.build("magma_burst_child"));
+
+	public static final RegistryObject<EntityType<TrashParasites>> PARASITES = ENTITIES.register("vomit_parasites",
+			() -> EntityType.Builder.<TrashParasites>of(TrashParasites::new, MobCategory.MISC)
+					.sized(0.8f, 0.8f)
+					.build("vomit_parasites"));
 
 
 

@@ -67,7 +67,7 @@ public class DragonslayerSpear extends Weapon {
             playerIn.swing(InteractionHand.MAIN_HAND);
 
         } else  if(!playerIn.isUsingItem() /*&& !playerIn.getCooldowns().isOnCooldown(stackIn.getItem())*/){
-            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.0, 0.4, playerIn.getLookAngle().z() * 2.0);
+            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.1, 0.4, playerIn.getLookAngle().z() * 2.1);
             Vec3 aim = playerIn.getLookAngle();
 
             Level levelIn = playerIn.level();
@@ -86,18 +86,18 @@ public class DragonslayerSpear extends Weapon {
                     this.getRotAttack(stackIn),
                     this.getFrostAttack(stackIn),
                     this.getDeathAttack(stackIn));
-            entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.0f);
+            entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.1f);
             entity.configureTicks(4, 10, 1, 2);
             //levelIn.addFreshEntity(entity);
 
             LightningSpear e = new LightningSpear(EntityInit.LIGHTNING_SPEAR.get(), levelIn, (float)Mth.atan2(aim.x, aim.z));
             e.setDamage(this.getAttackDamage(playerIn, stackIn));
-            e.setDimensionScale(1.0f);
+            e.setDimensionScale(1.25f);
             e.setMaxLifeTime(16);
-            e.setPos(pos.add(0, 0.75, 0).add(aim.normalize().multiply(1.5f, 1.5f, 1.5f)));
-            e.xPower = 0.3 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
-            e.yPower = 0.3 * aim.y;
-            e.zPower = 0.3 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
+            e.setPos(pos.add(0, 0.75, 0).add(aim.normalize().multiply(0.75f, 0.75f, 0.75f)));
+            e.xPower = 0.35 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
+            e.yPower = 0.35 * aim.y;
+            e.zPower = 0.35 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
             stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
                 p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
             });

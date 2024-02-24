@@ -71,7 +71,9 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 
     private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) {
         int animState = this.getAnimationState();
-
+        if(this.isDeadOrDying()) {
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.bonewheel.new"));
+        }else{
             switch(animState) {
                 case 23:
                     event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.bonewheel.attack3_rotation"));
@@ -84,6 +86,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
                     event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.bonewheel.new"));
 
                     break;
+            }
 
         }
 

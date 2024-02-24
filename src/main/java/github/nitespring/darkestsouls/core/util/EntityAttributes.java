@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.core.util;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraftforge.common.ForgeMod;
 
 public class EntityAttributes {
 
@@ -153,15 +154,16 @@ public class EntityAttributes {
 	}
 	public static  AttributeSupplier.Builder setLeechAttributes(){
 		return Monster.createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 56.0D)
+				.add(Attributes.MAX_HEALTH, 52.0D)
 				.add(Attributes.ARMOR, 4.0D)
 				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.24D)
-				.add(Attributes.ATTACK_DAMAGE, 6.0D)
+				.add(Attributes.ATTACK_DAMAGE, 3.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
-				.add(Attributes.FOLLOW_RANGE, 30);
+				.add(Attributes.FOLLOW_RANGE, 30)
+				.add(ForgeMod.SWIM_SPEED.get(),2.0f);
 	}
 
 }

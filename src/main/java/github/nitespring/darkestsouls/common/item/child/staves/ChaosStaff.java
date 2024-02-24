@@ -54,6 +54,7 @@ public class ChaosStaff extends Staff {
                 });
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 48);
+            playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
         }
 
     }
@@ -93,6 +94,7 @@ public class ChaosStaff extends Staff {
             });
 
         levelIn.addFreshEntity(e);
+        playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
 
     }
 //TridentItem

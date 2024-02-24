@@ -31,7 +31,9 @@ public class LightningSpear extends LightningBolt implements GeoEntity {
     }
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.lightning_bolt.definitive"));
+        //event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.lightning_bolt.definitive"));
+        event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.lightning_bolt.snappy_faster_with_delay_pulse"));
+
         return PlayState.CONTINUE;
     }
 

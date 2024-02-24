@@ -1,10 +1,7 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.effects.BleedMobEffect;
-import github.nitespring.darkestsouls.common.effects.ChikageMobEffect;
-import github.nitespring.darkestsouls.common.effects.RotMobEffect;
-import github.nitespring.darkestsouls.common.effects.SimpleMobEffect;
+import github.nitespring.darkestsouls.common.effects.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
@@ -36,6 +33,9 @@ public class EffectInit {
 
     public static final RegistryObject<RotMobEffect> ROT =   EFFECTS.register("rot",
             () -> new RotMobEffect(MobEffectCategory.HARMFUL,7673883));
+
+    public static final RegistryObject<ParasitesMobEffect> PARASITES =   EFFECTS.register("parasites",
+            () -> new ParasitesMobEffect(MobEffectCategory.HARMFUL,7673883));
     public static final RegistryObject<ChikageMobEffect> CHIKAGE=EFFECTS.register("chikage",
             () -> new ChikageMobEffect(MobEffectCategory.HARMFUL, 7673883));
 
