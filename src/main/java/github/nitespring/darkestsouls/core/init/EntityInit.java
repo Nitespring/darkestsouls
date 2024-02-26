@@ -241,6 +241,11 @@ public class EntityInit {
 					.sized(0.8f, 0.8f)
 					.build("crystal_shard"));
 
+	public static final RegistryObject<EntityType<CrystalRain>> CRYSTAL_RAIN = ENTITIES.register("crystal_rain",
+			() -> EntityType.Builder.<CrystalRain>of(CrystalRain::new, MobCategory.MISC)
+					.sized(0.8f, 0.8f)
+					.build("crystal_rain"));
+
 
 
 }

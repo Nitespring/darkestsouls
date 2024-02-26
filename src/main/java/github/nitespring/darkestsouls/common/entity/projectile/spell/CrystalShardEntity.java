@@ -40,7 +40,10 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
     protected int maxLifeTicks = 120;
 
     protected float damage = 2.0f;
+    protected boolean noGrav = true;
     protected int crystalType = 0;
+
+    protected float zRot;
 
     @Nullable
     private LivingEntity owner;
@@ -92,6 +95,12 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
     }
 
     @Override
+    public void onAddedToWorld() {
+        super.onAddedToWorld();
+        this.zRot = 2*(this.random.nextFloat()-0.5f);
+    }
+
+    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
 
         return new ClientboundAddEntityPacket(this);
@@ -115,12 +124,12 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
         if(++lifeTicks>=maxLifeTicks){
             this.doRemoval();
         }
-        //this.doGravity();
+        if(!this.isNoGrav()){this.doGravity();}
+
     }
 
     public void doGravity(){
-        this.setDeltaMovement(this.getDeltaMovement().add(0,-0.1,0));
-
+        this.setDeltaMovement(this.getDeltaMovement().add(0,-0.01*lifeTicks,0));
     }
     @Override
     protected void onHitEntity(EntityHitResult p_37259_) {
@@ -169,6 +178,14 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
         this.damage = damage;
     }
 
+    public float getzRot() {
+        return zRot;
+    }
+
+    public void setzRot(float rot) {
+        this.zRot = rot;
+    }
+
     public void doRemoval(){
         this.discard();
     }
@@ -184,6 +201,13 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
     public void setCrystalType(int type) {
         this.getEntityData().set(CRYSTAL_TYPE, type);
     }
+
+    public boolean isNoGrav() {
+        return this.noGrav;
+    }
+
+    public void setNoGrav(boolean type) {
+        this.noGrav=type;    }
 
 
 }

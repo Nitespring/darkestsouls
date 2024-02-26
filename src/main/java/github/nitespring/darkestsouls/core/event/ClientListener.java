@@ -100,6 +100,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.LIGHTNING_SPEAR.get(), LightningBoltRenderer::new);
 		 event.registerEntityRenderer(EntityInit.PARASITES.get(), ThrownItemRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_SHARD.get(), CrystalShardRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CRYSTAL_RAIN.get(), CrystalBallRenderer::new);
 
 		 
 	 }

@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.client.render.entity.projectile.spell;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.entity.projectile.spell.CrystalBallEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.FireBallEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -12,15 +13,14 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-public class FireBallEmissiveLayer<T extends FireBallEntity & GeoEntity> extends GeoRenderLayer<T> {
+public class CrystalBallEmissiveLayer<T extends CrystalBallEntity & GeoEntity> extends GeoRenderLayer<T> {
 
-	private static final ResourceLocation CLASSIC = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/fireball.png");
-	private static final ResourceLocation CHAOS = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/chaos_fireball.png");
-	private static final ResourceLocation BLACK = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/black_fireball.png");
+	private static final ResourceLocation PURPLE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball.png");
+	private static final ResourceLocation DARK_BLUE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_dark_blue.png");
+	private static final ResourceLocation LIGHT_BLUE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_blue.png");
 
-	private static final ResourceLocation SOUL = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/soul_fireball.png");
 
-	public FireBallEmissiveLayer(GeoRenderer<T> entityRendererIn) {
+	public CrystalBallEmissiveLayer(GeoRenderer<T> entityRendererIn) {
 		super(entityRendererIn);
 
 	}
@@ -31,23 +31,20 @@ public class FireBallEmissiveLayer<T extends FireBallEntity & GeoEntity> extends
 					   RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick,
 					   int packedLight, int packedOverlay) {
 
-		RenderType cameo = RenderType.eyes(CLASSIC);
+		RenderType cameo = RenderType.eyes(LIGHT_BLUE);
 
 		poseStack.pushPose();
 
 
-		switch(animatable.getFireballType()) {
+		switch(animatable.getCrystalType()) {
 			case 1:
-				cameo = RenderType.eyes(CHAOS);
+				cameo = RenderType.eyes(PURPLE);
 				break;
 			case 2:
-				cameo = RenderType.eyes(BLACK);
-				break;
-			case 3:
-				cameo = RenderType.eyes(SOUL);
+				cameo = RenderType.eyes(DARK_BLUE);
 				break;
 			default:
-				cameo = RenderType.eyes(CLASSIC);
+				cameo = RenderType.eyes(LIGHT_BLUE);
 				break;
 		}
 

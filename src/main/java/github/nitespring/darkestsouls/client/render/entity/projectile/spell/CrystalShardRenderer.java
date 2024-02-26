@@ -62,7 +62,7 @@ public class CrystalShardRenderer<T extends CrystalShardEntity> extends EntityRe
 
 		stack.mulPose(Axis.YP.rotationDegrees(-135+entity.getYRot()));
 		stack.mulPose(Axis.ZP.rotationDegrees(18+entity.getXRot()));
-		stack.mulPose(Axis.XP.rotationDegrees(90));
+		stack.mulPose(Axis.XP.rotationDegrees(90+15*entity.getzRot()));
 
 
 		stack.translate(0.06, -0.35, 0);

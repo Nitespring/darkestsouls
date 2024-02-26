@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.staves;
 
+import github.nitespring.darkestsouls.common.entity.projectile.spell.CrystalRain;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.CrystalShardEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulArrow;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
@@ -99,33 +100,28 @@ public class CrystalStaff extends Staff {
         Vec3 pos = playerIn.position();
         Vec3 mov = playerIn.getDeltaMovement();
 
-        SoulArrow e = new SoulArrow(EntityInit.SOUL_ARROW.get(), levelIn);
+        CrystalRain e = new CrystalRain(EntityInit.CRYSTAL_RAIN.get(), levelIn);
 
         e.setPos(pos.add(0,1.5,0).add(aim.normalize().multiply(1.5f,1.5f,1.5f)));
 
-        if(i<getCastingDurationSpellB()) {
-            e.setDamage(this.getAttackDamage(playerIn, stackIn) * 2 * (i / getCastingDurationSpellB()));
-            e.setMaxLifeTime(10 + 30*i/getCastingDurationSpellB());
-            e.setDimensionScale((float) (0.12+0.03*i/getCastingDurationSpellB()));
-            e.xPower = 0.1 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB());
-            e.yPower = 0.1 * aim.y * (1 + 0.1 * i / getCastingDurationSpellB());
-            e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB());
-        }else{
-            e.setDamage(this.getAttackDamage(playerIn, stackIn) * 2.5f);
-            e.setMaxLifeTime(50);
-            e.setDimensionScale(0.20f);
-            e.xPower = 0.1 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
-            e.yPower = 0.1 * aim.y * (1 + 0.12);
-            e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
-        }
 
-            stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
-                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+        e.setDamage(this.getAttackDamage(playerIn, stackIn));
+        e.setMaxLifeTime(10 + 30*i/getCastingDurationSpellB());
+        e.setCrystalType(this.type);
+        e.setOwner(playerIn);
+        e.setStopLifeTime(40);
+        e.setMaxLifeTime(100);
+        e.xPower = 0.1 * aim.x;
+        e.yPower = 0.1 * aim.y;
+        e.zPower = 0.1 * aim.z;
+
+        stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
+            p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+        });
 
         levelIn.addFreshEntity(e);
         playerIn.getCooldowns().addCooldown(this, 15);
-        playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.6F, 1.0F);
+        playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
     }
 
     public int getCastingDurationSpellB(){return 40;}
