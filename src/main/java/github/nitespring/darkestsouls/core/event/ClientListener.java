@@ -12,10 +12,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.Bonewhee
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.spell.FireBallRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.spell.LightningBoltRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.spell.MagmaRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.spell.SoulDartRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
@@ -102,6 +99,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.MAGMA_BURST_CHILD.get(), LitItemRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LIGHTNING_SPEAR.get(), LightningBoltRenderer::new);
 		 event.registerEntityRenderer(EntityInit.PARASITES.get(), ThrownItemRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CRYSTAL_SHARD.get(), CrystalShardRenderer::new);
 
 		 
 	 }

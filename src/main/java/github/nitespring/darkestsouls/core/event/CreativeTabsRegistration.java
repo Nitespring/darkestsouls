@@ -139,6 +139,8 @@ public class CreativeTabsRegistration {
 				event.accept(ItemInit.SORCERER_STAFF_A);
 				event.accept(ItemInit.SORCERER_STAFF_B);
 				event.accept(ItemInit.CRYSTAL_STAFF);
+				event.accept(ItemInit.CRYSTAL_STAFF_PURPLE);
+				event.accept(ItemInit.CRYSTAL_STAFF_BLUE);
 				event.accept(ItemInit.CHAOS_STAFF);
 	            
 	        }

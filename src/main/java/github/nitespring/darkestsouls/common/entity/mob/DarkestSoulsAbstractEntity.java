@@ -311,7 +311,8 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	public void spawnBloodParticles(DamageSource source, float f){
 		ParticleOptions blood = this.getBloodParticles();
 		if(source.is(DamageTypes.DROWN)||source.is(DamageTypes.IN_WALL)){blood=ParticleTypes.BUBBLE;}
-		if(source.is(DamageTypes.FREEZE)||source.is(DamageTypes.STARVE)||source.is(DamageTypes.DRY_OUT)||source.is(DamageTypes.MAGIC)||source.is(DamageTypes.INDIRECT_MAGIC)){blood=ParticleTypes.DAMAGE_INDICATOR;}
+		if(source.is(DamageTypes.FREEZE)||source.is(DamageTypes.STARVE)||source.is(DamageTypes.DRY_OUT)){blood=ParticleTypes.DAMAGE_INDICATOR;}
+		if(source.is(DamageTypes.MAGIC)||source.is(DamageTypes.INDIRECT_MAGIC)){blood=ParticleTypes.SOUL_FIRE_FLAME;}
 		if(source.is(DamageTypes.FIREBALL)||source.is(DamageTypes.IN_FIRE)||source.is(DamageTypes.ON_FIRE)||source.is(DamageTypes.EXPLOSION)||source.is(DamageTypes.LIGHTNING_BOLT)||source.is(DamageTypes.LAVA)||source.is(DamageTypes.HOT_FLOOR)||source.is(DamageTypes.DRAGON_BREATH)||source.is(DamageTypes.UNATTRIBUTED_FIREBALL)){blood=ParticleTypes.SMOKE;}
 		if(source.is(DamageTypes.WITHER)||source.is(DamageTypes.WITHER_SKULL)){blood=new DustParticleOptions(new Vector3f(0f,0f,0f),0.5f);}
 

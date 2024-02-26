@@ -236,6 +236,11 @@ public class EntityInit {
 					.sized(0.8f, 0.8f)
 					.build("vomit_parasites"));
 
+	public static final RegistryObject<EntityType<CrystalShardEntity>> CRYSTAL_SHARD = ENTITIES.register("crystal_shard",
+			() -> EntityType.Builder.<CrystalShardEntity>of(CrystalShardEntity::new, MobCategory.MISC)
+					.sized(0.8f, 0.8f)
+					.build("crystal_shard"));
+
 
 
 }

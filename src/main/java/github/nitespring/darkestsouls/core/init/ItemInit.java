@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.Gra
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.common.item.child.staves.ChaosStaff;
+import github.nitespring.darkestsouls.common.item.child.staves.CrystalStaff;
 import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
 import github.nitespring.darkestsouls.common.item.child.weapons.*;
 import github.nitespring.darkestsouls.common.item.child.weapons.trickweapon.*;
@@ -88,8 +89,12 @@ public class ItemInit {
 			() -> new SorcererStaff(2.0f, 128, new Item.Properties()));
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_B = ITEMS.register("sorcerer_staff_b",
 			() -> new SorcererStaff(4.0f, 256, new Item.Properties()));
-	public static final RegistryObject<Staff> CRYSTAL_STAFF = ITEMS.register("crystal_staff",
-			() -> new Staff(4.0f, 256, new Item.Properties()));
+	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF = ITEMS.register("crystal_staff",
+			() -> new CrystalStaff(4.0f, 256, 0, new Item.Properties()));
+	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF_PURPLE = ITEMS.register("crystal_staff_purple",
+			() -> new CrystalStaff(8.0f, 384, 1, new Item.Properties()));
+	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF_BLUE = ITEMS.register("crystal_staff_blue",
+			() -> new CrystalStaff(12.0f, 512, 2, new Item.Properties()));
 	public static final RegistryObject<ChaosStaff> CHAOS_STAFF = ITEMS.register("chaos_staff",
 			() -> new ChaosStaff(6.0f, 1024, new Item.Properties()));
 
