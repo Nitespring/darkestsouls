@@ -22,9 +22,11 @@ import org.jetbrains.annotations.Nullable;
 public class CrystalBallEntity extends AbstractHurtingProjectile {
 
     public float damage=2.0f;
-    public int maxLifeTime=60;
+    //public int maxLifeTime=60;
+
     public int lifeTicks=0;
 
+    protected static final EntityDataAccessor<Integer> MAX_LIFETIME = SynchedEntityData.defineId(CrystalBallEntity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Integer> CRYSTAL_TYPE = SynchedEntityData.defineId(CrystalBallEntity.class, EntityDataSerializers.INT);
 
     public CrystalBallEntity(EntityType<? extends AbstractHurtingProjectile> e, Level level) {
@@ -34,16 +36,14 @@ public class CrystalBallEntity extends AbstractHurtingProjectile {
     public void setDamage(float f){
         this.damage=f;
     }
-    public void setMaxLifeTime(int i){
-        this.maxLifeTime=i;
-    }
+    //public void setMaxLifeTime(int i){this.maxLifeTime=i;}
 
 
     @Override
     public void tick() {
         super.tick();
         this.lifeTicks++;
-        if(lifeTicks>=this.maxLifeTime){
+        if(lifeTicks>=this.getMaxLifeTime()){
             this.doRemoval();
         }
     }
@@ -89,6 +89,7 @@ public class CrystalBallEntity extends AbstractHurtingProjectile {
     @Override
     protected void defineSynchedData() {
         this.entityData.define(CRYSTAL_TYPE, 0);
+        this.entityData.define(MAX_LIFETIME, 60);
 
     }
 
@@ -103,6 +104,15 @@ public class CrystalBallEntity extends AbstractHurtingProjectile {
 
     public void setCrystalType(int type) {
         this.getEntityData().set(CRYSTAL_TYPE, type);
+    }
+
+    public int getMaxLifeTime() {
+        return this.getEntityData().get(MAX_LIFETIME);
+    }
+
+
+    public void setMaxLifeTime(int type) {
+        this.getEntityData().set(MAX_LIFETIME, type);
     }
 
 

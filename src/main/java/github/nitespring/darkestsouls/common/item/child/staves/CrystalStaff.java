@@ -102,17 +102,16 @@ public class CrystalStaff extends Staff {
 
         CrystalRain e = new CrystalRain(EntityInit.CRYSTAL_RAIN.get(), levelIn);
 
-        e.setPos(pos.add(0,1.5,0).add(aim.normalize().multiply(1.5f,1.5f,1.5f)));
+        e.setPos(pos.add(0,2.5,0).add(aim.normalize().multiply(1.5f,0,1.5f)));
 
 
         e.setDamage(this.getAttackDamage(playerIn, stackIn));
-        e.setMaxLifeTime(10 + 30*i/getCastingDurationSpellB());
         e.setCrystalType(this.type);
         e.setOwner(playerIn);
         e.setStopLifeTime(40);
         e.setMaxLifeTime(100);
         e.xPower = 0.1 * aim.x;
-        e.yPower = 0.1 * aim.y;
+        e.yPower = 0.1+0.1 * Math.max(aim.y, 0);
         e.zPower = 0.1 * aim.z;
 
         stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {

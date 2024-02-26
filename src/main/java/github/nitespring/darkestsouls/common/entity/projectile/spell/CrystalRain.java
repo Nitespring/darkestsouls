@@ -58,7 +58,7 @@ public class CrystalRain extends CrystalBallEntity implements GeoEntity {
                 this.setDeltaMovement(mov.x, Math.max(0, mov.y - 0.01 * lifeTicks), mov.z);
             }else{this.setDeltaMovement(0, 0, 0);}
 
-        }else if(this.lifeTicks<=this.maxLifeTime){
+        }else if(this.lifeTicks<=this.getMaxLifeTime()){
             this.setDeltaMovement(0,0,0);
             this.activeTicks++;
             if(this.activeTicks%3==0){
@@ -73,13 +73,11 @@ public class CrystalRain extends CrystalBallEntity implements GeoEntity {
                     double angleVar=Math.PI*1/36;
                     double angle = (r.nextInt(72)+1)*angleVar;
 
+                    double y = -r.nextFloat();
 
-                    double x = Math.sin(angle);
+                    double x = (1+y)*Math.sin(angle);
 
-                    double y = 0;
-
-                    double z = Math.cos(angle);
-
+                    double z = (1+y)*Math.cos(angle);
 
 
                     Vec3 aim = new Vec3(x,y,z);
@@ -88,7 +86,7 @@ public class CrystalRain extends CrystalBallEntity implements GeoEntity {
                     e.setXRot((float) (Mth.atan2(aim.y, d0) * (double) (180F / (float) Math.PI)));
                     e.hurtMarked=true;
 
-                    e.setPos(pos.add(aim.multiply(1.5f, 1.5f, 1.5f)));
+                    e.setPos(pos.add(aim.multiply(1.25f, 0.75f, 1.25f)));
                     e.xPower = 0.05 * aim.x;
                     e.yPower = 0.05 * aim.y;
                     e.zPower = 0.05 * aim.z;

@@ -32,7 +32,7 @@ public class CrystalBallRenderer<T extends CrystalBallEntity & GeoEntity> extend
     @Override
     public RenderType getRenderType(T animatable, ResourceLocation texture, MultiBufferSource bufferSource,
                                     float partialTick) {
-        return RenderType.entityCutoutNoCull(texture);
+        return RenderType.entityCutout(texture);
     }
 
     @Override
