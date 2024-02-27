@@ -12,6 +12,7 @@ import github.nitespring.darkestsouls.common.item.child.weapons.trickweapon.*;
 import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
 
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -26,29 +27,29 @@ public class ItemInit {
 	//Special Weapons
 
 	public static final RegistryObject<FrayedBlade> FRAYED_BLADE = ITEMS.register("frayed_blade",
-			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.1f, 8, 3,0,0,0,0,0,0,1350,12,0.11f,-1, new Item.Properties()));
+			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.1f, 8, 3,0,0,0,0,0,0,1350,12,0.11f,-1, new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<ShadowBlade> SHADOW_BLADE = ITEMS.register("shadow_blade",
-			() -> new ShadowBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8,1,0,0,0,0,1,0, 1350,15,0.11f, 2,new Item.Properties()));
+			() -> new ShadowBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8,1,0,0,0,0,1,0, 1350,15,0.11f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<DragonslayerSpear> DRAGONSLAYER_SPEAR = ITEMS.register("dragonslayer_spear",
-			() -> new DragonslayerSpear(Tiers.TITANITE, 6.0f, 2.0f, -0.1f, 4, 1350,10,0.15f, 1,new Item.Properties()));
+			() -> new DragonslayerSpear(Tiers.TITANITE, 6.0f, 2.0f, -0.1f, 4, 1350,10,0.15f, 1,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<Weapon> DRAGONSLAYER_SWORDSPEAR = ITEMS.register("dragonslayer_swordspear",
-			() -> new DragonslayerSwordspear(Tiers.TITANITE, 7.0f, 1.8f, 0.1f, 7, 1350,10,0.12f, 2,new Item.Properties()));
+			() -> new DragonslayerSwordspear(Tiers.TITANITE, 7.0f, 1.8f, 0.1f, 7, 1350,10,0.12f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<Weapon> STORM_CURVED_SWORD = ITEMS.register("storm_curved_sword",
-			() -> new Weapon(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5, 1350,10,0.14f, 2,new Item.Properties()));
+			() -> new Weapon(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5, 1350,10,0.14f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 
 	//Trick Weapons
 	public static final RegistryObject<SawCleaver> SAW_CLEAVER = ITEMS.register("saw_cleaver",
-			() -> new SawCleaver(Tiers.TITANITE, 6.0f, 1.7f, 0.1f, 6, 0,0,0,0,0,0,0,1350,15,0.108f, 2,new Item.Properties()));
+			() -> new SawCleaver(Tiers.TITANITE, 6.0f, 1.7f, 0.1f, 6, 0,0,0,0,0,0,0,1350,15,0.108f, 2,new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<SawCleaverExtended> SAW_CLEAVER_EXTENDED = ITEMS.register("saw_cleaver_extended",
-			() -> new SawCleaverExtended(Tiers.TITANITE, 7.5f, 1.5f, 0.2f, 8, 0,0,0,0,0,0,0,1350,15,0.104f, 3,new Item.Properties()));
+			() -> new SawCleaverExtended(Tiers.TITANITE, 7.5f, 1.5f, 0.2f, 8, 0,0,0,0,0,0,0,1350,15,0.104f, 3,new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<HunterAxe> HUNTER_AXE = ITEMS.register("hunter_axe",
-			() -> new HunterAxe(Tiers.TITANITE, 7.0f, 1.4f, 0.4f, 8, 0,0,0,0,0,0,0,1350,15,0.11f, 2,new Item.Properties()));
+			() -> new HunterAxe(Tiers.TITANITE, 7.0f, 1.4f, 0.4f, 8, 0,0,0,0,0,0,0,1350,15,0.11f, 2,new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<HunterAxeExtended> HUNTER_AXE_EXTENDED = ITEMS.register("hunter_axe_extended",
-			() -> new HunterAxeExtended(Tiers.TITANITE, 8.0f, 1.2f, 0.6f, 12,0,0,0,0,0,0,0, 1350,15,0.11f, 3,new Item.Properties()));
+			() -> new HunterAxeExtended(Tiers.TITANITE, 8.0f, 1.2f, 0.6f, 12,0,0,0,0,0,0,0, 1350,15,0.11f, 3,new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Chikage> CHIKAGE = ITEMS.register("chikage",
-			() -> new Chikage(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5,1,0,0,0,0,0,0, 1350,15,0.12f, 2,new Item.Properties()));
+			() -> new Chikage(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5,1,0,0,0,0,0,0, 1350,15,0.12f, 2,new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<ChikageExtended> CHIKAGE_EXTENDED = ITEMS.register("chikage_extended",
-			() -> new ChikageExtended(Tiers.TITANITE, 12.0f, 1.7f, 0.3f, 8,4,0,0,0,0,0,0, 1350,15,0.112f, 2,new Item.Properties()));
+			() -> new ChikageExtended(Tiers.TITANITE, 12.0f, 1.7f, 0.3f, 8,4,0,0,0,0,0,0, 1350,15,0.112f, 2,new Item.Properties().rarity(Rarity.RARE)));
 
 	public static final RegistryObject<BrokenStraightsword> BROKEN_STRAIGHTSWORD = ITEMS.register("broken_straightsword",
 			() -> new BrokenStraightsword(Tiers.TITANITE, 3.0f, 1.6f, 0.0f, 2, 0,0,0,0,0,0,0,127,8,0.1f, 1,new Item.Properties()));
@@ -86,17 +87,17 @@ public class ItemInit {
 
 	//Staves
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_A = ITEMS.register("sorcerer_staff_a",
-			() -> new SorcererStaff(2.0f, 128, new Item.Properties()));
+			() -> new SorcererStaff(2.0f, 128, 0, new Item.Properties().rarity(Rarity.COMMON)));
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_B = ITEMS.register("sorcerer_staff_b",
-			() -> new SorcererStaff(4.0f, 256, new Item.Properties()));
+			() -> new SorcererStaff(4.0f, 256, 1, new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF = ITEMS.register("crystal_staff",
-			() -> new CrystalStaff(4.0f, 256, 0, new Item.Properties()));
+			() -> new CrystalStaff(4.0f, 256, 0, 1, new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF_PURPLE = ITEMS.register("crystal_staff_purple",
-			() -> new CrystalStaff(8.0f, 384, 1, new Item.Properties()));
+			() -> new CrystalStaff(8.0f, 384, 1, 2, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF_BLUE = ITEMS.register("crystal_staff_blue",
-			() -> new CrystalStaff(12.0f, 512, 2, new Item.Properties()));
+			() -> new CrystalStaff(12.0f, 512, 2, 3, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<ChaosStaff> CHAOS_STAFF = ITEMS.register("chaos_staff",
-			() -> new ChaosStaff(6.0f, 1024, new Item.Properties()));
+			() -> new ChaosStaff(6.0f, 1024, 3, new Item.Properties().rarity(Rarity.EPIC)));
 
 	//Guns
 	public static final RegistryObject<Item> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
@@ -131,21 +132,23 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.LEECH, 1318437, 7373164, new Item.Properties()));
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> RUNE_FRAGMENT = ITEMS.register("rune_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> SOUL_FRAGMENT = ITEMS.register("soul_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> SMALL_SOUL_FRAGMENT = ITEMS.register("small_soul_fragment",
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> BONE_FRAGMENT = ITEMS.register("bone_fragment",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DEMON_FRAGMENT = ITEMS.register("demon_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> TWINKLING_FRAGMENT = ITEMS.register("twinkling_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> DRAGON_SCALE_FRAGMENT = ITEMS.register("dragon_scale_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> DARK_FRAGMENT = ITEMS.register("dark_fragment",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> SIDERITE_FRAGMENT = ITEMS.register("siderite_fragment",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CHAOS_FRAGMENT = ITEMS.register("chaos_fragment",
@@ -153,31 +156,31 @@ public class ItemInit {
 	public static final RegistryObject<Item> BLOOD_STONE_FRAGMENT = ITEMS.register("blood_stone_fragment",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLOOD_GEM = ITEMS.register("blood_gem",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> BEAST_BLOOD_CLUMP = ITEMS.register("beast_blood_clump",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> QUICKSILVER = ITEMS.register("quicksilver",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DEMON_TITANITE = ITEMS.register("demon_titanite",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> TWINKLING_TITANITE = ITEMS.register("twinkling_titanite",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> DRAGON_SCALE = ITEMS.register("dragon_scale",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> BEWITCHED_BRANCH = ITEMS.register("bewitched_branch",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> CHAOS_ROOT = ITEMS.register("chaos_root",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CINNABAR = ITEMS.register("cinnabar",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CRYSTAL = ITEMS.register("crystal",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> GREEN_CRYSTAL = ITEMS.register("green_crystal",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PURPLE_CRYSTAL = ITEMS.register("purple_crystal",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> BLOOD_CRYSTAL = ITEMS.register("blood_crystal",
-			() -> new Item(new Item.Properties()));
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 
 	public static final RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
 			() -> new Item(new Item.Properties()));

@@ -35,7 +35,7 @@ public class SoulDartRenderer<T extends SoulDartEntity & GeoEntity> extends GeoE
         poseStack.pushPose();
         poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
         poseStack.mulPose(Axis.YP.rotationDegrees(entity.getYRot()));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(-entity.getXRot()));
+        poseStack.mulPose(Axis.XP.rotationDegrees(-entity.getXRot()));
 
         poseStack.translate(0, 6-scaleFactor*18, 0);
 

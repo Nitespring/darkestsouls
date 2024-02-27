@@ -25,13 +25,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class ChaosStaff extends Staff {
-    public ChaosStaff(float attackDamage, int durability, Properties properties) {
-        super(attackDamage, durability, properties);
+    public ChaosStaff(float attackDamage, int durability, int tier, Properties properties) {
+        super(attackDamage, durability, tier, properties);
     }
 
     @Override
     public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
-        if(!playerIn.getCooldowns().isOnCooldown(this)) {
+        int ammoAmount = 1;
+        if(!playerIn.getCooldowns().isOnCooldown(this)&&this.hasAmmo(playerIn,ammoAmount)) {
             SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
             playerIn.level().playSound(playerIn, playerIn, soundevent, SoundSource.PLAYERS, 0.75F, 1.25F);
             //playerIn.level().playLocalSound(playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.FIRECHARGE_USE, playerIn.getSoundSource(), 0.5F, playerIn.getRandom().nextFloat() * 0.2F + 0.65F, false);
@@ -55,7 +56,8 @@ public class ChaosStaff extends Staff {
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 48);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
-        }
+            this.consumeAmmo(playerIn,ammoAmount);
+        }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
 
     }
 
@@ -146,16 +148,20 @@ public class ChaosStaff extends Staff {
     public void releaseUsing(ItemStack stackIn, Level levelIn, LivingEntity entityIn, int n) {
         super.releaseUsing(stackIn, levelIn, entityIn, n);
         if (entityIn instanceof Player player) {
-            int i = this.getUseDuration(stackIn) - n;
-            if (i >= 10) {
-                SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
-                SoundEvent soundevent1 = SoundEvents.FIREWORK_ROCKET_LARGE_BLAST;
-                this.doSpellB(player, stackIn, ((Player) entityIn).getUsedItemHand(), i);
-                player.awardStat(Stats.ITEM_USED.get(this));
-                player.getCooldowns().addCooldown(this, 70);
-                levelIn.playSound((Player) null, player, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
-                levelIn.playSound((Player) null, player, soundevent1, SoundSource.PLAYERS, 1.0F, 1.0F);
-            }
+            int ammoAmount = 3;
+            if(this.hasAmmo((Player) entityIn,ammoAmount)) {
+                int i = this.getUseDuration(stackIn) - n;
+                if (i >= 10) {
+                    SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
+                    SoundEvent soundevent1 = SoundEvents.FIREWORK_ROCKET_LARGE_BLAST;
+                    this.doSpellB(player, stackIn, ((Player) entityIn).getUsedItemHand(), i);
+                    player.awardStat(Stats.ITEM_USED.get(this));
+                    player.getCooldowns().addCooldown(this, 70);
+                    levelIn.playSound((Player) null, player, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    levelIn.playSound((Player) null, player, soundevent1, SoundSource.PLAYERS, 1.0F, 1.0F);
+                }
+                this.consumeAmmo((Player) entityIn,ammoAmount);
+            }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
         }
     }
 

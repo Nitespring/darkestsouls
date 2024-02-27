@@ -25,14 +25,15 @@ import java.util.Random;
 public class CrystalStaff extends Staff {
 
     private final int type;
-    public CrystalStaff(float attackDamage, int durability, int type, Properties properties) {
-        super(attackDamage, durability, properties);
+    public CrystalStaff(float attackDamage, int durability, int type, int tier, Properties properties) {
+        super(attackDamage, durability, tier, properties);
         this.type=type;
     }
 
     @Override
     public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
-        if(!playerIn.getCooldowns().isOnCooldown(this)) {
+        int ammoAmount = 1;
+        if(!playerIn.getCooldowns().isOnCooldown(this)&&this.hasAmmo(playerIn,ammoAmount)) {
             Level levelIn = playerIn.level();
             Vec3 aim = playerIn.getLookAngle();
             Vec3 pos = playerIn.position();
@@ -89,12 +90,16 @@ public class CrystalStaff extends Staff {
             }
             playerIn.getCooldowns().addCooldown(this, 12);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.GLASS_BREAK, SoundSource.PLAYERS, 1.0F, 1.2F);
-        }
+
+            this.consumeAmmo(playerIn,ammoAmount);
+        }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
+
 
     }
 
 
     public void doSpellB(Player playerIn, ItemStack stackIn, InteractionHand handIn, int i) {
+
         Level levelIn = playerIn.level();
         Vec3 aim = playerIn.getLookAngle();
         Vec3 pos = playerIn.position();
@@ -155,7 +160,11 @@ public class CrystalStaff extends Staff {
     public void releaseUsing(ItemStack stackIn, Level levelIn, LivingEntity entityIn, int i) {
         super.releaseUsing(stackIn, levelIn, entityIn, i);
         entityIn.stopUsingItem();
-        this.doSpellB((Player)entityIn, stackIn,((Player)entityIn).getUsedItemHand(), i);
+        int ammoAmount = 2;
+        if(this.hasAmmo((Player) entityIn,ammoAmount)) {
+            this.doSpellB((Player) entityIn, stackIn, ((Player) entityIn).getUsedItemHand(), i);
+            this.consumeAmmo((Player) entityIn,ammoAmount);
+        }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
     }
 
 

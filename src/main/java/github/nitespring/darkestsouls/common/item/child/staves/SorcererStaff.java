@@ -21,13 +21,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class SorcererStaff extends Staff {
-    public SorcererStaff(float attackDamage, int durability, Properties properties) {
-        super(attackDamage, durability, properties);
+    public SorcererStaff(float attackDamage, int durability, int tier, Properties properties) {
+        super(attackDamage, durability, tier, properties);
     }
 
     @Override
     public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
-        if(!playerIn.getCooldowns().isOnCooldown(this)) {
+        int ammoAmount = 1;
+        if(!playerIn.getCooldowns().isOnCooldown(this)&&this.hasAmmo(playerIn,ammoAmount)) {
             Level levelIn = playerIn.level();
             Vec3 aim = playerIn.getLookAngle();
             Vec3 pos = playerIn.position();
@@ -47,7 +48,8 @@ public class SorcererStaff extends Staff {
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 5);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.6F, 1.2F);
-        }
+            this.consumeAmmo(playerIn,ammoAmount);
+        }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
 
     }
 
@@ -119,7 +121,11 @@ public class SorcererStaff extends Staff {
     public void releaseUsing(ItemStack stackIn, Level levelIn, LivingEntity entityIn, int i) {
         super.releaseUsing(stackIn, levelIn, entityIn, i);
         entityIn.stopUsingItem();
-        this.doSpellB((Player)entityIn, stackIn,((Player)entityIn).getUsedItemHand(), i);
+        int ammoAmount = 1;
+        if(this.hasAmmo((Player) entityIn,ammoAmount)) {
+            this.doSpellB((Player) entityIn, stackIn, ((Player) entityIn).getUsedItemHand(), i);
+            this.consumeAmmo((Player) entityIn,ammoAmount);
+        }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
     }
 
 

@@ -38,6 +38,7 @@ public class CreativeTabsRegistration {
 	        }
 	        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
 	        {
+				event.accept(ItemInit.SMALL_SOUL_FRAGMENT);
 	            event.accept(ItemInit.SOUL_FRAGMENT);
 				event.accept(ItemInit.TITANITE_FRAGMENT);
 				event.accept(ItemInit.RUNE_FRAGMENT);
