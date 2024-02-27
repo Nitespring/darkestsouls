@@ -9,11 +9,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class Skeleton extends DarkestSoulsAbstractEntity {
     
@@ -65,5 +69,23 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
         super.addAdditionalSaveData(tag);
         tag.putInt("RobeType", this.getRobeType());
         tag.putInt("HatType", this.getHatType());
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_21239_) {
+        return SoundEvents.SKELETON_HURT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.SKELETON_DEATH;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.SKELETON_AMBIENT;
     }
 }

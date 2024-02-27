@@ -1,8 +1,11 @@
 package github.nitespring.darkestsouls.common.entity.mob.abyss;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
+import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
@@ -16,6 +19,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -32,7 +36,9 @@ import java.util.EnumSet;
 public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEntity{
 
 	protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+
 	protected int animationTick = 0;
+	Vec3 aim;
 
 	public SewerCentipede(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
@@ -202,6 +208,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 21:
 				this.moveToTarget();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -236,6 +243,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 22:
 				this.moveToTarget();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -270,6 +278,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 23:
 				this.moveToTarget();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -304,6 +313,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 24:
 				this.moveToTarget();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -338,6 +348,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 25:
 				this.moveToTarget();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -372,6 +383,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 26:
 				this.moveToTarget();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -406,6 +418,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 27:
 				this.moveToTarget();
 				if(animationTick==5) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -440,6 +453,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 			case 28:
 				this.getNavigation().stop();
 				if(animationTick==6) {
+					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
 									0.25,
@@ -452,6 +466,47 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				if(animationTick>=12) {
 					animationTick=0;
 						setAnimationState(0);
+				}
+				break;
+			case 29:
+				Level levelIn = this.level();
+				Vec3 pos = this.position();
+				if(animationTick<=3){this.moveToTarget();}
+
+				if(animationTick==4){
+					if(this.getTarget()==null) {
+						aim = this.getLookAngle().normalize();
+					}else{
+						aim = this.getTarget().position().add(pos.scale(-1)).normalize();
+					}
+
+
+				}
+				if(animationTick==6) {
+
+					this.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED);
+					this.playSound(SoundEvents.SQUID_DEATH);
+					for(int i=0; i<=8; i++) {
+						double angle = (i-4)*Math.PI/16;
+
+						TrashPoison e = new TrashPoison(EntityInit.VOMIT.get(), levelIn);
+						e.setDamage((float)this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+						e.setLifeTicks(46);
+						double x = (aim.x*Math.cos(angle) - aim.z * Math.sin(angle));
+						double y = (this.getRandom().nextFloat()-0.5f);
+						double z = (aim.z*Math.cos(angle) + aim.x * Math.sin(angle));
+						e.setPos(pos.add(1.5*x, 1.25+1.5*y, 1.5*z));
+						e.xPower = 0.15 * (aim.x+x);
+						e.yPower = 0.15 * (aim.y+y);
+						e.zPower = 0.15 * (aim.z+z);
+						e.setDamage(Math.max(1f,(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)-4));
+						e.setOwner(this);
+						levelIn.addFreshEntity(e);
+					}
+				}
+				if(animationTick>=12) {
+					animationTick=0;
+					setAnimationState(0);
 				}
 				break;
 
@@ -669,6 +724,12 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 
 					this.mob.setAnimationState(28);
 
+				}
+			}
+			if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
+				int r = this.mob.getRandom().nextInt(2048);
+				if(r<=128) {
+					this.mob.setAnimationState(29);
 				}
 			}
 		}

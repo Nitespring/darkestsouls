@@ -17,6 +17,7 @@ import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
+import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
@@ -235,6 +236,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<TrashParasites>of(TrashParasites::new, MobCategory.MISC)
 					.sized(0.8f, 0.8f)
 					.build("vomit_parasites"));
+	public static final RegistryObject<EntityType<TrashPoison>> VOMIT = ENTITIES.register("vomit_poison",
+			() -> EntityType.Builder.<TrashPoison>of(TrashPoison::new, MobCategory.MISC)
+					.sized(0.8f, 0.8f)
+					.build("vomit_poison"));
 
 	public static final RegistryObject<EntityType<CrystalShardEntity>> CRYSTAL_SHARD = ENTITIES.register("crystal_shard",
 			() -> EntityType.Builder.<CrystalShardEntity>of(CrystalShardEntity::new, MobCategory.MISC)
@@ -245,6 +250,11 @@ public class EntityInit {
 			() -> EntityType.Builder.<CrystalRain>of(CrystalRain::new, MobCategory.MISC)
 					.sized(0.8f, 0.8f)
 					.build("crystal_rain"));
+
+	public static final RegistryObject<EntityType<WindSlash>> WIND_SLASH = ENTITIES.register("wind_slash",
+			() -> EntityType.Builder.<WindSlash>of(WindSlash::new, MobCategory.MISC)
+					.sized(1.2f, 1.2f)
+					.build("wind_slash"));
 
 
 

@@ -152,6 +152,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
         super.tick();
     }
     protected void doAttack(float damageModifier, double range){
+        this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
         if(this.getEntityState()==0) {
             DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                     this.position().add((1.0f+range) * this.getLookAngle().x,

@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.entity.mob.hollow;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -219,6 +220,7 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
             //Attack
             case 21:
                 if(animationTick==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -239,6 +241,7 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                 break;
             case 22:
                 if(animationTick==4) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -255,6 +258,7 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                 break;
             case 23:
                 if(animationTick==9) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -271,6 +275,7 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                 break;
             case 24:
                 if(animationTick==6) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -287,6 +292,7 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                 break;
             case 25:
                 if(animationTick==22) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.9f)*this.getLookAngle().x,
                                     0.25,

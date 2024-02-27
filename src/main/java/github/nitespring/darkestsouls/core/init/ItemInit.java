@@ -34,8 +34,8 @@ public class ItemInit {
 			() -> new DragonslayerSpear(Tiers.TITANITE, 6.0f, 2.0f, -0.1f, 4, 1350,10,0.15f, 1,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<Weapon> DRAGONSLAYER_SWORDSPEAR = ITEMS.register("dragonslayer_swordspear",
 			() -> new DragonslayerSwordspear(Tiers.TITANITE, 7.0f, 1.8f, 0.1f, 7, 1350,10,0.12f, 2,new Item.Properties().rarity(Rarity.EPIC)));
-	public static final RegistryObject<Weapon> STORM_CURVED_SWORD = ITEMS.register("storm_curved_sword",
-			() -> new Weapon(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5, 1350,10,0.14f, 2,new Item.Properties().rarity(Rarity.EPIC)));
+	public static final RegistryObject<StormCurvedSword> STORM_CURVED_SWORD = ITEMS.register("storm_curved_sword",
+			() -> new StormCurvedSword(Tiers.TITANITE, 6.0f, 2.1f, 0.1f, 5, 0,0,0,0,0,0,0, 1350,10,0.14f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 
 	//Trick Weapons
 	public static final RegistryObject<SawCleaver> SAW_CLEAVER = ITEMS.register("saw_cleaver",
@@ -97,7 +97,7 @@ public class ItemInit {
 	public static final RegistryObject<CrystalStaff> CRYSTAL_STAFF_BLUE = ITEMS.register("crystal_staff_blue",
 			() -> new CrystalStaff(12.0f, 512, 2, 3, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<ChaosStaff> CHAOS_STAFF = ITEMS.register("chaos_staff",
-			() -> new ChaosStaff(6.0f, 1024, 3, new Item.Properties().rarity(Rarity.EPIC)));
+			() -> new ChaosStaff(10.0f, 1024, 2, new Item.Properties().rarity(Rarity.EPIC)));
 
 	//Guns
 	public static final RegistryObject<Item> HUNTER_PISTOL = ITEMS.register("hunter_pistol",

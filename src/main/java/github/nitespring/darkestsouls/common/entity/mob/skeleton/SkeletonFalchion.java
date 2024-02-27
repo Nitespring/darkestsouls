@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -196,6 +197,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
             //Attack
             case 21:
                 if(animationTick==10) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -241,6 +243,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                 break;
             case 23:
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -257,6 +260,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                 break;
             case 24:
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -272,6 +276,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                 }
             case 25:
                 if(animationTick==16) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,

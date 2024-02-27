@@ -174,6 +174,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
             case 21:
                 this.getNavigation().stop();
                 if(animationTick==4) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -197,6 +198,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(animationTick>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
                 if(animationTick==4) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -243,6 +245,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
                 }
                 if(animationTick==7) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -264,6 +267,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 this.getNavigation().stop();
 
                 if(animationTick==4) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -287,6 +291,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(animationTick>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
                 if(animationTick==4) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
                                     0.25,
@@ -317,6 +322,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 else{this.moveToTarget();}
 
                 if(animationTick==2) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     this.setDeltaMovement(0,0.3,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -370,6 +376,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
                 }
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -408,6 +415,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
                 }
                 if(animationTick==5) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -446,6 +454,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
                 }
                 if(animationTick==17) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,

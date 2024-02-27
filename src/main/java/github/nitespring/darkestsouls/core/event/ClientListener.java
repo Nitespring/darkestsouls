@@ -99,8 +99,10 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.MAGMA_BURST_CHILD.get(), LitItemRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LIGHTNING_SPEAR.get(), LightningBoltRenderer::new);
 		 event.registerEntityRenderer(EntityInit.PARASITES.get(), ThrownItemRenderer::new);
+		 event.registerEntityRenderer(EntityInit.VOMIT.get(), ThrownItemRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_SHARD.get(), CrystalShardRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_RAIN.get(), CrystalBallRenderer::new);
+		 event.registerEntityRenderer(EntityInit.WIND_SLASH.get(), WindSlashRenderer::new);
 
 		 
 	 }

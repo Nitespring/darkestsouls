@@ -6,7 +6,9 @@ import github.nitespring.darkestsouls.common.entity.projectile.spell.MagmaBurstP
 import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.util.MathUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,11 +20,16 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.List;
 
 public class ChaosStaff extends Staff {
     public ChaosStaff(float attackDamage, int durability, int tier, Properties properties) {
@@ -32,7 +39,7 @@ public class ChaosStaff extends Staff {
     @Override
     public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
         int ammoAmount = 1;
-        if(!playerIn.getCooldowns().isOnCooldown(this)&&this.hasAmmo(playerIn,ammoAmount)) {
+        if(!playerIn.getCooldowns().isOnCooldown(this)&&(this.hasAmmo(playerIn,ammoAmount)||playerIn.isCreative())) {
             SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
             playerIn.level().playSound(playerIn, playerIn, soundevent, SoundSource.PLAYERS, 0.75F, 1.25F);
             //playerIn.level().playLocalSound(playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.FIRECHARGE_USE, playerIn.getSoundSource(), 0.5F, playerIn.getRandom().nextFloat() * 0.2F + 0.65F, false);
@@ -56,7 +63,9 @@ public class ChaosStaff extends Staff {
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 48);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
-            this.consumeAmmo(playerIn,ammoAmount);
+            if(!playerIn.isCreative()) {
+                this.consumeAmmo(playerIn, ammoAmount);
+            }
         }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
 
     }
@@ -149,7 +158,7 @@ public class ChaosStaff extends Staff {
         super.releaseUsing(stackIn, levelIn, entityIn, n);
         if (entityIn instanceof Player player) {
             int ammoAmount = 3;
-            if(this.hasAmmo((Player) entityIn,ammoAmount)) {
+            if(this.hasAmmo((Player) entityIn,ammoAmount)||((Player)entityIn).isCreative()) {
                 int i = this.getUseDuration(stackIn) - n;
                 if (i >= 10) {
                     SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
@@ -160,7 +169,9 @@ public class ChaosStaff extends Staff {
                     levelIn.playSound((Player) null, player, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
                     levelIn.playSound((Player) null, player, soundevent1, SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
-                this.consumeAmmo((Player) entityIn,ammoAmount);
+                if(!((Player)entityIn).isCreative()) {
+                    this.consumeAmmo((Player)entityIn, ammoAmount);
+                }
             }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
         }
     }
@@ -169,5 +180,18 @@ public class ChaosStaff extends Staff {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         return true;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
+        super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
+        String spellA = "\u00A76Magma Burst (1)";
+        tooltip.add(Component.literal(spellA));
+
+        String spellB = "\u00A76Great Chaos Fireball (3)";
+        tooltip.add(Component.literal(spellB));
+
+
     }
 }

@@ -1,6 +1,5 @@
 package github.nitespring.darkestsouls.common.entity.projectile;
 
-import github.nitespring.darkestsouls.common.entity.projectile.spell.MagmaEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -12,6 +11,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -27,7 +27,7 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class TrashParasites extends AbstractHurtingProjectile implements ItemSupplier {
+public class TrashPoison extends AbstractHurtingProjectile implements ItemSupplier {
 
     protected int lifeTicks = 0;
     protected int maxLifeTicks = 120;
@@ -39,15 +39,15 @@ public class TrashParasites extends AbstractHurtingProjectile implements ItemSup
     @Nullable
     private UUID ownerUUID;
 
-    public TrashParasites(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
+    public TrashPoison(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
         super(p_36833_, p_36834_);
     }
 
-    public TrashParasites(EntityType<? extends AbstractHurtingProjectile> p_310629_, double p_311590_, double p_312782_, double p_309484_, Level p_311660_) {
+    public TrashPoison(EntityType<? extends AbstractHurtingProjectile> p_310629_, double p_311590_, double p_312782_, double p_309484_, Level p_311660_) {
         super(p_310629_, p_311590_, p_312782_, p_309484_, p_311660_);
     }
 
-    public TrashParasites(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
+    public TrashPoison(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
         super(p_36826_, p_36827_, p_36828_, p_36829_, p_36830_, p_36831_);
     }
 
@@ -94,7 +94,7 @@ public class TrashParasites extends AbstractHurtingProjectile implements ItemSup
         }
         ParticleOptions particle = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.MUD.defaultBlockState());
         ParticleOptions particle1 = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.DIRT.defaultBlockState());
-        ParticleOptions particle2 = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.WATER.defaultBlockState());
+        ParticleOptions particle2 = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.GREEN_CONCRETE.defaultBlockState());
         RandomSource rng = this.random;
         float width = this.getBbWidth() * 0.5f;
         float height = this.getBbHeight() * 0.5f;
@@ -166,7 +166,6 @@ public class TrashParasites extends AbstractHurtingProjectile implements ItemSup
         for (LivingEntity livingentity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1.25D, 1.25D, 1.25D))) {
             this.dealDamageTo(livingentity);
         }
-
     }
 
 
@@ -175,14 +174,14 @@ public class TrashParasites extends AbstractHurtingProjectile implements ItemSup
         if (p_36945_.isAlive() && !p_36945_.isInvulnerable() && p_36945_ != livingentity) {
             if (livingentity == null) {
                 p_36945_.hurt(this.level().damageSources().generic(), 1.0F);
-                p_36945_.addEffect(new MobEffectInstance(EffectInit.PARASITES.get(),360));
+                p_36945_.addEffect(new MobEffectInstance(MobEffects.POISON,120,1));
             } else {
                 if (livingentity.isAlliedTo(p_36945_)) {
                     return;
                 }
 
                 p_36945_.hurt(this.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
-                p_36945_.addEffect(new MobEffectInstance(EffectInit.PARASITES.get(),360));
+                p_36945_.addEffect(new MobEffectInstance(MobEffects.POISON,120,1));
             }
 
         }

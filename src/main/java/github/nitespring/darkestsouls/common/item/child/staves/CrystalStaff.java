@@ -6,6 +6,8 @@ import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulArrow;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.util.MathUtils;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -16,10 +18,14 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.List;
 import java.util.Random;
 
 public class CrystalStaff extends Staff {
@@ -33,7 +39,7 @@ public class CrystalStaff extends Staff {
     @Override
     public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
         int ammoAmount = 1;
-        if(!playerIn.getCooldowns().isOnCooldown(this)&&this.hasAmmo(playerIn,ammoAmount)) {
+        if(!playerIn.getCooldowns().isOnCooldown(this)&&(this.hasAmmo(playerIn,ammoAmount)||playerIn.isCreative())) {
             Level levelIn = playerIn.level();
             Vec3 aim = playerIn.getLookAngle();
             Vec3 pos = playerIn.position();
@@ -90,8 +96,9 @@ public class CrystalStaff extends Staff {
             }
             playerIn.getCooldowns().addCooldown(this, 12);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.GLASS_BREAK, SoundSource.PLAYERS, 1.0F, 1.2F);
-
-            this.consumeAmmo(playerIn,ammoAmount);
+            if(!playerIn.isCreative()) {
+                this.consumeAmmo(playerIn, ammoAmount);
+            }
         }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
 
 
@@ -161,9 +168,11 @@ public class CrystalStaff extends Staff {
         super.releaseUsing(stackIn, levelIn, entityIn, i);
         entityIn.stopUsingItem();
         int ammoAmount = 2;
-        if(this.hasAmmo((Player) entityIn,ammoAmount)) {
+        if(this.hasAmmo((Player) entityIn,ammoAmount)||((Player)entityIn).isCreative()) {
             this.doSpellB((Player) entityIn, stackIn, ((Player) entityIn).getUsedItemHand(), i);
-            this.consumeAmmo((Player) entityIn,ammoAmount);
+            if(!((Player)entityIn).isCreative()) {
+                this.consumeAmmo((Player)entityIn, ammoAmount);
+            }
         }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
     }
 
@@ -171,5 +180,34 @@ public class CrystalStaff extends Staff {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         return true;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
+        super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
+        String colour = "§3";
+
+        switch(this.type){
+            case 1:
+                colour = "§5";
+                break;
+            case 2:
+                colour = "§9";
+                break;
+            default:
+                colour = "§3";
+                break;
+        }
+
+
+
+        String spellA = colour + "Crystal Burst (1)";
+        tooltip.add(Component.literal(spellA));
+
+        String spellB = colour + "Crystal Rain (2)";
+        tooltip.add(Component.literal(spellB));
+
+
     }
 }

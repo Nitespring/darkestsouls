@@ -89,13 +89,14 @@ public class Staff extends Item implements ILeftClickItem{
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
 
-        String info = "\u00A78\u00A7oTier " + MathUtils.convertToRoman(this.getCatalystTier());
+        String info = "\u00A78\u00A7lTier " + MathUtils.convertToRoman(this.getCatalystTier());
         if(this.getCatalystTier()==0) {
-            info = "\u00A78\u00A7oTier 0"; 
+            info = "\u00A78\u00A7lTier 0";
         }
         tooltip.add(Component.literal(info));
-
-        String info1 = "\u00A78\u00A7o" + this.getAttackDamage(stack) + " Damage";
+        String info2 = "\u00A78\u00A7oConsumes Small Soul Fragments";
+        tooltip.add(Component.literal(info2));
+        String info1 = "\u00A78" + this.getAttackDamage(stack) + " Damage";
         tooltip.add(Component.literal(info1));
 
 

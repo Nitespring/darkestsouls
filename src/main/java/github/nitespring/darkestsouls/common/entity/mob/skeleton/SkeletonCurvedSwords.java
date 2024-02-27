@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -164,6 +165,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -192,6 +194,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -220,6 +223,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -249,6 +253,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -276,6 +281,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8||animationTick==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -303,6 +309,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -329,6 +336,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -355,6 +363,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 else{this.moveToTarget();}
 
                 if(animationTick==9) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -390,6 +399,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
                 }
                 if(animationTick==16) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
