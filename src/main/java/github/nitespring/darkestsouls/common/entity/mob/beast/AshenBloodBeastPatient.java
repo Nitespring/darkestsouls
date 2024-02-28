@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.entity.mob.beast;
 
+import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -36,6 +37,8 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected int animationTick = 0;
+
+    protected int screamCooldownTick = 0;
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f, false);
 
     protected Vec3 aimVec;
@@ -45,6 +48,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {return this.factory;}
+
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
@@ -119,6 +123,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         }
         return PlayState.CONTINUE;
     }
+
+    public void resetScreamCooldown(){this.screamCooldownTick = 1200;}
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -171,6 +178,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
     @Override
     public void tick() {
+        if(screamCooldownTick>0){
+            screamCooldownTick--;
+        }
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }
@@ -194,6 +204,34 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     this.getNavigation().stop();
                     animationTick=0;
                     this.resetPoiseHealth();
+                    setAnimationState(0);
+                }
+                break;
+            case 11:
+                this.getNavigation().stop();
+                if(animationTick==24) {
+                    this.playAttackSound();
+                    this.playSound(SoundInit.BEAST_PATIENT_SCREAM.get(), 3.6f,1.0f);
+
+                    for (LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(100, 50, 100))) {
+                        if (localTarget instanceof IBuffableBeast finalTarget) {
+                            finalTarget.activateBuff();
+                            if(this.getTarget()!=null) {
+                                ((DarkestSoulsAbstractEntity)localTarget).setTarget(this.getTarget());
+                            }
+                        }
+                    }
+                    Vec3 aim = this.getLookAngle();
+                    for (LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 6, 10))) {
+                        Vec3 kVec = localTarget.position().add(this.position().scale(-1)).normalize();
+
+                        float knock = -5.0f;
+                        localTarget.knockback(knock*(kVec.x+aim.x/2),7.5f+knock*kVec.y,knock*(kVec.z+aim.z/2));
+                    }
+                }
+                if(animationTick>=60) {
+                    animationTick=0;
+                    this.resetScreamCooldown();
                     setAnimationState(0);
                 }
                 break;
@@ -631,6 +669,10 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
             this.doMovement(target, reach);
             this.checkForAttack(distance, reach);
+            if(this.mob.screamCooldownTick<=0){
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=60)      {this.mob.setAnimationState(11);}
+            }
             //this.checkForPreciseAttack();
 
 

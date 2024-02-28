@@ -33,7 +33,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 
-public class BeastPatient extends BeastPatientEntity implements GeoEntity{
+public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuffableBeast{
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected int animationTick = 0;
@@ -146,6 +146,10 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity{
         }
     }
 
+    @Override
+    public void activateBuff() {
+        this.setEntityState(1);
+    }
 
     @Override
     public void tick() {
