@@ -1,5 +1,15 @@
 {
-    "parent": "item/generated",
+    "parent": "forge:item/default",
+    "forge_data": {
+        "layers": {
+            "1": {
+                "block_light": 15,
+                "sky_light": 15
+            }
+        }
+    },
+    "loader": "forge:item_layers",
+    "render_types": {},
     "display": {
         "thirdperson_righthand": {
             "rotation": [ 0, -90, 55 ],
@@ -23,6 +33,7 @@
         }
     },
     "textures": {
-    "layer0": "darkestsouls:item/weapon/purple_crystal_staff"
+    "layer0": "darkestsouls:item/weapon/purple_crystal_staff",
+    "layer1": "darkestsouls:item/weapon/purple_crystal_staff_emissive"
     }
 }
