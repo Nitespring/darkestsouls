@@ -137,5 +137,7 @@
   "effect.darkestsouls.hemorragie" : "Blood loss",
   "effect.darkestsouls.parasites" : "Parasitic Infection",
   "effect.darkestsouls.frost" : "Frostbite",
-  "effect.darkestsouls.rot" : "Scarlet Rot"
+  "effect.darkestsouls.rot" : "Scarlet Rot",
+
+  "subtitles.darkestsouls.beast_patient" : "Beast Patient"
 }

@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.core.init.SoundInit;
 import github.nitespring.darkestsouls.networking.DarkestSoulsPacketHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ public class DarkestSouls
 
         modEventBus.addListener(this::setup);
         GeckoLib.initialize();
+        SoundInit.SOUNDS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
         EffectInit.EFFECTS.register(modEventBus);

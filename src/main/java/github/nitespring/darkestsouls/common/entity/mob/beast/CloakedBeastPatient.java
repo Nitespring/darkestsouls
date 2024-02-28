@@ -3,8 +3,11 @@ package github.nitespring.darkestsouls.common.entity.mob.beast;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.init.SoundInit;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -16,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -141,7 +145,27 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
         }
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundInit.BEAST_PATIENT_IDLE.get();
+    }
 
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_21239_) {
+        return SoundInit.BEAST_PATIENT_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundInit.BEAST_PATIENT_ATTACK.get();
+    }
+    @Override
+    public float getVoicePitch() {
+        return 2.0f;
+    }
     @Override
     public void tick() {
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
@@ -175,6 +199,9 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
             this.level().addFreshEntity(h);
         }
     }
+    public void playAttackSound(){
+        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),1.6f,1.4f);
+    }
     protected void playAnimation() {
         animationTick++;
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
@@ -196,6 +223,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
             case 21:
                 this.getNavigation().stop();
                 if(animationTick==4) {
+                    this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=7&&flag) {
@@ -211,6 +239,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 if(animationTick>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
                 if(animationTick==4) {
+                    this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=12) {
@@ -249,6 +278,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==7) {
+                    this.playAttackSound();
                     this.doAttack(1.0f, 0.0f);
                 }
                 if(animationTick>=16) {
@@ -262,6 +292,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 this.getNavigation().stop();
 
                 if(animationTick==4) {
+                    this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=7&&flag) {
@@ -277,6 +308,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 if(animationTick>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
                 if(animationTick==4) {
+                    this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
                 if(animationTick>=12) {
@@ -315,6 +347,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==7) {
+                    this.playAttackSound();
                     this.doAttack(1.0f, 0.0f);
                 }
                 if(animationTick>=16) {
@@ -344,6 +377,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==8) {
+                    this.playAttackSound();
                     this.doAttack(4.0f, 0.0f);
                 }
                 if(animationTick>=15) {
@@ -374,6 +408,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
                 }
                 if(animationTick==5) {
+                    this.playAttackSound();
                     this.doAttack(2.0f, 0.0f);
                 }
                 if(animationTick>=12) {
@@ -396,6 +431,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                     }
                 }
                 if(animationTick==8){
+                    this.playAttackSound();
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
