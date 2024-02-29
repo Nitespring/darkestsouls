@@ -49,6 +49,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
     public HollowSoldierLongsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        this.xpReward=9;
     }
 
 

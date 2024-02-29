@@ -45,6 +45,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     protected Vec3 aimVec;
     public AshenBloodBeastPatient(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        this.xpReward=18;
     }
 
     @Override

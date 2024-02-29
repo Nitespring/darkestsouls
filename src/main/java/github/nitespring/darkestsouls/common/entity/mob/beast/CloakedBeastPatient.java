@@ -41,6 +41,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
     protected Vec3 aimVec;
     public CloakedBeastPatient(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        this.xpReward=10;
     }
 
     @Override

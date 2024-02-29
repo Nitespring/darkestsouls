@@ -41,7 +41,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 	Vec3 aim;
 
 	public SewerCentipede(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+
 		super(p_21683_, p_21684_);
+		this.xpReward=16;
 	}
 
 	@Override

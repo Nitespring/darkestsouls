@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.util;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -24,20 +25,26 @@ public class SpawnRules{
     public static boolean checkBeastPatientSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return checkVanillaMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
+    public static boolean checkMadHollowSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        return levelAccessor.getDifficulty() != Difficulty.PEACEFUL && levelAccessor.canSeeSky(pos) && !levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_DESERT)
+                && ((levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_DENSE))
+                || isDarkEnoughToSpawnForVanilla(levelAccessor, pos, random))
+                && checkVanillaMobSpawnRules(mob, levelAccessor, spawnType, pos, random);
+    }
     public static boolean checkHollowSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return levelAccessor.getDifficulty() != Difficulty.PEACEFUL && levelAccessor.canSeeSky(pos)
-                && ((levelAccessor.getBiome(pos).is(Biomes.DARK_FOREST)&&isDarkEnoughToSpawnLowLight(levelAccessor, pos, random))
+        return levelAccessor.getDifficulty() != Difficulty.PEACEFUL && levelAccessor.canSeeSky(pos) && !levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_DESERT)
+                && ((levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_DENSE)&&isDarkEnoughToSpawnLowLight(levelAccessor, pos, random))
                 || isDarkEnoughToSpawnForVanilla(levelAccessor, pos, random))
                 && checkVanillaMobSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
 
     public static boolean checkSewerCentipedeSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return (isDeepEnoughForDeepMob(pos)||levelAccessor.getBiome(pos).is(Biomes.SWAMP)||levelAccessor.getBiome(pos).is(Biomes.MANGROVE_SWAMP))
-                &&checkLowLightMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random);
+        return (isDeepEnoughForDeepMob(pos)||levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_SWAMP))
+                &&checkVanillaAnyLightMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
     public static boolean checkLeechSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return (isDeepEnoughForDeepMob(pos)||((levelAccessor.getBiome(pos).is(Biomes.SWAMP)||levelAccessor.getBiome(pos).is(Biomes.MANGROVE_SWAMP)||levelAccessor.getBiome(pos).is(Biomes.OCEAN))&&levelAccessor.isWaterAt(pos)))
-                &&checkLowLightMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random);
+        return (isDeepEnoughForDeepMob(pos)||(levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_SWAMP)||levelAccessor.getBiome(pos).containsTag(Tags.Biomes.IS_WATER)))
+                &&checkVanillaAnyLightMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
     public static boolean checkSinSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return isDeepEnoughForDeepMob(pos)
@@ -92,8 +99,8 @@ public class SpawnRules{
             if (i < 15 && levelAccessor.getBrightness(LightLayer.BLOCK, pos) > i) {
                 return false;
             } else {
-                int j = levelAccessor.getLevel().isThundering() ? levelAccessor.getMaxLocalRawBrightness(pos, 10) : levelAccessor.getMaxLocalRawBrightness(pos);
-                return j <= dimensiontype.monsterSpawnLightTest().sample(random);
+                int j = levelAccessor.getLevel().isThundering() ? levelAccessor.getMaxLocalRawBrightness(pos, 13) : levelAccessor.getMaxLocalRawBrightness(pos);
+                return j <= dimensiontype.monsterSpawnLightTest().sample(random)+5;
             }
         }
     }

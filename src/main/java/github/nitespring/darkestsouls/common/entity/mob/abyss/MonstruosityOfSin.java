@@ -38,6 +38,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	public MonstruosityOfSin(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
 		this.setAnimationState(11);
+		this.xpReward=20;
 	}
 
 	@Override
@@ -191,10 +192,10 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 			case 21:
 				if(animationTick==8) {
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-							this.position().add((1.5f)*this.getLookAngle().x,
+							this.position().add((1.4f)*this.getLookAngle().x,
 									0.25,
-									(1.5f)*this.getLookAngle().z),
-							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5, 1.5f, 0.75f,0,this.getTarget());
+									(1.4f)*this.getLookAngle().z),
+							(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5, 2.25f, 0.75f,0,this.getTarget());
 					h.setOwner(this);
 					this.level().addFreshEntity(h);
 

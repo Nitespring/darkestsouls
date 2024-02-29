@@ -19,9 +19,11 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.Path;
@@ -50,6 +52,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 	public Leech(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
+		this.xpReward=12;
 	}
 
 	@Override
@@ -160,7 +163,15 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	@Override
 	public boolean canSwimInFluidType(FluidType type) {return true;}
 
+	@Override
+	protected void checkInsideBlocks() {
+		super.checkInsideBlocks();
+	}
 
+
+	public boolean checkSpawnObstruction(LevelReader p_30348_) {
+		return p_30348_.isUnobstructed(this);
+	}
 
 	@Override
 	public int getMaxPoise() {return 28;}

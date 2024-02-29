@@ -33,7 +33,7 @@ public class EntitySpawnRegistration {
             SpawnPlacements.register(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkHollowSpawnRules);
+                    SpawnRules::checkMadHollowSpawnRules);
             SpawnPlacements.register(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,

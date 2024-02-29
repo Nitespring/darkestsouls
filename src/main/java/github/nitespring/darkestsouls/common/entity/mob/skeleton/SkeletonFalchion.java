@@ -35,7 +35,10 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
     protected Vec3 aimVec;
 
-    public SkeletonFalchion(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {super(p_21683_, p_21684_);}
+    public SkeletonFalchion(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+        super(p_21683_, p_21684_);
+        this.xpReward=10;
+    }
 
 
     @Override

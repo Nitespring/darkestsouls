@@ -42,6 +42,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
     protected Vec3 aimVec;
     public BeastPatient(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        this.xpReward=10;
     }
 
     @Override

@@ -42,7 +42,10 @@ public class Bonewheel extends DarkestSoulsAbstractEntity implements GeoEntity {
 
     protected Vec3 aimVec;
 
-public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {super(p_21683_, p_21684_);}
+public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+    super(p_21683_, p_21684_);
+    this.xpReward=12;
+}
 
     @Override
     public boolean isBoss() {return false;}

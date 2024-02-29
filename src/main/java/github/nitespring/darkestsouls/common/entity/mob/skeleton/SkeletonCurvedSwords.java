@@ -34,7 +34,10 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     protected Vec3 aimVec;
 
-    public SkeletonCurvedSwords(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {super(p_21683_, p_21684_);}
+    public SkeletonCurvedSwords(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+        super(p_21683_, p_21684_);
+        this.xpReward=10;
+    }
 
 
     @Override
