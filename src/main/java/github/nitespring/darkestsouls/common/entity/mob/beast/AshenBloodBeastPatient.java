@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.SoundInit;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
@@ -212,6 +213,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(animationTick==24) {
                     this.playAttackSound();
                     this.playSound(SoundInit.BEAST_PATIENT_SCREAM.get(), 3.6f,1.0f);
+                    Vec3 aim = this.getLookAngle();
+                    Vec3 pos = this.position();
+                    this.level().addParticle(ParticleTypes.SONIC_BOOM,pos.x+0.75*aim.x,pos.y+2.15,pos.z+0.75*aim.z,0,0,0);
 
                     for (LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(100, 50, 100))) {
                         if (localTarget instanceof IBuffableBeast finalTarget) {
@@ -221,12 +225,13 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                             }
                         }
                     }
-                    Vec3 aim = this.getLookAngle();
-                    for (LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 6, 10))) {
-                        Vec3 kVec = localTarget.position().add(this.position().scale(-1)).normalize();
 
-                        float knock = -5.0f;
-                        localTarget.knockback(knock*(kVec.x+aim.x/2),7.5f+knock*kVec.y,knock*(kVec.z+aim.z/2));
+                    for (LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(6, 6, 6))) {
+                        //localTarget.hasImpulse = true;
+                        Vec3 kVec = localTarget.position().add(this.position().scale(-1)).normalize();
+                        Vec3 tMov = localTarget.getDeltaMovement();
+                        float knock = 2.5f;
+                        localTarget.knockback(knock,-knock*(kVec.x),-knock*(kVec.z));
                     }
                 }
                 if(animationTick>=60) {
