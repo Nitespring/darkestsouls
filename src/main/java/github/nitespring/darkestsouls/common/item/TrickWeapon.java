@@ -1,5 +1,7 @@
 package github.nitespring.darkestsouls.common.item;
 
+import github.nitespring.darkestsouls.core.init.KeybindInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -67,8 +69,9 @@ public abstract class TrickWeapon extends Weapon{
     public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
 
 
-        String info = "\u00A78\u00A7oPress left_alt to transform";
-        tooltip.add(Component.literal(info));
+        String colour = "\u00A78\u00A7o";
+
+        tooltip.add(Component.translatable("translation.darkestsouls.trick1").append(KeybindInit.trickKeybind.getKey().getDisplayName()).append(Component.translatable("translation.darkestsouls.trick2")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
 
 
 

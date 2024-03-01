@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.item;
 
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import github.nitespring.darkestsouls.core.util.MathUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -89,15 +90,15 @@ public class Staff extends Item implements ILeftClickItem{
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
 
-        String info = "\u00A78\u00A7lTier " + MathUtils.convertToRoman(this.getCatalystTier());
+        String info = " " + MathUtils.convertToRoman(this.getCatalystTier());
         if(this.getCatalystTier()==0) {
-            info = "\u00A78\u00A7lTier 0";
+            info = " 0";
         }
-        tooltip.add(Component.literal(info));
+        tooltip.add(Component.translatable("translation.darkestsouls.tier").append(Component.literal(info)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.DARK_GRAY));
         String info2 = "\u00A78\u00A7oConsumes Small Soul Fragments";
-        tooltip.add(Component.literal(info2));
+        tooltip.add(Component.translatable("translation.darkestsouls.consumes_small_soul").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         String info1 = "\u00A78" + this.getAttackDamage(stack) + " Damage";
-        tooltip.add(Component.literal(info1));
+        tooltip.add(Component.literal(""+this.getAttackDamage(stack)).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
 
 
 

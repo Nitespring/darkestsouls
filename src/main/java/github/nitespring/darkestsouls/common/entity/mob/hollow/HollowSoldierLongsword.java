@@ -269,6 +269,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 break;
             //Attack
             case 21:
+                if(animationTick==8) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
                 if(animationTick==12) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -307,6 +310,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 }
                 break;
             case 23:
+                if(animationTick==6) {
+                    this.playSound(this.getAttackSound());
+                }
                 if(animationTick==9) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -324,6 +330,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 }
                 break;
             case 24:
+                if(animationTick==4) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
                 if(animationTick==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -341,6 +350,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 }
                 break;
             case 25:
+                if(animationTick==20) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
                 if(animationTick==22) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),

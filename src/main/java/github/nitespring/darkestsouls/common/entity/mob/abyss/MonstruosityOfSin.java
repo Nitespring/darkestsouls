@@ -3,6 +3,10 @@ package github.nitespring.darkestsouls.common.entity.mob.abyss;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.init.SoundInit;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
@@ -18,6 +22,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -162,6 +167,25 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 		super.tick();
 
 	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return SoundInit.SIN_IDLE.get();
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundInit.SIN_DEATH.get();
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_21239_) {
+		return SoundInit.SIN_HURT.get();
+	}
+
 	protected void playAnimation() {
 		animationTick++;
 		this.getNavigation().stop();
@@ -176,6 +200,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 				break;
 			case 11:
 				if(animationTick>=20) {
+					this.playSound(SoundInit.SIN_BOOM.get());
 					animationTick=0;
 					setCombatState(1);
 					setAnimationState(0);
@@ -190,7 +215,11 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 				break;
 			//Attack
 			case 21:
+				if(animationTick==6) {
+					this.playSound(SoundInit.SIN_SCREAM.get());
+				}
 				if(animationTick==8) {
+					this.playSound(SoundInit.SIN_BOOM.get());
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.4f)*this.getLookAngle().x,
 									0.25,
@@ -208,13 +237,18 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 				break;
 			case 22:
 				if(animationTick>=35) {
+					this.playSound(SoundInit.SIN_BOOM.get());
 					animationTick=0;
 					setAnimationState(0);
 				}
 				break;
 			case 23:
-				if(animationTick==16) {
+				if(animationTick==10) {
+					this.playSound(SoundInit.SIN_SCREAM.get());
+				}
 
+				if(animationTick==16) {
+					this.playSound(SoundInit.SIN_BOOM.get());
 
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX_LARGE.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,

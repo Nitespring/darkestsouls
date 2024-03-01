@@ -9,10 +9,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
@@ -46,6 +43,11 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     super(p_21683_, p_21684_);
     this.xpReward=12;
 }
+
+    @Override
+    public MobType getMobType() {
+        return MobType.UNDEAD;
+    }
 
     @Override
     public boolean isBoss() {return false;}

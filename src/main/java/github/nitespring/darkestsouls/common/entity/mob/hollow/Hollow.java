@@ -1,11 +1,14 @@
 package github.nitespring.darkestsouls.common.entity.mob.hollow;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
+import github.nitespring.darkestsouls.core.init.SoundInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -99,6 +102,28 @@ public abstract class Hollow extends DarkestSoulsAbstractEntity {
     public void populateClothing(){
 
     }
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundInit.HOLLOW_DEATH.get();
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundInit.HOLLOW_IDLE.get();
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_21239_) {
+        return SoundInit.HOLLOW_HURT.get();
+    }
 
+    protected SoundEvent getAttackSound() {
+        return SoundInit.HOLLOW_ATTACK.get();
+    }
 
+    @Override
+    protected float getSoundVolume() {
+        return 0.2f;
+    }
 }

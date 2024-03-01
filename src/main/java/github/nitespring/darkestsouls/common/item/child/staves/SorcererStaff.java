@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.util.MathUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -151,10 +152,13 @@ public class SorcererStaff extends Staff {
         super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
 
         String spellA = "\u00A7bSoul Dart (1)";
-        tooltip.add(Component.literal(spellA));
+        //tooltip.add(Component.literal(spellA));
 
         String spellB = "\u00A7bSoul Arrow (1)";
-        tooltip.add(Component.literal(spellB));
+        //tooltip.add(Component.literal(spellB));
+
+        tooltip.add(Component.translatable("translation.darkestsouls.spell.soul_dart").withStyle(ChatFormatting.AQUA));
+        tooltip.add(Component.translatable("translation.darkestsouls.spell.soul_arrow").withStyle(ChatFormatting.AQUA));
 
 
     }

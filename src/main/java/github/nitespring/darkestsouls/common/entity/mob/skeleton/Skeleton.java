@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -44,6 +45,11 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
     public void setRobeType(int i){this.entityData.set(ROBE_TYPE, i);}
     public int getHatType(){return this.entityData.get(HAT_TYPE);}
     public void setHatType(int i){this.entityData.set(HAT_TYPE, i);}
+
+    @Override
+    public MobType getMobType() {
+        return MobType.UNDEAD;
+    }
 
     @Override
     protected void defineSynchedData() {

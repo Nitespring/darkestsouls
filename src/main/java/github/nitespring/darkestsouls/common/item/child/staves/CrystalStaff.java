@@ -7,6 +7,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.util.MathUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -191,22 +192,25 @@ public class CrystalStaff extends Staff {
         switch(this.type){
             case 1:
                 colour = "§5";
+                tooltip.add(Component.translatable("translation.darkestsouls.spell.crystal_burst").withStyle(ChatFormatting.DARK_PURPLE));
+                tooltip.add(Component.translatable("translation.darkestsouls.spell.crystal_rain").withStyle(ChatFormatting.DARK_PURPLE));
                 break;
             case 2:
                 colour = "§9";
+                tooltip.add(Component.translatable("translation.darkestsouls.spell.crystal_burst").withStyle(ChatFormatting.BLUE));
+                tooltip.add(Component.translatable("translation.darkestsouls.spell.crystal_rain").withStyle(ChatFormatting.BLUE));
                 break;
             default:
                 colour = "§3";
+                tooltip.add(Component.translatable("translation.darkestsouls.spell.crystal_burst").withStyle(ChatFormatting.DARK_AQUA));
+                tooltip.add(Component.translatable("translation.darkestsouls.spell.crystal_rain").withStyle(ChatFormatting.DARK_AQUA));
                 break;
         }
 
-
-
         String spellA = colour + "Crystal Burst (1)";
-        tooltip.add(Component.literal(spellA));
 
         String spellB = colour + "Crystal Rain (2)";
-        tooltip.add(Component.literal(spellB));
+
 
 
     }

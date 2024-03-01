@@ -17,7 +17,7 @@ public class CreativeTabsRegistration {
 	 //public static CreativeModeTab ITEM_TAB;
 	 //public static CreativeModeTab ENTITY_TAB;
 
-	  @SubscribeEvent
+	  //@SubscribeEvent
 	  public static void addItemsToTabs(BuildCreativeModeTabContentsEvent event)
 	    {
 	        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS)

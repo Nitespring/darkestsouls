@@ -23,6 +23,18 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> BEAST_PATIENT_ATTACK = build("entity.beast_patient_attack");
     public static final RegistryObject<SoundEvent> BEAST_PATIENT_SCREAM = build("entity.beast_patient_scream");
 
+    public static final RegistryObject<SoundEvent> SIN_IDLE = build("entity.monstruosity_of_sin_idle");
+    public static final RegistryObject<SoundEvent> SIN_HURT = build("entity.monstruosity_of_sin_hurt");
+    public static final RegistryObject<SoundEvent> SIN_SCREAM = build("entity.monstruosity_of_sin_scream");
+    public static final RegistryObject<SoundEvent> SIN_BOOM = build("entity.monstruosity_of_sin_boom");
+    public static final RegistryObject<SoundEvent> SIN_DEATH = build("entity.monstruosity_of_sin_death");
+
+    public static final RegistryObject<SoundEvent> HOLLOW_IDLE = build("entity.hollow_idle");
+    public static final RegistryObject<SoundEvent> HOLLOW_HURT = build("entity.hollow_hurt");
+    public static final RegistryObject<SoundEvent> HOLLOW_ATTACK = build("entity.hollow_attack");
+    public static final RegistryObject<SoundEvent> HOLLOW_DEATH = build("entity.hollow_death");
+
+
     private static RegistryObject<SoundEvent> build(String id)
     {
         return SOUNDS.register(id, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DarkestSouls.MODID, id)));

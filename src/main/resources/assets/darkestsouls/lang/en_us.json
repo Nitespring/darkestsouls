@@ -54,6 +54,7 @@
   "item.darkestsouls.purple_crystal" : "Crystal Fragment",
   "item.darkestsouls.blood_crystal" : "Blood Crystal",
   "item.darkestsouls.blood_gem" : "Blood Gem",
+  "item.darkestsouls.cinnabar" : "Cinnabar Crystal",
   "item.darkestsouls.beast_blood_clump" : "Beast Blood Clump",
   "item.darkestsouls.demon_titanite" : "Demon Titanite",
   "item.darkestsouls.twinkling_titanite" : "Twinkling Titanite",
@@ -139,5 +140,26 @@
   "effect.darkestsouls.frost" : "Frostbite",
   "effect.darkestsouls.rot" : "Scarlet Rot",
 
-  "subtitles.darkestsouls.beast_patient" : "Beast Patient"
+  "subtitles.darkestsouls.beast_patient" : "Beast Patient",
+  "subtitles.darkestsouls.monstruosity_of_sin" : "Monstruosity of Sin",
+  "subtitles.darkestsouls.hollow" : "Hollow",
+
+  "itemGroup.darkestsouls.materials" : "DS Materials",
+  "itemGroup.darkestsouls.equipment" : "DS Equipment",
+  "itemGroup.darkestsouls.mobs" : "DS Mobs",
+
+  "translation.darkestsouls.trick1" : "Press ",
+  "translation.darkestsouls.trick2" : " to Transform Weapon",
+  "translation.darkestsouls.targets" : " Max Targets",
+  "translation.darkestsouls.blood" : " Blood Damage",
+  "translation.darkestsouls.tier" : "Tier",
+  "translation.darkestsouls.damage" : " Damage",
+  "translation.darkestsouls.consumes_small_soul" : "Consumes Small Soul Fragments",
+
+  "translation.darkestsouls.spell.crystal_burst" : "Crystal Burst (1)",
+  "translation.darkestsouls.spell.crystal_rain" : "Crystal Rain (2)",
+  "translation.darkestsouls.spell.soul_dart" : "Soul Dart (1)",
+  "translation.darkestsouls.spell.soul_arrow" : "Soul Arrow (2)",
+  "translation.darkestsouls.spell.magma_burst" : "Magma Burst (1)",
+  "translation.darkestsouls.spell.chaos_fireball" : "Chaos Fireball (2)"
 }

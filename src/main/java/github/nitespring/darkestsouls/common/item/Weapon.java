@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
+import github.nitespring.darkestsouls.core.init.KeybindInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -260,13 +262,15 @@ public class Weapon extends Item implements Vanishable,ILeftClickItem {
     public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
 
         if(this.getMaxTargets()>=1) {
-            String info = "§8§o+ " + this.getMaxTargets(stack) + "§8§o Max Targets";
-            tooltip.add(Component.literal(info));
+            String info = "" + this.getMaxTargets(stack);
+            //tooltip.add(Component.literal(info));
+            tooltip.add(Component.literal("+").append(Component.literal(info)).append(Component.translatable("translation.darkestsouls.targets")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+
         }
 
         if(this.bloodAttack>=1) {
             String info = "§4§o+ " + this.bloodAttack + "§4§o Blood Loss";
-            tooltip.add(Component.literal(info));
+            tooltip.add(Component.literal("+").append(Component.literal(""+this.getBloodAttack(stack))).append(Component.translatable("translation.darkestsouls.blood")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_RED));
         }
 
 

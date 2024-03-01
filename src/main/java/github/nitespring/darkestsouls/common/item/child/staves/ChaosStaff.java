@@ -7,6 +7,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
 import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.util.MathUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -187,10 +188,13 @@ public class ChaosStaff extends Staff {
     public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
         super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
         String spellA = "\u00A76Magma Burst (1)";
-        tooltip.add(Component.literal(spellA));
+        //tooltip.add(Component.literal(spellA));
 
         String spellB = "\u00A76Great Chaos Fireball (3)";
-        tooltip.add(Component.literal(spellB));
+        //tooltip.add(Component.literal(spellB));
+
+        tooltip.add(Component.translatable("translation.darkestsouls.spell.magma_burst").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("translation.darkestsouls.spell.chaos_fireball").withStyle(ChatFormatting.GOLD));
 
 
     }

@@ -31,7 +31,7 @@ public class ItemInit {
 	public static final RegistryObject<ShadowBlade> SHADOW_BLADE = ITEMS.register("shadow_blade",
 			() -> new ShadowBlade(Tiers.TITANITE, 8.0f, 1.6f, 0.2f, 8,1,0,0,0,0,1,0, 1350,15,0.11f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<DragonslayerSpear> DRAGONSLAYER_SPEAR = ITEMS.register("dragonslayer_spear",
-			() -> new DragonslayerSpear(Tiers.TITANITE, 6.0f, 2.0f, -0.1f, 4, 1350,10,0.15f, 1,new Item.Properties().rarity(Rarity.EPIC)));
+			() -> new DragonslayerSpear(Tiers.TITANITE, 6.0f, 2.0f, -0.1f, 4, 1350,10,0.15f, -1,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<Weapon> DRAGONSLAYER_SWORDSPEAR = ITEMS.register("dragonslayer_swordspear",
 			() -> new DragonslayerSwordspear(Tiers.TITANITE, 7.0f, 1.8f, 0.1f, 7, 1350,10,0.12f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<StormCurvedSword> STORM_CURVED_SWORD = ITEMS.register("storm_curved_sword",
