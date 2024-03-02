@@ -283,17 +283,17 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=20&&flag) {
+                if(animationTick>=26&&flag) {
                     animationTick = 0;
                     setAnimationState(22);
                 }
-                if(animationTick>=22) {
+                if(animationTick>=30) {
                     animationTick=0;
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick==4) {
+                if(animationTick==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -376,7 +376,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     public class AttackGoal extends Goal {
 
 
-        private final double speedModifier = 1.0f;
+        private final double speedModifier = 1.1f;
         private final boolean followingTargetEvenIfNotSeen = true;
         protected final HollowSoldierLongsword mob;
         private Path path;
@@ -571,7 +571,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
 
         protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-            return (double)(this.mob.getBbWidth() * 8.0F * this.mob.getBbWidth());
+            return (double)(this.mob.getBbWidth() * 16.0F * this.mob.getBbWidth());
         }
 
     }

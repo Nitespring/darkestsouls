@@ -167,6 +167,10 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> DRAGON_SCALE = ITEMS.register("dragon_scale",
 			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item> INFUSED_DRAGON_SCALE = ITEMS.register("infused_dragon_scale",
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item> CORRUPTED_DRAGON_SCALE = ITEMS.register("corrupted_dragon_scale",
+			() -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> BEWITCHED_BRANCH = ITEMS.register("bewitched_branch",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> CHAOS_ROOT = ITEMS.register("chaos_root",
@@ -208,6 +212,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DRAGON_NUGGET = ITEMS.register("dragon_nugget",
 			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> LIGHTNING_NUGGET = ITEMS.register("lightning_nugget",
+			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SIDERITE_INGOT = ITEMS.register("siderite_ingot",
@@ -234,7 +240,22 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DRAGON_INGOT = ITEMS.register("dragon_ingot",
 			() -> new Item(new Item.Properties()));
-
+	public static final RegistryObject<Item> LIGHTNING_INGOT = ITEMS.register("lightning_ingot",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> STRAIGHTSWORD_HILT = ITEMS.register("straightsword_hilt",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> CURVED_SWORD_HILT = ITEMS.register("curved_sword_hilt",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> GREATSWORD_HILT = ITEMS.register("greatsword_hilt",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> REINFORCED_POLE = ITEMS.register("reinforced_pole",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> REINFORCED_HANDLE = ITEMS.register("reinforced_handle",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> CURVED_HANDLE = ITEMS.register("reinforced_curved_handle",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> WORKSHOP_MECHANISM = ITEMS.register("workshop_mechanism",
+			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 	public static final RegistryObject<Item> SOUL_ESSENCE = ITEMS.register("soul_essence",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DARK_ESSENCE = ITEMS.register("dark_essence",

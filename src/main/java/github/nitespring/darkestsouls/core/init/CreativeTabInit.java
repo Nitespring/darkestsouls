@@ -75,6 +75,8 @@ public class CreativeTabInit {
                         output.accept(ItemInit.TWINKLING_TITANITE.get());
                         output.accept(ItemInit.DRAGON_SCALE_FRAGMENT.get());
                         output.accept(ItemInit.DRAGON_SCALE.get());
+                        output.accept(ItemInit.INFUSED_DRAGON_SCALE.get());
+                        output.accept(ItemInit.CORRUPTED_DRAGON_SCALE.get());
                         output.accept(ItemInit.BONE_FRAGMENT.get());
                         output.accept(ItemInit.BEAST_BLOOD_CLUMP.get());
                         output.accept(ItemInit.BLOOD_STONE_FRAGMENT.get());
@@ -113,6 +115,15 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BLOOD_NUGGET.get());
                         output.accept(ItemInit.DRAGON_INGOT.get());
                         output.accept(ItemInit.DRAGON_NUGGET.get());
+                        output.accept(ItemInit.LIGHTNING_INGOT.get());
+                        output.accept(ItemInit.LIGHTNING_NUGGET.get());
+                        output.accept(ItemInit.STRAIGHTSWORD_HILT.get());
+                        output.accept(ItemInit.CURVED_SWORD_HILT.get());
+                        output.accept(ItemInit.GREATSWORD_HILT.get());
+                        output.accept(ItemInit.REINFORCED_HANDLE.get());
+                        output.accept(ItemInit.CURVED_HANDLE.get());
+                        output.accept(ItemInit.REINFORCED_POLE.get());
+                        output.accept(ItemInit.WORKSHOP_MECHANISM.get());
                         output.accept(ItemInit.SOUL_ESSENCE.get());
                         output.accept(ItemInit.DARK_ESSENCE.get());
                         output.accept(ItemInit.FIRE_ESSENCE.get());

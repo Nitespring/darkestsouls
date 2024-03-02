@@ -5,7 +5,11 @@ import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.init.SoundInit;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
@@ -15,12 +19,16 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -168,12 +176,54 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		this.goalSelector.addGoal(3, new DarkestSoulsAbstractEntity.RandomStrollGoal(this, 0.8D));
 	}
 
+	@Nullable
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_21239_) {
+		return SoundInit.SEWER_CENTIPEDE_HURT.get();
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return SoundInit.SEWER_CENTIPEDE_IDLE.get();
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundInit.SEWER_CENTIPEDE_DEATH.get();
+	}
+	@Override
+	protected void playStepSound(BlockPos p_33804_, BlockState p_33805_) {
+		this.playSound(SoundInit.SEWER_CENTIPEDE_STEP.get(), 0.15F, 1.0F);
+	}
+
+	@Override
+	public void makeStuckInBlock(BlockState p_33796_, Vec3 p_33797_) {
+		//if (!(p_33796_.is(Blocks.COBWEB)||p_33796_.is(Blocks.WATER))) {
+		if (!p_33796_.is(Blocks.COBWEB)) {
+			super.makeStuckInBlock(p_33796_, p_33797_);
+		}
+
+	}
+
+	@Override
+	public double getFluidMotionScale(FluidType type) {
+		return 0.0f;
+	}
+
+	@Override
+	protected float getWaterSlowDown() {
+		return 1.0f;
+	}
+
 	@Override
 	protected boolean isAffectedByFluids() {return true;}
 	@Override
 	public boolean canDrownInFluidType(FluidType type) {return false;}
 	@Override
 	public boolean canSwimInFluidType(FluidType type) {return true;}
+
 
 	@Override
 	public int getMaxPoise() {return 28;}

@@ -94,6 +94,43 @@
 
 		],
 		"subtitle": "subtitles.darkestsouls.hollow"
+	},
+	"entity.sewer_centipede_idle": {
+		"sounds": [
+			"darkestsouls:entity/sewer_centipede/say1",
+			"darkestsouls:entity/sewer_centipede/say2",
+			"darkestsouls:entity/sewer_centipede/say3",
+			"darkestsouls:entity/sewer_centipede/say4",
+			"darkestsouls:entity/sewer_centipede/say5",
+			"darkestsouls:entity/sewer_centipede/say6"
+		],
+		"subtitle": "subtitles.darkestsouls.sewer_centipede"
+	},
+	"entity.sewer_centipede_death": {
+		"sounds": [
+			"darkestsouls:entity/sewer_centipede/death"
+		],
+		"subtitle": "subtitles.darkestsouls.sewer_centipede"
+	},
+	"entity.sewer_centipede_hurt": {
+		"sounds": [
+			"darkestsouls:entity/sewer_centipede/say1",
+			"darkestsouls:entity/sewer_centipede/say2",
+			"darkestsouls:entity/sewer_centipede/say3",
+			"darkestsouls:entity/sewer_centipede/say4",
+			"darkestsouls:entity/sewer_centipede/say5",
+			"darkestsouls:entity/sewer_centipede/say6"
+		],
+		"subtitle": "subtitles.darkestsouls.sewer_centipede"
+	},
+	"entity.sewer_centipede_step": {
+		"sounds": [
+			"darkestsouls:entity/sewer_centipede/step1",
+			"darkestsouls:entity/sewer_centipede/step2",
+			"darkestsouls:entity/sewer_centipede/step3",
+			"darkestsouls:entity/sewer_centipede/step4"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
 	}
 
 }

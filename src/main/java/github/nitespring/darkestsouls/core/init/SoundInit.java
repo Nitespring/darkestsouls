@@ -34,6 +34,11 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> HOLLOW_ATTACK = build("entity.hollow_attack");
     public static final RegistryObject<SoundEvent> HOLLOW_DEATH = build("entity.hollow_death");
 
+    public static final RegistryObject<SoundEvent> SEWER_CENTIPEDE_IDLE = build("entity.sewer_centipede_idle");
+    public static final RegistryObject<SoundEvent> SEWER_CENTIPEDE_DEATH = build("entity.sewer_centipede_death");
+    public static final RegistryObject<SoundEvent> SEWER_CENTIPEDE_HURT = build("entity.sewer_centipede_hurt");
+    public static final RegistryObject<SoundEvent> SEWER_CENTIPEDE_STEP = build("entity.sewer_centipede_step");
+
 
     private static RegistryObject<SoundEvent> build(String id)
     {
