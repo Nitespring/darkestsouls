@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " cc",
+        "ecb",
+        " ad"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_pole"
+        },
+        "b": {
+            "item": "darkestsouls:workshop_mechanism"
+        },
+        "c": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "d": {
+            "item": "minecraft:paper"
+        },
+        "e": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:hunter_axe",
+        "count": 1
+    },
+    "group": "darkestsouls:hunter_axe"
+}

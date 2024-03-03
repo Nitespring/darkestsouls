@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bab",
+        "dce",
+        "bfb"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "b": {
+            "item": "darkestsouls:crystal"
+        },
+        "c": {
+            "item": "darkestsouls:soul_essence"
+        },
+        "d": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "e": {
+            "item": "minecraft:diamond"
+        },
+        "f": {
+            "item": "minecraft:quartz"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:purple_crystal",
+        "count": 1
+    },
+    "group": "darkestsouls:purple_crystal"
+}

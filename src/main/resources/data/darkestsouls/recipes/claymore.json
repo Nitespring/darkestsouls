@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  b",
+        " b ",
+        "a  "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:greatsword_hilt"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:claymore",
+        "count": 1
+    },
+    "group": "darkestsouls:claymore"
+}

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aca",
+        "dbd",
+        "cac"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:soul_fragment"
+        },
+        "b": {
+            "item": "darkestsouls:dark_fragment"
+        },
+        "c": {
+            "item": "darkestsouls:dragon_scale"
+        },
+        "d": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:dragon_ingot",
+        "count": 1
+    },
+    "group": "darkestsouls:dragon_ingot"
+}

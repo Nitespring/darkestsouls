@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  b",
+        "cb ",
+        "a  "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:curved_sword_hilt"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:falchion",
+        "count": 1
+    },
+    "group": "darkestsouls:falchion"
+}

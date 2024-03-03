@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " #d",
+        "DdQ",
+        "LB "
+    ],
+    "key": {
+        "#": {
+            "item": "darkestsouls:dark_essence"
+        },
+        "d": {
+            "item": "darkestsouls:dark_ingot"
+        },
+        "D": {
+            "item": "darkestsouls:corrupted_dragon_scale"
+        },
+        "Q": {
+            "item": "minecraft:quartz"
+        },
+        "L": {
+            "tag": "darkestsouls:common_katanas"
+        },
+        "B": {
+            "item": "minecraft:blaze_powder"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:frayed_blade",
+        "count": 1
+    },
+    "group": "darkestsouls:frayed_blade"
+}

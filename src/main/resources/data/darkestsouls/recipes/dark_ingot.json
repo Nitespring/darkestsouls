@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "bac",
+        "aca"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:dark_fragment"
+        },
+        "b": {
+            "item": "darkestsouls:twinkling_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:demon_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:dark_ingot",
+        "count": 1
+    },
+    "group": "darkestsouls:dark_ingot"
+}

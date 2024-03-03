@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  b",
+        "cb ",
+        "ad "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_handle"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:uchigatana",
+        "count": 1
+    },
+    "group": "darkestsouls:uchigatana"
+}

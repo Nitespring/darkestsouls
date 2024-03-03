@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cbc",
+        "bab",
+        "cbc"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "b": {
+            "tag": "minecraft:logs"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_nugget"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:workshop_mechanism",
+        "count": 1
+    },
+    "group": "darkestsouls:workshop_mechanism"
+}

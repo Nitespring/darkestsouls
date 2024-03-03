@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " da",
+        "cbd",
+        "bc "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:crystal"
+        },
+        "b": {
+            "item": "darkestsouls:bewitched_branch"
+        },
+        "c": {
+            "item": "darkestsouls:twinkling_fragment"
+        },
+        "d": {
+            "item": "minecraft:lapis_lazuli"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:crystal_staff",
+        "count": 1
+    },
+    "group": "darkestsouls:crystal_staff"
+}

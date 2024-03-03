@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "bab",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:rune_fragment"
+        },
+        "b": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:golden_alloy_ingot",
+        "count": 2
+    },
+    "group": "darkestsouls:golden_alloy_ingot"
+}

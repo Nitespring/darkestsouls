@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "bab",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:titanite_fragment"
+        },
+        "b": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:titanite_ingot",
+        "count": 1
+    },
+    "group": "darkestsouls:titanite_ingot"
+}

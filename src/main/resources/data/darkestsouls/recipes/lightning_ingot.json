@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:holy_ingot"
+    },
+    {
+      "item": "darkestsouls:dragon_ingot"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:lightning_ingot",
+    "count": 1
+  },
+  "group": "darkestsouls:lightning_ingot"
+}

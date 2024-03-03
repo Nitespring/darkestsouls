@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " da",
+        "ebd",
+        "ce "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:purple_crystal"
+        },
+        "b": {
+            "item": "darkestsouls:bewitched_branch"
+        },
+        "c": {
+            "item": "darkestsouls:twinkling_titanite"
+        },
+        "d": {
+            "item": "minecraft:quartz"
+        },
+        "e": {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:crystal_staff_purple",
+        "count": 1
+    },
+    "group": "darkestsouls:crystal_staff"
+}

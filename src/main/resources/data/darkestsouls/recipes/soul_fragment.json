@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    },
+    {
+      "item": "darkestsouls:small_soul_fragment"
+    }
+
+  ],
+  "result": {
+    "item": "darkestsouls:soul_fragment",
+    "count": 1
+  },
+  "group": "darkestsouls:soul_fragment"
+}

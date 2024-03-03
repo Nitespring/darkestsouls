@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " bb",
+        "cb ",
+        "ac "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:curved_sword_hilt"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:bone_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:bandit_curved_sword",
+        "count": 1
+    },
+    "group": "darkestsouls:bandit_curved_sword"
+}

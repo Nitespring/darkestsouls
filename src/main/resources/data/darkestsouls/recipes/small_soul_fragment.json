@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:soul_fragment"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:small_soul_essence",
+    "count": 9
+  },
+  "group": "darkestsouls:small_soul_essence"
+}

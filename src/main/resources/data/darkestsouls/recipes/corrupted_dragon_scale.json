@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aca",
+        "ada",
+        "bab"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:dark_fragment"
+        },
+        "b": {
+            "item": "darkestsouls:bone_fragment"
+        },
+        "c": {
+            "item": "darkestsouls:beast_blood_clump"
+        },
+        "d": {
+            "item": "darkestsouls:dragon_scale"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:corrupted_dragon_scale",
+        "count": 1
+    },
+    "group": "darkestsouls:corrupted_dragon_scale"
+}

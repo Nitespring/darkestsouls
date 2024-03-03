@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbe",
+        "cfb",
+        "ad "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_pole"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        },
+        "e": {
+            "item": "darkestsouls:bone_fragment"
+        },
+        "f": {
+            "item": "darkestsouls:dark_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:grave_scythe",
+        "count": 1
+    },
+    "group": "darkestsouls:grave_scythe"
+}

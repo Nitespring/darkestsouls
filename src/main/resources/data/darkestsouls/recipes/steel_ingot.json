@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "caa",
+        "bbd",
+        "cdc"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:golden_alloy_ingot"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:beast_blood_clump"
+        },
+        "d": {
+            "item": "darkestsouls:blood_stone_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:steel_ingot",
+        "count": 1
+    },
+    "group": "darkestsouls:steel_ingot"
+}

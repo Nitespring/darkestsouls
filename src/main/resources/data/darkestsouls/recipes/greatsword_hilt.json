@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ea",
+        "dba",
+        "ace"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "b": {
+            "item": "darkestsouls:reinforced_handle"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        },
+        "e": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:greatsword_hilt",
+        "count": 1
+    },
+    "group": "darkestsouls:greatsword_hilt"
+}

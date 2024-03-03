@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " be",
+        "dec",
+        "ab "
+    ],
+    "key": {
+        "a": {
+            "tag": "darkestsouls:common_katanas"
+        },
+        "b": {
+            "item": "darkestsouls:blood_stone_fragment"
+        },
+        "c": {
+            "item": "darkestsouls:beastblood_clump"
+        },
+        "d": {
+            "item": "darkestsouls:blood_essence"
+        },
+        "e": {
+            "item": "darkestsouls:steel_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:chikage",
+        "count": 1
+    },
+    "group": "darkestsouls:chikage"
+}

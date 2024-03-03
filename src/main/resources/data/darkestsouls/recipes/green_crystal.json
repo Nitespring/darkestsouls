@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " b ",
+        "bab",
+        " b "
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "b": {
+            "item": "darkestsouls:small_soul_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:green_crystal",
+        "count": 1
+    },
+    "group": "darkestsouls:green_crystal"
+}

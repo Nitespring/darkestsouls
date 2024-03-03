@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    },
+    {
+      "item": "darkestsouls:holy_nugget"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:holy_ingot",
+    "count": 1
+  },
+  "group": "darkestsouls:holy_ingot"
+}

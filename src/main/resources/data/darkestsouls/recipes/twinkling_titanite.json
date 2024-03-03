@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:twinkling_fragment"
+    },
+    {
+      "item": "darkestsouls:twinkling_fragment"
+    },
+    {
+      "item": "darkestsouls:twinkling_fragment"
+    },
+    {
+      "item": "darkestsouls:twinkling_fragment"
+    },
+    {
+      "item": "darkestsouls:twinkling_fragment"
+    },
+    {
+      "item": "darkestsouls:twinkling_fragment"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:twinkling_titanite",
+    "count": 1
+  },
+  "group": "darkestsouls:twinkling_titanite"
+}

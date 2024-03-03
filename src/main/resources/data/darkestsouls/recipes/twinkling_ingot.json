@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cba",
+        "ddd",
+        "abc"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:soul_fragment"
+        },
+        "b": {
+            "item": "darkestsouls:twinkling_titanite"
+        },
+        "c": {
+            "item": "darkestsouls:rune_fragment"
+        },
+        "d": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:twinkling_ingot",
+        "count": 1
+    },
+    "group": "darkestsouls:twinkling_ingot"
+}

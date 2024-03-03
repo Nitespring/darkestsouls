@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " db",
+        "cac",
+        "bd "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "b": {
+            "item": "darkestsouls:reinforced_handle"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:reinforced_pole",
+        "count": 1
+    },
+    "group": "darkestsouls:reinforced_pole"
+}

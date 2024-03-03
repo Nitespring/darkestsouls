@@ -13,6 +13,7 @@ import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
 
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

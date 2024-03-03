@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  e",
+        "cb ",
+        "ad "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_pole"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        },
+        "e": {
+            "item": "minecraft:iron_nugget"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:spear",
+        "count": 1
+    },
+    "group": "darkestsouls:spear"
+}

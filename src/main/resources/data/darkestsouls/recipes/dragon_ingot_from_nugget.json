@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    },
+    {
+      "item": "darkestsouls:dragon_nugget"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:dragon_ingot",
+    "count": 1
+  },
+  "group": "darkestsouls:dragon_ingot"
+}

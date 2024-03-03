@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:dragon_ingot"
+    },
+    {
+      "tag": "darkestsouls:common_curved_swords"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:storm_curved_sword",
+    "count": 1
+  },
+  "group": "darkestsouls:storm_curved_sword"
+}

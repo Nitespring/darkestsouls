@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:demon_fragment"
+    },
+    {
+      "item": "darkestsouls:demon_fragment"
+    },
+    {
+      "item": "darkestsouls:demon_fragment"
+    },
+    {
+      "item": "darkestsouls:demon_fragment"
+    },
+    {
+      "item": "darkestsouls:demon_fragment"
+    },
+    {
+      "item": "darkestsouls:demon_fragment"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:demon_titanite",
+    "count": 1
+  },
+  "group": "darkestsouls:demon_titanite"
+}

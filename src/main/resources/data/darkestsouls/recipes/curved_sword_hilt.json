@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " e ",
+        "ca ",
+        "bed"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "b": {
+            "item": "minecraft:stick"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        },
+        "e": {
+            "item": "minecraft:iron_nugget"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:curved_sword_hilt",
+        "count": 1
+    },
+    "group": "darkestsouls:curved_sword_hilt"
+}

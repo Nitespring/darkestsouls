@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " db",
+        " ac",
+        "cbd"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "b": {
+            "item": "minecraft:stick"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:reinforced_curved_handle",
+        "count": 1
+    },
+    "group": "darkestsouls:reinforced_curved_handle"
+}

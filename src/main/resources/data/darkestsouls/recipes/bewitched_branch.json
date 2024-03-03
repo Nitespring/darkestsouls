@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " b ",
+        "bab",
+        " b "
+    ],
+    "key": {
+        "a": {
+            "tag": "minecraft:logs"
+        },
+        "b": {
+            "item": "darkestsouls:small_soul_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:bewitched_branch",
+        "count": 1
+    },
+    "group": "darkestsouls:bewitched_branch"
+}

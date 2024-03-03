@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    },
+    {
+      "item": "darkestsouls:golden_alloy_nugget"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:golden_alloy_ingot",
+    "count": 1
+  },
+  "group": "darkestsouls:golden_alloy_ingot"
+}

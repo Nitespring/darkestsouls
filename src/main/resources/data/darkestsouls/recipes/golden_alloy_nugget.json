@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:golden_alloy_ingot"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:golden_alloy_nugget",
+    "count": 9
+  },
+  "group": "darkestsouls:golden_alloy_nugget"
+}

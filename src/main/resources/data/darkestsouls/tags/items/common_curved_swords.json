@@ -1,0 +1,9 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:scimitar",
+    "darkestsouls:falchion",
+    "darkestsouls:bandit_curved_sword",
+    "darkestsouls:huntsman_cutlass"
+  ]
+}

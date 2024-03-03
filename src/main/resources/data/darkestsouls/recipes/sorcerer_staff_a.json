@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  b",
+        " b ",
+        "b  "
+    ],
+    "key": {
+        "b": {
+            "item": "darkestsouls:bewitched_branch"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:sorcerer_staff_a",
+        "count": 1
+    },
+    "group": "darkestsouls:sorcerer_staff"
+}

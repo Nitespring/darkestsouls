@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    },
+    {
+      "item": "darkestsouls:lightning_nugget"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:lightning_ingot",
+    "count": 1
+  },
+  "group": "darkestsouls:lightning_ingot"
+}

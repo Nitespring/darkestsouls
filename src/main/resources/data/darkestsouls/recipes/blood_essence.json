@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aca",
+        "cbc",
+        "aca"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:beast_blood_clump"
+        },
+        "b": {
+            "item": "darkestsouls:blood_gem"
+        },
+        "c": {
+            "item": "darkestsouls:blood_stone_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:blood_essence",
+        "count": 1
+    },
+    "group": "darkestsouls:blood_essence"
+}

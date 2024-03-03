@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "baa",
+        "aca",
+        "aab"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:dark_fragment"
+        },
+        "b": {
+            "item": "darkestsouls:bone_fragment"
+        },
+        "c": {
+            "item": "darkestsouls:soul_essence"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:dark_essence",
+        "count": 1
+    },
+    "group": "darkestsouls:dark_essence"
+}

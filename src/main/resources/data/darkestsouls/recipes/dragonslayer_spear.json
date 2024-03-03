@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " ec",
+        "dbe",
+        "ad "
+    ],
+    "key": {
+        "a": {
+            "tag": "darkestsouls:common_spears"
+        },
+        "b": {
+            "item": "darkestsouls:dragon_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:lightning_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:holy_ingot"
+        },
+        "e": {
+            "item": "minecraft:gold_nugget"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:dragonslayer_spear",
+        "count": 1
+    },
+    "group": "darkestsouls:dragonslayer_spear"
+}

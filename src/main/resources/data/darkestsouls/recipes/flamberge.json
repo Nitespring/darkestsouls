@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " cb",
+        "cbc",
+        "ad "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:greatsword_hilt"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:iron_nugget"
+        },
+        "d": {
+            "item": "darkestsouls:blood_stone_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:flamberge",
+        "count": 1
+    },
+    "group": "darkestsouls:flamberge"
+}
