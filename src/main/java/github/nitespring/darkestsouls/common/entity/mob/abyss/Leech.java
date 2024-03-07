@@ -507,7 +507,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 			//this.checkForPreciseAttack();
 
 			this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
-			this.lastCanUpdateStateCheck = Math.max(this.ticksUntilNextAttack-1, 0);
+			this.lastCanUpdateStateCheck = Math.max(this.lastCanUpdateStateCheck-1, 0);
 			if(this.lastCanUpdateStateCheck<=0){
 				int r = this.mob.getRandom().nextInt(2048);
 				if(r<=128) {
@@ -726,7 +726,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 			this.checkForAttack(distance, reach);
 
 			this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
-			this.lastCanUpdateStateCheck = Math.max(this.ticksUntilNextAttack-1, 0);
+			this.lastCanUpdateStateCheck = Math.max(this.lastCanUpdateStateCheck-1, 0);
 			if(this.lastCanUpdateStateCheck<=0){
 				int r = this.mob.getRandom().nextInt(2048);
 				if(r<=64) {

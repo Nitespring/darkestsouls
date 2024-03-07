@@ -157,8 +157,8 @@ public class CreativeTabInit {
                         output.accept(ItemInit.GRAVETENDER_HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.SKELETON_FALCHION.get());
-                        output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());
                         output.accept(ItemInit.SKELETON_SPEAR.get());
+                        output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());
                         output.accept(ItemInit.BONEWHEEL.get());
                         output.accept(ItemInit.BEAST_PATIENT.get());
                         output.accept(ItemInit.CLOAKED_BEAST_PATIENT.get());
