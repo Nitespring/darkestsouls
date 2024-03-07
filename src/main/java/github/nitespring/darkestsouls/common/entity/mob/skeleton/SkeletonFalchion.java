@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
@@ -154,6 +155,9 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
     @Override
     public void tick() {
+        if(this.tickCount%5==0&&this.hasEffect(EffectInit.BLEED.get())){
+            this.removeEffect(EffectInit.BLEED.get());
+        }
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }

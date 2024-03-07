@@ -27,15 +27,16 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 
-public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
+public class SkeletonSpear extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected int animationTick = 0;
+
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
     protected Vec3 aimVec;
 
-    public SkeletonCurvedSwords(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+    public SkeletonSpear(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
         this.xpReward=10;
     }
@@ -46,7 +47,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<>(this, "main_controller", 2, this::predicate));
+        data.add(new AnimationController<>(this, "main_controller", 4, this::predicate));
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
@@ -61,7 +62,6 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
     }
 
 
-
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
@@ -73,31 +73,13 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.stun"));
                     break;
                 case 21:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack1"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.spear.attack1"));
                     break;
                 case 22:
-                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.curved_swords.attack2"));
+                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.spear.attack2"));
                     break;
                 case 23:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack3"));
-                    break;
-                case 24:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack4"));
-                    break;
-                case 25:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack5"));
-                    break;
-                case 26:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack6"));
-                    break;
-                case 27:
-                    event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.curved_swords.attack7"));
-                    break;
-                case 28:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack8"));
-                    break;
-                case 29:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack9"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.spear.attack3"));
                     break;
                 default:
                     if(this.onClimbable()) {
@@ -106,9 +88,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.fall"));
 
                     }else if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.curved_swords.walk"));
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.spear.walk"));
                     }else {
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.idle"));
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.skeleton.spear.idle"));
                     }
                     break;
             }
@@ -121,14 +103,14 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
             return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
         }));
         this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(1, new SkeletonCurvedSwords.AttackGoal(this));
-
+        this.goalSelector.addGoal(1, new SkeletonSpear.AttackGoal(this));
         super.registerGoals();
 
     }
 
     @Override
     public boolean canDrownInFluidType(FluidType type) {return false;}
+
     @Override
     public EntityDimensions getDimensions(Pose p_21047_) {
 
@@ -138,7 +120,6 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
             return this.getType().getDimensions();
         }
     }
-
 
     @Override
     public void tick() {
@@ -155,10 +136,8 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
     protected void playAnimation() {
         animationTick++;
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
-
         switch(this.getAnimationState()) {
             case 1:
-                this.getNavigation().stop();
                 if(animationTick>=30) {
                     this.getNavigation().stop();
                     animationTick=0;
@@ -168,228 +147,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 break;
             //Attack
             case 21:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(24);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 22:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(23);}
-                    else if(r<=800) {this.setAnimationState(25);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 23:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(24);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 24:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(21);}
-                    else if(r<=800) {this.setAnimationState(23);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-            case 25:
-                if(animationTick>=18) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8||animationTick==12) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=22&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(25);}
-                    else if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-                }
-                if(animationTick>=26) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 26:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=800) {this.setAnimationState(27);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 27:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==8) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
-                    int r = this.getRandom().nextInt(2048);
-                    if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 28:
-                if(animationTick>=2) {this.getNavigation().stop();}
-                else{this.moveToTarget();}
-
-                if(animationTick==9) {
-                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
-                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
-                                    0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+4.0f, 5);
-                    h.setOwner(this);
-                    h.setTarget(this.getTarget());
-                    this.level().addFreshEntity(h);
-                }
-                if(animationTick>=15) {
-                    animationTick=0;
-                    setAnimationState(0);
-                }
-                break;
-            case 29:
                 if(animationTick>=4) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-
-                if(animationTick==7) {
+                if(animationTick==4) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -397,7 +157,68 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==8){
+                if(animationTick==5){
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.15));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.15));
+                    }
+
+                }
+                if(animationTick==6) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=10&&flag) {
+                    this.getNavigation().stop();
+                    animationTick=0;
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {this.setAnimationState(21);}
+                    else if(r<=800) {this.setAnimationState(22);}
+                    else if(r<=1200){this.setAnimationState(23);}
+                }
+                if(animationTick>=12) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                if(!(animationTick>=15&&animationTick<=22)) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+                if(animationTick==24) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(animationTick>=36) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
+            case 23:
+                this.getNavigation().stop();
+                if(animationTick==11) {
+                    this.setDeltaMovement(0,1,0);
+                    if (this.getTarget() != null) {
+                        this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
+                    } else {
+                        this.aimVec = this.getLookAngle();
+                    }
+                }
+                if(animationTick==12){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
@@ -405,33 +226,36 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick==16) {
+                if(animationTick==13) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
                                     (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+6.0f, 5);
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=28) {
+                if(animationTick>=20&&flag) {
                     this.getNavigation().stop();
                     animationTick=0;
-
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400) {this.setAnimationState(22);}
+                }
+                if(animationTick>=28) {
+                    animationTick=0;
                     setAnimationState(0);
                 }
                 break;
         }
     }
-
     public void moveToTarget(){
         boolean flag = this.getTarget()!=null;
         if(flag) {
             this.getLookControl().setLookAt(this.getTarget(), 10.0F, 10.0F);
             Path path = this.getNavigation().createPath(this.getTarget(), 0);
-            this.getNavigation().moveTo(path, 1.1f);
+            this.getNavigation().moveTo(path, 1.2f);
         }
 
     }
@@ -439,9 +263,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
     public class AttackGoal extends Goal {
 
 
-        private final double speedModifier = 1.4f;
+        private final double speedModifier = 1.5f;
         private final boolean followingTargetEvenIfNotSeen = true;
-        protected final SkeletonCurvedSwords mob;
+        protected final SkeletonSpear mob;
         private Path path;
         private double pathedTargetX;
         private double pathedTargetY;
@@ -455,7 +279,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
 
 
-        public AttackGoal(SkeletonCurvedSwords entityIn) {
+        public AttackGoal(SkeletonSpear entityIn) {
             this.mob = entityIn;
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }
@@ -606,21 +430,17 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
         protected void checkForAttack(double distance, double reach){
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=400)      {this.mob.setAnimationState(21);}
-                else if(r<=600) {this.mob.setAnimationState(22);}
-                else if(r<=1000){this.mob.setAnimationState(23);}
-                else if(r<=1200){this.mob.setAnimationState(24);}
-                else if(r<=1300){this.mob.setAnimationState(25);}
-                else if(r<=1600){this.mob.setAnimationState(26);}
-                else if(r<=1800){this.mob.setAnimationState(27);}
-                else if(r<=1900){this.mob.setAnimationState(28);}
-                else            {this.mob.setAnimationState(29);}
-            }
+                if(r<=850) {
 
-            if (distance <= 2*reach && this.ticksUntilNextAttack <= 0) {
-                int r = this.mob.getRandom().nextInt(2048);
-                if (r <= 40) {
-                    this.mob.setAnimationState(29);
+                    this.mob.setAnimationState(21);
+
+                }else if(r<=1600){
+
+                    this.mob.setAnimationState(22);
+
+                } else{
+
+                    this.mob.setAnimationState(23);
                 }
             }
 

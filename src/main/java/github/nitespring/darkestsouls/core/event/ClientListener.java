@@ -11,6 +11,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowGeoR
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonSpearGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
@@ -55,6 +56,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SEWER_CENTIPEDE.get(), SewerCentipedeGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_FALCHION.get(), SkeletonFalchionGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_CURVED_SWORDS.get(), SkeletonCurvedSwordsGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SKELETON_SPEAR.get(), SkeletonSpearGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);

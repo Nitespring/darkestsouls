@@ -115,6 +115,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 13684684, 14079971, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_CURVED_SWORDS = ITEMS.register("skeleton_curved_swords_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 13684684, 7367532, new Item.Properties()));
+	public static final RegistryObject<Item> SKELETON_SPEAR = ITEMS.register("skeleton_spear_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, 13684684, 7367532, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_LONGSWORD = ITEMS.register("hollow_longsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 13945528, 5202790, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("hollow_broken_straightsword_spawn_egg",

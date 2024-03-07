@@ -55,6 +55,10 @@ public class EntitySpawnRegistration {
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
                     SpawnRules::checkSkeletonSpawnRules);
+            SpawnPlacements.register(EntityInit.SKELETON_SPEAR.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Types.MOTION_BLOCKING_NO_LEAVES,
+                    SpawnRules::checkSkeletonSpawnRules);
             SpawnPlacements.register(EntityInit.BONEWHEEL.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,

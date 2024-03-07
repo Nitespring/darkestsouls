@@ -18,7 +18,7 @@ public class CreativeTabInit {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB,
             DarkestSouls.MODID);
 
-    public static final RegistryObject<CreativeModeTab> equipment =   TABS.register("equipment",
+    public static final RegistryObject<CreativeModeTab> EQUIPMENT =   TABS.register("equipment",
             () ->CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.darkestsouls.equipment"))
                     .icon(ItemInit.DRAGONSLAYER_SPEAR.get()::getDefaultInstance)
@@ -158,6 +158,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.SKELETON_FALCHION.get());
                         output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());
+                        output.accept(ItemInit.SKELETON_SPEAR.get());
                         output.accept(ItemInit.BONEWHEEL.get());
                         output.accept(ItemInit.BEAST_PATIENT.get());
                         output.accept(ItemInit.CLOAKED_BEAST_PATIENT.get());

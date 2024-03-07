@@ -16,6 +16,7 @@ import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
+import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonSpear;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
@@ -52,6 +53,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<SkeletonCurvedSwords>of(SkeletonCurvedSwords::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("skeleton_curved_swords"));
+	public static final RegistryObject<EntityType<SkeletonSpear>> SKELETON_SPEAR = ENTITIES.register("skeleton_spear",
+			() -> EntityType.Builder.<SkeletonSpear>of(SkeletonSpear::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("skeleton_spear"));
 	public static final RegistryObject<EntityType<SewerCentipede>> SEWER_CENTIPEDE = ENTITIES.register("sewer_centipede",
 			() -> EntityType.Builder.<SewerCentipede>of(SewerCentipede::new, MobCategory.MONSTER)
 					.sized(1.4f, 1.2f)

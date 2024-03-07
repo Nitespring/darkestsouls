@@ -5,6 +5,7 @@ import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Skeleton;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
+import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonSpear;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -31,6 +32,8 @@ public class SkeletonItemLayer<T extends Skeleton & GeoEntity> extends BlockAndI
 				 return ItemInit.FALCHION.get().getDefaultInstance();
 			 }else if(animatable instanceof SkeletonCurvedSwords) {
 				 return ItemInit.BANDIT_CURVED_SWORD.get().getDefaultInstance();
+			 }else if(animatable instanceof SkeletonSpear) {
+				 return ItemInit.SPEAR.get().getDefaultInstance();
 			 }else{
 				 return null;
 			 }
@@ -70,6 +73,11 @@ protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack s
 			poseStack.translate(0.05, 0.76, -0.71);
 			poseStack.mulPose(Axis.XP.rotationDegrees(0));
 			poseStack.mulPose(Axis.YP.rotationDegrees(-15));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+		}else if(animatable instanceof SkeletonSpear) {
+			poseStack.translate(-0.0, 0.25, -0.7);
+			poseStack.mulPose(Axis.XP.rotationDegrees(0));
+			poseStack.mulPose(Axis.YP.rotationDegrees(0));
 			poseStack.mulPose(Axis.ZP.rotationDegrees(180));
 		}else{
 			poseStack.translate(0.00, 0.6, -0.5);
