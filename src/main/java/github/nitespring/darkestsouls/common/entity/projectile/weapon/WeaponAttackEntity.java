@@ -270,7 +270,7 @@ public class WeaponAttackEntity extends Entity {
                 if (target instanceof DarkestSoulsAbstractEntity && this.itemStack!=null && this.getOwner()!=null){
                     ((DarkestSoulsAbstractEntity) target).damagePoiseHealth(this.poiseDmg);
                 }
-                System.out.println("entity damage " + damage+ mobTypeBonus);
+                //System.out.println("entity damage " + damage+ mobTypeBonus);
                 this.hitEntities++;
             }
 
@@ -314,7 +314,7 @@ public class WeaponAttackEntity extends Entity {
 
     public void setDamage(float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death){
         this.damage=dmg;
-        System.out.println(dmg);
+        //System.out.println(dmg);
         this.poiseDmg=poisedmg;
         this.fire=fire;
         this.smite=smite;

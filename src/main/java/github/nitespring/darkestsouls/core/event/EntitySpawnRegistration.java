@@ -24,12 +24,11 @@ public class EntitySpawnRegistration {
             SpawnPlacements.register(EntityInit.CLOAKED_BEAST_PATIENT.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkBeastPatientSpawnRules);
+                    SpawnRules::checkCloakedBeastPatientSpawnRules);
             SpawnPlacements.register(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkBeastPatientSpawnRules);
-
+                    SpawnRules::checkAshenBloodBeastPatientSpawnRules);
             SpawnPlacements.register(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
@@ -37,33 +36,31 @@ public class EntitySpawnRegistration {
             SpawnPlacements.register(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkHollowSpawnRules);
+                    SpawnRules::checkGravetenderHollowSpawnRules);
             SpawnPlacements.register(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkHollowSpawnRules);
+                    SpawnRules::checkGravetenderHollowSpawnRules);
             SpawnPlacements.register(EntityInit.HOLLOW_LONGSWORD.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkHollowSpawnRules);
-
+                    SpawnRules::checkHollowSoldierSpawnRules);
             SpawnPlacements.register(EntityInit.SKELETON_FALCHION.get(),
             		SpawnPlacements.Type.ON_GROUND, 
             		Types.MOTION_BLOCKING_NO_LEAVES, 
-            		SpawnRules::checkSkeletonSpawnRules);
+            		SpawnRules::checkSkeletonFalchionSpawnRules);
             SpawnPlacements.register(EntityInit.SKELETON_CURVED_SWORDS.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkSkeletonSpawnRules);
+                    SpawnRules::checkSkeletonCurvedSwordsSpawnRules);
             SpawnPlacements.register(EntityInit.SKELETON_SPEAR.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkSkeletonSpawnRules);
+                    SpawnRules::checkSkeletonSpearSpawnRules);
             SpawnPlacements.register(EntityInit.BONEWHEEL.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
-                    SpawnRules::checkSkeletonSpawnRules);
-
+                    SpawnRules::checkBonewheelSpawnRules);
             SpawnPlacements.register(EntityInit.SEWER_CENTIPEDE.get(),
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,

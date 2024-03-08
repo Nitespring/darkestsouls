@@ -101,7 +101,7 @@ public class BleedMobEffect extends MobEffect {
     }
 
     public void applyDamage(LivingEntity living, float dmg){
-        System.out.println("Apply bleed to "+ living.getMobType().toString());
+        //System.out.println("Apply bleed to "+ living.getMobType().toString());
         if(!(living instanceof Player p && p.isCreative())) {
             living.hurt(living.level().damageSources().genericKill(), dmg);
         }

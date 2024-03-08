@@ -468,9 +468,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
             this.ticksUntilNextAttack = 5;
-            this.lastCanUpdateStateCheck = 666;
+            this.lastCanUpdateStateCheck = 150;
             int r = this.mob.getRandom().nextInt(2048);
-            if(r<=250) {
+            if(r<=840) {
                 this.mob.setCombatState(1);
                 this.stop();
             }
@@ -698,8 +698,11 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 this.mob.setTarget((LivingEntity)null);
             }
             int r = this.mob.getRandom().nextInt(2048);
-            if(r<=650) {
+            if(r<=650 || livingentity==null || !livingentity.isAlive() || livingentity.isSpectator()
+                    || (livingentity instanceof Player && ((Player)livingentity).isCreative())) {
+
                 this.mob.setCombatState(0);
+
             }
             this.mob.getNavigation().stop();
         }
@@ -722,7 +725,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             this.lastCanUpdateStateCheck = Math.max(this.lastCanUpdateStateCheck-1, 0);
             if(this.lastCanUpdateStateCheck<=0){
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=268) {
+                if(r<=368) {
                     this.mob.setCombatState(0);
                     this.stop();
                 }

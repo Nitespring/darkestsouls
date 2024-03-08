@@ -121,12 +121,12 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
 	public void setPoiseHealth(int i) {
 		this.entityData.set(POISE_HEALTH, i);
-		System.out.println("Poise: " + i + "/" + this.getMaxPoise());
+		//System.out.println("Poise: " + i + "/" + this.getMaxPoise());
 	}
 
 	public void damagePoiseHealth(int i) {
 		this.setPoiseHealth(this.getPoiseHealth() - i);
-		System.out.println("damaged poise " + i);
+		//System.out.println("damaged poise " + i);
 	}
 
 	public void healPoiseHealth(int i) {
@@ -224,7 +224,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		if (this.entityData.get(POISE_HEALTH) <= -1) {
 			this.setStunAnimation();
 
-			System.out.println("should Stun");
+			//System.out.println("should Stun");
 		}
 
 		super.tick();

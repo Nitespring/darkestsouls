@@ -18,7 +18,7 @@
   "spawners": {
     "type": "darkestsouls:hollow_broken_straightsword",
     "weight": 100,
-    "minCount": 3,
-    "maxCount": 7
+    "minCount": 1,
+    "maxCount": 5
   }
 }

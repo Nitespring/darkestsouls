@@ -117,7 +117,7 @@ public class Weapon extends Item implements Vanishable,ILeftClickItem {
 
         float f = (float) (strengthModifier + enchantmentsModifier);
 
-        System.out.println("weapon damage " + f+this.getAttackDamage());
+        //System.out.println("weapon damage " + f+this.getAttackDamage());
         return f+this.getAttackDamage();
 
     }
