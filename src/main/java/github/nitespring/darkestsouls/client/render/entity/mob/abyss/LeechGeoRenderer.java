@@ -1,7 +1,7 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.abyss;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.Leech;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
@@ -10,14 +10,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.model.data.EntityModelData;
-import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class LeechGeoRenderer extends GeoEntityRenderer<Leech>{
+
+public class LeechGeoRenderer extends GeoEntityRenderer<Leech> {
 
 	public LeechGeoRenderer(EntityRendererProvider.Context renderManager)
     {
