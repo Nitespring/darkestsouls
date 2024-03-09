@@ -69,7 +69,7 @@ public class WindSlash extends AbstractHurtingProjectile {
             Vec3 off = new Vec3(r.nextFloat()-0.5, r.nextFloat()-0.5,r.nextFloat()-0.5).multiply(0.5f,0.5f,0.5f);
             //this.level().addAlwaysVisibleParticle(new DustParticleOptions(new Vector3f(1f, 1f, 0), 0.5f),
             //       this.position().x+0.5*this.getDimensionScale()*off.x, this.position().y + 0.5 + 0.5*this.getDimensionScale()*off.y, this.position().z +0.5*this.getDimensionScale()*off.z, off.x*r.nextFloat(), off.y*r.nextFloat(), off.z*r.nextFloat());
-            this.level().addAlwaysVisibleParticle(ParticleTypes.WHITE_SMOKE,
+            this.level().addAlwaysVisibleParticle(ParticleTypes.POOF,
                     this.position().x + 1.5  * off.x, this.position().y + 0.5 +this.getBbHeight()*1.5f * off.y, this.position().z + 1.5  * off.z, off.x * r.nextFloat(), off.y * r.nextFloat(), off.z * r.nextFloat());
         }
 
@@ -95,7 +95,7 @@ public class WindSlash extends AbstractHurtingProjectile {
     @Nullable
     @Override
     protected ParticleOptions getTrailParticle() {
-        return ParticleTypes.WHITE_SMOKE;
+        return ParticleTypes.POOF;
        //return ParticleTypes.ELECTRIC_SPARK;
         //return ParticleTypes.SCULK_SOUL;
     }
@@ -111,7 +111,7 @@ public class WindSlash extends AbstractHurtingProjectile {
             Vec3 off = new Vec3(r.nextFloat()-0.5, r.nextFloat()-0.5,r.nextFloat()-0.5).multiply(0.5f,0.5f,0.5f);
             //this.level().addAlwaysVisibleParticle(new DustParticleOptions(new Vector3f(1f, 1f, 0), 0.5f),
              //       this.position().x+0.5*this.getDimensionScale()*off.x, this.position().y + 0.5 + 0.5*this.getDimensionScale()*off.y, this.position().z +0.5*this.getDimensionScale()*off.z, off.x*r.nextFloat(), off.y*r.nextFloat(), off.z*r.nextFloat());
-            this.level().addAlwaysVisibleParticle(ParticleTypes.WHITE_SMOKE,
+            this.level().addAlwaysVisibleParticle(ParticleTypes.POOF,
                     this.position().x + 0.5  * off.x, this.position().y + 0.5 +this.getBbHeight()*0.5f * off.y, this.position().z + 0.5  * off.z, off.x * r.nextFloat(), off.y * r.nextFloat(), off.z * r.nextFloat());
         }
         this.level().addAlwaysVisibleParticle(ParticleTypes.EXPLOSION,
@@ -139,7 +139,7 @@ public class WindSlash extends AbstractHurtingProjectile {
                 //        this.position().x + 0.5 * this.getDimensionScale() * off.x, this.position().y + 0.5 + 0.5 * this.getDimensionScale() * off.y, this.position().z + 0.5 * this.getDimensionScale() * off.z, off.x * r.nextFloat(), off.y * r.nextFloat(), off.z * r.nextFloat());
                 if(this.level() instanceof ServerLevel level) {
                     //level.sendParticles( ParticleTypes.ELECTRIC_SPARK, this.position().x+off.x, this.position().y +this.getBbHeight()*0.5f +off.y, this.position().z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
-                    level.sendParticles( ParticleTypes.WHITE_SMOKE, this.position().x+off.x, this.position().y+this.getBbHeight()*0.5f+off.y, this.position().z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
+                    level.sendParticles( ParticleTypes.POOF, this.position().x+off.x, this.position().y+this.getBbHeight()*0.5f+off.y, this.position().z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
                 }
             }
         if(this.level() instanceof ServerLevel level) {

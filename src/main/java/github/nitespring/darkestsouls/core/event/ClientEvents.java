@@ -26,7 +26,7 @@ public class ClientEvents {
 	if(instance.options.keyAttack.isDown()) {
 		 if(isAttackKeyDown==false) {
 			 //instance.getConnection().send(new ItemLeftClickAction(1));
-			 DarkestSoulsPacketHandler.sendToServer(new ItemLeftClickAction());
+			 DarkestSoulsPacketHandler.sendToServer(new ItemLeftClickAction(1));
 			 isAttackKeyDown=true;
 		 }
 	 }else {
@@ -39,7 +39,7 @@ public class ClientEvents {
 	public static void trickKeybind(ClientTickEvent event) {
 		if(KeybindInit.trickKeybind.isDown()) {
 			if(isTrickKeyDown==false) {
-				DarkestSoulsPacketHandler.sendToServer(new TransformWeaponAction());
+				DarkestSoulsPacketHandler.sendToServer(new TransformWeaponAction(1));
 				isTrickKeyDown=true;
 			}
 		}else {

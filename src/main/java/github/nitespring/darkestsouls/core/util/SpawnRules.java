@@ -92,20 +92,17 @@ public class SpawnRules{
 
     public static boolean checkSurfaceMonsterSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return levelAccessor.getDifficulty() != Difficulty.PEACEFUL && levelAccessor.canSeeSky(pos)
-                && (MobSpawnType.ignoresLightRequirements(spawnType)
-                || isDarkEnoughToSpawnForVanilla(levelAccessor, pos, random))
+                && isDarkEnoughToSpawnForVanilla(levelAccessor, pos, random)
                 && checkVanillaMobSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
     public static boolean checkLowLightMonsterSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return levelAccessor.getDifficulty() != Difficulty.PEACEFUL
-                && (MobSpawnType.ignoresLightRequirements(spawnType)
-                || isDarkEnoughToSpawnLowLight(levelAccessor, pos, random))
+                && isDarkEnoughToSpawnLowLight(levelAccessor, pos, random)
                 && checkVanillaMobSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
     public static boolean checkVanillaMonsterSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return levelAccessor.getDifficulty() != Difficulty.PEACEFUL
-                && (MobSpawnType.ignoresLightRequirements(spawnType)
-                || isDarkEnoughToSpawnForVanilla(levelAccessor, pos, random))
+                && isDarkEnoughToSpawnForVanilla(levelAccessor, pos, random)
                 && checkVanillaMobSpawnRules(mob, levelAccessor, spawnType, pos, random);
     }
     public static boolean checkVanillaAnyLightMonsterSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

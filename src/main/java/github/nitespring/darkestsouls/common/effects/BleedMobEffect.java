@@ -96,9 +96,12 @@ public class BleedMobEffect extends MobEffect {
     }
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int p_297908_, int p_301085_) {
+    public boolean isDurationEffectTick(int p_297908_, int p_301085_) {
         return true;
     }
+
+
+
 
     public void applyDamage(LivingEntity living, float dmg){
         //System.out.println("Apply bleed to "+ living.getMobType().toString());

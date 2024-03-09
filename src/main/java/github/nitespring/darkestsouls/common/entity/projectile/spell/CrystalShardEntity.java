@@ -56,9 +56,9 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
         super(p_36833_, p_36834_);
     }
 
-    public CrystalShardEntity(EntityType<? extends AbstractHurtingProjectile> p_310629_, double p_311590_, double p_312782_, double p_309484_, Level p_311660_) {
-        super(p_310629_, p_311590_, p_312782_, p_309484_, p_311660_);
-    }
+
+
+
 
     public CrystalShardEntity(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
         super(p_36826_, p_36827_, p_36828_, p_36829_, p_36830_, p_36831_);
@@ -182,7 +182,7 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
         return zRot;
     }
 
-    public void setzRot(float rot) {
+    public void setZRot(float rot) {
         this.zRot = rot;
     }
 

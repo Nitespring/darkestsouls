@@ -62,7 +62,7 @@ public class ParasitesMobEffect extends MobEffect{
 
 
 	@Override
-	public boolean shouldApplyEffectTickThisTick(int a, int b) {
+	public boolean isDurationEffectTick(int a, int b) {
 
 		int k = 16 >> b;
         if (k > 0) {

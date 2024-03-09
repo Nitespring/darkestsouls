@@ -24,7 +24,6 @@ public class StormCurvedSword extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
-        if(CommonConfig.do_special_attacks.get()) {
             if (!playerIn.isUsingItem()) {
                 Vec3 pos = playerIn.position();
                 Vec3 aim = playerIn.getLookAngle();
@@ -45,7 +44,7 @@ public class StormCurvedSword extends Weapon {
                 levelIn.addFreshEntity(e);
                 playerIn.level().playSound((Player) null, playerIn, SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.6F, 0.8F);
             }
-        }
+
     }
     @Override
     public void doRightClickAction(Player playerIn, ItemStack item) {

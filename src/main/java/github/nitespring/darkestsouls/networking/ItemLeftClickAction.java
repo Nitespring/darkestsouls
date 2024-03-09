@@ -7,21 +7,30 @@ import github.nitespring.darkestsouls.common.item.Weapon;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.network.CustomPayloadEvent;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 
 public class ItemLeftClickAction {
-	       
+
+			private final int id;
 	      
 
-	        public ItemLeftClickAction(FriendlyByteBuf buf) {}
-	        public ItemLeftClickAction() {}
+	        public ItemLeftClickAction(FriendlyByteBuf buf) {
+				id = buf.readInt();
+			}
+	        public ItemLeftClickAction(int id) {
+				this.id = id;
+			}
 	        //public void toBytes(FriendlyByteBuf buf) {}
-	        public void encode(FriendlyByteBuf buffer) {}
+	        public void encode(FriendlyByteBuf buf) {
+				buf.writeInt(id);
+			}
 
-	        public void handle(CustomPayloadEvent.Context ctx) {
-				ctx.enqueueWork(() -> {
-	            	Player playerIn = ctx.getSender();
+	        public void handle(Supplier<NetworkEvent.Context> ctx) {
+				ctx.get().enqueueWork(() -> {
+	            	Player playerIn = ctx.get().getSender();
 	            	if (playerIn==null)
 	            			return;
 	            	ItemStack mainHand = playerIn.getMainHandItem();

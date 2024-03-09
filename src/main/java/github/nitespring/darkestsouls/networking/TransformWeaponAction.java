@@ -7,23 +7,31 @@ import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.network.CustomPayloadEvent;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 
 public class TransformWeaponAction {
 
+			private final int id;
 
-
-	        public TransformWeaponAction(FriendlyByteBuf buf) {}
-	        public TransformWeaponAction() {}
+	        public TransformWeaponAction(FriendlyByteBuf buf) {
+				id = buf.readInt();
+			}
+	        public TransformWeaponAction(int id) {
+				this.id = id;
+			}
 	        //public void toBytes(FriendlyByteBuf buf) {}
-	        public void encode(FriendlyByteBuf buffer) {}
+	        public void encode(FriendlyByteBuf buf) {
+				buf.writeInt(id);
+			}
 
-	        public void handle(CustomPayloadEvent.Context ctx) {
+	        public void handle(Supplier<NetworkEvent.Context> ctx) {
 
 
-				ctx.enqueueWork(() -> {
-					Player playerIn = ctx.getSender();
+				ctx.get().enqueueWork(() -> {
+					Player playerIn = ctx.get().getSender();
 					if (playerIn==null)
 						return;
 

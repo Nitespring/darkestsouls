@@ -18,9 +18,6 @@ public class MagmaBurstParent extends MagmaBurstEntity{
         super(p_36833_, p_36834_);
     }
 
-    public MagmaBurstParent(EntityType<? extends AbstractHurtingProjectile> p_310629_, double p_311590_, double p_312782_, double p_309484_, Level p_311660_) {
-        super(p_310629_, p_311590_, p_312782_, p_309484_, p_311660_);
-    }
 
     public MagmaBurstParent(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
         super(p_36826_, p_36827_, p_36828_, p_36829_, p_36830_, p_36831_);
@@ -33,7 +30,8 @@ public class MagmaBurstParent extends MagmaBurstEntity{
         if(this.lifeTicks%3==0){
             Vec3 pos = this.position().add(0,-0.12,0);
             RandomSource r = this.random;
-            MagmaBurstEntity e = new MagmaBurstEntity(EntityInit.MAGMA_BURST_CHILD.get(), pos.x+1.5*(r.nextFloat()-0.5),pos.y,pos.z+1.5*(r.nextFloat()-0.5), this.level());
+            MagmaBurstEntity e = new MagmaBurstEntity(EntityInit.MAGMA_BURST_CHILD.get(), this.level());
+            e.setPos(pos.x+1.5*(r.nextFloat()-0.5),pos.y,pos.z+1.5*(r.nextFloat()-0.5));
             //e.yPower=-1.0f;
             e.setDamage(this.getDamage());
             e.setLifeTicks(160);

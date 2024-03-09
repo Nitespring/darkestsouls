@@ -50,7 +50,7 @@ public class RotMobEffect extends MobEffect{
 
 
 	@Override
-	public boolean shouldApplyEffectTickThisTick(int a, int b) {
+	public boolean isDurationEffectTick(int a, int b) {
 
 		int k = 60 >> b;
         if (k > 0) {
