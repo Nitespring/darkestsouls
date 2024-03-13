@@ -1,0 +1,73 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.skull",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "head_root",
+					"pivot": [0, 6, 0]
+				},
+				{
+					"name": "head_rotation",
+					"parent": "head_root",
+					"pivot": [0, 6, 0]
+				},
+				{
+					"name": "head",
+					"parent": "head_rotation",
+					"pivot": [0, 6, 0],
+					"cubes": [
+						{"origin": [-4, 2, -4], "size": [8, 8, 8], "inflate": -0.3, "uv": [0, 0]},
+						{"origin": [-4, 2, -4], "size": [8, 8, 8], "uv": [32, 0]}
+					]
+				},
+				{
+					"name": "jaw_root",
+					"parent": "head",
+					"pivot": [0, 4.1, -0.35]
+				},
+				{
+					"name": "jaw",
+					"parent": "jaw_root",
+					"pivot": [0, 4, -0.35],
+					"cubes": [
+						{"origin": [-4, 1.2, -4], "size": [8, 8, 8], "inflate": -0.5, "uv": [0, 16]},
+						{"origin": [-4, 1.2, -4], "size": [8, 8, 8], "inflate": -0.2, "uv": [32, 16]}
+					]
+				},
+				{
+					"name": "aura",
+					"parent": "head",
+					"pivot": [0, 6, 0],
+					"cubes": [
+						{"origin": [-4, 2, -4], "size": [8, 8, 8], "inflate": 1, "uv": [0, 48]}
+					]
+				},
+				{
+					"name": "aura1",
+					"parent": "head",
+					"pivot": [0, 6, 0],
+					"cubes": [
+						{"origin": [-4, 2, -4], "size": [8, 8, 8], "inflate": 2, "uv": [32, 48]}
+					]
+				},
+				{
+					"name": "aura2",
+					"parent": "head",
+					"pivot": [0, 6, 0],
+					"cubes": [
+						{"origin": [-4, 2, -4], "size": [8, 8, 8], "inflate": 5, "uv": [32, 32]}
+					]
+				}
+			]
+		}
+	]
+}
