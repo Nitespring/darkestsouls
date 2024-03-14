@@ -13,6 +13,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.Skeleton
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonSpearGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
@@ -36,6 +37,7 @@ public class ClientListener {
 
 	public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "square_texture"), "main");
 	public static final ModelLayerLocation FRAYED_BLADE_FLAME = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "frayed_blade_fire"), "main");
+	public static final ModelLayerLocation BULLET = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "bullet"), "main");
 
 
 	@SubscribeEvent
@@ -43,6 +45,7 @@ public class ClientListener {
 
 		event.registerLayerDefinition(SQUARE_TEXTURE, SquareTextureEntityModel::createBodyLayer);
 		event.registerLayerDefinition(FRAYED_BLADE_FLAME, FrayedBladeFlameModel::createBodyLayer);
+		event.registerLayerDefinition(BULLET, BulletModel::createBodyLayer);
 
 	}
 
