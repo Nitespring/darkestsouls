@@ -1,21 +1,18 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
-import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
-import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class HuntingAxe extends Weapon {
-    public HuntingAxe(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+public class Greataxe extends Weapon {
+    public Greataxe(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
         super(tier, attack, speed, knockback, poise, blood, poison, frost, rot, death, fire, holy, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 

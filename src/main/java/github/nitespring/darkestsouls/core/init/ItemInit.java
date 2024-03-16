@@ -1,8 +1,6 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.GraveScytheRenderer;
-import github.nitespring.darkestsouls.common.item.Staff;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.common.item.child.staves.ChaosStaff;
 import github.nitespring.darkestsouls.common.item.child.staves.CrystalStaff;
@@ -13,7 +11,6 @@ import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
 
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -59,7 +56,13 @@ public class ItemInit {
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
-			() -> new Falchion(Tiers.TITANITE, 5.5f, 1.8f, -0.1f, 5, 275,7,0.13f, 2,new Item.Properties()));
+			() -> new Falchion(Tiers.TITANITE, 6.0f, 1.7f, -0.1f, 5, 275,7,0.13f, 2,new Item.Properties()));
+	public static final RegistryObject<Shotel> SHOTEL = ITEMS.register("shotel",
+			() -> new Shotel(Tiers.TITANITE, 5.5f, 1.8f, -0.2f, 4,1,0,0,0,0,0,0, 275,7,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<Shotel> CARTHUS_SHOTEL = ITEMS.register("carthus_shotel",
+			() -> new Shotel(Tiers.TITANITE, 5.5f, 1.8f, -0.2f, 5, 2,0,0,0,0,0,0,275,7,0.14f, 2,new Item.Properties()));
+	public static final RegistryObject<CurvedGreatsword> CARTHUS_CURVED_GREATSWORD= ITEMS.register("carthus_curved_greatsword",
+			() -> new CurvedGreatsword(Tiers.TITANITE, 7.0f, 1.6f, 0.2f, 7, 2,0,0,0,0,0,0,225,8,0.105f, 5,new Item.Properties()));
 	public static final RegistryObject<Claymore> CLAYMORE = ITEMS.register("claymore",
 			() -> new Claymore(Tiers.TITANITE, 9.0f, 1.2f, 0.4f, 12, 500,7,0.09f, 3,new Item.Properties()));
 	public static final RegistryObject<Flamberge> FLAMBERGE = ITEMS.register("flamberge",
@@ -74,9 +77,16 @@ public class ItemInit {
 			() -> new GraveScythe(Tiers.TITANITE, 7.0f, 1.6f, 0.2f, 7, 2,0,0,0,0,0,0,225,8,0.105f, 5,new Item.Properties()));
 	public static final RegistryObject<Uchigatana> UCHIGATANA = ITEMS.register("uchigatana",
 			() -> new Uchigatana(Tiers.TITANITE, 6.0f, 1.7f, 0.1f, 5,2,0,0,0,0,0,0, 200,15,0.11f, 2,new Item.Properties()));
+	public static final RegistryObject<Weapon> BATTLE_AXE = ITEMS.register("battle_axe",
+			() -> new Axe(Tiers.TITANITE, 6.0f, 1.4f, 0.1f, 6, 0,0,0,0,0,0,0,225,8,0.09f, 2,new Item.Properties()));
+	public static final RegistryObject<Greataxe> EXECUTIONER_GREATAXE = ITEMS.register("executioner_greataxe",
+			() -> new Greataxe(Tiers.TITANITE, 10.0f, 1.0f, 0.4f, 10, 0,0,0,0,0,0,0,225,8,0.07f, 3,new Item.Properties()));
+	public static final RegistryObject<Greataxe> CRESCENT_MOON_GREATAXE = ITEMS.register("crescent_moon_greataxe",
+			() -> new Greataxe(Tiers.TITANITE, 9.0f, 1.2f, 0.4f, 10, 0,0,0,0,0,0,0,225,8,0.08f, 3,new Item.Properties()));
+
 
 	public static final RegistryObject<Weapon> HUNTSMAN_AXE = ITEMS.register("hunting_axe",
-			() -> new HuntingAxe(Tiers.TITANITE, 6.0f, 1.4f, 0.1f, 6, 0,0,0,0,0,0,0,225,8,0.09f, 2,new Item.Properties()));
+			() -> new Axe(Tiers.TITANITE, 6.0f, 1.4f, 0.1f, 6, 0,0,0,0,0,0,0,225,8,0.09f, 2,new Item.Properties()));
 	public static final RegistryObject<Scimitar> HUNTSMAN_CUTLASS = ITEMS.register("huntsman_cutlass",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.11f, 2,new Item.Properties()));
 	public static final RegistryObject<Weapon> HUNTSMAN_PITCHFORK = ITEMS.register("huntsman_pitchfork",
