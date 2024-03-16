@@ -28,12 +28,18 @@ public class CreativeTabInit {
                         output.accept(ItemInit.SCIMITAR.get());
                         output.accept(ItemInit.FALCHION.get());
                         output.accept(ItemInit.BANDIT_CURVED_SWORD.get());
+                        output.accept(ItemInit.SHOTEL.get());
+                        output.accept(ItemInit.CARTHUS_SHOTEL.get());
                         output.accept(ItemInit.HUNTSMAN_CUTLASS.get());
                         output.accept(ItemInit.UCHIGATANA.get());
                         output.accept(ItemInit.SHADOW_BLADE.get());
+                        output.accept(ItemInit.BATTLE_AXE.get());
                         output.accept(ItemInit.CLAYMORE.get());
                         output.accept(ItemInit.FLAMBERGE.get());
                         output.accept(ItemInit.ZWEIHANDER.get());
+                        output.accept(ItemInit.SPEAR.get());
+                        output.accept(ItemInit.CRESCENT_MOON_GREATAXE.get());
+                        output.accept(ItemInit.EXECUTIONER_GREATAXE.get());
                         output.accept(ItemInit.SPEAR.get());
                         output.accept(ItemInit.HUNTSMAN_PITCHFORK.get());
                         output.accept(ItemInit.HUNTSMAN_AXE.get());
