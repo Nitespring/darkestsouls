@@ -34,7 +34,8 @@ public class ItemInit {
 			() -> new DragonslayerSwordspear(Tiers.TITANITE, 7.0f, 1.8f, 0.1f, 7, 1350,10,0.12f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<StormCurvedSword> STORM_CURVED_SWORD = ITEMS.register("storm_curved_sword",
 			() -> new StormCurvedSword(Tiers.TITANITE, 6.0f, 2.1f, 0.1f, 5, 0,0,0,0,0,0,0, 1350,10,0.14f, 2,new Item.Properties().rarity(Rarity.EPIC)));
-
+	public static final RegistryObject<DragonslayerGreataxe> DRAGONSLAYER_GREATAXE = ITEMS.register("dragonslayer_greataxe",
+			() -> new DragonslayerGreataxe(Tiers.TITANITE, 10.0f, 1.0f, 0.4f, 10, 0,0,0,0,0,0,0,225,8,0.07f, 3,new Item.Properties()));
 	//Trick Weapons
 	public static final RegistryObject<SawCleaver> SAW_CLEAVER = ITEMS.register("saw_cleaver",
 			() -> new SawCleaver(Tiers.TITANITE, 6.0f, 1.7f, 0.1f, 6, 0,0,0,0,0,0,0,1350,15,0.108f, 2,new Item.Properties().rarity(Rarity.RARE)));

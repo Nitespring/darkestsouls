@@ -1,0 +1,28 @@
+{
+    "parent": "item/generated",
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 0, 10.0, -2.4 ],
+            "scale": [ 2.25, 2.25, 0.85 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 0, 10.0, -2.4 ],
+            "scale": [ 2.25, 2.25, 0.85 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+            "translation": [ 0.63, 4.5, -1.23 ],
+            "scale": [ 1.36, 1.36, 0.58 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 0.63, 4.5, -1.23 ],
+            "scale": [ 1.36, 1.36, 0.58 ]
+        }
+    },
+    "textures": {
+    "layer0": "darkestsouls:item/weapon/executioner_greataxe"
+    }
+}

@@ -37,6 +37,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.CLAYMORE.get());
                         output.accept(ItemInit.FLAMBERGE.get());
                         output.accept(ItemInit.ZWEIHANDER.get());
+                        output.accept(ItemInit.CARTHUS_CURVED_GREATSWORD.get());
                         output.accept(ItemInit.SPEAR.get());
                         output.accept(ItemInit.CRESCENT_MOON_GREATAXE.get());
                         output.accept(ItemInit.EXECUTIONER_GREATAXE.get());
@@ -51,6 +52,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.STORM_CURVED_SWORD.get());
                         output.accept(ItemInit.DRAGONSLAYER_SPEAR.get());
                         output.accept(ItemInit.DRAGONSLAYER_SWORDSPEAR.get());
+                        output.accept(ItemInit.DRAGONSLAYER_GREATAXE.get());
                         output.accept(ItemInit.FRAYED_BLADE.get());
                         output.accept(ItemInit.HUNTER_PISTOL.get());
                         output.accept(ItemInit.HUNTER_TORCH.get());
