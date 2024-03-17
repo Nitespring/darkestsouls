@@ -7,6 +7,8 @@ import github.nitespring.darkestsouls.common.item.child.staves.CrystalStaff;
 import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
 import github.nitespring.darkestsouls.common.item.child.weapons.*;
 import github.nitespring.darkestsouls.common.item.child.weapons.trickweapon.*;
+import github.nitespring.darkestsouls.common.item.throwing.Firebomb;
+import github.nitespring.darkestsouls.common.item.throwing.ThrowingKnife;
 import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
 
@@ -15,6 +17,7 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter;
 
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
@@ -114,6 +117,22 @@ public class ItemInit {
 	//Guns
 	public static final RegistryObject<Item> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
 			() -> new Item(new Item.Properties()));
+
+	//Throwing
+	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",
+			() -> new ThrowingKnife(new Item.Properties().stacksTo(20)));
+	public static final RegistryObject<ThrowingKnife> BONE_KNIFE = ITEMS.register("bone_knife",
+			() -> new ThrowingKnife(new Item.Properties().stacksTo(24)));
+	public static final RegistryObject<ThrowingKnife> BLOOD_KNIFE = ITEMS.register("blood_knife",
+			() -> new ThrowingKnife(new Item.Properties().stacksTo(20)));
+	public static final RegistryObject<ThrowingKnife> POISON_KNIFE = ITEMS.register("poison_knife",
+			() -> new ThrowingKnife(new Item.Properties().stacksTo(20)));
+	public static final RegistryObject<ThrowingKnife> KUKRI = ITEMS.register("kukri",
+			() -> new ThrowingKnife(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(16)));
+	public static final RegistryObject<Firebomb> FIREBOMB = ITEMS.register("firebomb",
+			() -> new Firebomb(new Item.Properties().stacksTo(20)));
+	public static final RegistryObject<Firebomb> BLACK_FIREBOMB = ITEMS.register("black_firebomb",
+			() -> new Firebomb(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(12)));
 
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",

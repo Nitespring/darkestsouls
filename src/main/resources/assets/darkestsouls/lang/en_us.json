@@ -1,4 +1,14 @@
 {
+  "item.darkestsouls.firebomb" : "Firebomb",
+  "item.darkestsouls.black_firebomb" : "Black Firebomb",
+
+  "item.darkestsouls.throwing_knife" : "Throwing Knife",
+  "item.darkestsouls.bone_knife" : "Bone Knife",
+  "item.darkestsouls.blood_knife" : "Blood Knife",
+  "item.darkestsouls.poison_knife" : "Poison Knife",
+  "item.darkestsouls.kukri" : "Kukri",
+
+
   "item.darkestsouls.broken_straightsword" : "Broken Straightsword",
   "item.darkestsouls.longsword" : "Longsword",
   "item.darkestsouls.scimitar" : "Scimitar",
@@ -21,6 +31,13 @@
   "item.darkestsouls.dragonslayer_swordspear" : "Dragonslayer Swordspear",
   "item.darkestsouls.storm_curved_sword" : "Storm Curved Sword",
   "item.darkestsouls.shadow_blade" : "Shadow Blade",
+  "item.darkestsouls.executioner_greataxe" : "Executioner Greataxe",
+  "item.darkestsouls.crescent_moon_greataxe" : "Crescent Moon Greataxe",
+  "item.darkestsouls.dragonslayer_greataxe" : "Dragonslayer Greataxe",
+  "item.darkestsouls.battle_axe" : "Battle Axe",
+  "item.darkestsouls.shotel" : "Shotel",
+  "item.darkestsouls.carthus_shotel" : "Carthus Shotel",
+  "item.darkestsouls.carthus_curved_greatsword" : "Carthus Curved Greatsword",
   "item.darkestsouls.saw_cleaver" : "Saw Cleaver",
   "item.darkestsouls.saw_cleaver_extended" : "Saw Cleaver",
   "item.darkestsouls.hunter_axe" : "Hunter Axe",

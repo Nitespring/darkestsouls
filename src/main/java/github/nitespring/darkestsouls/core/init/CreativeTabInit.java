@@ -23,6 +23,13 @@ public class CreativeTabInit {
                     .title(Component.translatable("itemGroup.darkestsouls.equipment"))
                     .icon(ItemInit.DRAGONSLAYER_SPEAR.get()::getDefaultInstance)
                     .withSearchBar().displayItems((displayParams,output)->{
+                        output.accept(ItemInit.THROWING_KNIFE.get());
+                        output.accept(ItemInit.BONE_KNIFE.get());
+                        output.accept(ItemInit.BLOOD_KNIFE.get());
+                        output.accept(ItemInit.POISON_KNIFE.get());
+                        output.accept(ItemInit.KUKRI.get());
+                        output.accept(ItemInit.FIREBOMB.get());
+                        output.accept(ItemInit.BLACK_FIREBOMB.get());
                         output.accept(ItemInit.BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.LONGSWORD.get());
                         output.accept(ItemInit.SCIMITAR.get());
