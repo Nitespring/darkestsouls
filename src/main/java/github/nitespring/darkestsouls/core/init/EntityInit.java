@@ -20,14 +20,13 @@ import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonSpear;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -260,7 +259,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<WindSlash>of(WindSlash::new, MobCategory.MISC)
 					.sized(1.2f, 1.2f)
 					.build("wind_slash"));
-
+	public static final RegistryObject<EntityType<ThrowingKnifeEntity>> THROWING_KNIFE = ENTITIES.register("throwing_knife",
+			() -> EntityType.Builder.<ThrowingKnifeEntity>of(ThrowingKnifeEntity::new, MobCategory.MISC)
+					.sized(0.4f, 0.4f)
+					.build("throwing_knife"));
 
 
 }

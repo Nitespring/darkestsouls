@@ -12,6 +12,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.Bonewhee
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonSpearGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.DirectionalAsItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
@@ -24,6 +25,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.SquareText
 import github.nitespring.darkestsouls.common.entity.projectile.spell.LightningSpear;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -108,6 +110,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_SHARD.get(), CrystalShardRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_RAIN.get(), CrystalBallRenderer::new);
 		 event.registerEntityRenderer(EntityInit.WIND_SLASH.get(), WindSlashRenderer::new);
+		 event.registerEntityRenderer(EntityInit.THROWING_KNIFE.get(), (EntityRendererProvider.Context context) -> new DirectionalAsItemRenderer(context));
 
 		 
 	 }
