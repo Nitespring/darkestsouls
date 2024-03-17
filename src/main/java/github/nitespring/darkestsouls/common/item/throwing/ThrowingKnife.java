@@ -28,20 +28,18 @@ public class ThrowingKnife extends Item {
         float y = (float) (pos.y + 1.4 + 0.6 * aim.y);
         float z = (float) (pos.z + 0.6 * aim.z);
 
-        ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), x, y, z,levelIn);
+        ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), x, y, z, stackIn.copy(),0.4f, levelIn);
         double d0 = aim.horizontalDistance();
         float roty = (float) (Mth.atan2(aim.x, aim.z) * (double) (180F / (float) Math.PI));
         float rotx = (float) (Mth.atan2(aim.y, d0) * (double) (180F / (float) Math.PI));
         entity.setXRot(rotx);
         entity.setYRot(roty);
         //entity.shootFromRotation(playerIn, (float) (0.25f*aim.x), (float) (0.25f*aim.y), (float) (0.25f*aim.z), rotx, roty);
-        entity.setItem(stackIn);
-        entity.setSize(0.4);
-        entity.xPower=0.15f*aim.x;
-        entity.yPower=0.15f*aim.y;
-        entity.zPower=0.15f*aim.z;
+        entity.xPower=0.225f*aim.x;
+        entity.yPower=0.25f*aim.y;
+        entity.zPower=0.25f*aim.z;
+        entity.shouldRotate=true;
         levelIn.addFreshEntity(entity);
-
 
 
       return InteractionResultHolder.success(stackIn);

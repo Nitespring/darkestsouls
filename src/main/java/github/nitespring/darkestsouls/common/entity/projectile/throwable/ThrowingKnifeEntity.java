@@ -1,7 +1,11 @@
 package github.nitespring.darkestsouls.common.entity.projectile.throwable;
 
+import github.nitespring.darkestsouls.common.entity.projectile.spell.CrystalShardEntity;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -14,27 +18,33 @@ import org.jetbrains.annotations.Nullable;
 
 public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements CustomItemSupplier {
 
-    private ItemStack item;
-    private double size;
     public boolean shouldRotate;
     public int rotationTick;
 
+    protected static final EntityDataAccessor<ItemStack> ITEM = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.ITEM_STACK);
+    protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.FLOAT);
+
     public ThrowingKnifeEntity(EntityType<? extends AbstractHurtingProjectile> entityType, Level level){
         super(entityType,level);
-        item = ItemInit.THROWING_KNIFE.get().getDefaultInstance();
-        size = 0.4f;
     }
-    public ThrowingKnifeEntity(EntityType<? extends AbstractHurtingProjectile> entityType, double x, double y, double z, Level level) {
+    public ThrowingKnifeEntity(EntityType<? extends AbstractHurtingProjectile> entityType, double x, double y, double z, ItemStack stackIn, double size, Level level) {
         super(entityType, x, y, z, level);
-        item = ItemInit.THROWING_KNIFE.get().getDefaultInstance();
-        size = 0.4f;
+        setItem(stackIn);
+        setSize((float) size);
     }
     @Override
-    public ItemStack getItem() {return item;}
+    public ItemStack getItem() {return entityData.get(ITEM);}
     @Override
-    public double getSize() {return size;}
-    public void setItem(ItemStack stack){this.item=stack;}
-    public void setSize(double size){this.size=size;}
+    public double getSize() {return entityData.get(SIZE);}
+    public void setItem(ItemStack stack){entityData.set(ITEM,stack);}
+    public void setSize(float size){entityData.set(SIZE,size);}
+
+    @Override
+    protected void defineSynchedData() {
+        this.entityData.define(ITEM, ItemInit.THROWING_KNIFE.get().getDefaultInstance());
+        this.entityData.define(SIZE, 0.4f);
+
+    }
 
     @Override
     public void tick() {
