@@ -120,15 +120,15 @@ public class ItemInit {
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",
-			() -> new ThrowingKnife(new Item.Properties().stacksTo(20)));
+			() -> new ThrowingKnife(8.0f, 18,0,0,8, 0.28f, 0.01f, true,0, new Item.Properties().stacksTo(20)));
 	public static final RegistryObject<ThrowingKnife> BONE_KNIFE = ITEMS.register("bone_knife",
-			() -> new ThrowingKnife(new Item.Properties().stacksTo(24)));
+			() -> new ThrowingKnife(4.0f, 12,0,0,4,0.22f, 0.012f, true,0,  new Item.Properties().stacksTo(24)));
 	public static final RegistryObject<ThrowingKnife> BLOOD_KNIFE = ITEMS.register("blood_knife",
-			() -> new ThrowingKnife(new Item.Properties().stacksTo(20)));
+			() -> new ThrowingKnife(6.0f, 18,2,0,6, 0.28f, 0.01f, true,0, new Item.Properties().stacksTo(20)));
 	public static final RegistryObject<ThrowingKnife> POISON_KNIFE = ITEMS.register("poison_knife",
-			() -> new ThrowingKnife(new Item.Properties().stacksTo(20)));
+			() -> new ThrowingKnife(6.0f, 18,0,2,6, 0.28f, 0.01f, true,0, new Item.Properties().stacksTo(20)));
 	public static final RegistryObject<ThrowingKnife> KUKRI = ITEMS.register("kukri",
-			() -> new ThrowingKnife(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(16)));
+			() -> new ThrowingKnife(9.0f, 24,4,0,8, 0.3f, 0.008f, false,1,new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(16)));
 	public static final RegistryObject<Firebomb> FIREBOMB = ITEMS.register("firebomb",
 			() -> new Firebomb(new Item.Properties().stacksTo(20)));
 	public static final RegistryObject<Firebomb> BLACK_FIREBOMB = ITEMS.register("black_firebomb",

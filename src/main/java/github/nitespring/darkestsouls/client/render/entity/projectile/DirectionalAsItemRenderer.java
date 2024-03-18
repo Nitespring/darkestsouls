@@ -34,10 +34,13 @@ public class DirectionalAsItemRenderer<T extends Entity & CustomItemSupplier> ex
         poseStack.pushPose();
         poseStack.scale(size,size,size);
         poseStack.translate(0,0.4,0);
-        poseStack.mulPose(Axis.XP.rotationDegrees(0));
         poseStack.mulPose(Axis.YP.rotationDegrees(-90+entity.getYRot()));
-        //poseStack.mulPose(Axis.ZP.rotationDegrees(-45 + entity.getXRot()));
+        if(entity.getZTilt()!=0&&entity.getXRot()>=-30&&entity.getXRot()<=30) {
+            poseStack.mulPose(Axis.XP.rotationDegrees(entity.getZTilt()));
+        }
         poseStack.mulPose(Axis.ZP.rotationDegrees(-45 + entity.getXRot()));
+
+
 
         if(entity.tickCount>=1) {
             itemRenderer.renderStatic(null, stack, ItemDisplayContext.NONE, true, poseStack, buf, entity.level(), i, i, i);
