@@ -69,6 +69,7 @@ public class ThrowingKnife extends Item {
         entity.setOwner(playerIn);
         //entity.setZTilt(90*type);
         //entity.setToRotate(true);
+        entity.setToPickUp(true);
         entity.setAttackPower(this.attackDamage);
         entity.setPoisonDamage(this.poisonDamage);
         entity.setBloodDamage(this.bloodDamage);

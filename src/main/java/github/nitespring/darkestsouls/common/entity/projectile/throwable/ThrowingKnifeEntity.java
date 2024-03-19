@@ -12,8 +12,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import github.nitespring.darkestsouls.core.interfaces.CustomItemSupplier;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -32,6 +34,8 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     public int bloodDamage = 0;
     public int poisonDamage = 0;
     public int poiseDamage = 6;
+
+    public boolean canBePickedUp = false;
 
     protected static final EntityDataAccessor<ItemStack> ITEM = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.ITEM_STACK);
     protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.FLOAT);
@@ -62,6 +66,7 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     public void setItem(ItemStack stack){entityData.set(ITEM,stack);}
     public void setSize(float size){entityData.set(SIZE,size);}
     public void setToRotate(boolean shouldRotate){entityData.set(SHOULD_ROTATE, shouldRotate);}
+    public void setToPickUp(boolean isPickable){this.canBePickedUp = isPickable;}
     public void setZTilt(int rot) {entityData.set(ZTILT, rot);}
 
     public void setAttackPower(float f) {this.attackPower=f;}
@@ -91,6 +96,9 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
             this.setXRot(-30*rotationTick+(float) (Mth.atan2(mov.y, d0) * (double) (180F / (float) Math.PI)));
             this.setDeltaMovement(this.getDeltaMovement().add(0,-this.getGravpower()*tickCount,0));
         }
+        if(this.tickCount>=1000){
+            this.discard();
+        }
         if(this.shouldRotate()){
             this.rotationTick++;
         }
@@ -112,12 +120,16 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
         this.setDeltaMovement(0,0,0);
         this.setToRotate(false);
         this.rotationTick=0;
+        int r = this.level().getRandom().nextInt(1000);
+        if(r >= 600){
+            //this.discard();
+        }
     }
 
     @Override
     protected void onHitEntity(EntityHitResult hit) {
 
-        if(hit.getEntity() instanceof LivingEntity target && this.getDeltaMovement()!=null) {
+        if(hit.getEntity() instanceof LivingEntity target && this.getDeltaMovement().length()>0.1) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(-0.25, -1, -0.25));
             this.xPower=-0.05*this.xPower;
             this.yPower=-0.25;
@@ -140,9 +152,19 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
                     target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage - 1));
                 }
             }
+           int r = this.level().getRandom().nextInt(1000);
+           if(r >= 800){
+               this.discard();
+            }
         }
-    }
+        /*if(this.getDeltaMovement().length()<=0.1 && this.canBePickedUp && hit.getEntity() instanceof Player playerIn){
+            if(!playerIn.isCreative()) {
+                playerIn.getInventory().add(this.getItem());
+            }
+            this.discard();
 
+        }*/
+    }
 
 
 
