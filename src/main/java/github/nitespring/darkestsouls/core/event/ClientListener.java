@@ -16,6 +16,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.Directiona
 import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
+import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.FirebombRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
@@ -111,7 +112,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_RAIN.get(), CrystalBallRenderer::new);
 		 event.registerEntityRenderer(EntityInit.WIND_SLASH.get(), WindSlashRenderer::new);
 		 event.registerEntityRenderer(EntityInit.THROWING_KNIFE.get(), (EntityRendererProvider.Context context) -> new DirectionalAsItemRenderer(context));
-
+		 event.registerEntityRenderer(EntityInit.FIREBOMB.get(), FirebombRenderer::new);
 		 
 	 }
 

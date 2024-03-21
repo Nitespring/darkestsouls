@@ -130,9 +130,9 @@ public class ItemInit {
 	public static final RegistryObject<ThrowingKnife> KUKRI = ITEMS.register("kukri",
 			() -> new ThrowingKnife(6.0f, 24,4,0,8, 0.3f, 0.008f, false,1,new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(16)));
 	public static final RegistryObject<Firebomb> FIREBOMB = ITEMS.register("firebomb",
-			() -> new Firebomb(new Item.Properties().stacksTo(20)));
+			() -> new Firebomb(6.0f, 24, 8, 0, new Item.Properties().stacksTo(20)));
 	public static final RegistryObject<Firebomb> BLACK_FIREBOMB = ITEMS.register("black_firebomb",
-			() -> new Firebomb(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(12)));
+			() -> new Firebomb(10.0f, 24, 8, 1, new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(12)));
 
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
