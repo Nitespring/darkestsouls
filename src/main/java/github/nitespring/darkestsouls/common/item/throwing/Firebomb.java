@@ -22,7 +22,7 @@ public class Firebomb extends Item {
         this.attackDamage=attackDamage;
         this.useCooldown=useCooldown;
         this.poiseDamage=poiseDamage;
-        this.gravPower=0.2f;
+        this.gravPower=0.001f;
         this.type=type;
     }
 
@@ -37,6 +37,7 @@ public class Firebomb extends Item {
         float y = (float) (pos.y + 1.4 + 0.6 * aim.y);
         float z = (float) (pos.z + 0.6 * aim.z);
         FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
+        entity.setPos(x,y,z);
         float flyingPower = 0.15f;
         entity.xPower=flyingPower*aim.x;
         entity.yPower=flyingPower*aim.y;
@@ -44,7 +45,9 @@ public class Firebomb extends Item {
         entity.setOwner(playerIn);
         entity.setAttackDamage(this.attackDamage);
         entity.setPoiseDamage(this.poiseDamage);
-        entity.setGravPower(this.gravPower);
+        entity.setGravPower(0.005f);
+        entity.setHorizontalSpread(1.25);
+        entity.setVerticalSpread(0.75);
         levelIn.addFreshEntity(entity);
 
         playerIn.getCooldowns().addCooldown(stackIn.getItem(), useCooldown);
