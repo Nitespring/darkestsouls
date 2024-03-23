@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.level.Level;
@@ -73,7 +74,7 @@ public class FirebombEntity extends AbstractHurtingProjectile{
     public void tick() {
         super.tick();
         if(!this.isExploding) {
-            this.setDeltaMovement(this.getDeltaMovement().add(0, -this.getGravpower() * tickCount, 0));
+            this.setDeltaMovement(this.getDeltaMovement().add(0, -this.getGravpower() * Math.pow(tickCount, 9/4), 0));
         }
         if(this.tickCount>=1000){
             this.discard();
@@ -110,10 +111,15 @@ public class FirebombEntity extends AbstractHurtingProjectile{
         this.setDeltaMovement(0,0,0);
     }
 
+    public void playExplosionSound(){
+        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.DRAGON_FIREBALL_EXPLODE, this.getSoundSource(), 0.8F+this.random.nextFloat() * 0.5F, this.random.nextFloat() * 0.2F + 1.0F, true);
+           if(this.getOwner() instanceof Player) {
+               this.level().playLocalSound(this.getOwner().getX(), this.getOwner().getY(), this.getOwner().getZ(), SoundEvents.DRAGON_FIREBALL_EXPLODE, this.getSoundSource(), 0.1F + this.random.nextFloat() * 0.05F, this.random.nextFloat() * 0.2F + 1.0F, true);
+           }
+    }
     public void firebombExplosion(){
 
-        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.DRAGON_FIREBALL_EXPLODE, this.getSoundSource(), 0.8F+this.random.nextFloat() * 0.5F, this.random.nextFloat() * 0.2F + 1.0F, true);
-        this.level().playLocalSound(this.getOwner().getX(), this.getOwner().getY(), this.getOwner().getZ(), SoundEvents.DRAGON_FIREBALL_EXPLODE, this.getSoundSource(), 0.1F+this.random.nextFloat() * 0.05F, this.random.nextFloat() * 0.2F + 1.0F, true);
+        this.playExplosionSound();
         for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(this.horizontalSpread+1.5, this.verticalSpread+1, this.horizontalSpread+1.5))) {
             livingentity.setSecondsOnFire(80);
             if(livingentity.hurtTime<=0) {
@@ -187,9 +193,25 @@ public class FirebombEntity extends AbstractHurtingProjectile{
                         level().setBlock(blockPos, blockstate1, 11);
                         level().gameEvent(this, GameEvent.BLOCK_PLACE, blockPos);
                     }
-                    //for(int n = 0; n<=2; n++) {
-                        level().addParticle(ParticleTypes.FLAME, this.position().x + 2.0*xVar + 0.5 * (random.nextFloat() -0.5), this.position().y + 0.15*yVar + 0.25 * (random.nextFloat() -0.5), this.position().z + 2.0*zVar + 0.5 * (random.nextFloat() -0.5), 0.15*(xVar + 0.8 * (random.nextFloat() -0.5)), 0.05*(yVar + 0.8 * (random.nextFloat() -0.5)),  0.15*(zVar + 0.8 * (random.nextFloat() -0.5)));
-                    //}
+                    for(int n = 0; n<=1; n++) {
+                        double xVar1 = d*Math.sin(i*a);
+                        float yVar1 = k/2;
+                        double zVar1 = d*Math.cos(i*a);;
+                        level().addParticle(ParticleTypes.FLAME,
+                                x0+0.6*(1+2.5*n)*xVar1 + 0.25 * (random.nextFloat() -0.5),
+                                y0+0.05*(1+2.5*n)*yVar1 + 0.25 * (random.nextFloat() -0.5),
+                                z0+0.6*(1+2.5*n)*zVar1 + 0.25 * (random.nextFloat() -0.5),
+                                0.1*xVar1 + 0.25 * (random.nextFloat() -0.5),
+                                0.02f*yVar1 + 0.15 * (random.nextFloat() -0.5),
+                                0.1*zVar1 + 0.25 * (random.nextFloat() -0.5));
+                        level().addParticle(ParticleTypes.SMOKE,
+                                x0+0.5*(1+2.5*n)*xVar1 + 0.25 * (random.nextFloat() -0.5),
+                                y0+0.15*(1+2.5*n)*yVar1 + 0.25 * (random.nextFloat() -0.5),
+                                z0+0.5*(1+2.5*n)*zVar1 + 0.25 * (random.nextFloat() -0.5),
+                                0.15*xVar1 + 0.25 * (random.nextFloat() -0.5),
+                                0.1f*yVar1 + 0.05 * (random.nextFloat() -0.5),
+                                0.15*zVar1 + 0.25 * (random.nextFloat() -0.5));
+                    }
                 }
             }
         }

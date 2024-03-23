@@ -30,6 +30,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.KUKRI.get());
                         output.accept(ItemInit.FIREBOMB.get());
                         output.accept(ItemInit.BLACK_FIREBOMB.get());
+                        output.accept(ItemInit.MOLOTOV.get());
                         output.accept(ItemInit.BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.LONGSWORD.get());
                         output.accept(ItemInit.SCIMITAR.get());

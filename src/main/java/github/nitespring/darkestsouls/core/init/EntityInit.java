@@ -21,6 +21,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.MolotovCocktailEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
@@ -268,6 +269,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<FirebombEntity>of(FirebombEntity::new, MobCategory.MISC)
 					.sized(0.6f, 0.6f)
 					.build("firebomb"));
+	public static final RegistryObject<EntityType<MolotovCocktailEntity>> MOLOTOV = ENTITIES.register("molotov",
+			() -> EntityType.Builder.<MolotovCocktailEntity>of(MolotovCocktailEntity::new, MobCategory.MISC)
+					.sized(0.6f, 0.8f)
+					.build("molotov"));
 
 
 }

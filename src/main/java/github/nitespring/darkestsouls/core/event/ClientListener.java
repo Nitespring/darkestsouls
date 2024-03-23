@@ -17,6 +17,8 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRen
 import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.FirebombRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.MolotovCocktailModel;
+import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.MolotovCocktailRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
@@ -41,6 +43,7 @@ public class ClientListener {
 	public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "square_texture"), "main");
 	public static final ModelLayerLocation FRAYED_BLADE_FLAME = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "frayed_blade_fire"), "main");
 	public static final ModelLayerLocation BULLET = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "bullet"), "main");
+	public static final ModelLayerLocation MOLOTOV = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "molotov"), "main");
 
 
 	@SubscribeEvent
@@ -49,6 +52,7 @@ public class ClientListener {
 		event.registerLayerDefinition(SQUARE_TEXTURE, SquareTextureEntityModel::createBodyLayer);
 		event.registerLayerDefinition(FRAYED_BLADE_FLAME, FrayedBladeFlameModel::createBodyLayer);
 		event.registerLayerDefinition(BULLET, BulletModel::createBodyLayer);
+		event.registerLayerDefinition(MOLOTOV, MolotovCocktailModel::createBodyLayer);
 
 	}
 
@@ -113,6 +117,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.WIND_SLASH.get(), WindSlashRenderer::new);
 		 event.registerEntityRenderer(EntityInit.THROWING_KNIFE.get(), (EntityRendererProvider.Context context) -> new DirectionalAsItemRenderer(context));
 		 event.registerEntityRenderer(EntityInit.FIREBOMB.get(), FirebombRenderer::new);
+		 event.registerEntityRenderer(EntityInit.MOLOTOV.get(), MolotovCocktailRenderer::new);
 		 
 	 }
 

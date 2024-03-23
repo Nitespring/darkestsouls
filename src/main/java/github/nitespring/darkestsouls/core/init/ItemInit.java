@@ -8,6 +8,7 @@ import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
 import github.nitespring.darkestsouls.common.item.child.weapons.*;
 import github.nitespring.darkestsouls.common.item.child.weapons.trickweapon.*;
 import github.nitespring.darkestsouls.common.item.throwing.Firebomb;
+import github.nitespring.darkestsouls.common.item.throwing.MolotovCocktail;
 import github.nitespring.darkestsouls.common.item.throwing.ThrowingKnife;
 import github.nitespring.darkestsouls.core.enums.Tiers;
 import net.minecraft.world.item.Item;
@@ -133,7 +134,8 @@ public class ItemInit {
 			() -> new Firebomb(6.0f, 24, 8, 0, new Item.Properties().stacksTo(20)));
 	public static final RegistryObject<Firebomb> BLACK_FIREBOMB = ITEMS.register("black_firebomb",
 			() -> new Firebomb(10.0f, 24, 8, 1, new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(12)));
-
+	public static final RegistryObject<MolotovCocktail> MOLOTOV = ITEMS.register("molotov",
+			() -> new MolotovCocktail(6.0f, 28, 4, new Item.Properties().stacksTo(16)));
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SIN, 1318437, 16449279, new Item.Properties()));
