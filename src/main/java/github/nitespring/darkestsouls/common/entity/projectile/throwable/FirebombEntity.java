@@ -179,6 +179,7 @@ public class FirebombEntity extends AbstractHurtingProjectile{
 
                     if(level().getBlockState(blockPos).is(CustomBlockTags.BOMB_BREAKABLE)){
                         level().destroyBlock(blockPos, true, this.getOwner());
+                        level().gameEvent(this, GameEvent.BLOCK_DESTROY, blockPos);
                     }
 
                     if(BaseFireBlock.canBePlacedAt(level(),blockPos, Direction.getNearest(x0,y0,z0))) {
@@ -187,7 +188,7 @@ public class FirebombEntity extends AbstractHurtingProjectile{
                         level().gameEvent(this, GameEvent.BLOCK_PLACE, blockPos);
                     }
                     //for(int n = 0; n<=2; n++) {
-                        level().addParticle(ParticleTypes.FLAME, x0 + xVar * 0.5 + 0.2 * (random.nextFloat() * -0.5), y0 + yVar * 0.5 + 0.1 * (random.nextFloat() * -0.5), z0 + zVar * 0.5 + 0.2 * (random.nextFloat() * -0.5), 0.1 * xVar + 0.15 * (random.nextFloat() * -0.5), 0.1 * yVar + 0.15 * (random.nextFloat() * -0.5), 0.1 * zVar + 0.15 * (random.nextFloat() * -0.5));
+                        level().addParticle(ParticleTypes.FLAME, this.position().x + 2.0*xVar + 0.5 * (random.nextFloat() -0.5), this.position().y + 0.15*yVar + 0.25 * (random.nextFloat() -0.5), this.position().z + 2.0*zVar + 0.5 * (random.nextFloat() -0.5), 0.15*(xVar + 0.8 * (random.nextFloat() -0.5)), 0.05*(yVar + 0.8 * (random.nextFloat() -0.5)),  0.15*(zVar + 0.8 * (random.nextFloat() -0.5)));
                     //}
                 }
             }

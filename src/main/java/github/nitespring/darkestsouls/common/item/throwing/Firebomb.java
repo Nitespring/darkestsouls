@@ -45,9 +45,9 @@ public class Firebomb extends Item {
         entity.setOwner(playerIn);
         entity.setAttackDamage(this.attackDamage);
         entity.setPoiseDamage(this.poiseDamage);
-        entity.setGravPower(0.005f);
+        entity.setGravPower(0.006f);
         entity.setHorizontalSpread(1.25);
-        entity.setVerticalSpread(0.75);
+        entity.setVerticalSpread(0.6);
         levelIn.addFreshEntity(entity);
 
         playerIn.getCooldowns().addCooldown(stackIn.getItem(), useCooldown);
