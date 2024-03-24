@@ -105,6 +105,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 case 25:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.longsword.attack5"));
                     break;
+                case 31:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.throw"));
+                    break;
                 default:
                     if(this.isInWater()) {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.swim"));

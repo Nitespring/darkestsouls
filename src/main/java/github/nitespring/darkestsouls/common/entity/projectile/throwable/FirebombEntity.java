@@ -197,14 +197,14 @@ public class FirebombEntity extends AbstractHurtingProjectile{
                         double xVar1 = d*Math.sin(i*a);
                         float yVar1 = k/2;
                         double zVar1 = d*Math.cos(i*a);;
-                        level().addParticle(ParticleTypes.FLAME,
+                        level().addParticle(getExplosionParticleI(),
                                 x0+0.6*(1+2.5*n)*xVar1 + 0.25 * (random.nextFloat() -0.5),
                                 y0+0.05*(1+2.5*n)*yVar1 + 0.25 * (random.nextFloat() -0.5),
                                 z0+0.6*(1+2.5*n)*zVar1 + 0.25 * (random.nextFloat() -0.5),
                                 0.1*xVar1 + 0.25 * (random.nextFloat() -0.5),
                                 0.02f*yVar1 + 0.15 * (random.nextFloat() -0.5),
                                 0.1*zVar1 + 0.25 * (random.nextFloat() -0.5));
-                        level().addParticle(ParticleTypes.SMOKE,
+                        level().addParticle(getExplosionParticleII(),
                                 x0+0.5*(1+2.5*n)*xVar1 + 0.25 * (random.nextFloat() -0.5),
                                 y0+0.15*(1+2.5*n)*yVar1 + 0.25 * (random.nextFloat() -0.5),
                                 z0+0.5*(1+2.5*n)*zVar1 + 0.25 * (random.nextFloat() -0.5),
@@ -215,7 +215,11 @@ public class FirebombEntity extends AbstractHurtingProjectile{
                 }
             }
         }
-
-
+    }
+    public ParticleOptions getExplosionParticleI(){
+        return ParticleTypes.FLAME;
+    }
+    public ParticleOptions getExplosionParticleII(){
+        return ParticleTypes.SMOKE;
     }
 }
