@@ -120,13 +120,15 @@ public class FirebombEntity extends AbstractHurtingProjectile{
     public void firebombExplosion(){
 
         this.playExplosionSound();
-        for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(this.horizontalSpread+1.5, this.verticalSpread+1, this.horizontalSpread+1.5))) {
-            livingentity.setSecondsOnFire(80);
-            if(livingentity.hurtTime<=0) {
-                if (livingentity instanceof DarkestSoulsAbstractEntity) {
-                    ((DarkestSoulsAbstractEntity) livingentity).damagePoiseHealth(this.poiseDamage);
+        for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(this.horizontalSpread+0.5, this.verticalSpread+0.25, this.horizontalSpread+0.5))) {
+            if(((livingentity instanceof Player||livingentity!=this.getOwner())&&!(this.getOwner().isAlliedTo(livingentity)))) {
+                livingentity.setSecondsOnFire(3);
+                if(livingentity.hurtTime<=0) {
+                    if (livingentity instanceof DarkestSoulsAbstractEntity) {
+                        ((DarkestSoulsAbstractEntity) livingentity).damagePoiseHealth(this.poiseDamage);
+                    }
+                    livingentity.hurt(this.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()), this.getAttackDamage());
                 }
-                livingentity.hurt(this.level().damageSources().mobProjectile(this,(LivingEntity)this.getOwner()),this.getAttackDamage());
             }
 
         }

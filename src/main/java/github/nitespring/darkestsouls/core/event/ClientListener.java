@@ -15,6 +15,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.Skeleton
 import github.nitespring.darkestsouls.client.render.entity.projectile.DirectionalAsItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
+import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.FirebombRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.MolotovCocktailModel;
@@ -118,6 +119,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.THROWING_KNIFE.get(), (EntityRendererProvider.Context context) -> new DirectionalAsItemRenderer(context));
 		 event.registerEntityRenderer(EntityInit.FIREBOMB.get(), FirebombRenderer::new);
 		 event.registerEntityRenderer(EntityInit.MOLOTOV.get(), MolotovCocktailRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BULLET.get(), BulletRenderer::new);
 		 
 	 }
 

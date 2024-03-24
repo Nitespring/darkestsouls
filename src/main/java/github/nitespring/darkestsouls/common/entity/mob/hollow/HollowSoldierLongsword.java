@@ -402,12 +402,12 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     entity.setPos(x,y,z);
                     float flyingPower = 0.25f;
                     entity.xPower=flyingPower*aimVec.x;
-                    entity.yPower=flyingPower*aimVec.y;
+                    entity.yPower=flyingPower*aimVec.y+0.01;
                     entity.zPower=flyingPower*aimVec.z;
                     entity.setOwner(this);
-                    entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                    entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f);
                     entity.setPoiseDamage(4);
-                    entity.setGravPower(0.0012f);
+                    entity.setGravPower(0.0015f);
                     entity.setHorizontalSpread(1.0);
                     entity.setVerticalSpread(1.0);
                     levelIn.addFreshEntity(entity);
@@ -553,12 +553,8 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
             this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
             this.ticksUntilNextRangedAttack = Math.max(this.ticksUntilNextRangedAttack - 1, 0);
-            if(this.ticksUntilNextRangedAttack<=0){
-                int r = this.mob.getRandom().nextInt(2048);
-                if(r<=450) {
-                    this.ticksUntilNextRangedAttack=60;
-                }
-
+            if(this.ticksUntilNextRangedAttack<=0 && this.ticksUntilNextAttack <= 0){
+                    this.ticksUntilNextRangedAttack=10;
             }
 
         }
@@ -633,9 +629,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     this.mob.setAnimationState(25);
                 }
             }
-            if (this.ticksUntilNextAttack <= 0) {
+            if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=86) {
+                if(r<=480) {
 
                     this.mob.setAnimationState(31);
 

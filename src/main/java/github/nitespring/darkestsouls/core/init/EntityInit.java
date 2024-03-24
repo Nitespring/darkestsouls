@@ -17,6 +17,7 @@ import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonSpear;
+import github.nitespring.darkestsouls.common.entity.projectile.Bullet;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
@@ -273,6 +274,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<MolotovCocktailEntity>of(MolotovCocktailEntity::new, MobCategory.MISC)
 					.sized(0.6f, 0.8f)
 					.build("molotov"));
+	public static final RegistryObject<EntityType<Bullet>> BULLET = ENTITIES.register("bullet",
+			() -> EntityType.Builder.<Bullet>of(Bullet::new, MobCategory.MISC)
+					.sized(0.2f, 0.2f)
+					.build("bullet"));
 
 
 }

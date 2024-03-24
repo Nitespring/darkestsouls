@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.common.item.child.guns.Pistol;
 import github.nitespring.darkestsouls.common.item.child.staves.ChaosStaff;
 import github.nitespring.darkestsouls.common.item.child.staves.CrystalStaff;
 import github.nitespring.darkestsouls.common.item.child.staves.SorcererStaff;
@@ -116,8 +117,8 @@ public class ItemInit {
 			() -> new ChaosStaff(10.0f, 1024, 2, new Item.Properties().rarity(Rarity.EPIC)));
 
 	//Guns
-	public static final RegistryObject<Item> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
-			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Pistol> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
+			() -> new Pistol(6.0f, 24,2,0.4f,0.25f, 60, 0,1, new Item.Properties()));
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",
