@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.entity.mob.hollow;
 
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.nbt.CompoundTag;
@@ -43,6 +44,7 @@ import java.util.Random;
 public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    public Vec3 aimVec;
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
     protected int animationTick = 0;
@@ -380,7 +382,42 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     setAnimationState(0);
                 }
                 break;
+            case 31:
+                Level levelIn = this.level();
+                Vec3 pos = this.position();
+                if(animationTick==24) {
+                    if(this.getTarget()==null) {
+                        aimVec = this.getLookAngle().normalize();
+                    }else{
+                        aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
+                    }
+                }
+                if(animationTick==28) {
+                    //this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(SoundEvents.EGG_THROW);
+                    float x = (float) (pos.x + 0.6 * aimVec.x);
+                    float y = (float) (pos.y + 1.4 + 0.6 * aimVec.y);
+                    float z = (float) (pos.z + 0.6 * aimVec.z);
+                    FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
+                    entity.setPos(x,y,z);
+                    float flyingPower = 0.25f;
+                    entity.xPower=flyingPower*aimVec.x;
+                    entity.yPower=flyingPower*aimVec.y;
+                    entity.zPower=flyingPower*aimVec.z;
+                    entity.setOwner(this);
+                    entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                    entity.setPoiseDamage(4);
+                    entity.setGravPower(0.0012f);
+                    entity.setHorizontalSpread(1.0);
+                    entity.setVerticalSpread(1.0);
+                    levelIn.addFreshEntity(entity);
 
+                }
+                if(animationTick>=40) {
+                    animationTick=0;
+                    setAnimationState(0);
+                }
+                break;
         }
     }
 
@@ -396,6 +433,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         private double pathedTargetZ;
         private int ticksUntilNextPathRecalculation;
         private int ticksUntilNextAttack;
+        private int ticksUntilNextRangedAttack;
         private long lastCanUseCheck;
         private int failedPathFindingPenalty = 0;
         private boolean canPenalize = false;
@@ -471,6 +509,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
             this.ticksUntilNextAttack = 5;
+            this.ticksUntilNextRangedAttack = 120;
             this.lastCanUpdateStateCheck = 150;
             int r = this.mob.getRandom().nextInt(2048);
             if(r<=840) {
@@ -513,6 +552,14 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
 
             this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
+            this.ticksUntilNextRangedAttack = Math.max(this.ticksUntilNextRangedAttack - 1, 0);
+            if(this.ticksUntilNextRangedAttack<=0){
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=450) {
+                    this.ticksUntilNextRangedAttack=60;
+                }
+
+            }
 
         }
 
@@ -584,6 +631,14 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 }else{
 
                     this.mob.setAnimationState(25);
+                }
+            }
+            if (this.ticksUntilNextAttack <= 0) {
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=86) {
+
+                    this.mob.setAnimationState(31);
+
                 }
             }
 
