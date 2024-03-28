@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.client.render.entity.mob.hollow;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.Hollow;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierAxe;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.MadHollowBrokenStraightsword;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Skeleton;
@@ -31,6 +32,8 @@ public class HollowItemLayer<T extends Hollow & GeoEntity> extends BlockAndItemG
 		 if (bone.getName().equals("right_item")) {
 			 if(animatable instanceof HollowSoldierLongsword) {
 				 return ItemInit.LONGSWORD.get().getDefaultInstance();
+			 }else if(animatable instanceof HollowSoldierAxe) {
+				 return ItemInit.BATTLE_AXE.get().getDefaultInstance();
 			 }else if(animatable instanceof MadHollowBrokenStraightsword) {
 				 return ItemInit.BROKEN_STRAIGHTSWORD.get().getDefaultInstance();
 			 }else{
@@ -68,7 +71,12 @@ protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack s
 			poseStack.mulPose(Axis.XP.rotationDegrees(0));
 			poseStack.mulPose(Axis.YP.rotationDegrees(0));
 			poseStack.mulPose(Axis.ZP.rotationDegrees(180));
-		}else{
+		}else if(animatable instanceof HollowSoldierAxe) {
+			poseStack.translate(0, 0.54, -0.5);
+			poseStack.mulPose(Axis.XP.rotationDegrees(0));
+			poseStack.mulPose(Axis.YP.rotationDegrees(0));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+		}else {
 			poseStack.translate(0.00, 0.6, -0.5);
 			poseStack.mulPose(Axis.XP.rotationDegrees(0));
 			poseStack.mulPose(Axis.YP.rotationDegrees(0));

@@ -69,6 +69,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SKELETON_CURVED_SWORDS.get(), SkeletonCurvedSwordsGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_SPEAR.get(), SkeletonSpearGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_AXE.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);

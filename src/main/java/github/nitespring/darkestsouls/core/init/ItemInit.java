@@ -117,6 +117,8 @@ public class ItemInit {
 			() -> new ChaosStaff(10.0f, 1024, 2, new Item.Properties().rarity(Rarity.EPIC)));
 
 	//Guns
+	public static final RegistryObject<Item> QUICKSILVER_BULLET = ITEMS.register("quicksilver_bullet",
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Pistol> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
 			() -> new Pistol(6.0f, 24,2,0.4f,0.25f, 60, 0,1, new Item.Properties()));
 
@@ -152,6 +154,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, 13684684, 8618640, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_LONGSWORD = ITEMS.register("hollow_longsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> HOLLOW_AXE = ITEMS.register("hollow_axe_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, 13945528, 5202790, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("hollow_broken_straightsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 12630442, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_LONGSWORD = ITEMS.register("gravetender_hollow_longsword_spawn_egg",

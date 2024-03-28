@@ -8,10 +8,7 @@ import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.CloakedBeastPatient;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowBrokenStraightsword;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowLongsword;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.MadHollowBrokenStraightsword;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.*;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
@@ -71,6 +68,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<MadHollowBrokenStraightsword>of(MadHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("hollow_broken_straightsword"));
+	public static final RegistryObject<EntityType<HollowSoldierAxe>> HOLLOW_AXE = ENTITIES.register("hollow_axe",
+			() -> EntityType.Builder.<HollowSoldierAxe>of(HollowSoldierAxe::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("hollow_axe"));
 
 	public static final RegistryObject<EntityType<GravetenderHollowLongsword>> GRAVETENDER_HOLLOW_LONGSWORD = ENTITIES.register("gravetender_hollow_longsword",
 			() -> EntityType.Builder.<GravetenderHollowLongsword>of(GravetenderHollowLongsword::new, MobCategory.MONSTER)

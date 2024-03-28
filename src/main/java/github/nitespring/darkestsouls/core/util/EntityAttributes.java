@@ -19,6 +19,18 @@ public class EntityAttributes {
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
 				.add(Attributes.FOLLOW_RANGE, 20);
 	}
+	public static  AttributeSupplier.Builder setHollowSoldierAxeAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 36.0D)
+				.add(Attributes.ARMOR, 4.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 6.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.25D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
 	public static  AttributeSupplier.Builder setMadHollowBrokenStraightswordAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 22.0D)
