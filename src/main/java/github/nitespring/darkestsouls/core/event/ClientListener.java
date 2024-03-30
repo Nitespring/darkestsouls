@@ -26,6 +26,7 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.fra
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowAssassin;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.LightningSpear;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -70,6 +71,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SKELETON_SPEAR.get(), SkeletonSpearGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_AXE.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_ASSASSIN.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);

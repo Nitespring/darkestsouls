@@ -165,7 +165,7 @@ public class CreativeTabInit {
                     })
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> MOBS =   TABS.register("mobs",
+    public static final RegistryObject<CreativeModeTab> MOBS = TABS.register("mobs",
             () ->CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.darkestsouls.mobs"))
                     .icon(ItemInit.BONEWHEEL.get()::getDefaultInstance)
@@ -175,6 +175,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.GRAVETENDER_HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.HOLLOW_AXE.get());
+                        output.accept(ItemInit.HOLLOW_ASSASSIN.get());
                         output.accept(ItemInit.SKELETON_FALCHION.get());
                         output.accept(ItemInit.SKELETON_SPEAR.get());
                         output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());

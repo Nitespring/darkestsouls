@@ -208,6 +208,16 @@ public class DamageHitboxEntity extends Entity {
 								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, 1), this.getOwner());
 							}
 							break;
+						case 4:
+							target.hurt(this.damageSources().mobAttack(owner), damage);
+							if(target.hasEffect(EffectInit.BLEED.get())){
+								int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ 1;
+								target.removeEffect(EffectInit.BLEED.get());
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, amount));
+							}else {
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, 0), this.getOwner());
+							}
+							break;
 						default:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
 							break;

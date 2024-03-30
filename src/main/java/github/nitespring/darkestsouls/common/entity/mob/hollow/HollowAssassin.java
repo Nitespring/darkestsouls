@@ -1,8 +1,10 @@
 package github.nitespring.darkestsouls.common.entity.mob.hollow;
 
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
@@ -237,12 +239,132 @@ public class HollowAssassin extends Hollow implements GeoEntity {
                     setAnimationState(0);
                 }
                 break;
+            case 11:
+                if(getAnimationTick()==1) {
+                    this.setDeltaMovement(0,0.5,0);
+                    double b = Math.PI*4/12;
+                    if(this.getTarget()==null) {
+                        Vec3 aim = this.getLookAngle();
+                        aimVec = new Vec3(aim.x*Math.cos(b)-aim.z*Math.sin(b),
+                                            Math.max(0,aim.y),
+                                            aim.z*Math.cos(b)+aim.x*Math.sin(b));
+                    }else{
+                        Vec3 aim = this.getTarget().position().add(pos.scale(-1));
+                        aimVec = new Vec3(aim.x*Math.cos(b)-aim.z*Math.sin(b),
+                                            Math.max(0,aim.y),
+                                            aim.z*Math.cos(b)+aim.x*Math.sin(b));
+                    }
+                }
+                if(getAnimationTick()==2) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.25f,0).scale(0.75));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.25f,0).scale(0.75));
+                    }
+                }
+                if(getAnimationTick()>=10&&flag) {
+
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 36) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    } else if (r <= 84) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    } else if (r <= 132) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    } else if (r <= 156) {
+                        setAnimationTick(0);
+                        setAnimationState(24);
+                    } else if (r <= 204) {
+                        setAnimationTick(0);
+                        setAnimationState(25);
+                    } else if (r <= 244) {
+                        setAnimationTick(0);
+                        setAnimationState(26);
+                    } else if (r <= 296) {
+                        setAnimationTick(0);
+                        setAnimationState(27);
+                    }
+                }
+                if(getAnimationTick()>12) {
+                    setAnimationTick(0);
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 960) {
+                        setAnimationState(31);
+                    } else  {
+                        setAnimationState(0);
+                    }
+                }
+                break;
+            case 12:
+                if(getAnimationTick()==1) {
+                    this.setDeltaMovement(0,0.5,0);
+                    double b = -Math.PI*4/12;
+                    if(this.getTarget()==null) {
+                        Vec3 aim = this.getLookAngle();
+                        aimVec = new Vec3(aim.x*Math.cos(b)-aim.z*Math.sin(b),
+                                Math.max(0,aim.y),
+                                aim.z*Math.cos(b)+aim.x*Math.sin(b));
+                    }else{
+                        Vec3 aim = this.getTarget().position().add(pos.scale(-1));
+                        aimVec = new Vec3(aim.x*Math.cos(b)-aim.z*Math.sin(b),
+                                Math.max(0,aim.y),
+                                aim.z*Math.cos(b)+aim.x*Math.sin(b));
+                    }
+                }
+                if(getAnimationTick()==2) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.25f,0).scale(0.75));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.25f,0).scale(0.75));
+                    }
+                }
+                if(getAnimationTick()>=10&&flag) {
+
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 36) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    } else if (r <= 84) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    } else if (r <= 132) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    } else if (r <= 156) {
+                        setAnimationTick(0);
+                        setAnimationState(24);
+                    } else if (r <= 204) {
+                        setAnimationTick(0);
+                        setAnimationState(25);
+                    } else if (r <= 244) {
+                        setAnimationTick(0);
+                        setAnimationState(26);
+                    } else if (r <= 296) {
+                        setAnimationTick(0);
+                        setAnimationState(27);
+                    }
+                }
+                if(getAnimationTick()>12) {
+                    setAnimationTick(0);
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 960) {
+                        setAnimationState(31);
+                    } else  {
+                        setAnimationState(0);
+                    }
+                }
+                break;
             //Attack
             case 21:
-                if(getAnimationTick()==10) {
+                if(getAnimationTick()==6) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(getAnimationTick()==13) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -251,19 +373,29 @@ public class HollowAssassin extends Hollow implements GeoEntity {
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=20&&flag) {
-                    setAnimationTick(0);
-                    setAnimationState(22);
+                if(getAnimationTick()>=10&&flag) {
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 480) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    } else if (r <= 960) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    } else if (r <= 1440) {
+                        setAnimationTick(0);
+                        setAnimationState(24);
+                    }
                 }
-                if(getAnimationTick()>=50) {
+                if(getAnimationTick()>=12) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(getAnimationTick()==6) {
+                if(getAnimationTick()==4) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -272,71 +404,74 @@ public class HollowAssassin extends Hollow implements GeoEntity {
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=14) {
+                if(getAnimationTick()>=10&&flag) {
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 360) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    } else if (r <= 840) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    } else if (r <= 1320) {
+                        setAnimationTick(0);
+                        setAnimationState(24);
+                    }
+                }
+                if(getAnimationTick()>=8) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(getAnimationTick()==6) {
+                if(getAnimationTick()==3) {
                     this.playSound(this.getAttackSound());
                 }
-                if(getAnimationTick()==9) {
+                if(getAnimationTick()==4) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
                                     (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1.0f, 5);
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=17) {
+                if(getAnimationTick()>=16) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 24:
                 if(getAnimationTick()==2) {
-                    this.setDeltaMovement(0,1.0,0);
-                    if(this.getTarget()==null) {
-                        aimVec = this.getLookAngle().normalize();
-                    }else{
-                        aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
-                    }
+                    this.playSound(this.getAttackSound());
                 }
                 if(getAnimationTick()==3) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
-                    if(this.aimVec!=null) {
-                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.35));
-                    }else {
-                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.35));
-                    }
-                }
-                if(getAnimationTick()==20) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.2f)*this.getLookAngle().x,
+                            this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.2f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+3.0f, 5);
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=26) {
+                if(getAnimationTick()>=8) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 25:
-                if(getAnimationTick()==20) {
+                if(getAnimationTick()==8) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(getAnimationTick()==22) {
+                if(getAnimationTick()==10) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.1f)*this.getLookAngle().x,
@@ -345,43 +480,103 @@ public class HollowAssassin extends Hollow implements GeoEntity {
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=48) {
+                if(getAnimationTick()>=18) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
-            case 31:
-                if(getAnimationTick()==24) {
+            case 26:
+                if(getAnimationTick()==9) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==11) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.1f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.1f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(22);
+                }
+                if(getAnimationTick()>=32) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 27:
+                if(getAnimationTick()==1) {
+                    this.setDeltaMovement(0,1.0,0);
                     if(this.getTarget()==null) {
                         aimVec = this.getLookAngle().normalize();
                     }else{
                         aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
                     }
                 }
-                if(getAnimationTick()==28) {
+                if(getAnimationTick()==2) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.35));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.35));
+                    }
+                }
+                if(getAnimationTick()==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>18) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 31:
+                if(getAnimationTick()==5) {
+                    if(this.getTarget()==null) {
+                        aimVec = this.getLookAngle().normalize();
+                    }else{
+                        aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
+                    }
+                }
+                if(getAnimationTick()==6) {
                     //this.playSound(this.getAttackSound(), 0.2f,1.0f);
-                    this.playSound(SoundEvents.EGG_THROW);
+                    this.playSound(SoundEvents.FISHING_BOBBER_THROW);
                     float x = (float) (pos.x + 0.6 * aimVec.x);
                     float y = (float) (pos.y + 1.4 + 0.6 * aimVec.y);
                     float z = (float) (pos.z + 0.6 * aimVec.z);
-                    FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
+                    ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), levelIn);
                     entity.setPos(x,y,z);
                     float flyingPower = 0.25f;
                     entity.xPower=flyingPower*aimVec.x;
-                    entity.yPower=flyingPower*aimVec.y+0.01;
+                    entity.yPower=flyingPower*aimVec.y;
                     entity.zPower=flyingPower*aimVec.z;
                     entity.setOwner(this);
-                    entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f);
-                    entity.setPoiseDamage(4);
-                    entity.setGravPower(0.0015f);
-                    entity.setHorizontalSpread(1.0);
-                    entity.setVerticalSpread(1.0);
+                    entity.setItem(ItemInit.THROWING_KNIFE.get().getDefaultInstance());
+                    entity.setAttackPower((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                    entity.setBloodDamage(2);
+                    entity.setPoiseDamage(2);
+                    entity.setGravPower(0.0005f);
                     levelIn.addFreshEntity(entity);
 
                 }
-                if(getAnimationTick()>=40) {
+                if(getAnimationTick()>=10) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -477,10 +672,10 @@ public class HollowAssassin extends Hollow implements GeoEntity {
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
             this.ticksUntilNextAttack = 5;
-            this.ticksUntilNextRangedAttack = 120;
+            this.ticksUntilNextRangedAttack = 10;
             this.lastCanUpdateStateCheck = 150;
             int r = this.mob.getRandom().nextInt(2048);
-            if(r<=840) {
+            if(r<=1040) {
                 this.mob.setCombatState(1);
                 this.stop();
             }
@@ -522,7 +717,7 @@ public class HollowAssassin extends Hollow implements GeoEntity {
             this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
             this.ticksUntilNextRangedAttack = Math.max(this.ticksUntilNextRangedAttack - 1, 0);
             if(this.ticksUntilNextRangedAttack<=0 && this.ticksUntilNextAttack <= 0){
-                    this.ticksUntilNextRangedAttack=10;
+                    this.ticksUntilNextRangedAttack=5;
             }
 
         }
@@ -581,43 +776,60 @@ public class HollowAssassin extends Hollow implements GeoEntity {
         protected void checkForAttack(double distance, double reach){
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=480) {
+                if(r<=360) {
 
                     this.mob.setAnimationState(21);
 
-                }else if(r<=720){
+                }else if(r<=520){
 
                     this.mob.setAnimationState(22);
 
-                }else if(r<=1250){
+                }else if(r<=720){
 
                     this.mob.setAnimationState(23);
 
-                } else if(r<=1650){
+                } else if(r<=960){
 
                     this.mob.setAnimationState(24);
-                }else{
+
+                }else if(r<=1850){
 
                     this.mob.setAnimationState(25);
+
+                }else if(r<=1650){
+
+                    this.mob.setAnimationState(26);
+
+                }else{
+
+                    this.mob.setAnimationState(27);
                 }
             }
             if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=48) {
+                if(r<=36) {
 
-                    this.mob.setAnimationState(24);
+                    this.mob.setAnimationState(27);
+
+                }else if(r<=84){
+
+                    this.mob.setAnimationState(11);
+
+                }
+                else if(r<=132){
+
+                    this.mob.setAnimationState(12);
 
                 }
             }
             if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=480) {
+                if(r<=560) {
 
                     this.mob.setAnimationState(31);
 
                 }
             }
-
 
         }
 
@@ -637,7 +849,7 @@ public class HollowAssassin extends Hollow implements GeoEntity {
     public class AttackGoalRunning extends Goal {
 
 
-        private final double speedModifier = 1.8f;
+        private final double speedModifier = 2.0f;
         private final boolean followingTargetEvenIfNotSeen = true;
         protected final HollowAssassin mob;
         private Path path;
@@ -822,34 +1034,53 @@ public class HollowAssassin extends Hollow implements GeoEntity {
         protected void checkForAttack(double distance, double reach){
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=480) {
+                if(r<=360) {
 
                     this.mob.setAnimationState(21);
 
-                }else if(r<=620){
+                }else if(r<=520){
 
                     this.mob.setAnimationState(22);
 
-                }else if(r<=1050){
+                }else if(r<=720){
 
                     this.mob.setAnimationState(23);
 
-                } else if(r<=1750){
+                } else if(r<=960){
 
                     this.mob.setAnimationState(24);
-                }else{
+
+                }else if(r<=1850){
 
                     this.mob.setAnimationState(25);
+
+                }else if(r<=1650){
+
+                    this.mob.setAnimationState(26);
+
+                }else{
+
+                    this.mob.setAnimationState(27);
                 }
             }
             if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=48) {
+                if(r<=36) {
 
-                    this.mob.setAnimationState(24);
+                    this.mob.setAnimationState(27);
+
+                }else if(r<=84){
+
+                    this.mob.setAnimationState(11);
+
+                }
+                else if(r<=132){
+
+                    this.mob.setAnimationState(12);
 
                 }
             }
+
 
 
         }

@@ -58,7 +58,7 @@ public class ItemInit {
 	public static final RegistryObject<BrokenStraightsword> BROKEN_STRAIGHTSWORD = ITEMS.register("broken_straightsword",
 			() -> new BrokenStraightsword(Tiers.TITANITE, 3.0f, 1.6f, 0.0f, 2, 0,0,0,0,0,0,0,127,8,0.1f, 1,new Item.Properties()));
 	public static final RegistryObject<Longsword> BANDIT_KNIFE = ITEMS.register("bandit_knife",
-			() -> new Longsword(Tiers.TITANITE, 4.0f, 2.6f, 0.0f, 2, 3,0,0,0,0,0,0,127,6,0.18f, 1,new Item.Properties()));
+			() -> new Longsword(Tiers.TITANITE, 3.0f, 2.4f, 0.0f, 2, 3,0,0,0,0,0,0,63,6,0.18f, 1,new Item.Properties()));
 	public static final RegistryObject<Longsword> LONGSWORD = ITEMS.register("longsword",
 			() -> new Longsword(Tiers.TITANITE, 7.0f, 1.6f, 0.0f, 6, 0,0,0,0,0,0,0,225,8,0.1f, 2,new Item.Properties()));
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
@@ -162,6 +162,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 12630442, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_LONGSWORD = ITEMS.register("gravetender_hollow_longsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, 13945528, 2962739, new Item.Properties()));
+	public static final RegistryObject<Item> HOLLOW_ASSASSIN = ITEMS.register("hollow_assassin_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("gravetender_hollow_broken_straightsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> BEAST_PATIENT = ITEMS.register("beast_patient_spawn_egg",

@@ -77,6 +77,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<GravetenderHollowLongsword>of(GravetenderHollowLongsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("hollow_longsword"));
+	public static final RegistryObject<EntityType<HollowAssassin>> HOLLOW_ASSASSIN = ENTITIES.register("hollow_assassin",
+			() -> EntityType.Builder.<HollowAssassin>of(HollowAssassin::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("hollow_assassin"));
 	public static final RegistryObject<EntityType<GravetenderHollowBrokenStraightsword>> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ENTITIES.register("gravetender_hollow_broken_straightsword",
 			() -> EntityType.Builder.<GravetenderHollowBrokenStraightsword>of(GravetenderHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
