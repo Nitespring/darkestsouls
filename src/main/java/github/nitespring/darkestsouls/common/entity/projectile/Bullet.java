@@ -92,7 +92,7 @@ public class Bullet extends AbstractHurtingProjectile {
             hitBlocks++;
             if (hitBlocks >= getRicochet()) {
                 this.discard();
-                this.getOwner().level().playSound((Player)null, this.position().x(),this.position().y(),this.position().z(), SoundEvents.STONE_PLACE, SoundSource.AMBIENT, 0.2F, 1.6f);
+                if(this.getOwner()!=null){this.getOwner().level().playSound((Player)null, this.position().x(),this.position().y(),this.position().z(), SoundEvents.STONE_PLACE, SoundSource.AMBIENT, 0.2F, 1.6f);}
             } else {
                 Vec3 mov = this.getDeltaMovement();
                 Random r = new Random();
@@ -112,16 +112,21 @@ public class Bullet extends AbstractHurtingProjectile {
     public void tick() {
         super.tick();
         gravTick++;
-        this.setDeltaMovement(this.getDeltaMovement().add(0, -0.0005 * Math.pow(gravTick, 9/4), 0));
+        this.setDeltaMovement(this.getDeltaMovement().add(0, -0.0001 * Math.pow(gravTick, 9/4), 0));
+        if(this.tickCount>=getFlyingTime()){}
+        if(this.tickCount % 3 == 0){
+            this.level().addParticle(ParticleTypes.SMOKE,this.position().x,this.position().y,this.position().z,0,0,0);
+        }
     }
     @Override
     public boolean isOnFire() {
         return false;
     }
+
     @Nullable
     @Override
     protected ParticleOptions getTrailParticle() {
-        return super.getTrailParticle();
+        return null;
     }
     
 }

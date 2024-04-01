@@ -122,7 +122,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> QUICKSILVER_BULLET = ITEMS.register("quicksilver_bullet",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Pistol> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
-			() -> new Pistol(6.0f, 24,2,0.4f,0.25f, 60, 0,0, new Item.Properties()));
+			() -> new Pistol(6.0f, 18,2,0.4f,0.5f, 60, 0,0,1, 256, new Item.Properties()));
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",

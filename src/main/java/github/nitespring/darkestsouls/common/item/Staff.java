@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Staff extends Item implements ILeftClickItem{
+public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
 
 
     private final float attackDamage;
@@ -104,12 +104,12 @@ public class Staff extends Item implements ILeftClickItem{
 
         super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
     }
-
+    @Override
     public Predicate<ItemStack> getAmmoType(){return (p_43015_) -> {
         return p_43015_.is(ItemInit.SMALL_SOUL_FRAGMENT.get());
     };}
 
-
+/*
     public ItemStack getAmmo(Player playerIn){
 
         ItemStack ammo = null;
@@ -168,7 +168,7 @@ public class Staff extends Item implements ILeftClickItem{
             }
         }
     }
-
+*/
 
 
 }
