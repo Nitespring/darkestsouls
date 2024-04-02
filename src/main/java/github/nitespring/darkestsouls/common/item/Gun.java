@@ -3,17 +3,22 @@ package github.nitespring.darkestsouls.common.item;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.function.Predicate;
 
-public class Gun extends Item implements IAmmoConsumingItem{
+public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
 
     private final float attackDamage;
     private final int useCooldown;
@@ -39,14 +44,30 @@ public class Gun extends Item implements IAmmoConsumingItem{
         this.ammoAmount=ammoAmount;
         this.durability=durability;
     }
-
-
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-
-        return super.use(level, player, hand);
+        if(hand== InteractionHand.OFF_HAND) {
+            ItemStack stackIn = player.getItemInHand(hand);
+            int ammoAmount = this.getAmmoAmount();
+            if (this.hasAmmo(player, ammoAmount) || player.isCreative()) {
+                this.shoot(player, level, stackIn);
+                stackIn.hurtAndBreak(1, player, (p_43276_) -> {
+                    p_43276_.broadcastBreakEvent(InteractionHand.OFF_HAND);
+                });
+                if (!player.isCreative()) {
+                    this.consumeAmmo(player, ammoAmount);
+                }
+                return InteractionResultHolder.success(stackIn);
+            } else {
+                return InteractionResultHolder.fail(stackIn);
+            }
+        }else {
+            if(player.getItemInHand(InteractionHand.OFF_HAND)==ItemStack.EMPTY) {
+                player.startUsingItem(hand);
+            }
+            return super.use(level, player, hand);
+        }
     }
-
     public float getAttackDamage(Player playerIn, ItemStack stackIn) {
         return attackDamage;
     }
@@ -91,5 +112,44 @@ public class Gun extends Item implements IAmmoConsumingItem{
     @Override
     public int getMaxDamage(ItemStack stack) {
         return durability;
+    }
+    @Override
+    public void doLeftClickAction(Player player, ItemStack stackIn) {
+        int ammoAmount = this.getAmmoAmount();
+        if (!player.getCooldowns().isOnCooldown(this)&&(this.hasAmmo(player, ammoAmount) || player.isCreative())) {
+            this.shoot(player, player.level(), stackIn);
+            stackIn.hurtAndBreak(1, player, (p_43276_) -> {
+                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
+            if (!player.isCreative()) {
+                this.consumeAmmo(player, ammoAmount);
+            }
+        }
+    }
+
+    @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        return true;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack p_41452_) {
+        return UseAnim.BOW;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack p_41454_) {
+        return 40000;
+    }
+
+    @Override
+    public boolean canAttackBlock(BlockState p_43291_, Level p_43292_, BlockPos p_43293_, Player p_43294_) {
+        return !p_43294_.isCreative();
+    }
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+
+        return true;
     }
 }

@@ -36,7 +36,7 @@ public class Bullet extends AbstractHurtingProjectile {
     protected int hitEntities;
     public int gravTick;
     protected int hitBlocks;
-    protected int flyingTime;
+    protected static final EntityDataAccessor<Integer> FLYING_TIME = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.FLOAT);
     protected static final EntityDataAccessor<Integer> PIERCE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Integer> RICOCHET = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
@@ -49,15 +49,15 @@ public class Bullet extends AbstractHurtingProjectile {
         this.poiseDamage = poiseIn;
         this.setPierce(pierceIn);
         this.setRicochet(ricochetIn);
-        this.flyingTime = flyingTime;
+        this.setFlyingTime(flyingTime);
     }
 
     public float getAttackDamage() {return damage;}
     public void setAttackDamage(float damage) {this.damage = damage;}
     public int getPoiseDamage() {return poiseDamage;}
     public void setPoiseDamage(int poiseDamage) {this.poiseDamage = poiseDamage;}
-    public int getFlyingTime() {return flyingTime;}
-    public void setFlyingTime(int flyingTime) {this.flyingTime = flyingTime;}
+    public int getFlyingTime() {return entityData.get(FLYING_TIME);}
+    public void setFlyingTime(int flyingTime) {entityData.set(FLYING_TIME, flyingTime);}
     public int getPierce() {return entityData.get(PIERCE);}
     public void setPierce(int pierce) {entityData.set(PIERCE,pierce);}
     public float getSize() {return entityData.get(SIZE);}
@@ -67,19 +67,23 @@ public class Bullet extends AbstractHurtingProjectile {
         this.entityData.define(SIZE, 0.4f);
         this.entityData.define(RICOCHET, 0);
         this.entityData.define(PIERCE, 0);
+        this.entityData.define(FLYING_TIME, 100);
     }
     public int getRicochet() {return entityData.get(RICOCHET);}
     public void setRicochet(int ricochet) {entityData.set(RICOCHET,ricochet);}
 
     @Override
     protected void onHitEntity(EntityHitResult p_37259_) {
-        super.onHitEntity(p_37259_);
         Entity e = p_37259_.getEntity();
-        e.hurt(e.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()), this.damage);
-        if(hitEntities>=getPierce()){
-            this.discard();
+        if(!(e instanceof Bullet)) {
+            super.onHitEntity(p_37259_);
+
+            e.hurt(e.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()), this.damage);
+            if (hitEntities >= getPierce()) {
+                this.discard();
+            }
+            hitEntities++;
         }
-        hitEntities++;
     }
     @Override
     protected void onHitBlock(BlockHitResult result) {
@@ -113,7 +117,9 @@ public class Bullet extends AbstractHurtingProjectile {
         super.tick();
         gravTick++;
         this.setDeltaMovement(this.getDeltaMovement().add(0, -0.0001 * Math.pow(gravTick, 9/4), 0));
-        if(this.tickCount>=getFlyingTime()){}
+        if(this.tickCount>=getFlyingTime()){
+            this.discard();
+        }
         if(this.tickCount % 3 == 0){
             this.level().addParticle(ParticleTypes.SMOKE,this.position().x,this.position().y,this.position().z,0,0,0);
         }
@@ -128,5 +134,18 @@ public class Bullet extends AbstractHurtingProjectile {
     protected ParticleOptions getTrailParticle() {
         return null;
     }
-    
+
+    @Override
+    public boolean canBeHitByProjectile() {
+        return false;
+    }
+
+    @Override
+    protected boolean canHitEntity(Entity p_36842_) {
+        if(p_36842_ instanceof Bullet){
+            return false;
+        }else {
+            return super.canHitEntity(p_36842_);
+        }
+    }
 }
