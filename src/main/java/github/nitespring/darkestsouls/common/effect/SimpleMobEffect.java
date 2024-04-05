@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.effects;
+package github.nitespring.darkestsouls.common.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

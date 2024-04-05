@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.effects;
+package github.nitespring.darkestsouls.common.effect;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
@@ -9,9 +9,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;

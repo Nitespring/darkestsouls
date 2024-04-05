@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.effects;
+package github.nitespring.darkestsouls.common.effect;
 
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.particles.ItemParticleOption;
