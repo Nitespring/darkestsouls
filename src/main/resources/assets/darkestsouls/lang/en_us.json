@@ -25,7 +25,6 @@
   "item.darkestsouls.hunter_torch" : "Torch",
   "item.darkestsouls.hunting_axe" : "Hunting Axe",
   "item.darkestsouls.church_scythe" : "Church Scythe",
-  "item.darkestsouls.hunter_pistol" : "Hunter's Pistol",
   "item.darkestsouls.frayed_blade" : "Frayed Blade",
   "item.darkestsouls.dragonslayer_spear" : "Dragonslayer Spear",
   "item.darkestsouls.dragonslayer_swordspear" : "Dragonslayer Swordspear",
@@ -44,6 +43,11 @@
   "item.darkestsouls.hunter_axe_extended" : "Hunter Axe",
   "item.darkestsouls.chikage" : "Chikage",
   "item.darkestsouls.chikage_extended" : "Chikage",
+
+  "item.darkestsouls.hunter_pistol" : "Hunter's Pistol",
+  "item.darkestsouls.blunderbuss" : "Blunderbuss",
+  "item.darkestsouls.repeating_pistol" : "Repeating Pistol",
+  "item.darkestsouls.evelyn" : "Evelyn",
 
   "item.darkestsouls.sorcerer_staff_a" : "Feeble Sorcerer's Staff",
   "item.darkestsouls.sorcerer_staff_b" : "Sorcerer's Staff",
@@ -169,6 +173,18 @@
   "effect.darkestsouls.parasites" : "Parasitic Infection",
   "effect.darkestsouls.frost" : "Frostbite",
   "effect.darkestsouls.rot" : "Scarlet Rot",
+
+  "enchantment.darkestsouls.ricochet_shot" : "Ricochet Shot",
+  "enchantment.darkestsouls.piercing_shot" : "Piercing Shot",
+  "enchantment.darkestsouls.firepower" : "Firepower",
+  "enchantment.darkestsouls.greater_firepower" : "Greater Firepower",
+  "enchantment.darkestsouls.exploding_shot" : "Exploding Shot",
+  "enchantment.darkestsouls.flaming_shot" : "Flaming Shot",
+  "enchantment.darkestsouls.ophidian_bite" : "Ophidian Bite",
+  "enchantment.darkestsouls.expanding_shot" : "Expanding Bullets",
+  "enchantment.darkestsouls.gunslinger" : "Gunslinger",
+  "enchantment.darkestsouls.sharpshooter" : "Sharp Eye",
+
 
   "subtitles.darkestsouls.beast_patient" : "Beast",
   "subtitles.darkestsouls.monstruosity_of_sin" : "Monstruosity",

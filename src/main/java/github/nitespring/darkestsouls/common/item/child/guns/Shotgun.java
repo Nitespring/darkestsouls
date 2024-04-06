@@ -17,8 +17,8 @@ public class Shotgun extends Gun{
     private final float horizontalSpread;
     private final float verticalSpread;
 
-    public Shotgun(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, float horizontalSpread, float verticalSpread, Properties properties) {
-        super(damage, cooldown, poise, size, flyingPower, flyingTime, ricochet, pierce, ammoAmount, durability, properties);
+    public Shotgun(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, float horizontalSpread, float verticalSpread, int enchantability, Properties properties) {
+        super(damage, cooldown, poise, size, flyingPower, flyingTime, ricochet, pierce, ammoAmount, durability, enchantability, properties);
         this.horizontalSpread=horizontalSpread;
         this.verticalSpread=verticalSpread;
     }
@@ -61,7 +61,11 @@ public class Shotgun extends Gun{
                     entity.setOwner(player);
                     entity.setAttackDamage(this.getAttackDamage(player, stackIn));
                     entity.setPoiseDamage(this.getPoiseDamage(player, stackIn));
-                    entity.setFlyingTime(this.getFlyingTime());
+                    entity.setFlyingTime(this.getFlyingTime(stackIn));
+                    entity.setBlood(this.getBlood(player,stackIn));
+                    entity.setPoison(this.getPoison(player,stackIn));
+                    entity.setFire(this.isFire(player,stackIn));
+                    entity.setExplosion(this.getExplosion(stackIn));
                     entity.setSize((float) (this.getBaseSize()*(1+0.8*rD)));
                     entity.setPierce(this.getPierce(player, stackIn));
                     entity.setRicochet(this.getRicochet(player, stackIn));

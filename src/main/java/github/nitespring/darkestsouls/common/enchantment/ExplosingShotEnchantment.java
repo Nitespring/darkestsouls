@@ -1,25 +1,23 @@
 package github.nitespring.darkestsouls.common.enchantment;
 
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class FirepowerEnchantment extends Enchantment {
-    public FirepowerEnchantment(Rarity rarity) {
+public class ExplosingShotEnchantment extends Enchantment {
+    public ExplosingShotEnchantment(Rarity rarity) {
         super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
     }
     public int getMinCost(int i) {
-        return 8 * i;
+        return 10+20 * i;
     }
 
     public int getMaxCost(int i) {
-        return this.getMinCost(i) + 30;
+        return this.getMinCost(i) + 36;
     }
     @Override
     public int getMaxLevel() {
-        return 5;
+        return 3;
     }
 
     @Override

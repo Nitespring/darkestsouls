@@ -23,8 +23,8 @@ import net.minecraft.world.phys.Vec3;
 public class Pistol extends Gun{
 
 
-    public Pistol(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, Properties properties) {
-        super(damage, cooldown, poise, size, flyingPower, flyingTime, ricochet, pierce, ammoAmount, durability, properties);
+    public Pistol(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, int enchantability, Properties properties) {
+        super(damage, cooldown, poise, size, flyingPower, flyingTime, ricochet, pierce, ammoAmount, durability, enchantability, properties);
     }
 
 
@@ -48,7 +48,11 @@ public class Pistol extends Gun{
         entity.setOwner(player);
         entity.setAttackDamage(this.getAttackDamage(player, stackIn));
         entity.setPoiseDamage(this.getPoiseDamage(player, stackIn));
-        entity.setFlyingTime(this.getFlyingTime());
+        entity.setFlyingTime(this.getFlyingTime(stackIn));
+        entity.setBlood(this.getBlood(player,stackIn));
+        entity.setPoison(this.getPoison(player,stackIn));
+        entity.setFire(this.isFire(player,stackIn));
+        entity.setExplosion(this.getExplosion(stackIn));
         entity.setSize(this.getBaseSize());
         entity.setPierce(this.getPierce(player, stackIn));
         entity.setRicochet(this.getRicochet(player, stackIn));

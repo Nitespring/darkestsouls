@@ -123,13 +123,13 @@ public class ItemInit {
 	public static final RegistryObject<Item> QUICKSILVER_BULLET = ITEMS.register("quicksilver_bullet",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(24)));
 	public static final RegistryObject<Pistol> HUNTER_PISTOL = ITEMS.register("hunter_pistol",
-			() -> new Pistol(6.0f, 18,2,0.4f,0.5f, 8, 0,0,1, 256, new Item.Properties().rarity(Rarity.UNCOMMON)));
+			() -> new Pistol(6.0f, 18,2,0.4f,0.5f, 8, 0,0,1, 256, 5, new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Shotgun> BLUNDERBUSS = ITEMS.register("blunderbuss",
-			() -> new Shotgun(10.0f, 24,2,0.3f,0.25f, 10, 0,0,1, 384, 0.4f, 0.4f, new Item.Properties().rarity(Rarity.UNCOMMON)));
+			() -> new Shotgun(10.0f, 24,2,0.3f,0.25f, 10, 0,0,1, 384, 0.4f, 0.4f, 5, new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Pistol> EVELYN = ITEMS.register("evelyn",
-			() -> new Pistol(5.5f, 12,2,0.3f,0.5f, 10, 0,0,1, 512, new Item.Properties().rarity(Rarity.RARE)));
+			() -> new Pistol(5.5f, 12,2,0.3f,0.5f, 10, 0,0,1, 512, 10, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Pistol> REPEATING_PISTOL = ITEMS.register("repeating_pistol",
-			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 512, new Item.Properties().rarity(Rarity.RARE)));
+			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 512, 8, new Item.Properties().rarity(Rarity.RARE)));
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",

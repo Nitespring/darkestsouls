@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.common.item;
 
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
+import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -11,7 +12,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -30,8 +36,9 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
     private final int pierce;
     private final int ammoAmount;
     private final int durability;
+    private final int enchantability;
 
-    public Gun(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, Properties properties) {
+    public Gun(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, int enchantability, Properties properties) {
         super(properties);
         this.attackDamage = damage;
         this.useCooldown = cooldown;
@@ -43,6 +50,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         this.pierce = pierce;
         this.ammoAmount=ammoAmount;
         this.durability=durability;
+        this.enchantability=enchantability;
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -69,28 +77,85 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         }
     }
     public float getAttackDamage(Player playerIn, ItemStack stackIn) {
-        return attackDamage;
+        int flatEnchantModifier=0;
+        int percentEnchantModifier=0;
+        if(stackIn.isEnchanted()){
+            flatEnchantModifier = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.FIREPOWER.get(), stackIn);
+            percentEnchantModifier = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.GREATER_FIREPOWER.get(), stackIn);
+
+        }
+        return (attackDamage+2*flatEnchantModifier)*(1+0.2f*percentEnchantModifier);
+
     }
     public int getUseCooldown(Player playerIn, ItemStack stackIn) {
-        return useCooldown;
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.GUNSLINGER.get(), stackIn);
+        }
+        return (int) (useCooldown*(1-0.1*enchantModifier));
     }
     public int getPoiseDamage(Player playerIn, ItemStack stackIn) {
         return poiseDamage;
     }
-    public int getFlyingTime() {
-        return flyingTime;
+    public int getFlyingTime(ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.SHARPSHOOTER.get(), stackIn);
+        }
+        return (int) (flyingTime*(1+0.1* enchantModifier));
+
     }
     public float getBaseSize(){
         return size;
     }
     public float flyingPower(Player playerIn, ItemStack stackIn){
-        return flyingPower;
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.SHARPSHOOTER.get(), stackIn);
+        }
+        return flyingPower+0.025f* enchantModifier;
     }
     public int getRicochet(Player playerIn, ItemStack stackIn) {
-        return ricochet;
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.RICOCHET_SHOT.get(), stackIn);
+        }
+        return ricochet+enchantModifier;
     }
     public int getPierce(Player playerIn, ItemStack stackIn) {
-        return pierce;
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.PIERCING_SHOT.get(), stackIn);
+        }
+        return pierce+enchantModifier;
+    }
+    public int getPoison(Player playerIn, ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.OPHIDIAN_BITE.get(), stackIn);
+        }
+        return enchantModifier;
+    }
+    public int getBlood(Player playerIn, ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.EXPANDING_SHOT.get(), stackIn);
+        }
+        return enchantModifier;
+    }
+    public boolean isFire(Player playerIn, ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.FLAMING_SHOT.get(), stackIn);
+        }
+        return enchantModifier>0;
+    }
+    public int getExplosion(ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.EXPLODING_SHOT.get(), stackIn);
+        }
+        return enchantModifier;
     }
     public int getAmmoAmount() {
         return ammoAmount;
@@ -113,6 +178,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
     public int getMaxDamage(ItemStack stack) {
         return durability;
     }
+
     @Override
     public void doLeftClickAction(Player player, ItemStack stackIn) {
         int ammoAmount = this.getAmmoAmount();
@@ -152,4 +218,21 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
 
         return true;
     }
+
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return this.enchantability;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment.category == EnchantmentInit.GUN || enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.VANISHABLE;
+    }
+
+    @Override
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        return super.isBookEnchantable(stack, book);
+    }
+
+
 }
