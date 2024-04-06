@@ -4,16 +4,15 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Firebom
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -21,7 +20,9 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
@@ -76,7 +77,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
             return super.use(level, player, hand);
         }
     }
-    public float getAttackDamage(Player playerIn, ItemStack stackIn) {
+    public float getAttackDamage(@Nullable Player playerIn, ItemStack stackIn) {
         int flatEnchantModifier=0;
         int percentEnchantModifier=0;
         if(stackIn.isEnchanted()){
@@ -87,7 +88,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         return (attackDamage+2*flatEnchantModifier)*(1+0.2f*percentEnchantModifier);
 
     }
-    public int getUseCooldown(Player playerIn, ItemStack stackIn) {
+    public int getUseCooldown(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.GUNSLINGER.get(), stackIn);
@@ -115,35 +116,35 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         }
         return flyingPower+0.025f* enchantModifier;
     }
-    public int getRicochet(Player playerIn, ItemStack stackIn) {
+    public int getRicochet(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.RICOCHET_SHOT.get(), stackIn);
         }
         return ricochet+enchantModifier;
     }
-    public int getPierce(Player playerIn, ItemStack stackIn) {
+    public int getPierce(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.PIERCING_SHOT.get(), stackIn);
         }
         return pierce+enchantModifier;
     }
-    public int getPoison(Player playerIn, ItemStack stackIn) {
+    public int getPoison(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.OPHIDIAN_BITE.get(), stackIn);
         }
         return enchantModifier;
     }
-    public int getBlood(Player playerIn, ItemStack stackIn) {
+    public int getBlood(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.EXPANDING_SHOT.get(), stackIn);
         }
         return enchantModifier;
     }
-    public float getLuck(Player playerIn, ItemStack stackIn) {
+    public float getLuck(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.MISER_SOUL.get(), stackIn);
@@ -248,5 +249,39 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         return super.isBookEnchantable(stack, book);
     }
 
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
 
+
+
+        tooltip.add(Component.literal("+").append(Component.literal(""+this.getAttackDamage(null,stack))).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+
+        if(this.getBlood(null,stack)>=1) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+this.getBlood(null,stack))).append(Component.translatable("translation.darkestsouls.blood")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_RED));
+        }
+        if(this.getPoison(null,stack)>=1) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+this.getPoison(null,stack))).append(Component.translatable("translation.darkestsouls.poison")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GREEN));
+        }
+        if(this.getRicochet(null,stack)>=1) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+this.getRicochet(null,stack))).append(Component.translatable("translation.darkestsouls.ricochet")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        }
+        if(this.getPierce(null,stack)>=1) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+this.getPierce(null,stack))).append(Component.translatable("translation.darkestsouls.pierce")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        }
+        if(this.getLuck(null,stack)>0) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+(int)(this.getLuck(null,stack)*100))).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        }
+        if(stack.isEnchanted()){
+            int i=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.GUNSLINGER.get(), stack);
+            if(i>=1) {
+                tooltip.add(Component.literal("+").append(Component.literal("" + i * 10)).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.cooldown")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+            }
+        }
+        if(this.getAmmoAmount()==1) {
+            tooltip.add(Component.translatable("translation.darkestsouls.require_bullet").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        }else{
+            tooltip.add(Component.translatable("translation.darkestsouls.require").append(Component.literal(" " + this.getAmmoAmount())).append(Component.translatable("translation.darkestsouls.bullets")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
+    }
 }

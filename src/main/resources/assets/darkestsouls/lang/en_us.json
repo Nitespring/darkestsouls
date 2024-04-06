@@ -10,6 +10,7 @@
   "item.darkestsouls.kukri" : "Kukri",
 
   "item.darkestsouls.broken_straightsword" : "Broken Straightsword",
+  "item.darkestsouls.bandit_knife" : "Bandit's Knife",
   "item.darkestsouls.longsword" : "Longsword",
   "item.darkestsouls.scimitar" : "Scimitar",
   "item.darkestsouls.falchion" : "Falchion",
@@ -184,7 +185,7 @@
   "enchantment.darkestsouls.expanding_shot" : "Expanding Bullets",
   "enchantment.darkestsouls.gunslinger" : "Gunslinger",
   "enchantment.darkestsouls.sharpshooter" : "Sharp Eye",
-  "enchantment.darkestsouls.child_of_the_thunder_god" : "Child of the Thunder God",
+  "enchantment.darkestsouls.child_of_the_thunder_god" : "Child of the Thunderbird",
   "enchantment.darkestsouls.miser_soul" : "Miser Soul",
 
 
@@ -204,6 +205,13 @@
   "translation.darkestsouls.poison" : " Poison Damage",
   "translation.darkestsouls.tier" : "Tier",
   "translation.darkestsouls.damage" : " Damage",
+  "translation.darkestsouls.pierce" : " Pierce",
+  "translation.darkestsouls.ricochet" : " Ricochet",
+  "translation.darkestsouls.luck" : " chance not to consume Ammo",
+  "translation.darkestsouls.cooldown" : " Rate of Fire",
+  "translation.darkestsouls.require_bullet" : "Consumes 1 Quicksilver Bullet",
+  "translation.darkestsouls.require" : "Consumes",
+  "translation.darkestsouls.bullets" : " Quicksilver Bullets",
   "translation.darkestsouls.consumes_small_soul" : "Consumes Small Soul Fragments",
 
   "translation.darkestsouls.spell.crystal_burst" : "Crystal Burst (1)",
