@@ -43,7 +43,10 @@ public class EnchantmentInit {
             () -> new RicochetEnchantment(Enchantment.Rarity.UNCOMMON));
     public static final RegistryObject<PiercingEnchantment> PIERCING_SHOT = ENCHANTMENTS.register("piercing_shot",
             () -> new PiercingEnchantment(Enchantment.Rarity.UNCOMMON));
-
+    public static final RegistryObject<MiserSoulEnchantment> MISER_SOUL = ENCHANTMENTS.register("miser_soul",
+            () -> new MiserSoulEnchantment(Enchantment.Rarity.UNCOMMON));
+    public static final RegistryObject<ChildOfTheThunderGodEnchantment> CHILD_OF_THUNDER = ENCHANTMENTS.register("child_of_the_thunder_god",
+            () -> new ChildOfTheThunderGodEnchantment(Enchantment.Rarity.UNCOMMON));
 
 
 

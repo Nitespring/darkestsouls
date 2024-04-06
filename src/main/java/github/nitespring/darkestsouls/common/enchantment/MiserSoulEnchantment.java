@@ -4,21 +4,21 @@ import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
-public class SharpshooterEnchantment extends Enchantment {
-    public SharpshooterEnchantment(Rarity rarity) {
+public class MiserSoulEnchantment extends Enchantment {
+    public MiserSoulEnchantment(Rarity rarity) {
         super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
     }
     @Override
     public int getMinCost(int i) {
-        return 12 * i;
+        return 10+10 * i;
     }
     @Override
     public int getMaxCost(int i) {
-        return this.getMinCost(i) + 30;
+        return this.getMinCost(i) + 20;
     }
     @Override
     public int getMaxLevel() {
-        return 3;
+        return 6;
     }
 
     @Override

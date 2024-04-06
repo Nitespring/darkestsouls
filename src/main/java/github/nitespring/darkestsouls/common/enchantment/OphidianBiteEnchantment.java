@@ -8,10 +8,11 @@ public class OphidianBiteEnchantment extends Enchantment {
     public OphidianBiteEnchantment(Rarity rarity) {
         super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
     }
+    @Override
     public int getMinCost(int i) {
         return 12 * i;
     }
-
+    @Override
     public int getMaxCost(int i) {
         return this.getMinCost(i) + 30;
     }

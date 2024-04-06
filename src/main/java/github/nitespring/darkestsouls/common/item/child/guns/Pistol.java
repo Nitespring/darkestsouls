@@ -53,6 +53,7 @@ public class Pistol extends Gun{
         entity.setPoison(this.getPoison(player,stackIn));
         entity.setFire(this.isFire(player,stackIn));
         entity.setExplosion(this.getExplosion(stackIn));
+        entity.setThunder(this.isLightning(player,stackIn));
         entity.setSize(this.getBaseSize());
         entity.setPierce(this.getPierce(player, stackIn));
         entity.setRicochet(this.getRicochet(player, stackIn));

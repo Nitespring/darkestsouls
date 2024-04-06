@@ -12,21 +12,20 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -45,6 +44,7 @@ public class Bullet extends AbstractHurtingProjectile {
     //protected int pierce;
     //protected int ricochet;
     protected int hitEntities;
+    protected boolean isThunder;
     public int gravTick;
     protected int hitBlocks;
     protected static final EntityDataAccessor<Integer> FLYING_TIME = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
@@ -72,6 +72,8 @@ public class Bullet extends AbstractHurtingProjectile {
     public void setPoison(int i) {this.poison = i;}
     public int getBlood() {return blood;}
     public void setBlood(int i) {this.blood = i;}
+    public boolean isThunder() {return isThunder;}
+    public void setThunder(boolean i) {this.isThunder = i;}
     public int getExplosion() {return explosion;}
     public void setExplosion(int i) {this.explosion = i;}
     public boolean isFire() {return entityData.get(FIRE);}
@@ -121,6 +123,9 @@ public class Bullet extends AbstractHurtingProjectile {
             if(isFire()){
                 e.setSecondsOnFire(3);
             }
+            if(isThunder()){
+               this.spawnThunder();
+            }
             if (hitEntities >= getPierce()) {
                 this.discard();
                 if(this.getExplosion()>=1){
@@ -138,7 +143,9 @@ public class Bullet extends AbstractHurtingProjectile {
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
         BlockState block = this.level().getBlockState(result.getBlockPos());
-
+        if(isThunder()){
+            this.spawnThunder();
+        }
         if(block.is(CustomBlockTags.BOMB_BREAKABLE)){
             this.level().destroyBlock(result.getBlockPos(), true, this.getOwner());
             level().gameEvent(this, GameEvent.BLOCK_DESTROY, result.getBlockPos());
@@ -193,6 +200,9 @@ public class Bullet extends AbstractHurtingProjectile {
             if(this.getExplosion()>=1){
                 this.explode(this.getExplosion()-1);
             }
+            if(isThunder()){
+                this.spawnThunder();
+            }
         }
         if(this.tickCount % 3 == 0){
             this.level().addParticle(ParticleTypes.SMOKE,this.position().x,this.position().y,this.position().z,0,0,0);
@@ -235,5 +245,14 @@ public class Bullet extends AbstractHurtingProjectile {
                 0.5f+0.5f*Math.max(0,i),
                 isFire(),
                 Level.ExplosionInteraction.MOB);
+    }
+    protected void spawnThunder(){
+        LightningBolt entity = new LightningBolt(EntityType.LIGHTNING_BOLT,this.level());
+        entity.setPos(this.position());
+        entity.setDamage(this.getAttackDamage());
+        if(this.getOwner() instanceof ServerPlayer player){
+            entity.setCause(player);
+        }
+        this.level().addFreshEntity(entity);
     }
 }

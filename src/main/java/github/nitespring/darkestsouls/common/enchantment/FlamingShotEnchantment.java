@@ -8,10 +8,12 @@ public class FlamingShotEnchantment extends Enchantment {
     public FlamingShotEnchantment(Rarity rarity) {
         super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
     }
+    @Override
     public int getMinCost(int i) {
         return 20;
     }
 
+    @Override
     public int getMaxCost(int i) {
         return 46;
     }

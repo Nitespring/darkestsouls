@@ -63,7 +63,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
                     p_43276_.broadcastBreakEvent(InteractionHand.OFF_HAND);
                 });
                 if (!player.isCreative()) {
-                    this.consumeAmmo(player, ammoAmount);
+                    this.consumeAmmoApplyLuck(player, ammoAmount, this.getLuck(player, stackIn));
                 }
                 return InteractionResultHolder.success(stackIn);
             } else {
@@ -143,10 +143,24 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         }
         return enchantModifier;
     }
+    public float getLuck(Player playerIn, ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.MISER_SOUL.get(), stackIn);
+        }
+        return 0.1f*enchantModifier;
+    }
     public boolean isFire(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
             enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.FLAMING_SHOT.get(), stackIn);
+        }
+        return enchantModifier>0;
+    }
+    public boolean isLightning(Player playerIn, ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.CHILD_OF_THUNDER.get(), stackIn);
         }
         return enchantModifier>0;
     }
@@ -188,7 +202,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
                 p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
             });
             if (!player.isCreative()) {
-                this.consumeAmmo(player, ammoAmount);
+                this.consumeAmmoApplyLuck(player, ammoAmount, this.getLuck(player, stackIn));
             }
         }
     }
