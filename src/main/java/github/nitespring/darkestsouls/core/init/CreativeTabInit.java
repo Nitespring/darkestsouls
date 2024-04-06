@@ -62,6 +62,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BLUNDERBUSS.get());
                         output.accept(ItemInit.REPEATING_PISTOL.get());
                         output.accept(ItemInit.EVELYN.get());
+                        output.accept(ItemInit.GATLING_GUN.get());
                         output.accept(ItemInit.HUNTER_TORCH.get());
                         output.accept(ItemInit.SORCERER_STAFF_A.get());
                         output.accept(ItemInit.SORCERER_STAFF_B.get());

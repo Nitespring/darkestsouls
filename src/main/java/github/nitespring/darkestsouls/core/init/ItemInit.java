@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.common.item.child.guns.GatlingGun;
 import github.nitespring.darkestsouls.common.item.child.guns.Pistol;
 import github.nitespring.darkestsouls.common.item.child.guns.Shotgun;
 import github.nitespring.darkestsouls.common.item.child.staves.ChaosStaff;
@@ -130,6 +131,8 @@ public class ItemInit {
 			() -> new Pistol(5.5f, 12,2,0.3f,0.5f, 10, 0,0,1, 511, 10, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Pistol> REPEATING_PISTOL = ITEMS.register("repeating_pistol",
 			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 511, 8, new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<GatlingGun> GATLING_GUN = ITEMS.register("gatling_gun",
+			() -> new GatlingGun(2.0f, 60,0,0.2f,0.5f, 12, 0,0,1, 511, 5, new Item.Properties().rarity(Rarity.RARE)));
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",
