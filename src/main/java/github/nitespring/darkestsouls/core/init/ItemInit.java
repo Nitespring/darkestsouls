@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.common.item.child.alchemy.LanternNormal;
 import github.nitespring.darkestsouls.common.item.child.guns.GatlingGun;
 import github.nitespring.darkestsouls.common.item.child.guns.Pistol;
 import github.nitespring.darkestsouls.common.item.child.guns.Shotgun;
@@ -101,8 +102,6 @@ public class ItemInit {
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.11f, 2,new Item.Properties()));
 	public static final RegistryObject<Weapon> HUNTSMAN_PITCHFORK = ITEMS.register("huntsman_pitchfork",
 			() -> new Spear(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.12f, 2,new Item.Properties()));
-	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
-			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.10f, 2,new Item.Properties()));
 	public static final RegistryObject<ChurchScythe> CHURCH_SCYTHE= ITEMS.register("church_scythe",
 			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f, 0.2f, 7, 0,0,0,0,0,0,1,325,12,0.105f, 5,new Item.Properties()));
 
@@ -133,6 +132,12 @@ public class ItemInit {
 			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 511, 8, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<GatlingGun> GATLING_GUN = ITEMS.register("gatling_gun",
 			() -> new GatlingGun(2.0f, 60,0,0.2f,0.5f, 12, 0,0,1, 511, 5, new Item.Properties().rarity(Rarity.RARE)));
+
+	//Alchemy
+	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
+			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.10f, 2,new Item.Properties()));
+	public static final RegistryObject<LanternNormal> LANTERN = ITEMS.register("lantern",
+			() -> new LanternNormal(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",
