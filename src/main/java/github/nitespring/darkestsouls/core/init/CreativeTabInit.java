@@ -64,6 +64,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.EVELYN.get());
                         output.accept(ItemInit.GATLING_GUN.get());
                         output.accept(ItemInit.CHURCH_CANE.get());
+                        output.accept(ItemInit.CRUCIFIX.get());
                         output.accept(ItemInit.HUNTER_TORCH.get());
                         output.accept(ItemInit.LANTERN.get());
                         output.accept(ItemInit.FLAMESPRAYER.get());

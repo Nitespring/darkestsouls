@@ -106,6 +106,8 @@ public class ItemInit {
 			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f, 0.2f, 7, 0,0,0,0,0,0,1,325,12,0.105f, 5,new Item.Properties()));
 	public static final RegistryObject<Weapon> CHURCH_CANE = ITEMS.register("church_cane",
 			() -> new Weapon(Tiers.TITANITE, 4.0f, 1.4f, 0.1f, 6, 0,0,0,0,0,0,0,255,8,0.1f, 0,new Item.Properties()));
+	public static final RegistryObject<Spear> CRUCIFIX = ITEMS.register("crucifix",
+			() -> new Spear(Tiers.TITANITE, 6.0f, 1.2f, 0.2f, 6, 1350,10,0.08f, 2,new Item.Properties()));
 	//Staves
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_A = ITEMS.register("sorcerer_staff_a",
 			() -> new SorcererStaff(2.0f, 128, 0, new Item.Properties().rarity(Rarity.COMMON)));
