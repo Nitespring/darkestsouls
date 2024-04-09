@@ -38,6 +38,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.UCHIGATANA.get());
                         output.accept(ItemInit.SHADOW_BLADE.get());
                         output.accept(ItemInit.BATTLE_AXE.get());
+                        output.accept(ItemInit.HUNTSMAN_AXE.get());
                         output.accept(ItemInit.CLAYMORE.get());
                         output.accept(ItemInit.FLAMBERGE.get());
                         output.accept(ItemInit.ZWEIHANDER.get());
@@ -47,7 +48,6 @@ public class CreativeTabInit {
                         output.accept(ItemInit.EXECUTIONER_GREATAXE.get());
                         output.accept(ItemInit.SPEAR.get());
                         output.accept(ItemInit.HUNTSMAN_PITCHFORK.get());
-                        output.accept(ItemInit.HUNTSMAN_AXE.get());
                         output.accept(ItemInit.GRAVE_SCYTHE.get());
                         output.accept(ItemInit.CHURCH_SCYTHE.get());
                         output.accept(ItemInit.SAW_CLEAVER.get());
@@ -63,8 +63,10 @@ public class CreativeTabInit {
                         output.accept(ItemInit.REPEATING_PISTOL.get());
                         output.accept(ItemInit.EVELYN.get());
                         output.accept(ItemInit.GATLING_GUN.get());
+                        output.accept(ItemInit.CHURCH_CANE.get());
                         output.accept(ItemInit.HUNTER_TORCH.get());
                         output.accept(ItemInit.LANTERN.get());
+                        output.accept(ItemInit.FLAMESPRAYER.get());
                         output.accept(ItemInit.SORCERER_STAFF_A.get());
                         output.accept(ItemInit.SORCERER_STAFF_B.get());
                         output.accept(ItemInit.CRYSTAL_STAFF.get());

@@ -104,7 +104,8 @@ public class ItemInit {
 			() -> new Spear(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.12f, 2,new Item.Properties()));
 	public static final RegistryObject<ChurchScythe> CHURCH_SCYTHE= ITEMS.register("church_scythe",
 			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f, 0.2f, 7, 0,0,0,0,0,0,1,325,12,0.105f, 5,new Item.Properties()));
-
+	public static final RegistryObject<Weapon> CHURCH_CANE = ITEMS.register("church_cane",
+			() -> new Weapon(Tiers.TITANITE, 4.0f, 1.4f, 0.1f, 6, 0,0,0,0,0,0,0,255,8,0.1f, 0,new Item.Properties()));
 	//Staves
 	public static final RegistryObject<SorcererStaff> SORCERER_STAFF_A = ITEMS.register("sorcerer_staff_a",
 			() -> new SorcererStaff(2.0f, 128, 0, new Item.Properties().rarity(Rarity.COMMON)));
@@ -137,6 +138,8 @@ public class ItemInit {
 	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
 			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.10f, 2,new Item.Properties()));
 	public static final RegistryObject<LanternNormal> LANTERN = ITEMS.register("lantern",
+			() -> new LanternNormal(new Item.Properties().rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<LanternNormal> FLAMESPRAYER = ITEMS.register("flamesprayer",
 			() -> new LanternNormal(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	//Throwing
