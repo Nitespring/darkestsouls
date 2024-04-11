@@ -57,7 +57,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.beast_patient.hit"));
@@ -69,7 +71,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {

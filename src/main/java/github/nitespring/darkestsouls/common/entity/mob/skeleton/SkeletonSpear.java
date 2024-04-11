@@ -52,6 +52,9 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
     }
 
     private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+        if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.hit"));
@@ -63,8 +66,13 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
 
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+        
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
+        if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+            event.getController().stop();
+        }
         if(this.isDeadOrDying()) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.death"));
         }else {
@@ -130,7 +138,12 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
             this.playAnimation();
         }
         if(this.tickCount%5==0){this.refreshDimensions();}
+        if(this.shouldResetAnimation()){
+            this.setResetAnimation(false);
+        }
         super.tick();
+
+
     }
 
     protected void playAnimation() {
@@ -180,7 +193,10 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     this.getNavigation().stop();
                     setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(21);}
+                    if(r<=400)      {
+                        this.setAnimationState(21);
+                        this.setResetAnimation(true);
+                        }
                     else if(r<=800) {this.setAnimationState(22);}
                     else if(r<=1200){this.setAnimationState(23);}
                 }

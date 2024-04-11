@@ -68,7 +68,9 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.BONE_MEAL));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.bonewheel.hit"));
@@ -78,7 +80,9 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
         int animState = this.getAnimationState();
         if(this.isDeadOrDying()) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.bonewheel.new"));
@@ -120,7 +124,9 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         return SoundEvents.SKELETON_AMBIENT;
     }
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {

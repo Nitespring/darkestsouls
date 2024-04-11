@@ -45,7 +45,9 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
     }
 
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.hit"));
@@ -55,7 +57,9 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {

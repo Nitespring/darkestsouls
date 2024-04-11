@@ -55,7 +55,9 @@ public class HollowSoldierAxe extends Hollow implements GeoEntity {
     }
 
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.hit"));
@@ -65,13 +67,17 @@ public class HollowSoldierAxe extends Hollow implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState capePredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState capePredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
             event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.cape"));
 
         return PlayState.CONTINUE;
     }
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {

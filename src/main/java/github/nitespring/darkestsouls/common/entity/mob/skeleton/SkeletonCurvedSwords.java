@@ -50,7 +50,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.hit"));
@@ -62,7 +64,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -301,7 +305,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                 if(getAnimationTick()>=22&&flag) {
                     setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(25);}
+                    if(r<=400)      {
+                        this.setAnimationState(25);
+                        this.setResetAnimation(true);}
                     else if(r<=800) {this.setAnimationState(26);}
                     else if(r<=1600) {this.setAnimationState(28);}
                     else            {this.setAnimationState(29);}
