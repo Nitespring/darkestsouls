@@ -30,7 +30,7 @@ import java.util.EnumSet;
 public class SkeletonFalchion extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
+
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
@@ -166,19 +166,19 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
     }
 
     protected void playAnimation() {
-        animationTick++;
+        increaseAnimationTick(1);
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             case 11:
-                if(animationTick==1) {
+                if(getAnimationTick()==1) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -186,7 +186,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==2){
+                if(getAnimationTick()==2){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.75));
                     }else {
@@ -194,16 +194,16 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick==10) {
+                if(getAnimationTick()==10) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -214,13 +214,13 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=10) {
+                if(getAnimationTick()>=10) {
                     if(this.getTarget()!=null) {
                         this.aimVec= this.getTarget().position().add(this.position().scale(-1.0));
                     }else{
                         this.aimVec=this.getLookAngle();
                     }
-                    animationTick=0;
+                    setAnimationTick(0);
                     setAnimationState(22);
                 }
                 break;
@@ -232,7 +232,7 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                 }
 
 
-                if(animationTick%4==0) {
+                if(getAnimationTick()%4==0) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -243,13 +243,13 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
 
-                if(animationTick>=18) {
-                    animationTick=0;
+                if(getAnimationTick()>=18) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -260,13 +260,13 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=16) {
-                    animationTick=0;
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 24:
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -277,12 +277,12 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=16) {
-                    animationTick=0;
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
             case 25:
-                if(animationTick==16) {
+                if(getAnimationTick()==16) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -293,8 +293,8 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=26) {
-                    animationTick=0;
+                if(getAnimationTick()>=26) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;

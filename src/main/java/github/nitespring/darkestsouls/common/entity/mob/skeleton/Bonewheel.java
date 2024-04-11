@@ -35,7 +35,7 @@ import java.util.EnumSet;
 public class Bonewheel extends DarkestSoulsAbstractEntity implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
+
 
     protected Vec3 aimVec;
 
@@ -182,20 +182,20 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     }
 
     protected void playAnimation() {
-        animationTick++;
+        increaseAnimationTick(1);
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick==5) {
+                if(getAnimationTick()==5) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.5f)*this.getLookAngle().x,
                                     0.25,
@@ -207,13 +207,13 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 
 
                 }
-                if(animationTick>=10) {
-                    animationTick=0;
+                if(getAnimationTick()>=10) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.5f)*this.getLookAngle().x,
                                                 0.25,
@@ -225,13 +225,13 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 
 
                 }
-                if(animationTick>=20) {
-                    animationTick=0;
+                if(getAnimationTick()>=20) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick==10) {
+                if(getAnimationTick()==10) {
 
 
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -243,13 +243,13 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=10) {
+                if(getAnimationTick()>=10) {
                     if(this.getTarget()!=null) {
                         this.aimVec= this.getTarget().position().add(this.position().scale(-1.0));
                     }else{
                         this.aimVec=this.getLookAngle();
                     }
-                    animationTick=0;
+                    setAnimationTick(0);
                     setAnimationState(24);
                 }
                 break;
@@ -263,7 +263,7 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
                     this.setDeltaMovement(this.getDeltaMovement().add(0,-10f,0));
                 }
 
-                if(animationTick%5==0) {
+                if(getAnimationTick()%5==0) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                                 0.25,
@@ -274,13 +274,13 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
                     this.level().addFreshEntity(h);
                 }
 
-                if(animationTick>=50) {
-                    animationTick=0;
+                if(getAnimationTick()>=50) {
+                    setAnimationTick(0);
                     setAnimationState(25);
                 }
                 break;
             case 25:
-                if(animationTick==5) {
+                if(getAnimationTick()==5) {
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
@@ -290,8 +290,8 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;

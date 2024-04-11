@@ -38,7 +38,7 @@ public class HollowAssassin extends Hollow implements GeoEntity {
     public Vec3 aimVec;
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
-    protected int animationTick = 0;
+
 
     public HollowAssassin(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);

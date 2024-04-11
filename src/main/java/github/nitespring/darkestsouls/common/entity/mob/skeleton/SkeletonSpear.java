@@ -30,7 +30,7 @@ import java.util.EnumSet;
 public class SkeletonSpear extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
+
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
@@ -134,22 +134,22 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
     }
 
     protected void playAnimation() {
-        animationTick++;
+        increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick>=4) {this.getNavigation().stop();}
+                if(getAnimationTick()>=4) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -157,7 +157,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==5){
+                if(getAnimationTick()==5){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.15));
                     }else {
@@ -165,7 +165,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -176,23 +176,23 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=10&&flag) {
+                if(getAnimationTick()>=10&&flag) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
                     if(r<=400)      {this.setAnimationState(21);}
                     else if(r<=800) {this.setAnimationState(22);}
                     else if(r<=1200){this.setAnimationState(23);}
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(!(animationTick>=15&&animationTick<=22)) {this.getNavigation().stop();}
+                if(!(getAnimationTick()>=15&&getAnimationTick()<=22)) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==24) {
+                if(getAnimationTick()==24) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -203,14 +203,14 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=36) {
-                    animationTick=0;
+                if(getAnimationTick()>=36) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
                 this.getNavigation().stop();
-                if(animationTick==11) {
+                if(getAnimationTick()==11) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -218,7 +218,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==12){
+                if(getAnimationTick()==12){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
@@ -226,7 +226,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick==13) {
+                if(getAnimationTick()==13) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -237,14 +237,14 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=20&&flag) {
+                if(getAnimationTick()>=20&&flag) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
                     if(r<=400) {this.setAnimationState(22);}
                 }
-                if(animationTick>=28) {
-                    animationTick=0;
+                if(getAnimationTick()>=28) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;

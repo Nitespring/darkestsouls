@@ -38,7 +38,7 @@ import java.util.EnumSet;
 public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements GeoEntity{
 
 	protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-	protected int animationTick = 0;
+
 	
 	public MonstruosityOfSin(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
@@ -187,38 +187,38 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	}
 
 	protected void playAnimation() {
-		animationTick++;
+		increaseAnimationTick(1);
 		this.getNavigation().stop();
 		switch(this.getAnimationState()) {
 			case 1:
-				if(animationTick>=50) {
+				if(getAnimationTick()>=50) {
 					this.getNavigation().stop();
-					animationTick=0;
+					setAnimationTick(0);
 					this.resetPoiseHealth();
 					setAnimationState(0);
 				}
 				break;
 			case 11:
-				if(animationTick>=20) {
+				if(getAnimationTick()>=20) {
 					this.playSound(SoundInit.SIN_BOOM.get());
-					animationTick=0;
+					setAnimationTick(0);
 					setCombatState(1);
 					setAnimationState(0);
 				}
 				break;
 			case 12:
-				if(animationTick>=25) {
-					animationTick=0;
+				if(getAnimationTick()>=25) {
+					setAnimationTick(0);
 					setCombatState(0);
 					setAnimationState(0);
 				}
 				break;
 			//Attack
 			case 21:
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundInit.SIN_SCREAM.get());
 				}
-				if(animationTick==8) {
+				if(getAnimationTick()==8) {
 					this.playSound(SoundInit.SIN_BOOM.get());
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.4f)*this.getLookAngle().x,
@@ -230,24 +230,24 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 
 
 				}
-				if(animationTick>=18) {
-					animationTick=0;
+				if(getAnimationTick()>=18) {
+					setAnimationTick(0);
 					setAnimationState(22);
 				}
 				break;
 			case 22:
-				if(animationTick>=35) {
+				if(getAnimationTick()>=35) {
 					this.playSound(SoundInit.SIN_BOOM.get());
-					animationTick=0;
+					setAnimationTick(0);
 					setAnimationState(0);
 				}
 				break;
 			case 23:
-				if(animationTick==10) {
+				if(getAnimationTick()==10) {
 					this.playSound(SoundInit.SIN_SCREAM.get());
 				}
 
-				if(animationTick==16) {
+				if(getAnimationTick()==16) {
 					this.playSound(SoundInit.SIN_BOOM.get());
 
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX_LARGE.get(), level(),
@@ -261,8 +261,8 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 
 
 				}
-				if(animationTick>=32) {
-					animationTick=0;
+				if(getAnimationTick()>=32) {
+					setAnimationTick(0);
 					setAnimationState(0);
 				}
 				break;

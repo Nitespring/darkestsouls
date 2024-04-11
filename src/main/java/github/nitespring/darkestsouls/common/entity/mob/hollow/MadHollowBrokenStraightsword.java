@@ -33,7 +33,6 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
-    protected int animationTick = 0;
 
     public MadHollowBrokenStraightsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -211,24 +210,24 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
 
 
     protected void playAnimation() {
-        animationTick++;
+        this.increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=85) {
+                if(getAnimationTick()>=85) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==12) {
+                if(getAnimationTick()==12) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
@@ -239,17 +238,17 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=26&&flag) {
-                    animationTick = 0;
+                if(getAnimationTick()>=26&&flag) {
+                    setAnimationTick(0);
                     setAnimationState(22);
                 }
-                if(animationTick>=30) {
-                    animationTick=0;
+                if(getAnimationTick()>=30) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
@@ -260,16 +259,16 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=14) {
-                    animationTick=0;
+                if(getAnimationTick()>=14) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==9) {
+                if(getAnimationTick()==9) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.8f)*this.getLookAngle().x,
@@ -280,16 +279,16 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=19) {
-                    animationTick=0;
+                if(getAnimationTick()>=19) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 24:
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -300,16 +299,16 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 25:
-                if(animationTick==20) {
+                if(getAnimationTick()==20) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==22) {
+                if(getAnimationTick()==22) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((0.9f)*this.getLookAngle().x,
@@ -320,8 +319,8 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=32) {
-                    animationTick=0;
+                if(getAnimationTick()>=32) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
