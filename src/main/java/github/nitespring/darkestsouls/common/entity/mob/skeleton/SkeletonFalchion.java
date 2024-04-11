@@ -52,9 +52,9 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.hit"));
@@ -64,9 +64,9 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState rotationPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
         int animState = this.getAnimationState();
         if(this.isDeadOrDying()) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.new"));
@@ -89,9 +89,9 @@ public class SkeletonFalchion extends Skeleton implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {

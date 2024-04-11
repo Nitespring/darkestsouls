@@ -36,7 +36,7 @@ public class ChurchDoctorItemLayer<T extends ChurchDoctor & GeoEntity> extends B
 	@Override
 	protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, T animatable) {
 		if (bone.getName().equals("itemRight")) {
-			  return ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+			  return ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
 		  }else if (bone.getName().equals("itemLeft")) {
 			return ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
 		}else {
@@ -52,23 +52,22 @@ public class ChurchDoctorItemLayer<T extends ChurchDoctor & GeoEntity> extends B
 @Override
 protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, T animatable,
 		MultiBufferSource bufferSource, float partialTick, int packedLight, int packedOverlay) {
-	poseStack.scale(0.9f,0.9f,0.9f);
-	if (bone.getName().equals("right_item")) {
+		poseStack.pushPose();
+	poseStack.scale(1.0f,1.0f,1.0f);
+	if (bone.getName().equals("itemRight")) {
 
+			poseStack.translate(0, -0.12, 0);
+			poseStack.mulPose(Axis.XP.rotationDegrees(-90));
+			poseStack.mulPose(Axis.YP.rotationDegrees(0));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+	  }else if (bone.getName().equals("itemLeft")) {
 			poseStack.translate(0, 0, 0);
 			poseStack.mulPose(Axis.XP.rotationDegrees(0));
 			poseStack.mulPose(Axis.YP.rotationDegrees(0));
 			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-	  }
-	if (bone.getName().equals("left_item")) {
-			poseStack.translate(0, 0, 0);
-			poseStack.mulPose(Axis.XP.rotationDegrees(0));
-			poseStack.mulPose(Axis.YP.rotationDegrees(0));
-			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-
-
 	}
 	super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick, packedLight, packedOverlay);
+	poseStack.popPose();
 }
 	
 

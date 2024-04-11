@@ -194,6 +194,9 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.ASHEN_BLOOD_BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
 	public static final RegistryObject<Item> LEECH = ITEMS.register("leech_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.LEECH, 1318437, 7373164, new Item.Properties()));
+	public static final RegistryObject<Item> CHURCH_DOCTOR = ITEMS.register("church_doctor_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, 13945528, 5202790, new Item.Properties()));
+
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));

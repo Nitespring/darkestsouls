@@ -1,12 +1,7 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.church.doctor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowHatLayer;
-import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowItemLayer;
-import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowModel;
-import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowRobeLayer;
 import github.nitespring.darkestsouls.common.entity.mob.church.ChurchDoctor;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.Hollow;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -15,9 +10,9 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ChurchDocotorGeoRenderer<T extends ChurchDoctor & GeoEntity> extends GeoEntityRenderer<T>{
+public class ChurchDoctorGeoRenderer<T extends ChurchDoctor & GeoEntity> extends GeoEntityRenderer<T>{
 
-	public ChurchDocotorGeoRenderer(EntityRendererProvider.Context renderManager)
+	public ChurchDoctorGeoRenderer(EntityRendererProvider.Context renderManager)
     {
         super(renderManager, new ChurchDoctorModel<>());
         this.addRenderLayer(new ChurchDoctorItemLayer<T>(this));

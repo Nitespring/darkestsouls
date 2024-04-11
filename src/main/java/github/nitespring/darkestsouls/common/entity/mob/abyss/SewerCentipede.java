@@ -68,9 +68,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
 		}
 
-	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 
 		
 		if(hitStunTicks>0) {
@@ -81,9 +81,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		return PlayState.CONTINUE;
 	}
 	
-	private <E extends GeoAnimatable> PlayState limbsPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+	private <E extends GeoAnimatable> PlayState limbsPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 		int animState = this.getAnimationState();
 		if(this.isDeadOrDying()) {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.sewer_centipede.limbs_death"));
@@ -103,9 +103,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
         return PlayState.CONTINUE;
 	}
 	
-	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 		int animState = this.getAnimationState();
 		int combatState = this.getCombatState();
 		if(this.isDeadOrDying()) {

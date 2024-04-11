@@ -64,11 +64,13 @@ public abstract class ChurchDoctor extends DarkestSoulsAbstractEntity {
         super.defineSynchedData();
         this.entityData.define(ROBE_TYPE, this.getDefaultRobeType());
         this.entityData.define(HAT_TYPE, this.getDefaultHatType());
+        this.entityData.define(RIGHT_HAND, ItemStack.EMPTY);
+        this.entityData.define(LEFT_HAND, ItemStack.EMPTY);
     }
 
     @Override
     public ParticleOptions getBloodParticles() {
-        return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.BONE_MEAL));
+        return super.getBloodParticles();
     }
 
     @Override

@@ -8,6 +8,7 @@ import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.CloakedBeastPatient;
+import github.nitespring.darkestsouls.common.entity.mob.church.ChurchDoctorStick;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.*;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
@@ -101,7 +102,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<Leech>of(Leech::new, MobCategory.MONSTER)
 					.sized(0.9f, 2.4f)
 					.build("leech"));
-
+	public static final RegistryObject<EntityType<ChurchDoctorStick>> CHURCH_DOCTOR = ENTITIES.register("church_doctor",
+			() -> EntityType.Builder.<ChurchDoctorStick>of(ChurchDoctorStick::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",

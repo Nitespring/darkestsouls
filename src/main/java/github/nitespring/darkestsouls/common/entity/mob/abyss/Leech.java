@@ -67,9 +67,9 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 		data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
 		}
 
-	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 		if(this.shouldResetAnimation()){
 			event.getController().forceAnimationReset();
 			this.setResetAnimation(false);
@@ -83,9 +83,9 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	}
 
 	
-	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 		int animState = this.getAnimationState();
 		int combatState = this.getCombatState();
 		if(this.isDeadOrDying()) {
@@ -252,19 +252,23 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					this.level().addFreshEntity(h);
 				}
 				if(getAnimationTick()>=10) {
-					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
+						setAnimationTick(0);
 					}else{
 						if(r<=10) {
 							setAnimationState(22);
+							setAnimationTick(0);
 						}else if(r<=20){
 							setAnimationState(23);
+							setAnimationTick(0);
 						}else if(r<=30){
 							setAnimationState(25);
+							setAnimationTick(0);
 						}else if(r<=40){
 							setAnimationState(0);
+							setAnimationTick(0);
 						}
 					}
 				}
@@ -285,19 +289,23 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					this.level().addFreshEntity(h);
 				}
 				if(getAnimationTick()>=10) {
-					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
+						setAnimationTick(0);
 					}else{
 						if(r<=10) {
 							setAnimationState(21);
+							setAnimationTick(0);
 						}else if(r<=20){
 							setAnimationState(23);
+							setAnimationTick(0);
 						}else if(r<=30){
 							setAnimationState(25);
+							setAnimationTick(0);
 						}else if(r<=40){
 							setAnimationState(0);
+							setAnimationTick(0);
 						}
 					}
 				}
@@ -317,15 +325,17 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					this.level().addFreshEntity(h);
 				}
 				if(getAnimationTick()>=12) {
-					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
+						setAnimationTick(0);
 					}else{
 						if(r<=20){
 							setAnimationState(25);
+							setAnimationTick(0);
 						}else if(r<=40){
 							setAnimationState(0);
+							setAnimationTick(0);
 						}
 					}
 				}

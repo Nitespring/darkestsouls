@@ -52,9 +52,9 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.beast_patient.hit"));
@@ -66,9 +66,9 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -223,7 +223,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    noActionTime=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
@@ -236,11 +236,11 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                     this.doAttack(0.0f, -0.2f);
                 }
                 if(getAnimationTick()>=7&&flag) {
-                    noActionTime=0;
+                    setAnimationTick(0);
                     this.setAnimationState(25);
                 }
                 if(getAnimationTick()>=12) {
-                    noActionTime=0;
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
@@ -253,16 +253,15 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    noActionTime=0;
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(25);}
-                    else if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1200){this.setAnimationState(27);}
-                    else if(r<=1600){this.setAnimationState(28);}
-                    else if(r<=2000){this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(25);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1200){setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1600){setAnimationTick(0);this.setAnimationState(28);}
+                    else if(r<=2000){setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=16) {
-                    noActionTime=0;
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
@@ -292,7 +291,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
-                    noActionTime=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -305,11 +304,11 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                     this.doAttack(0.0f, -0.2f);
                 }
                 if(getAnimationTick()>=7&&flag) {
-                    noActionTime=0;
+                    setAnimationTick(0);
                     this.setAnimationState(22);
                 }
                 if(getAnimationTick()>=12) {
-                    noActionTime=0;
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
@@ -322,16 +321,15 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    noActionTime=0;
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(23);}
-                    else if(r<=1200){this.setAnimationState(27);}
-                    else if(r<=1600){this.setAnimationState(28);}
-                    else if(r<=2000){this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(23);}
+                    else if(r<=1200){setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1600){setAnimationTick(0);this.setAnimationState(28);}
+                    else if(r<=2000){setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=16) {
-                    noActionTime=0;
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
@@ -361,7 +359,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
-                    noActionTime=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -391,7 +389,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=15) {
                     this.getNavigation().stop();
-                    noActionTime=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -422,7 +420,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                 }
                 if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    noActionTime=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }

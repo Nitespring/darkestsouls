@@ -45,9 +45,9 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
     }
 
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.hit"));
@@ -57,9 +57,9 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -118,16 +118,40 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
     @Override
     public void populateClothing(){
         Random rn = new Random();
-        int r = rn.nextInt(12) + 1;
+        int r = rn.nextInt(24) + 1;
         switch(r) {
-            case 1, 3, 4:
-                this.setRobeType(0);
+            case 1:
+                this.setRobeType(1);
                 break;
-            case 5, 6, 7, 8, 9:
-                this.setRobeType(0);
+            case 2,3:
+                this.setRobeType(2);
+                break;
+            case 4,5,6,7:
+                this.setRobeType(3);
+                break;
+            case 8,9,10,11:
+                this.setRobeType(4);
+                break;
+            case 12,13:
+                this.setRobeType(5);
+                break;
+            case 14,15:
+                this.setRobeType(6);
                 break;
             default:
                 this.setRobeType(0);
+                break;
+        }
+        int r1 = rn.nextInt(12) + 1;
+        switch(r1) {
+            case 1,2,3,4:
+                this.setHatType(0);
+                break;
+            case 5:
+                this.setHatType(1);
+                break;
+            default:
+                this.setHatType(2);
                 break;
         }
     }
@@ -365,20 +389,10 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
                 if(r<=400)      {this.mob.setAnimationState(21);}
-                else if(r<=600) {this.mob.setAnimationState(24);}
+                else if(r<=600) {this.mob.setAnimationState(22);}
                 else if(r<=1000){this.mob.setAnimationState(23);}
-                else if(r<=1200){this.mob.setAnimationState(26);}
-                else if(r<=1300){this.mob.setAnimationState(27);}
-                else if(r<=1600){this.mob.setAnimationState(28);}
-                else if(r<=1800){this.mob.setAnimationState(29);}
             }
 
-            if (distance <= 2*reach && this.ticksUntilNextAttack <= 0) {
-                int r = this.mob.getRandom().nextInt(2048);
-                if (r <= 40) {
-                    this.mob.setAnimationState(29);
-                }
-            }
 
         }
 

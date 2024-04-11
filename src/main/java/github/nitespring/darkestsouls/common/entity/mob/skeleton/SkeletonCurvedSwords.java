@@ -50,9 +50,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.hit"));
@@ -64,9 +64,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { if(this.shouldResetAnimation()){
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
-        }
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -90,6 +90,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     break;
                 case 25:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack5"));
+                    break;
+                case 252:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack5_2"));
                     break;
                 case 26:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack6"));
@@ -187,13 +190,12 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=12&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(24);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(24);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=15) {
                     setAnimationTick(0);
@@ -216,13 +218,12 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=12&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(23);}
-                    else if(r<=800) {this.setAnimationState(25);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(23);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(25);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=15) {
                     setAnimationTick(0);
@@ -245,13 +246,12 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=12&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(24);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(24);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
 
                 }
                 if(getAnimationTick()>=15) {
@@ -275,13 +275,12 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=12&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(21);}
-                    else if(r<=800) {this.setAnimationState(23);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(21);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(23);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=15) {
                     setAnimationTick(0);
@@ -303,14 +302,52 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=22&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
                     if(r<=400)      {
+                        setAnimationTick(0);
+                        this.setAnimationState(252);
+                        //this.setResetAnimation(true);
+                        }
+                    else if(r<=800) {
+                        setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1600) {
+                        setAnimationTick(0);this.setAnimationState(28);}
+                    else            {
+                        setAnimationTick(0);this.setAnimationState(29);}
+                }
+                if(getAnimationTick()>=26) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 252:
+                if(getAnimationTick()>=18) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(getAnimationTick()==8||getAnimationTick()==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=22&&flag) {
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {
+                        setAnimationTick(0);
                         this.setAnimationState(25);
-                        this.setResetAnimation(true);}
-                    else if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                        //this.setResetAnimation(true);
+                    }
+                    else if(r<=800) {
+                        setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1600) {
+                        setAnimationTick(0);this.setAnimationState(28);}
+                    else            {
+                        setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=26) {
                     setAnimationTick(0);
@@ -333,11 +370,16 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=12&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=800) {this.setAnimationState(27);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=800) {
+                        setAnimationTick(0);
+                        this.setAnimationState(27);}
+                    else if(r<=1600) {
+                        setAnimationTick(0);
+                        this.setAnimationState(28);}
+                    else            {
+                        setAnimationTick(0);
+                        this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=15) {
                     setAnimationTick(0);
@@ -360,11 +402,10 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     this.level().addFreshEntity(h);
                 }
                 if(getAnimationTick()>=12&&flag) {
-                    setAnimationTick(0);
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=800) {setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1600) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
                 if(getAnimationTick()>=15) {
                     setAnimationTick(0);
