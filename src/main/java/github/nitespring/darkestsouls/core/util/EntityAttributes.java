@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.core.util;
 
+import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
@@ -203,11 +204,71 @@ public class EntityAttributes {
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorAttributes(){
 		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 64.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.ATTACK_DAMAGE, 7.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
+	public static  AttributeSupplier.Builder setChurchDoctorLanternAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 68.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.ATTACK_DAMAGE, 7.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
+	public static  AttributeSupplier.Builder setChurchDoctorPistolAttributes(){
+		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 60.0D)
 				.add(Attributes.ARMOR, 5.0D)
 				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.2D)
 				.add(Attributes.ATTACK_DAMAGE, 7.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
+	public static  AttributeSupplier.Builder setChurchDoctorFlamesprayerAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 76.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.ATTACK_DAMAGE, 7.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
+	public static  AttributeSupplier.Builder setChurchDoctorScytheAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 80.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.ATTACK_DAMAGE, 10.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
+	public static  AttributeSupplier.Builder setChurchDoctorCrucifixAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 80.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.ATTACK_DAMAGE, 9.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)

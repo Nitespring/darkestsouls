@@ -43,7 +43,7 @@ public class ChurchDoctorGeoRenderer<T extends ChurchDoctor & GeoEntity> extends
 	 @Override
 	public void render(T entity, float entityYaw, float partialTick, PoseStack poseStack,
 			MultiBufferSource bufferSource, int packedLight) {
-		 float scaleFactor = 1.0f;
+		 float scaleFactor = 1.1f;
 		 poseStack.pushPose();
 		 poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
 

@@ -8,7 +8,7 @@ import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.CloakedBeastPatient;
-import github.nitespring.darkestsouls.common.entity.mob.church.ChurchDoctorStick;
+import github.nitespring.darkestsouls.common.entity.mob.church.*;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.*;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
@@ -106,6 +106,26 @@ public class EntityInit {
 			() -> EntityType.Builder.<ChurchDoctorStick>of(ChurchDoctorStick::new, MobCategory.MONSTER)
 					.sized(0.65f, 2.0f)
 					.build("church_doctor"));
+	public static final RegistryObject<EntityType<ChurchDoctorLantern>> CHURCH_DOCTOR_LANTERN = ENTITIES.register("church_doctor_lantern",
+			() -> EntityType.Builder.<ChurchDoctorLantern>of(ChurchDoctorLantern::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_lantern"));
+	public static final RegistryObject<EntityType<ChurchDoctorScythe>> CHURCH_DOCTOR_SCYTHE = ENTITIES.register("church_doctor_scythe",
+			() -> EntityType.Builder.<ChurchDoctorScythe>of(ChurchDoctorScythe::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_scythe"));
+	public static final RegistryObject<EntityType<ChurchDoctorPistol>> CHURCH_DOCTOR_PISTOL = ENTITIES.register("church_doctor_pistol",
+			() -> EntityType.Builder.<ChurchDoctorPistol>of(ChurchDoctorPistol::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_pistol"));
+	public static final RegistryObject<EntityType<ChurchDoctorFlamesprayer>> CHURCH_DOCTOR_FLAMESPRAYER = ENTITIES.register("church_doctor_flamesprayer",
+			() -> EntityType.Builder.<ChurchDoctorFlamesprayer>of(ChurchDoctorFlamesprayer::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_flamesprayer"));
+	public static final RegistryObject<EntityType<ChurchDoctorCrucifix>> CHURCH_DOCTOR_CRUCIFIX = ENTITIES.register("church_doctor_crucifix",
+			() -> EntityType.Builder.<ChurchDoctorCrucifix>of(ChurchDoctorCrucifix::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_crucifix"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",

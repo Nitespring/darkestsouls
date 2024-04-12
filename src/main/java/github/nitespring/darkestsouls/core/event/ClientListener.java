@@ -79,6 +79,11 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(), BeastPatientGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LEECH.get(), LeechGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_LANTERN.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_PISTOL.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_SCYTHE.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_CRUCIFIX.get(), ChurchDoctorGeoRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.HITBOX_SMALL.get(), InvisibleProjectileRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HITBOX.get(), InvisibleProjectileRenderer::new);

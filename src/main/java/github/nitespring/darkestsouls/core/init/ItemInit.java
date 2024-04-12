@@ -196,6 +196,17 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.LEECH, 1318437, 7373164, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR = ITEMS.register("church_doctor_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> CHURCH_DOCTOR_LANTERN = ITEMS.register("church_doctor_lantern_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> CHURCH_DOCTOR_SCYTHE = ITEMS.register("church_doctor_scythe_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> CHURCH_DOCTOR_PISTOL = ITEMS.register("church_doctor_pistol_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> CHURCH_DOCTOR_FLAMESPRAYER = ITEMS.register("church_doctor_flamesprayer_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> CHURCH_DOCTOR_CRUCIFIX = ITEMS.register("church_doctor_crucifix_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 13945528, 5202790, new Item.Properties()));
+
 
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",

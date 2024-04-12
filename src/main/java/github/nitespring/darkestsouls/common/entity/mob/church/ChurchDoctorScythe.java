@@ -1,7 +1,5 @@
 package github.nitespring.darkestsouls.common.entity.mob.church;
 
-import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Difficulty;
@@ -28,10 +26,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.EnumSet;
 import java.util.Random;
 
-public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
+public class ChurchDoctorScythe extends ChurchDoctor implements GeoEntity {
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
-    public ChurchDoctorStick(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
+    public ChurchDoctorScythe(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
 
@@ -63,20 +61,14 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
-            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.death"));
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.scythe.death"));
         }else {
             switch(animState) {
                 case 1:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.stun"));
                     break;
                 case 21:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.attack"));
-                    break;
-                case 22:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.attack1"));
-                    break;
-                case 23:
-                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.attack2"));
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.church_doctor.scythe.attack"));
                     break;
                 default:
                     if(this.isInWater()) {
@@ -87,9 +79,9 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.church_doctor.fall"));
 
                     }else if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.church_doctor.walk"));
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.church_doctor.scythe.walk"));
                     }else {
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.church_doctor.idle"));
+                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.church_doctor.scythe.idle"));
                     }
                     break;
             }
@@ -99,7 +91,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
 
     @Override
     public int getDefaultHatType() {
-        return 2;
+        return 0;
     }
     @Override
     public int getDefaultRobeType() {
@@ -107,7 +99,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
     }
     @Override
     public ItemStack getRightHandItem() {
-        return ItemInit.CHURCH_CANE.get().getDefaultInstance();
+        return ItemInit.CHURCH_SCYTHE.get().getDefaultInstance();
     }
 
     @Override
@@ -142,16 +134,16 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
                 this.setRobeType(0);
                 break;
         }
-        int r1 = rn.nextInt(12) + 1;
+        int r1 = rn.nextInt(48) + 1;
         switch(r1) {
             case 1,2,3,4:
-                this.setHatType(0);
-                break;
-            case 5:
                 this.setHatType(1);
                 break;
-            default:
+            case 5:
                 this.setHatType(2);
+                break;
+            default:
+                this.setHatType(0);
                 break;
         }
     }
@@ -164,7 +156,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
         this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
 
-        this.goalSelector.addGoal(2, new ChurchDoctorStick.AttackGoal(this));
+        this.goalSelector.addGoal(2, new ChurchDoctorScythe.AttackGoal(this));
 
         this.goalSelector.addGoal(4, new RandomSwimmingGoal(this,0.2f,1));
         super.registerGoals();

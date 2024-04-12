@@ -179,6 +179,11 @@ public class CreativeTabInit {
                         output.accept(ItemInit.HOLLOW_AXE.get());
                         output.accept(ItemInit.HOLLOW_ASSASSIN.get());
                         output.accept(ItemInit.CHURCH_DOCTOR.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_LANTERN.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_PISTOL.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_FLAMESPRAYER.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_SCYTHE.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_CRUCIFIX.get());
                         output.accept(ItemInit.SKELETON_FALCHION.get());
                         output.accept(ItemInit.SKELETON_SPEAR.get());
                         output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());

@@ -33,6 +33,11 @@ public class EntityAttributeRegistration {
 		event.put(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(), EntityAttributes.setAshenBloodBeastPatientAttributes().build());
 		event.put(EntityInit.LEECH.get(), EntityAttributes.setLeechAttributes().build());
 		event.put(EntityInit.CHURCH_DOCTOR.get(), EntityAttributes.setChurchDoctorAttributes().build());
+		event.put(EntityInit.CHURCH_DOCTOR_LANTERN.get(), EntityAttributes.setChurchDoctorLanternAttributes().build());
+		event.put(EntityInit.CHURCH_DOCTOR_PISTOL.get(), EntityAttributes.setChurchDoctorPistolAttributes().build());
+		event.put(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER.get(), EntityAttributes.setChurchDoctorFlamesprayerAttributes().build());
+		event.put(EntityInit.CHURCH_DOCTOR_SCYTHE.get(), EntityAttributes.setChurchDoctorScytheAttributes().build());
+		event.put(EntityInit.CHURCH_DOCTOR_CRUCIFIX.get(), EntityAttributes.setChurchDoctorCrucifixAttributes().build());
 
 
 	}
