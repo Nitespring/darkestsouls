@@ -1,10 +1,14 @@
 package github.nitespring.darkestsouls.common.entity.mob.church;
 
+import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -214,6 +218,97 @@ public class ChurchDoctorCrucifix extends ChurchDoctor implements GeoEntity {
                     setAnimationState(0);
                 }
                 break;
+            //Attack
+            case 21:
+                if(getAnimationTick()<=22){
+                    this.moveToTarget();
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==22) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==26) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    h.setHitboxType(5);
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=36&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(23);
+                }
+                if(getAnimationTick()>=42) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                this.getNavigation().stop();
+                if(getAnimationTick()==12) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    h.setHitboxType(5);
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }
+                }
+                if(getAnimationTick()>=20) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 23:
+                this.getNavigation().stop();
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=12&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }else if(r<=800){
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }
+                }
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
         }
     }
     public void moveToTarget(){
@@ -401,7 +496,7 @@ public class ChurchDoctorCrucifix extends ChurchDoctor implements GeoEntity {
                 int r = this.mob.getRandom().nextInt(2048);
                 if(r<=400)      {this.mob.setAnimationState(21);}
                 else if(r<=600) {this.mob.setAnimationState(22);}
-                else if(r<=1000){this.mob.setAnimationState(23);}
+                else if(r<=1600){this.mob.setAnimationState(23);}
             }
 
 

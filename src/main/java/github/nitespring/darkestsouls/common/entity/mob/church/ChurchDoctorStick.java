@@ -490,8 +490,8 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
                 if(r<=400)      {this.mob.setAnimationState(21);}
-                else if(r<=600) {this.mob.setAnimationState(22);}
-                else if(r<=1000){this.mob.setAnimationState(23);}
+                else if(r<=800) {this.mob.setAnimationState(22);}
+                else if(r<=1600){this.mob.setAnimationState(23);}
             }
 
 
