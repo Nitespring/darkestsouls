@@ -2,11 +2,15 @@ package github.nitespring.darkestsouls.common.entity.mob.church;
 
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
+import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -202,7 +206,6 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
         Level levelIn = this.level();
         Vec3 pos = this.position();
         boolean flag = this.getTarget() != null && this.distanceTo(this.getTarget()) <= 2;
-        this.getNavigation().stop();
         switch (this.getAnimationState()) {
             case 1:
                 if (getAnimationTick() >= 85) {
@@ -212,12 +215,110 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
                     setAnimationState(0);
                 }
                 break;
+            //Attack
+            case 21:
+                if(getAnimationTick()<=22){
+                    this.moveToTarget();
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==22) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==26) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=36&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(23);
+                }
+                if(getAnimationTick()>=42) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                this.getNavigation().stop();
+                if(getAnimationTick()==12) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }
+                }
+                if(getAnimationTick()>=20) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 23:
+                    this.getNavigation().stop();
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==8) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=12&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }else if(r<=800){
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }
+                }
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
         }
+    }
+    public void moveToTarget(){
+        boolean flag = this.getTarget()!=null;
+        if(flag) {
+            this.getLookControl().setLookAt(this.getTarget(), 10.0F, 10.0F);
+            Path path = this.getNavigation().createPath(this.getTarget(), 0);
+            this.getNavigation().moveTo(path, 1.5f);
+        }
+
     }
     public class AttackGoal extends Goal {
 
 
-        private final double speedModifier = 1.0f;
+        private final double speedModifier = 1.1f;
         private final boolean followingTargetEvenIfNotSeen = true;
         protected final ChurchDoctor mob;
         private Path path;

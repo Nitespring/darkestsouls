@@ -173,7 +173,11 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
     }
     @Override
     public float getVoicePitch() {
-        return 2.0f;
+        return 1.4f;
+    }
+    @Override
+    protected float getSoundVolume() {
+        return 0.2f;
     }
     @Override
     public void tick() {
@@ -209,7 +213,7 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
         }
     }
     public void playAttackSound(){
-        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),1.6f,1.4f);
+        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),0.2f,1.4f);
     }
     protected void playAnimation() {
         this.increaseAnimationTick(1);

@@ -154,8 +154,14 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     }
     @Override
     public float getVoicePitch() {
-        return 2.0f;
+        return 1.0f;
     }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.6f;
+    }
+
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource p_21239_) {
@@ -168,7 +174,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         return SoundInit.BEAST_PATIENT_ATTACK.get();
     }
     public void playAttackSound(){
-        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),1.6f,1.4f);
+        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),0.2f,1.4f);
     }
     @Override
     public EntityDimensions getDimensions(Pose p_21047_) {

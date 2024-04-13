@@ -215,10 +215,19 @@ public class ChurchDoctorLantern extends ChurchDoctor implements GeoEntity {
                 break;
         }
     }
+    public void moveToTarget(){
+        boolean flag = this.getTarget()!=null;
+        if(flag) {
+            this.getLookControl().setLookAt(this.getTarget(), 10.0F, 10.0F);
+            Path path = this.getNavigation().createPath(this.getTarget(), 0);
+            this.getNavigation().moveTo(path, 1.5f);
+        }
+
+    }
     public class AttackGoal extends Goal {
 
 
-        private final double speedModifier = 1.0f;
+        private final double speedModifier = 1.1f;
         private final boolean followingTargetEvenIfNotSeen = true;
         protected final ChurchDoctor mob;
         private Path path;

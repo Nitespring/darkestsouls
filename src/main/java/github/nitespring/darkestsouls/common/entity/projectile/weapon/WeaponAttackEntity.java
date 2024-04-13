@@ -286,7 +286,9 @@ public class WeaponAttackEntity extends Entity {
     public void damageWeapon(){
         if(this.getItemStack()!=null&&this.getOwner()!=null) {
             this.getItemStack().hurtAndBreak(1, this.getOwner(), (p_43296_) -> {
-                p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
+                if(getItemStack().getEquipmentSlot()!=null) {
+                    p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
+                }
             });
         }
     }
