@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

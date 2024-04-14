@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.common.item.child.alchemy.Flamesprayer;
 import github.nitespring.darkestsouls.common.item.child.alchemy.LanternNormal;
 import github.nitespring.darkestsouls.common.item.child.guns.GatlingGun;
 import github.nitespring.darkestsouls.common.item.child.guns.Pistol;
@@ -141,8 +142,8 @@ public class ItemInit {
 			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, -0.2f, 4, 225,8,0.10f, 2,new Item.Properties()));
 	public static final RegistryObject<LanternNormal> LANTERN = ITEMS.register("lantern",
 			() -> new LanternNormal(new Item.Properties().rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<LanternNormal> FLAMESPRAYER = ITEMS.register("flamesprayer",
-			() -> new LanternNormal(new Item.Properties().rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Flamesprayer> FLAMESPRAYER = ITEMS.register("flamesprayer",
+			() -> new Flamesprayer(4.0f, 30, 10, 0.1f, 1, 0.8f, 1, 1, 256, 15, new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	//Throwing
 	public static final RegistryObject<ThrowingKnife> THROWING_KNIFE = ITEMS.register("throwing_knife",

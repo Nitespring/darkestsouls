@@ -72,7 +72,7 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
     @Override
     public Predicate<ItemStack> getAmmoType() {
         return (p_43015_) -> {
-            return p_43015_.is(ItemInit.QUICKSILVER_BULLET.get());
+            return p_43015_.is(ItemInit.QUICKSILVER.get());
         };
     }
 
@@ -114,7 +114,7 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.VANISHABLE;
+        return enchantment.category == EnchantmentInit.AMMO_CONSUMER || enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.VANISHABLE;
     }
 
     @Override
@@ -139,11 +139,9 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
                 tooltip.add(Component.literal("+").append(Component.literal("" + i * 10)).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.cooldown")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
             }
         }
-        if(this.getAmmoAmount()==1) {
-            tooltip.add(Component.translatable("translation.darkestsouls.require_bullet").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
-        }else{
-            tooltip.add(Component.translatable("translation.darkestsouls.require").append(Component.literal(" " + this.getAmmoAmount())).append(Component.translatable("translation.darkestsouls.bullets")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
-        }
+
+        tooltip.add(Component.translatable("translation.darkestsouls.require").append(Component.literal(" " + this.getAmmoAmount())).append(" ").append(Component.translatable("item.darkestsouls.quicksilver")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+
         super.appendHoverText(stack, level, tooltip, flag);
     }
 }

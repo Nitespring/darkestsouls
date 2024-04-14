@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.item;
 
+import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import github.nitespring.darkestsouls.core.util.MathUtils;
 import net.minecraft.ChatFormatting;
@@ -12,6 +13,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,7 +50,13 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
         return this.getAttackDamage(null,stackIn);
     }
     public int getCatalystTier() {return tier;}
-
+    public float getLuck(@org.jetbrains.annotations.Nullable Player playerIn, ItemStack stackIn) {
+        int enchantModifier=0;
+        if(stackIn.isEnchanted()){
+            enchantModifier= EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.MISER_SOUL.get(), stackIn);
+        }
+        return 0.1f*enchantModifier;
+    }
     @Override
     public int getMaxStackSize(ItemStack stack) {
         return 1;
@@ -69,6 +79,20 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
     public boolean isDamageable(ItemStack stack) {
 
         return true;
+    }
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return 15;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment.category == EnchantmentInit.AMMO_CONSUMER || enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.VANISHABLE;
+    }
+
+    @Override
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        return super.isBookEnchantable(stack, book);
     }
 
     @Override
@@ -99,7 +123,9 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
         tooltip.add(Component.translatable("translation.darkestsouls.consumes_small_soul").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         String info1 = "\u00A78" + this.getAttackDamage(stack) + " Damage";
         tooltip.add(Component.literal(""+this.getAttackDamage(stack)).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
-
+        if(this.getLuck(null,stack)>0) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+(int)(this.getLuck(null,stack)*100))).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        }
 
 
         super.appendHoverText(stack, p_41422_, tooltip, p_41424_);

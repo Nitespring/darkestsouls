@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Throwin
 import github.nitespring.darkestsouls.common.entity.util.CustomBlockTags;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -151,15 +152,27 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
         float height = this.getBbHeight() * 0.5f;
         Vec3 pos = this.position();
         Level world = this.level();
-        for (int i = 0; i < 5; ++i) {
+        BlockPos blockPos = new BlockPos((int) pos.x, (int) pos.y, (int) pos.z);
 
-            Vec3 off = new Vec3(rng.nextDouble() * width - width / 2, rng.nextDouble() * height - height / 2,
-                    rng.nextDouble() * width - width / 2);
-            if(world instanceof ServerLevel) {
-                ((ServerLevel) world).sendParticles( particle, pos.x, pos.y, pos.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
-
+        if(level().getBlockState(blockPos).is(CustomBlockTags.FLAME_BREAKABLE)){
+            level().destroyBlock(blockPos, true, this.getOwner());
+            level().gameEvent(this, GameEvent.BLOCK_DESTROY, blockPos);
+            if(BaseFireBlock.canBePlacedAt(level(),blockPos, Direction.getNearest(pos.x,pos.y,pos.z))) {
+                BlockState blockstate = BaseFireBlock.getState(level(), blockPos);
+                level().setBlock(blockPos, blockstate, 11);
+                level().gameEvent(this, GameEvent.BLOCK_PLACE, blockPos);
             }
         }
+        //if (tickCount % 2 == 0) {
+            for (int i = 0; i < 1; ++i) {
+
+                Vec3 off = new Vec3(rng.nextDouble() * width - width / 2, rng.nextDouble() * height - height / 2,
+                        rng.nextDouble() * width - width / 2);
+                if (world instanceof ServerLevel) {
+                    ((ServerLevel) world).sendParticles(particle, pos.x + 0.2*off.x, pos.y + height / 2 + 0.2 + 0.2*off.y, pos.z + + 0.2*off.z, 5, 0.1 * off.x, 0.05 * off.y + 0.1f, 0.1 * off.z, 0.025D);
+                }
+            }
+        //}
     }
     @Override
     public boolean isOnFire() {

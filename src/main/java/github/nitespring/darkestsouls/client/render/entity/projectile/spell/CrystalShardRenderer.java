@@ -6,7 +6,6 @@ import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.CrystalShardEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

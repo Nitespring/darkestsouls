@@ -2,11 +2,8 @@ package github.nitespring.darkestsouls.client.render.entity.projectile.bullet;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
-import github.nitespring.darkestsouls.common.entity.projectile.Bullet;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.CrystalShardEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
 import github.nitespring.darkestsouls.core.event.ClientListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -14,7 +11,6 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 
 public class BulletRenderer <T extends Bullet> extends EntityRenderer<T> {
 

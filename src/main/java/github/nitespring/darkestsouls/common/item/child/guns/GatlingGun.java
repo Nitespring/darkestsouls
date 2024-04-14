@@ -1,30 +1,24 @@
 package github.nitespring.darkestsouls.common.item.child.guns;
 
 import github.nitespring.darkestsouls.client.render.item.gun.GatlingGunGeoRenderer;
-import github.nitespring.darkestsouls.common.entity.projectile.Bullet;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
 import github.nitespring.darkestsouls.common.item.Gun;
 import github.nitespring.darkestsouls.core.init.EntityInit;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import software.bernie.example.registry.ItemRegistry;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
@@ -102,9 +96,16 @@ public class GatlingGun extends Gun implements GeoItem {
                 if(useTick>=startingTick) {
                     if ((useTick-startingTick) % 3 == 0) {
                         this.shoot(player, level, stack);
-                        stack.hurtAndBreak(1, player, (p_43276_) -> {
-                            p_43276_.broadcastBreakEvent(InteractionHand.OFF_HAND);
-                        });
+                        if(player.getItemInHand(InteractionHand.MAIN_HAND)==stack) {
+                            stack.hurtAndBreak(1, player, (p_43276_) -> {
+                                p_43276_.broadcastBreakEvent(InteractionHand.MAIN_HAND);
+                            });
+                        }
+                        if(player.getItemInHand(InteractionHand.OFF_HAND)==stack) {
+                            stack.hurtAndBreak(1, player, (p_43276_) -> {
+                                p_43276_.broadcastBreakEvent(InteractionHand.OFF_HAND);
+                            });
+                        }
                     }
                     if ((useTick-startingTick) % 12 == 0) {
                         if (!player.isCreative()) {

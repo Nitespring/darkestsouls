@@ -63,6 +63,7 @@
   "item.darkestsouls.crystal_staff_blue" : "Crystalian Staff",
   "item.darkestsouls.chaos_staff" : "Chaos Witch's Staff",
 
+  "item.darkestsouls.quicksilver" : "Pure Quicksilver",
   "item.darkestsouls.small_soul_fragment" : "Small Soul Fragment",
   "item.darkestsouls.soul_fragment" : "Soul Fragment",
   "item.darkestsouls.titanite_fragment" : "Titanite Fragment",
@@ -215,6 +216,7 @@
   "translation.darkestsouls.poison" : " Poison Damage",
   "translation.darkestsouls.tier" : "Tier",
   "translation.darkestsouls.damage" : " Damage",
+  "translation.darkestsouls.fire_damage" : " Fire Damage",
   "translation.darkestsouls.pierce" : " Pierce",
   "translation.darkestsouls.ricochet" : " Ricochet",
   "translation.darkestsouls.luck" : " chance not to consume Ammo",

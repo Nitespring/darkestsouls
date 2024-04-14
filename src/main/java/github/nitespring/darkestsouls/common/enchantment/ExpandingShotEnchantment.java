@@ -46,13 +46,4 @@ public class ExpandingShotEnchantment extends Enchantment {
         return true;
     }
 
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return true;
-    }
-
-    @Override
-    public boolean canEnchant(ItemStack p_44689_) {
-        return true;
-    }
 }

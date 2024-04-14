@@ -1,7 +1,7 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;

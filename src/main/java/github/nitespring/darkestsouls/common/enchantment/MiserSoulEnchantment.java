@@ -6,7 +6,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 public class MiserSoulEnchantment extends Enchantment {
     public MiserSoulEnchantment(Rarity rarity) {
-        super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
+        super(rarity,  EnchantmentInit.AMMO_CONSUMER, EnchantmentInit.HAND_SLOTS);
     }
     @Override
     public int getMinCost(int i) {

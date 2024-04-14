@@ -1,8 +1,7 @@
-package github.nitespring.darkestsouls.common.entity.projectile.weapon;
+package github.nitespring.darkestsouls.common.entity.projectile.weapon.melee;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;

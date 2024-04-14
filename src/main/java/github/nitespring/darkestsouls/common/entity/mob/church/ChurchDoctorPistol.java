@@ -1,7 +1,6 @@
 package github.nitespring.darkestsouls.common.entity.mob.church;
 
-import github.nitespring.darkestsouls.common.entity.projectile.Bullet;
-import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
@@ -9,8 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;

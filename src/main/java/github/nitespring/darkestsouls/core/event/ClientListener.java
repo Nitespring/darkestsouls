@@ -13,8 +13,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.Bonewhee
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonSpearGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.DirectionalAsItemRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
@@ -25,8 +24,6 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -128,6 +125,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.FIREBOMB.get(), FirebombRenderer::new);
 		 event.registerEntityRenderer(EntityInit.MOLOTOV.get(), MolotovCocktailRenderer::new);
 		 event.registerEntityRenderer(EntityInit.BULLET.get(), BulletRenderer::new);
+		 event.registerEntityRenderer(EntityInit.FLAME.get(), FlameRenderer::new);
 		 
 	 }
 

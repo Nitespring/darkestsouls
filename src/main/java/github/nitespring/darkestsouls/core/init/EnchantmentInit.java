@@ -24,7 +24,7 @@ public class EnchantmentInit {
             DarkestSouls.MODID);
     public static final EquipmentSlot[] HAND_SLOTS = new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND};
     public static final EnchantmentCategory GUN = EnchantmentCategory.create("gun", item -> item instanceof Gun);
-    public static final EnchantmentCategory AMMO_CONSUMER = EnchantmentCategory.create("gun", item -> item instanceof IAmmoConsumingItem);
+    public static final EnchantmentCategory AMMO_CONSUMER = EnchantmentCategory.create("ammo_consumer", item -> item instanceof IAmmoConsumingItem);
     public static final RegistryObject<FirepowerEnchantment> FIREPOWER = ENCHANTMENTS.register("firepower",
             () -> new FirepowerEnchantment(Enchantment.Rarity.COMMON));
     public static final RegistryObject<GreaterFirepowerEnchantment> GREATER_FIREPOWER = ENCHANTMENTS.register("greater_firepower",

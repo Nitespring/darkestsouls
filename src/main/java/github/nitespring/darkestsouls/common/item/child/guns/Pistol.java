@@ -1,23 +1,13 @@
 package github.nitespring.darkestsouls.common.item.child.guns;
 
-import github.nitespring.darkestsouls.common.entity.projectile.Bullet;
-import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
 import github.nitespring.darkestsouls.common.item.Gun;
-import github.nitespring.darkestsouls.common.item.ILeftClickItem;
 import github.nitespring.darkestsouls.core.init.EntityInit;
-import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class Pistol extends Gun{

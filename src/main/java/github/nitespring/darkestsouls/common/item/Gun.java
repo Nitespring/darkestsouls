@@ -241,7 +241,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment.category == EnchantmentInit.GUN || enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.VANISHABLE;
+        return enchantment.category == EnchantmentInit.GUN || enchantment.category == EnchantmentInit.AMMO_CONSUMER || enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.VANISHABLE;
     }
 
     @Override

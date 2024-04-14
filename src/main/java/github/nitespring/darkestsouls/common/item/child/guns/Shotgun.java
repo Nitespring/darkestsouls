@@ -1,6 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.guns;
 
-import github.nitespring.darkestsouls.common.entity.projectile.Bullet;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
 import github.nitespring.darkestsouls.common.item.Gun;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.sounds.SoundEvents;

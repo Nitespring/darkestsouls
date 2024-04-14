@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.entity.projectile.weapon;
+package github.nitespring.darkestsouls.common.entity.projectile.weapon.melee;
 
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.nbt.CompoundTag;
