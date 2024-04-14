@@ -5320,6 +5320,254 @@
 				}
 			}
 		},
+		"animation.church_doctor.new": {
+			"loop": true
+		},
+		"animation.church_doctor.scythe.attack2": {
+			"animation_length": 1.5,
+			"bones": {
+				"bodyLow": {
+					"rotation": {
+						"0.0": {
+							"vector": [5, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, -2.5, 0]
+						},
+						"0.4167": {
+							"vector": [15, 0, 0]
+						},
+						"1.5": {
+							"vector": [5, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 1]
+						},
+						"0.25": {
+							"vector": [0, 0, 2]
+						},
+						"0.4167": {
+							"vector": [0, 0, -6]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"bodyMid": {
+					"rotation": {
+						"0.0": {
+							"vector": [2.5, 0, 0]
+						},
+						"0.25": {
+							"vector": [-2.5, 0, 0]
+						},
+						"0.4167": {
+							"vector": [2.5, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"bodyHigh": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [-2.5, 0, 0]
+						},
+						"0.4167": {
+							"vector": [15, 0, 0]
+						},
+						"1.5": {
+							"vector": [12.5, 0, 0]
+						}
+					}
+				},
+				"bell": {
+					"rotation": {
+						"vector": [-10, 0, 0]
+					}
+				},
+				"head": {
+					"rotation": {
+						"0.0": {
+							"vector": [-2.5, -15, 5]
+						},
+						"0.25": {
+							"vector": [7.5, 0, 0]
+						},
+						"0.4167": {
+							"vector": [-17.5, 0, 0]
+						},
+						"1.5": {
+							"vector": [-15, 0, 0]
+						}
+					}
+				},
+				"cape": {
+					"rotation": {
+						"vector": [12.5, 0, 0]
+					}
+				},
+				"armRightHigh": {
+					"rotation": {
+						"0.0": {
+							"vector": [-42.5, -20, 2.5]
+						},
+						"0.25": {
+							"vector": [-40, 0, 2.5]
+						},
+						"0.4167": {
+							"vector": [-75, -5, 2.5]
+						},
+						"1.5": {
+							"vector": [-47.5, -5, 2.5]
+						}
+					}
+				},
+				"armRightLow": {
+					"rotation": {
+						"0.0": {
+							"vector": [-20, -17.5, -10]
+						},
+						"0.25": {
+							"vector": [-77.5, 0, -27.5]
+						},
+						"0.4167": {
+							"vector": [-32.5, 5, -7.5]
+						},
+						"1.5": {
+							"vector": [-55, 5, -7.5]
+						}
+					}
+				},
+				"armLeftHigh": {
+					"rotation": {
+						"0.0": {
+							"vector": [-57.5, 17.5, 0]
+						},
+						"0.25": {
+							"vector": [-5, 0, -10]
+						},
+						"0.4167": {
+							"vector": [-70, 5, -10]
+						},
+						"1.5": {
+							"vector": [-45, 5, -10]
+						}
+					}
+				},
+				"armLeftLow": {
+					"rotation": {
+						"0.0": {
+							"vector": [-57.5, 35, 30]
+						},
+						"0.25": {
+							"vector": [-57.5, 30, -27.5]
+						},
+						"0.4167": {
+							"vector": [-40, 45, -32.5]
+						},
+						"1.5": {
+							"vector": [-65, 30, -52.5]
+						}
+					}
+				},
+				"coatMid": {
+					"rotation": {
+						"vector": [-2.5, 0, 0]
+					}
+				},
+				"coatLow": {
+					"rotation": {
+						"0.0": {
+							"vector": [-5, 0, 0]
+						},
+						"0.25": {
+							"vector": [12.5, 0, 0]
+						}
+					}
+				},
+				"legRightHigh": {
+					"rotation": {
+						"0.0": {
+							"vector": [-22.5, 0, 2.5]
+						},
+						"0.25": {
+							"vector": [-32.5, 0, 2.5]
+						},
+						"0.4167": {
+							"vector": [-22.5, 0, 2.5]
+						}
+					}
+				},
+				"legRightLow": {
+					"rotation": {
+						"0.0": {
+							"vector": [22.5, 0, -2.5]
+						},
+						"0.25": {
+							"vector": [27.5, 0, -2.5]
+						},
+						"0.4167": {
+							"vector": [12.5, 0, -2.5]
+						}
+					}
+				},
+				"legLeftHigh": {
+					"rotation": {
+						"0.0": {
+							"vector": [-15, 0, -5]
+						},
+						"0.25": {
+							"vector": [-12.5, 0, -5]
+						},
+						"0.4167": {
+							"vector": [-5, 0, -5]
+						}
+					}
+				},
+				"legLeftLow": {
+					"rotation": {
+						"0.0": {
+							"vector": [27.5, 0, 2.5]
+						},
+						"0.25": {
+							"vector": [27.5, 0, 2.5]
+						},
+						"0.4167": {
+							"vector": [22.5, 0, 2.5]
+						}
+					}
+				},
+				"capeFront": {
+					"rotation": {
+						"vector": [-17.5, 0, 0]
+					}
+				},
+				"handRight": {
+					"rotation": {
+						"0.0": {
+							"vector": [-25, -22.5, -42.5]
+						},
+						"0.25": {
+							"vector": [15, 47.5, 0]
+						},
+						"0.3333": {
+							"vector": [15, 64.17, 21.67]
+						},
+						"0.4167": {
+							"vector": [15, 80, 25]
+						}
+					}
+				}
+			}
+		},
 		"animation.church_doctor.scythe.death": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1.54167,
@@ -5410,9 +5658,6 @@
 					}
 				}
 			}
-		},
-		"animation.church_doctor.new": {
-			"loop": true
 		}
 	}
 }

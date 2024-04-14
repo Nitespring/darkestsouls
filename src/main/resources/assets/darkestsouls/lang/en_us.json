@@ -226,10 +226,10 @@
   "translation.darkestsouls.bullets" : " Quicksilver Bullets",
   "translation.darkestsouls.consumes_small_soul" : "Consumes Small Soul Fragments",
 
-  "translation.darkestsouls.spell.crystal_burst" : "Crystal Burst (1)",
-  "translation.darkestsouls.spell.crystal_rain" : "Crystal Rain (2)",
-  "translation.darkestsouls.spell.soul_dart" : "Soul Dart (1)",
-  "translation.darkestsouls.spell.soul_arrow" : "Soul Arrow (1)",
-  "translation.darkestsouls.spell.magma_burst" : "Magma Burst (1)",
-  "translation.darkestsouls.spell.chaos_fireball" : "Chaos Fireball (2)"
+  "translation.darkestsouls.spell.crystal_burst" : "Crystal Burst (1 Fragment)",
+  "translation.darkestsouls.spell.crystal_rain" : "Crystal Rain (2 Fragments)",
+  "translation.darkestsouls.spell.soul_dart" : "Soul Dart (1 Fragment)",
+  "translation.darkestsouls.spell.soul_arrow" : "Soul Arrow (1 Fragment)",
+  "translation.darkestsouls.spell.magma_burst" : "Magma Burst (1 Fragments)",
+  "translation.darkestsouls.spell.chaos_fireball" : "Chaos Fireball (2 Fragments)"
 }
