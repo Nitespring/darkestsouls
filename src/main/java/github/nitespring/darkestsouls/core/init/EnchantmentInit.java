@@ -4,6 +4,7 @@ import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.enchantment.*;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
 import github.nitespring.darkestsouls.common.item.Gun;
+import github.nitespring.darkestsouls.common.item.IAmmoConsumingItem;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -23,6 +24,7 @@ public class EnchantmentInit {
             DarkestSouls.MODID);
     public static final EquipmentSlot[] HAND_SLOTS = new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND};
     public static final EnchantmentCategory GUN = EnchantmentCategory.create("gun", item -> item instanceof Gun);
+    public static final EnchantmentCategory AMMO_CONSUMER = EnchantmentCategory.create("gun", item -> item instanceof IAmmoConsumingItem);
     public static final RegistryObject<FirepowerEnchantment> FIREPOWER = ENCHANTMENTS.register("firepower",
             () -> new FirepowerEnchantment(Enchantment.Rarity.COMMON));
     public static final RegistryObject<GreaterFirepowerEnchantment> GREATER_FIREPOWER = ENCHANTMENTS.register("greater_firepower",

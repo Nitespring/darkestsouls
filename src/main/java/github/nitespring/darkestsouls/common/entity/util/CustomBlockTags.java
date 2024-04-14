@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 public final class CustomBlockTags{
 
     public static final TagKey<Block> BOMB_BREAKABLE = create("darkestsouls:bomb_breakable");
+    public static final TagKey<Block> FLAME_BREAKABLE = create("darkestsouls:flame_breakable");
 
     private CustomBlockTags() {
     }
