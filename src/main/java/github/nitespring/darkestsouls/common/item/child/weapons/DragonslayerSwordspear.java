@@ -38,7 +38,7 @@ public class DragonslayerSwordspear extends Weapon {
                 entity.setItemStack(stackIn);
                 entity.setMaxTargets(this.getMaxTargets(stackIn));
                 entity.setDamage(
-                        this.getAttackDamage(playerIn, stackIn) / 2,
+                        this.getAttackDamage(playerIn, stackIn),
                         this.getPoiseDamage(playerIn, stackIn),
                         this.getFireAttack(stackIn),
                         this.getSmiteAttack(stackIn),

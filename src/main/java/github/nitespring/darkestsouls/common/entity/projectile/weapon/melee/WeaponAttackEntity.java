@@ -47,6 +47,13 @@ public class WeaponAttackEntity extends Entity {
     public  int fire=0;
     public float baneOfArthropods=0;
     public float smite=0;
+    public int beastHunter=0;
+    public int demonSlayer=0;
+    public int kinHunter=0;
+    public int abyssCleanser=0;
+    public int godSlayer=0;
+    public int hollowSlayer=0;
+
 
     public double inflateX=1.2;
     public double inflateY=0;
@@ -65,7 +72,7 @@ public class WeaponAttackEntity extends Entity {
 
     protected static final EntityDataAccessor<Integer> ANIMATIONSTATE = SynchedEntityData.defineId(WeaponAttackEntity.class, EntityDataSerializers.INT);
 
-    public WeaponAttackEntity(EntityType<?> e, Level level, Vec3 pos, float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death , int updateTickAnimation, int updateTickPosition, int attackTick, int finalTick, double playerDistance, double hitboxHeight, double inflatex,double inflatey,double inflatez,float rotation) {
+   /* public WeaponAttackEntity(EntityType<?> e, Level level, Vec3 pos, float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death , int updateTickAnimation, int updateTickPosition, int attackTick, int finalTick, double playerDistance, double hitboxHeight, double inflatex,double inflatey,double inflatez,float rotation) {
         this(e, level);
         this.setPos(pos);
         this.damage=dmg;
@@ -88,7 +95,7 @@ public class WeaponAttackEntity extends Entity {
         this.inflateX=inflatex;
         this.inflateY=inflatey;
         this.inflateZ=inflatez;
-    }
+    }*/
 
     public WeaponAttackEntity(EntityType<?> e, Level level,Vec3 pos,float rotation) {
         this(e, level);
@@ -325,7 +332,5 @@ public class WeaponAttackEntity extends Entity {
         this.rot=rot;
         this.frost=frost;
         this.death=death;
-
-
     }
 }

@@ -32,7 +32,7 @@ public class StormCurvedSword extends Weapon {
                 WindSlash e = new WindSlash(EntityInit.WIND_SLASH.get(), levelIn, (float) Mth.atan2(aim.x, aim.z), (float) Mth.atan2(aim.y, d0));
                 e.setPos(pos.add(0, 0.75f, 0).add(aim.scale(0.75f)));
                 e.setOwner(playerIn);
-                e.setDamage(this.getAttackDamage(playerIn, stackIn) / 2);
+                e.setDamage(this.getAttackDamage(playerIn, stackIn));
                 e.setMaxLifeTime(16);
                 e.xPower = 0.2 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
                 e.yPower = 0.2 * aim.y;
