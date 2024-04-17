@@ -61,8 +61,8 @@ public class ItemInit {
 
 	public static final RegistryObject<BrokenStraightsword> BROKEN_STRAIGHTSWORD = ITEMS.register("broken_straightsword",
 			() -> new BrokenStraightsword(Tiers.TITANITE, 3.0f, 1.6f, 0.0f, 2, 0,0,0,0,0,0,0,127,8,0.1f, 1,new Item.Properties()));
-	public static final RegistryObject<Longsword> BANDIT_KNIFE = ITEMS.register("bandit_knife",
-			() -> new Longsword(Tiers.TITANITE, 3.0f, 2.4f, 0.0f, 2, 3,0,0,0,0,0,0,63,6,0.18f, 1,new Item.Properties()));
+	public static final RegistryObject<BanditKnife> BANDIT_KNIFE = ITEMS.register("bandit_knife",
+			() -> new BanditKnife(Tiers.TITANITE, 3.0f, 2.4f, 0.0f, 2, 3,0,0,0,0,0,0,63,6,0.18f, 1,new Item.Properties()));
 	public static final RegistryObject<Longsword> LONGSWORD = ITEMS.register("longsword",
 			() -> new Longsword(Tiers.TITANITE, 7.0f, 1.6f, 0.0f, 6, 0,0,0,0,0,0,0,225,8,0.1f, 2,new Item.Properties()));
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",

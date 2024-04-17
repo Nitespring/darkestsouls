@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -206,11 +207,18 @@ public class WeaponAttackEntity extends Entity {
 
 
 
+    public SoundEvent getAttackSound(){
 
+          return SoundEvents.PLAYER_ATTACK_SWEEP;
+    }
+    public void playAttackSound(){
+
+        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), this.getAttackSound(), this.getSoundSource(), 0.25F, this.random.nextFloat() * 0.2F + 1.0F, false);
+    }
 
     public void attackEntity(){
 
-        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, this.getSoundSource(), 0.25F, this.random.nextFloat() * 0.2F + 1.0F, false);
+        this.playAttackSound();
         for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(inflateX, inflateY, inflateZ))) {
             this.dealDamageTo(livingentity);
         }

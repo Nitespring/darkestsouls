@@ -23,7 +23,7 @@ public class Shotel extends Weapon {
                 Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.0, 0.4, playerIn.getLookAngle().z() * 2.0);
 
                 Level levelIn = playerIn.level();
-                WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.HUNTING_AXE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+                WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.SHOTEL.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
                 entity.setOwner(playerIn);
                 entity.setItemStack(stackIn);
                 entity.setMaxTargets(this.getMaxTargets(stackIn));

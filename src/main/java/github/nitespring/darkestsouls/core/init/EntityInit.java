@@ -25,6 +25,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Throwin
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.HeavyWeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
@@ -230,8 +231,22 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.5f, 1.5f)
 					.build("hunter_axe"));
-
-
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> BANDIT_KNIFE = ENTITIES.register("bandit_knife",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.0f, 1.0f)
+					.build("bandit_knife"));
+	public static final RegistryObject<EntityType<HeavyWeaponAttackEntity>> GREATAXE = ENTITIES.register("greataxe",
+			() -> EntityType.Builder.<HeavyWeaponAttackEntity>of(HeavyWeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 2.0f)
+					.build("greataxe"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> CURVED_GREATSWORD = ENTITIES.register("curved_greatsword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.25f, 1.5f)
+					.build("curved_greatsword"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SHOTEL = ENTITIES.register("shotel",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.5f)
+					.build("shotel"));
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)

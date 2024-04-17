@@ -107,6 +107,12 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.DRAGONSLAYER_SPEAR.get(), DragonslayerSpearRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HUNTER_AXE.get(), HunterAxeRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HUNTING_AXE.get(), HuntingAxeRenderer::new);
+		 event.registerEntityRenderer(EntityInit.GREATAXE.get(), GreataxeRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CURVED_GREATSWORD.get(), CurvedGreatswordRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SHOTEL.get(), ShotelRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BANDIT_KNIFE.get(), BanditKnifeRenderer::new);
+
+
 
 		 event.registerEntityRenderer(EntityInit.SOUL_DART.get(), SoulDartRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SOUL_ARROW.get(), SoulDartRenderer::new);
