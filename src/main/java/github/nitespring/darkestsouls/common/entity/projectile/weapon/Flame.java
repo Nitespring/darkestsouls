@@ -106,7 +106,7 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
             if (hitBlocks >= getRicochet()) {
                 this.discard();
                 if (this.getOwner() != null) {
-                    this.getOwner().level().playSound((Player) null, this.position().x(), this.position().y(), this.position().z(), SoundEvents.STONE_PLACE, SoundSource.AMBIENT, 0.2F, 1.6f);
+                    this.getOwner().level().playSound((Player) null, this.position().x(), this.position().y(), this.position().z(), SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.AMBIENT, 0.1F, 1.6f);
                 }
             } else {
                 Vec3 mov = this.getDeltaMovement();
@@ -135,8 +135,10 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
                 level().gameEvent(this, GameEvent.BLOCK_PLACE, blockPos);
             }
     }
+
     @Override
     public void tick() {
+        setViewScale(this.getSize());
         super.tick();
         gravTick++;
         this.setDeltaMovement(this.getDeltaMovement().add(0, -0.0001 * Math.pow(gravTick, 9/4), 0));

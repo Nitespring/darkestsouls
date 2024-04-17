@@ -1,10 +1,16 @@
 package github.nitespring.darkestsouls.common.entity.mob.church;
 
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
+import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +34,7 @@ import java.util.Random;
 
 public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity {
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    public Vec3 aimVec;
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
     public ChurchDoctorFlamesprayer(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -205,6 +212,7 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
         Level levelIn = this.level();
         Vec3 pos = this.position();
         boolean flag = this.getTarget() != null && this.distanceTo(this.getTarget()) <= 2;
+        boolean flag1 = this.getTarget() != null && this.distanceTo(this.getTarget()) <= 8;
         this.getNavigation().stop();
         switch (this.getAnimationState()) {
             case 1:
@@ -215,14 +223,150 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
                     setAnimationState(0);
                 }
                 break;
+            //Attack
+            case 21:
+                /*if(getAnimationTick()>=4&&getAnimationTick()<=8) {
+                    this.getNavigation().stop();*/
+                if(getAnimationTick()>=8) {
+                    this.getNavigation().stop();
+                /*}else if(getAnimationTick()>=24){
+                    if ((getAnimationTick()-16) % 7 == 0) {
+                        if (this.getTarget() == null) {
+                            aimVec = this.getLookAngle().normalize();
+                        } else {
+                            aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
+                        }
+                    }*/
+                }
+                if (getAnimationTick() == 12) {
+                    if (this.getTarget() == null) {
+                        aimVec = this.getLookAngle().normalize();
+                    } else {
+                        aimVec = this.getTarget().position().add(0,0.25,0).add(pos.scale(-1)).normalize();
+                    }
+                }
+                if(getAnimationTick()>=12) {
+                    this.getLookControl().setLookAt(pos.add(aimVec));
+                }
+                if(getAnimationTick()>=14) {
+                    if ((getAnimationTick()-14) % 7 == 0) {
+                        this.playSound(SoundEvents.FIRE_EXTINGUISH);
+                        Vec3 aim = aimVec;
+                        double a=  5*Math.PI/19;
+                        for(int i = 0; i<=4; i++) {
+                            Random r = new Random();
+                            float rF = 2*(r.nextFloat()-0.5f);
+                            float b = (float) (a*rF);
+                            Vec3 aim1 = new Vec3((aim.x*Math.cos(b)-aim.z*Math.sin(b)),aim.y,(aim.z*Math.cos(b)+aim.x*Math.sin(b)));
+                            float x = (float) (pos.x + 0.4 * aim.x+ 0.4 * aim1.x);
+                            float y = (float) (pos.y + 0.6 + 0.6 * aim1.y);
+                            float z = (float) (pos.z + 0.4 * aim.z+ 0.4 * aim1.z);
+                            Flame entity = new Flame(EntityInit.FLAME.get(), this.level());
+                            entity.setPos(x, y, z);
+                            float flyingPower = 0.08f;
+                            entity.xPower = flyingPower * aim1.x;
+                            entity.yPower = flyingPower * aim1.y;
+                            entity.zPower = flyingPower * aim1.z;
+                            entity.setOwner(this);
+                            entity.setAttackDamage((float) (this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.4f));
+                            entity.setPoiseDamage(1);
+                            entity.setFlyingTime(10);
+                            entity.setSize(0.8f);
+                            entity.setRicochet(0);
+                            this.level().addFreshEntity(entity);
+                        }
+                    }
+                }
+                if(getAnimationTick()>=80&&!flag1) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                if(getAnimationTick()>=96&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }
+                }
+                if(getAnimationTick()>=144) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                if(getAnimationTick()<=22){
+                    this.moveToTarget(1.5f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==22) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==26) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=36&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    }else if(r<=600) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }
+                }
+                if(getAnimationTick()>=42) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 23:
+                this.getNavigation().stop();
+                if(getAnimationTick()==12) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=400) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }else if(r<=600) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }
+                }
+                if(getAnimationTick()>=20) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
         }
     }
-    public void moveToTarget(){
+    public void moveToTarget(float speed){
         boolean flag = this.getTarget()!=null;
         if(flag) {
             this.getLookControl().setLookAt(this.getTarget(), 10.0F, 10.0F);
             Path path = this.getNavigation().createPath(this.getTarget(), 0);
-            this.getNavigation().moveTo(path, 1.5f);
+            this.getNavigation().moveTo(path, speed);
         }
 
     }
@@ -403,6 +547,10 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
                 if(r<=400)      {this.mob.setAnimationState(21);}
                 else if(r<=800) {this.mob.setAnimationState(22);}
                 else if(r<=1600){this.mob.setAnimationState(23);}
+            }
+            if (distance <= 4*reach && this.ticksUntilNextAttack <= 0) {
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=40){this.mob.setAnimationState(21);}
             }
 
 
