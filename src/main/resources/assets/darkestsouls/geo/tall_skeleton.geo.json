@@ -165,9 +165,19 @@
 					]
 				},
 				{
-					"name": "hat_part",
+					"name": "hat_part_root",
 					"parent": "hat",
-					"pivot": [0, 4, 0],
+					"pivot": [0, 38, -4]
+				},
+				{
+					"name": "hat_part_root1",
+					"parent": "hat_part_root",
+					"pivot": [0, 38, -4]
+				},
+				{
+					"name": "hat_part",
+					"parent": "hat_part_root1",
+					"pivot": [0, 38, -4],
 					"cubes": [
 						{"origin": [-4, 29.5, -4.25], "size": [8, 8, 8], "inflate": -0.01, "pivot": [0, 38, -4], "rotation": [-10, 0, 0], "uv": [72, 78]}
 					]

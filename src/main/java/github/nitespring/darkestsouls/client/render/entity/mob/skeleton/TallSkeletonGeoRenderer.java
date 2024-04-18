@@ -15,9 +15,9 @@ public class TallSkeletonGeoRenderer<T extends Skeleton & GeoEntity> extends Geo
 
 	public TallSkeletonGeoRenderer(EntityRendererProvider.Context renderManager)
     {
-        super(renderManager, new SkeletonModel());
+        super(renderManager, new TallSkeletonModel<>());
         this.addRenderLayer(new TallSkeletonItemLayer<T>(this));
-        this.shadowRadius = 0.5F;
+        this.shadowRadius = 0.6F;
      
        
     }
