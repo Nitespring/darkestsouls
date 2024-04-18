@@ -378,7 +378,71 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                     }
                 }
                 break;
+            case 13:
+                if(getAnimationTick()==1) {
+                    this.setDeltaMovement(0,0.5,0);
+                    if (this.getTarget() != null) {
+                        this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
+                    } else {
+                        this.aimVec = this.getLookAngle();
+                    }
+                }
+                if(getAnimationTick()==2) {
+                    this.hurtTime = 10;
+                }
+                if(getAnimationTick()>=2){
+                    for(int i = 0; i<=2; i++) {
+                        Random r = new Random();
+                        this.level().addParticle(ParticleTypes.WHITE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.LARGE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.5f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                    }
+                }
+                if(getAnimationTick()==2){
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.25f,0).scale(0.75));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.25f,0).scale(0.75));
+                    }
+
+                }
+                if(getAnimationTick()>=12) {
+                    this.getNavigation().stop();
+                    setAnimationTick(0);
+
+                    setAnimationState(0);
+                }
+                break;
             //Attack
+            case 20:
+                if(getAnimationTick()==10) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
+                    this.level().addFreshEntity(h);
+                }
+                /*if(getAnimationTick()>=10&&flag) {
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 480) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }
+                }*/
+                if(getAnimationTick()>=20) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
             case 21:
                 if(getAnimationTick()==6) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
@@ -403,6 +467,68 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                     }
                 }*/
                 if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                if(getAnimationTick()==3) {
+                    this.setDeltaMovement(0,0.5,0);
+                }
+                if(getAnimationTick()>=4&&getAnimationTick()<8) {
+                    this.setDeltaMovement(0,0.0,0);
+                }
+                if(getAnimationTick()==6) {
+                    if (this.getTarget() != null) {
+                        this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
+                    } else {
+                        this.aimVec = this.getLookAngle();
+                    }
+                }
+
+                if(getAnimationTick()>=5&&getAnimationTick()<=18){
+                    for(int i = 0; i<=2; i++) {
+                        Random r = new Random();
+                        this.level().addParticle(ParticleTypes.WHITE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.LARGE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.5f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                    }
+                }
+                if(getAnimationTick()==5) {
+                    this.hurtTime = 10;
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==8){
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.25f,0).scale(0.9));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.25f,0).scale(0.9));
+                    }
+
+                }
+                if(getAnimationTick()==18) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    h.setHitboxType(4);
+                    this.level().addFreshEntity(h);
+                }
+                /*if(getAnimationTick()>=10&&flag) {
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 480) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }
+                }*/
+                if(getAnimationTick()>=28) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -683,7 +809,11 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
                 if(r<=360) {
+                    this.mob.setAnimationState(20);
+                }else if(r<=720) {
                     this.mob.setAnimationState(21);
+                }else if(r<=960) {
+                    this.mob.setAnimationState(22);
                 }
             }
             if (distance <= reach*16 && this.ticksUntilNextAttack <= 0) {
@@ -692,6 +822,20 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                     this.mob.setAnimationState(11);
                 }else if(r<=96) {
                     this.mob.setAnimationState(12);
+                }else if(r<=192) {
+                    this.mob.setAnimationState(13);
+                }
+            }
+            if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=48) {
+                    this.mob.setAnimationState(11);
+                }else if(r<=96) {
+                    this.mob.setAnimationState(12);
+                }else if(r<=192) {
+                    this.mob.setAnimationState(13);
+                }else if(r<=360) {
+                    this.mob.setAnimationState(22);
                 }
             }
             if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
@@ -914,7 +1058,11 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
             if (distance <= reach && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
                 if(r<=360) {
+                    this.mob.setAnimationState(20);
+                }else if(r<=720) {
                     this.mob.setAnimationState(21);
+                }else if(r<=960) {
+                    this.mob.setAnimationState(22);
                 }
             }
             if (distance <= reach*16 && this.ticksUntilNextAttack <= 0) {
@@ -923,6 +1071,20 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                     this.mob.setAnimationState(11);
                 }else if(r<=96) {
                     this.mob.setAnimationState(12);
+                }else if(r<=192) {
+                    this.mob.setAnimationState(13);
+                }
+            }
+            if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=48) {
+                    this.mob.setAnimationState(11);
+                }else if(r<=96) {
+                    this.mob.setAnimationState(12);
+                }else if(r<=192) {
+                    this.mob.setAnimationState(13);
+                }else if(r<=360) {
+                    this.mob.setAnimationState(22);
                 }
             }
             if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
