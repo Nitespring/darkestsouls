@@ -187,6 +187,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.SKELETON_FALCHION.get());
                         output.accept(ItemInit.SKELETON_SPEAR.get());
                         output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());
+                        output.accept(ItemInit.TALL_SKELETON_TWIN_SHOTELS.get());
                         output.accept(ItemInit.BONEWHEEL.get());
                         output.accept(ItemInit.BEAST_PATIENT.get());
                         output.accept(ItemInit.CLOAKED_BEAST_PATIENT.get());

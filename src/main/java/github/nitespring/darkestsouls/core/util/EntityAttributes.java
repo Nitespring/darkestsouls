@@ -140,6 +140,18 @@ public class EntityAttributes {
 					.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
 					.add(Attributes.FOLLOW_RANGE, 25);
 	}
+	public static  AttributeSupplier.Builder setSkeletonSwordsmanTwinShotelsAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 54.0D)
+				.add(Attributes.ARMOR, 6.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.ATTACK_DAMAGE, 4.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.4D)
+				.add(Attributes.FOLLOW_RANGE, 25);
+	}
 	public static  AttributeSupplier.Builder setSewerCentipedeAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 58.0D)

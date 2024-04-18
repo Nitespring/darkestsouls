@@ -374,7 +374,6 @@ public class ChurchDoctorScythe extends ChurchDoctor implements GeoEntity {
             Path path = this.getNavigation().createPath(this.getTarget(), 0);
             this.getNavigation().moveTo(path, 1.5f);
         }
-
     }
     public class AttackGoal extends Goal {
 
