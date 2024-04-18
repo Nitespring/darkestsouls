@@ -2,7 +2,6 @@ package github.nitespring.darkestsouls.client.render.entity.mob.skeleton;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -15,7 +14,7 @@ public class SkeletonCurvedSwordsGeoRenderer<T extends SkeletonCurvedSwords> ext
 	public SkeletonCurvedSwordsGeoRenderer(EntityRendererProvider.Context renderManager)
     {
         super(renderManager, new SkeletonModel());
-        this.addRenderLayer(new SkeletonItemLayer<T>(this));
+        this.addRenderLayer(new SkeletonItemLayerOld<T>(this));
         this.shadowRadius = 0.5F;
      
        

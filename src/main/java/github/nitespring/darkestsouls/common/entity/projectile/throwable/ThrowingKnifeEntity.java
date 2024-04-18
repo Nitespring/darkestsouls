@@ -128,33 +128,34 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
 
     @Override
     protected void onHitEntity(EntityHitResult hit) {
-
-        if(hit.getEntity() instanceof LivingEntity target && this.getDeltaMovement().length()>0.1) {
-            this.setDeltaMovement(this.getDeltaMovement().multiply(-0.25, -1, -0.25));
-            this.xPower=-0.05*this.xPower;
-            this.yPower=-0.25;
-            this.zPower=-0.05*this.zPower;
-            this.setToRotate(false);
-            this.rotationTick = 0;
-            target.hurt(target.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()),this.attackPower);
-            if(target instanceof DarkestSoulsAbstractEntity dsMob){
-                dsMob.damagePoiseHealth(this.poiseDamage);
-            }
-            if(this.getPoisonDamage()>=1) {
-                target.addEffect(new MobEffectInstance(MobEffects.POISON, 60, this.poisonDamage - 1));
-            }
-            if(this.getBloodDamage()>=1) {
-                if(target.hasEffect(EffectInit.BLEED.get())){
-                    int amount = target.getEffect(EffectInit.BLEED.get()).getAmplifier();
-                    target.removeEffect(EffectInit.BLEED.get());
-                    target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage + amount));
-                }else {
-                    target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage - 1));
+        if(this.getOwner()==null||this.getOwner() instanceof Player || (hit.getEntity() != this.getOwner()&&!hit.getEntity().isAlliedTo(this.getOwner()))) {
+            if (hit.getEntity() instanceof LivingEntity target && this.getDeltaMovement().length() > 0.1) {
+                this.setDeltaMovement(this.getDeltaMovement().multiply(-0.25, -1, -0.25));
+                this.xPower = -0.05 * this.xPower;
+                this.yPower = -0.25;
+                this.zPower = -0.05 * this.zPower;
+                this.setToRotate(false);
+                this.rotationTick = 0;
+                target.hurt(target.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()), this.attackPower);
+                if (target instanceof DarkestSoulsAbstractEntity dsMob) {
+                    dsMob.damagePoiseHealth(this.poiseDamage);
                 }
-            }
-           int r = this.level().getRandom().nextInt(1000);
-           if(r >= 800){
-               this.discard();
+                if (this.getPoisonDamage() >= 1) {
+                    target.addEffect(new MobEffectInstance(MobEffects.POISON, 60, this.poisonDamage - 1));
+                }
+                if (this.getBloodDamage() >= 1) {
+                    if (target.hasEffect(EffectInit.BLEED.get())) {
+                        int amount = target.getEffect(EffectInit.BLEED.get()).getAmplifier();
+                        target.removeEffect(EffectInit.BLEED.get());
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage + amount));
+                    } else {
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage - 1));
+                    }
+                }
+                int r = this.level().getRandom().nextInt(1000);
+                if (r >= 800) {
+                    this.discard();
+                }
             }
         }
         /*if(this.getDeltaMovement().length()<=0.1 && this.canBePickedUp && hit.getEntity() instanceof Player playerIn){

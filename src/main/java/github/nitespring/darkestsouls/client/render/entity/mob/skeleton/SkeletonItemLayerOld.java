@@ -15,9 +15,9 @@ import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 
-public class TallSkeletonItemLayer<T extends Skeleton & GeoEntity> extends BlockAndItemGeoLayer<T>{
+public class SkeletonItemLayerOld<T extends Skeleton & GeoEntity> extends BlockAndItemGeoLayer<T>{
 
-	public TallSkeletonItemLayer(GeoRenderer<T> renderer) {
+	public SkeletonItemLayerOld(GeoRenderer<T> renderer) {
 		super(renderer);
 		
 	}

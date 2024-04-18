@@ -6,6 +6,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.Path;
@@ -174,7 +176,17 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
     }
     @Override
     public int getDefaultRobeType() {
-        return 5;
+        return 1;
+    }
+
+    @Override
+    public ItemStack getRightHandItem() {
+        return ItemInit.CARTHUS_SHOTEL.get().getDefaultInstance();
+    }
+
+    @Override
+    public ItemStack getLeftHandItem() {
+        return ItemInit.CARTHUS_SHOTEL.get().getDefaultInstance();
     }
 
     @Override
@@ -200,7 +212,6 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
         this.goalSelector.addGoal(2, new SkeletonSwordsmanTwinShotels.AttackGoalRunning(this));
 
 
-        this.goalSelector.addGoal(4, new RandomSwimmingGoal(this,0.2f,1));
         super.registerGoals();
 
     }
@@ -210,7 +221,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
     @Override
     public EntityDimensions getDimensions(Pose p_21047_) {
 
-         if((this.isInWater()&&this.getAnimationState()==0)||this.getAnimationState()==1) {
+         if(this.getAnimationState()==1) {
              return CRAWLING_BB;
          }else {
              return this.getType().getDimensions();
@@ -218,19 +229,9 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
     }
 
     @Override
-    public void sinkInFluid(FluidType type) {
-        /*if(this.canSwimInFluidType(type)){
-            self().setDeltaMovement(self().getDeltaMovement().add(0.0D, (double)0.02F, 0.0D));
-        }*/
-
-        super.sinkInFluid(type);
-    }
+    public boolean canDrownInFluidType(FluidType type) {return false;}
 
 
-    @Override
-    public boolean canSwimInFluidType(FluidType type) {
-        return true;
-    }
 
     @Override
     public void tick() {
@@ -244,9 +245,6 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
        
         if(this.tickCount%5==0){this.refreshDimensions();}
 
-        /*if(this.getAnimationState()==0&&this.getCombatState()==1&&this.getTarget()==null){
-            this.setCombatState(0);
-        }*/
 
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
@@ -286,7 +284,74 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                                             aim.z*Math.cos(b)+aim.x*Math.sin(b));
                     }
                 }
-                if(getAnimationTick()==4) {
+                if(getAnimationTick()==2) {
+                    this.hurtTime = 13;
+                }
+                if(getAnimationTick()>=2){
+                    for(int i = 0; i<=2; i++) {
+                        Random r = new Random();
+                        this.level().addParticle(ParticleTypes.WHITE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.LARGE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.5f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                    }
+                }
+                if(getAnimationTick()==5) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.25f,0).scale(0.75));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.25f,0).scale(0.75));
+                    }
+                }
+                if(getAnimationTick()>=16) {
+                    if(flag) {
+                        int r = this.getRandom().nextInt(2048);
+                        if (r <= 36) {
+                            setAnimationTick(0);
+                            setAnimationState(21);
+                        }
+                    }
+                }
+                if(getAnimationTick()>18) {
+                    setAnimationTick(0);
+                    int r = this.getRandom().nextInt(2048);
+                    if (r <= 960) {
+                        setAnimationState(31);
+                    } else  {
+                        setAnimationState(0);
+                    }
+                }
+                break;
+            case 12:
+                if(getAnimationTick()==2) {
+                    this.setDeltaMovement(0,0.5,0);
+                    double b = -Math.PI*4/12;
+                    if(this.getTarget()==null) {
+                        Vec3 aim = this.getLookAngle();
+                        aimVec = new Vec3(aim.x*Math.cos(b)-aim.z*Math.sin(b),
+                                Math.max(0,aim.y),
+                                aim.z*Math.cos(b)+aim.x*Math.sin(b));
+                    }else{
+                        Vec3 aim = this.getTarget().position().add(pos.scale(-1));
+                        aimVec = new Vec3(aim.x*Math.cos(b)-aim.z*Math.sin(b),
+                                Math.max(0,aim.y),
+                                aim.z*Math.cos(b)+aim.x*Math.sin(b));
+                    }
+                }
+                if(getAnimationTick()==2) {
+                    this.hurtTime = 13;
+                }
+                if(getAnimationTick()>=2){
+                    for(int i = 0; i<=2; i++) {
+                        Random r = new Random();
+                        this.level().addParticle(ParticleTypes.WHITE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.LARGE_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.5f+r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                        this.level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.x+r.nextFloat(-0.5f, 0.5f), pos.y + 0.75f +r.nextFloat(-0.5f, 0.5f), pos.z+r.nextFloat(-0.5f, 0.5f), 0, 0, 0);
+                    }
+                }
+                if(getAnimationTick()==5) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.25f,0).scale(0.75));
@@ -337,7 +402,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                         setAnimationState(22);
                     }
                 }*/
-                if(getAnimationTick()>=12) {
+                if(getAnimationTick()>=16) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -386,7 +451,10 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
     public void doRangedAttack(){
         Level levelIn = this.level();
         Vec3 pos = this.position();
-        Vec3 aim = aimVec;
+        Vec3 aim = this.getLookAngle();
+        if(this.aimVec!=null) {
+            aim = aimVec;
+        }
         double a=  1*Math.PI/8;
         for(int i = 0; i<=2; i++) {
             int j = i-1;
@@ -618,22 +686,23 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                     this.mob.setAnimationState(21);
                 }
             }
-            if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
+            if (distance <= reach*16 && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=36) {
+                if(r<=48) {
                     this.mob.setAnimationState(11);
-                }else if(r<=84){
-                    this.mob.setAnimationState(31);
-                }
-                else if(r<=132){
-                    this.mob.setAnimationState(32);
+                }else if(r<=96) {
+                    this.mob.setAnimationState(12);
                 }
             }
             if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=560) {
+                if(r<=180) {
 
                     this.mob.setAnimationState(31);
+
+                }else if(r<=360) {
+
+                    this.mob.setAnimationState(32);
 
                 }
             }
@@ -848,22 +917,23 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                     this.mob.setAnimationState(21);
                 }
             }
-            if (distance <= reach*4 && this.ticksUntilNextAttack <= 0) {
+            if (distance <= reach*16 && this.ticksUntilNextAttack <= 0) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=36) {
+                if(r<=48) {
                     this.mob.setAnimationState(11);
-                }else if(r<=84){
-                    this.mob.setAnimationState(31);
-                }
-                else if(r<=132){
-                    this.mob.setAnimationState(32);
+                }else if(r<=96) {
+                    this.mob.setAnimationState(12);
                 }
             }
             if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
                 int r = this.mob.getRandom().nextInt(2048);
-                if(r<=560) {
+                if(r<=180) {
 
                     this.mob.setAnimationState(31);
+
+                }else if(r<=360) {
+
+                    this.mob.setAnimationState(32);
 
                 }
             }

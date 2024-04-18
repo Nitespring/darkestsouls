@@ -326,6 +326,16 @@
 					"rotation": {
 						"vector": [12.5, 0, 0]
 					}
+				},
+				"hand_right": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"hand_left": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
 				}
 			}
 		},
@@ -653,6 +663,16 @@
 				"cape1": {
 					"rotation": {
 						"vector": [12.5, 0, 0]
+					}
+				},
+				"hand_right": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"hand_left": {
+					"rotation": {
+						"vector": [0, 0, 0]
 					}
 				}
 			}
@@ -1154,12 +1174,12 @@
 				},
 				"hand_right": {
 					"rotation": {
-						"vector": [45, 0, 0]
+						"vector": [0, 0, 0]
 					}
 				},
 				"hand_left": {
 					"rotation": {
-						"vector": [45, 0, 0]
+						"vector": [0, 0, 0]
 					}
 				},
 				"body": {
@@ -2654,6 +2674,16 @@
 					"rotation": {
 						"vector": [20, 0, 0]
 					}
+				},
+				"hand_right": {
+					"rotation": {
+						"vector": [30, 0, 0]
+					}
+				},
+				"hand_left": {
+					"rotation": {
+						"vector": [30, 0, 0]
+					}
 				}
 			}
 		},
@@ -2805,7 +2835,7 @@
 				},
 				"hand_right": {
 					"rotation": {
-						"vector": [30, 15, 0]
+						"vector": [60, 15, 0]
 					}
 				},
 				"arm_left": {
@@ -2823,7 +2853,7 @@
 				},
 				"hand_left": {
 					"rotation": {
-						"vector": [30, -15, 0]
+						"vector": [60, -15, 0]
 					}
 				},
 				"leg_right": {
@@ -2998,6 +3028,16 @@
 				"scarf_right": {
 					"rotation": {
 						"vector": [-12.5, 0, 0]
+					}
+				},
+				"hand_right": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"hand_left": {
+					"rotation": {
+						"vector": [0, 0, 0]
 					}
 				}
 			}

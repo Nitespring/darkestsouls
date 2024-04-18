@@ -1,7 +1,6 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.skeleton;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonSpear;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +14,7 @@ public class SkeletonSpearGeoRenderer<T extends SkeletonSpear> extends GeoEntity
 	public SkeletonSpearGeoRenderer(EntityRendererProvider.Context renderManager)
     {
         super(renderManager, new SkeletonModel());
-        this.addRenderLayer(new SkeletonItemLayer<T>(this));
+        this.addRenderLayer(new SkeletonItemLayerOld<T>(this));
         this.shadowRadius = 0.5F;
      
        
