@@ -2010,7 +2010,7 @@
 			}
 		},
 		"animation.tall_skeleton.stun": {
-			"animation_length": 2,
+			"animation_length": 12,
 			"bones": {
 				"hips": {
 					"rotation": {

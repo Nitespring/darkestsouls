@@ -355,6 +355,11 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
 	}
 
+	@Override
+	public float getStepHeight() {
+		return 1.0f;
+	}
+
 	public class CopyOwnerTargetGoal extends TargetGoal {
 		private final TargetingConditions copyOwnerTargeting = TargetingConditions.forNonCombat().ignoreLineOfSight().ignoreInvisibilityTesting();
 

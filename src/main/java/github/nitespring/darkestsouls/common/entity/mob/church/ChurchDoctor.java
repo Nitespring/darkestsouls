@@ -90,19 +90,29 @@ public abstract class ChurchDoctor extends DarkestSoulsAbstractEntity {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource p_21239_) {
-        return SoundEvents.SKELETON_HURT;
+        return SoundInit.HOLLOW_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.SKELETON_DEATH;
+        return SoundInit.HOLLOW_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.SKELETON_AMBIENT;
+        return SoundInit.HOLLOW_IDLE.get();
+    }
+
+    @Override
+    public float getVoicePitch() {
+        return 0.4f;
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.1f;
     }
 
     @Override

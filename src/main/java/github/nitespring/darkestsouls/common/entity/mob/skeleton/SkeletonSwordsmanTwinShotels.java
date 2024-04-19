@@ -45,7 +45,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
 
     public SkeletonSwordsmanTwinShotels(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
-        this.xpReward=9;
+        this.xpReward=15;
     }
 
 
@@ -86,8 +86,11 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
     private <E extends GeoAnimatable> PlayState capePredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
             event.getController().forceAnimationReset();
         }*/
-
+        if(getAnimationState()==1||this.isDeadOrDying()) {
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.tall_skeleton.new"));
+        }else {
             event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.tall_skeleton.cape"));
+        }
 
         return PlayState.CONTINUE;
     }
@@ -262,7 +265,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
-                if(getAnimationTick()>=85) {
+                if(getAnimationTick()>=55) {
                     this.getNavigation().stop();
                     setAnimationTick(0);
                     this.resetPoiseHealth();

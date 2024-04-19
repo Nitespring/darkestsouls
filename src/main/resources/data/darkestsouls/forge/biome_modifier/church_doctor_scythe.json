@@ -16,8 +16,8 @@
     ]
   },
   "spawners": {
-    "type": "darkestsouls:leech",
-    "weight": 20,
+    "type": "darkestsouls:church_doctor_scythe",
+    "weight": 10,
     "minCount": 1,
     "maxCount": 2
   }

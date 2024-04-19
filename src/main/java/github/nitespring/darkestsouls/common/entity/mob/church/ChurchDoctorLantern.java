@@ -35,6 +35,7 @@ public class ChurchDoctorLantern extends ChurchDoctor implements GeoEntity {
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
     public ChurchDoctorLantern(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        this.xpReward=10;
     }
 
     @Override
