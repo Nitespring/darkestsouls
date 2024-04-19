@@ -43,9 +43,9 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
     //protected int ricochet;
     public int gravTick;
     public int hitBlocks;
-    protected static final EntityDataAccessor<Integer> FLYING_TIME = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.FLOAT);
-    protected static final EntityDataAccessor<Integer> RICOCHET = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> FLYING_TIME = SynchedEntityData.defineId(Flame.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(Flame.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Integer> RICOCHET = SynchedEntityData.defineId(Flame.class, EntityDataSerializers.INT);
     public Flame(EntityType<? extends AbstractHurtingProjectile> e, Level l) {
         super(e, l);
     }

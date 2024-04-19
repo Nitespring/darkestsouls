@@ -143,7 +143,13 @@ public class CreativeTabInit {
                         output.accept(ItemInit.REINFORCED_HANDLE.get());
                         output.accept(ItemInit.CURVED_HANDLE.get());
                         output.accept(ItemInit.REINFORCED_POLE.get());
+                        output.accept(ItemInit.GUN_HANDLE.get());
+                        output.accept(ItemInit.REINFORCED_GUNMETAL_HANDLE.get());
+                        output.accept(ItemInit.GUNMETAL_BARREL.get());
+                        output.accept(ItemInit.REINFORCED_GUNMETAL_BARREL.get());
+                        output.accept(ItemInit.REINFORCED_GUNMETAL_DOUBLE_BARREL.get());
                         output.accept(ItemInit.WORKSHOP_MECHANISM.get());
+                        output.accept(ItemInit.IGNITION_MECHANISM.get());
                         output.accept(ItemInit.SOUL_ESSENCE.get());
                         output.accept(ItemInit.DARK_ESSENCE.get());
                         output.accept(ItemInit.FIRE_ESSENCE.get());

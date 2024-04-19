@@ -70,9 +70,9 @@ public class ItemInit {
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
 			() -> new Falchion(Tiers.TITANITE, 6.0f, 1.7f, -0.1f, 5, 275,7,0.13f, 2,new Item.Properties()));
 	public static final RegistryObject<Shotel> SHOTEL = ITEMS.register("shotel",
-			() -> new Shotel(Tiers.TITANITE, 5.5f, 1.8f, -0.2f, 4,1,0,0,0,0,0,0, 275,7,0.14f, 2,new Item.Properties()));
+			() -> new Shotel(Tiers.TITANITE, 5.5f, 1.8f, -0.2f, 4,0,0,0,0,0,0,0, 275,7,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Shotel> CARTHUS_SHOTEL = ITEMS.register("carthus_shotel",
-			() -> new Shotel(Tiers.TITANITE, 5.5f, 1.8f, -0.2f, 5, 2,0,0,0,0,0,0,275,7,0.14f, 2,new Item.Properties()));
+			() -> new Shotel(Tiers.TITANITE, 5.5f, 1.8f, -0.2f, 5, 1,0,0,0,0,0,0,275,7,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<CurvedGreatsword> CARTHUS_CURVED_GREATSWORD= ITEMS.register("carthus_curved_greatsword",
 			() -> new CurvedGreatsword(Tiers.TITANITE, 7.0f, 1.6f, 0.2f, 7, 2,0,0,0,0,0,0,225,8,0.105f, 5,new Item.Properties()));
 	public static final RegistryObject<Claymore> CLAYMORE = ITEMS.register("claymore",
@@ -131,7 +131,7 @@ public class ItemInit {
 	public static final RegistryObject<Shotgun> BLUNDERBUSS = ITEMS.register("blunderbuss",
 			() -> new Shotgun(10.0f, 24,2,0.3f,0.25f, 10, 0,0,1, 127, 0.4f, 0.4f, 5, new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Pistol> EVELYN = ITEMS.register("evelyn",
-			() -> new Pistol(5.5f, 12,2,0.3f,0.5f, 10, 0,0,1, 511, 10, new Item.Properties().rarity(Rarity.RARE)));
+			() -> new Pistol(6.5f, 12,2,0.3f,0.5f, 10, 0,0,1, 511, 10, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Pistol> REPEATING_PISTOL = ITEMS.register("repeating_pistol",
 			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 511, 8, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<GatlingGun> GATLING_GUN = ITEMS.register("gatling_gun",
@@ -176,17 +176,17 @@ public class ItemInit {
 	public static final RegistryObject<Item> SKELETON_SPEAR = ITEMS.register("skeleton_spear_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, 13684684, 8618640, new Item.Properties()));
 	public static final RegistryObject<Item> TALL_SKELETON_TWIN_SHOTELS = ITEMS.register("skeleton_swordsman_twin_shotels_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.TALL_SKELETON_TWIN_SHOTELS, 13684684, 8618640, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.TALL_SKELETON_TWIN_SHOTELS, 13684684, 2239044, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_LONGSWORD = ITEMS.register("hollow_longsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 13945528, 5202790, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_AXE = ITEMS.register("hollow_axe_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, 13945528, 6448753, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("hollow_broken_straightsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 12630442, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_LONGSWORD = ITEMS.register("gravetender_hollow_longsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_ASSASSIN = ITEMS.register("hollow_assassin_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, 13945528, 2962739, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, 13945528, 2304301, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("gravetender_hollow_broken_straightsword_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> BEAST_PATIENT = ITEMS.register("beast_patient_spawn_egg",
@@ -198,17 +198,17 @@ public class ItemInit {
 	public static final RegistryObject<Item> LEECH = ITEMS.register("leech_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.LEECH, 1318437, 7373164, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR = ITEMS.register("church_doctor_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, 4475990, 14804204, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_LANTERN = ITEMS.register("church_doctor_lantern_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, 4475990, 16777204, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_SCYTHE = ITEMS.register("church_doctor_scythe_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, 4475990, 11588863, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_PISTOL = ITEMS.register("church_doctor_pistol_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, 4475990, 11250609, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_FLAMESPRAYER = ITEMS.register("church_doctor_flamesprayer_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 4475990, 16736256, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_CRUCIFIX = ITEMS.register("church_doctor_crucifix_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 4475990, 2097152, new Item.Properties()));
 
 
     //Items
@@ -335,6 +335,18 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 	public static final RegistryObject<Item> CURVED_HANDLE = ITEMS.register("reinforced_curved_handle",
 			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+	public static final RegistryObject<Item> GUN_HANDLE = ITEMS.register("gun_handle",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REINFORCED_GUNMETAL_HANDLE = ITEMS.register("reinforced_gunmetal_handle",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GUNMETAL_BARREL = ITEMS.register("gunmetal_barrel",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REINFORCED_GUNMETAL_BARREL = ITEMS.register("reinforced_gunmetal_barrel",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REINFORCED_GUNMETAL_DOUBLE_BARREL = ITEMS.register("reinforced_gunmetal_double_barrel",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> IGNITION_MECHANISM = ITEMS.register("ignition_mechanism",
+			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> WORKSHOP_MECHANISM = ITEMS.register("workshop_mechanism",
 			() -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 	public static final RegistryObject<Item> SOUL_ESSENCE = ITEMS.register("soul_essence",

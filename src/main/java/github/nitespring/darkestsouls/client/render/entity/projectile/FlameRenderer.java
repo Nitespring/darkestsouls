@@ -10,7 +10,7 @@ import net.minecraft.world.entity.projectile.ItemSupplier;
 public class FlameRenderer<T extends Flame> extends ThrownItemRenderer{
 
 	public FlameRenderer(Context p_174416_) {
-		super(p_174416_, (float) T.getViewScale(), true);
+		super(p_174416_, 0.6f, true);
 		
 	}
 

@@ -235,7 +235,7 @@ public class ChurchDoctorPistol extends ChurchDoctor implements GeoEntity {
                     }
                 }
                 if(getAnimationTick()==10) {
-                    //this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    //this.playSound(this.getAttackSound(), 0.2f,0.4f);
                     this.playSound(SoundEvents.GENERIC_EXPLODE);
                     float x = (float) (pos.x + 0.6 * aimVec.x);
                     float y = (float) (pos.y + 1.2 + 0.6 * aimVec.y);
@@ -266,7 +266,7 @@ public class ChurchDoctorPistol extends ChurchDoctor implements GeoEntity {
                     this.getNavigation().stop();
                 }
                 if(getAnimationTick()==22) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==26) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
@@ -291,7 +291,7 @@ public class ChurchDoctorPistol extends ChurchDoctor implements GeoEntity {
             case 23:
                 this.getNavigation().stop();
                 if(getAnimationTick()==12) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);

@@ -247,12 +247,19 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
                     }
                 }
                 if(getAnimationTick()>=12) {
-                    this.getLookControl().setLookAt(pos.add(aimVec));
+                    if(aimVec!=null) {
+                        this.getLookControl().setLookAt(pos.add(aimVec));
+                    }
                 }
                 if(getAnimationTick()>=14) {
                     if ((getAnimationTick()-14) % 7 == 0) {
                         this.playSound(SoundEvents.FIRE_EXTINGUISH);
-                        Vec3 aim = aimVec;
+                        Vec3 aim;
+                        if(aimVec!=null){
+                            aim = aimVec;
+                        }else{
+                            aim = this.getLookAngle();
+                        }
                         double a=  5*Math.PI/19;
                         for(int i = 0; i<=4; i++) {
                             Random r = new Random();
@@ -301,7 +308,7 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
                     this.getNavigation().stop();
                 }
                 if(getAnimationTick()==22) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==26) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
@@ -332,7 +339,7 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
             case 23:
                 this.getNavigation().stop();
                 if(getAnimationTick()==12) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);

@@ -224,7 +224,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
                     this.getNavigation().stop();
                 }
                 if(getAnimationTick()==22) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==26) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
@@ -249,7 +249,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
             case 22:
                 this.getNavigation().stop();
                 if(getAnimationTick()==12) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
@@ -277,7 +277,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
             case 23:
                     this.getNavigation().stop();
                 if(getAnimationTick()==6) {
-                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(this.getAttackSound(), 0.2f,0.4f);
                 }
                 if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
