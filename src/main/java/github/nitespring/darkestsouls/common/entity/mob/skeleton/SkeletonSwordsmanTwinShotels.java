@@ -205,7 +205,6 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(0, new BreakDoorGoal(this, (p_34082_) -> {
             return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
         }));
