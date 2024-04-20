@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.projectile.spell;
 
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
+
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;

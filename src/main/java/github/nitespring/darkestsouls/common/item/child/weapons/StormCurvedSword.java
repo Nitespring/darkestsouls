@@ -1,7 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
 import github.nitespring.darkestsouls.common.entity.projectile.spell.WindSlash;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -24,6 +23,7 @@ public class StormCurvedSword extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
+        if(CommonConfig.do_special_attacks.get()) {
             if (!playerIn.isUsingItem()) {
                 Vec3 pos = playerIn.position();
                 Vec3 aim = playerIn.getLookAngle();
@@ -32,7 +32,7 @@ public class StormCurvedSword extends Weapon {
                 WindSlash e = new WindSlash(EntityInit.WIND_SLASH.get(), levelIn, (float) Mth.atan2(aim.x, aim.z), (float) Mth.atan2(aim.y, d0));
                 e.setPos(pos.add(0, 0.75f, 0).add(aim.scale(0.75f)));
                 e.setOwner(playerIn);
-                e.setDamage(this.getAttackDamage(playerIn, stackIn) / 2);
+                e.setDamage(this.getAttackDamage(playerIn, stackIn));
                 e.setMaxLifeTime(16);
                 e.xPower = 0.2 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
                 e.yPower = 0.2 * aim.y;
@@ -44,7 +44,7 @@ public class StormCurvedSword extends Weapon {
                 levelIn.addFreshEntity(e);
                 playerIn.level().playSound((Player) null, playerIn, SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.6F, 0.8F);
             }
-
+        }
     }
     @Override
     public void doRightClickAction(Player playerIn, ItemStack item) {

@@ -1,6 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.weapons.trickweapon;
 
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -34,7 +34,7 @@ public class Chikage extends TrickWeapon {
             entity.setItemStack(stackIn);
             entity.setMaxTargets(this.getMaxTargets(stackIn));
             entity.setDamage(
-                    this.getAttackDamage(playerIn, stackIn) / 2,
+                    this.getAttackDamage(playerIn, stackIn),
                     this.getPoiseDamage(playerIn, stackIn),
                     this.getFireAttack(stackIn),
                     this.getSmiteAttack(stackIn),

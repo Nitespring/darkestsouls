@@ -14,7 +14,7 @@ public class SkeletonFalchionGeoRenderer<T extends SkeletonFalchion> extends Geo
 	public SkeletonFalchionGeoRenderer(EntityRendererProvider.Context renderManager)
     {
         super(renderManager, new SkeletonModel());
-        this.addRenderLayer(new SkeletonItemLayer<T>(this));
+        this.addRenderLayer(new SkeletonItemLayerOld<T>(this));
         this.shadowRadius = 0.5F;
      
        
@@ -27,7 +27,7 @@ public class SkeletonFalchionGeoRenderer<T extends SkeletonFalchion> extends Geo
 	}
 	
 	@Override
-	public int getPackedOverlay(T animatable, float u) {
+	public int getPackedOverlay(T animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}

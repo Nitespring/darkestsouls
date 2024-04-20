@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bb",
+        "bc",
+        "a "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_handle"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:battle_axe",
+        "count": 1
+    },
+    "group": "darkestsouls:battle_axe"
+}

@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.entity.mob.hollow;
 
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.nbt.CompoundTag;
@@ -43,9 +44,9 @@ import java.util.Random;
 public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    public Vec3 aimVec;
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
-    protected int animationTick = 0;
 
     public HollowSoldierLongsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -64,7 +65,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     }
 
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.hit"));
@@ -74,13 +77,17 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    private <E extends GeoAnimatable> PlayState capePredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState capePredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 
             event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.hollow.cape"));
 
         return PlayState.CONTINUE;
     }
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -104,6 +111,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     break;
                 case 25:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.longsword.attack5"));
+                    break;
+                case 31:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hollow.throw"));
                     break;
                 default:
                     if(this.isInWater()) {
@@ -263,24 +273,24 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
 
     protected void playAnimation() {
-        animationTick++;
+        this.increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=85) {
+                if(getAnimationTick()>=85) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==12) {
+                if(getAnimationTick()==12) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -291,17 +301,17 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=26&&flag) {
-                    animationTick = 0;
+                if(getAnimationTick()>=26&&flag) {
+                    setAnimationTick(0);
                     setAnimationState(22);
                 }
-                if(animationTick>=30) {
-                    animationTick=0;
+                if(getAnimationTick()>=30) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -312,16 +322,16 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=14) {
-                    animationTick=0;
+                if(getAnimationTick()>=14) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(this.getAttackSound());
                 }
-                if(animationTick==9) {
+                if(getAnimationTick()==9) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -332,16 +342,16 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=19) {
-                    animationTick=0;
+                if(getAnimationTick()>=19) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 24:
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.2f)*this.getLookAngle().x,
@@ -352,16 +362,16 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 25:
-                if(animationTick==20) {
+                if(getAnimationTick()==20) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(animationTick==22) {
+                if(getAnimationTick()==22) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.1f)*this.getLookAngle().x,
@@ -372,12 +382,47 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=32) {
-                    animationTick=0;
+                if(getAnimationTick()>=32) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
+            case 31:
+                Level levelIn = this.level();
+                Vec3 pos = this.position();
+                if(getAnimationTick()==24) {
+                    if(this.getTarget()==null) {
+                        aimVec = this.getLookAngle().normalize();
+                    }else{
+                        aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
+                    }
+                }
+                if(getAnimationTick()==28) {
+                    //this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    this.playSound(SoundEvents.EGG_THROW);
+                    float x = (float) (pos.x + 0.6 * aimVec.x);
+                    float y = (float) (pos.y + 1.4 + 0.6 * aimVec.y);
+                    float z = (float) (pos.z + 0.6 * aimVec.z);
+                    FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
+                    entity.setPos(x,y,z);
+                    float flyingPower = 0.25f;
+                    entity.xPower=flyingPower*aimVec.x;
+                    entity.yPower=flyingPower*aimVec.y+0.01;
+                    entity.zPower=flyingPower*aimVec.z;
+                    entity.setOwner(this);
+                    entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f);
+                    entity.setPoiseDamage(4);
+                    entity.setGravPower(0.0015f);
+                    entity.setHorizontalSpread(1.0);
+                    entity.setVerticalSpread(1.0);
+                    levelIn.addFreshEntity(entity);
 
+                }
+                if(getAnimationTick()>=40) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
         }
     }
 
@@ -393,6 +438,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
         private double pathedTargetZ;
         private int ticksUntilNextPathRecalculation;
         private int ticksUntilNextAttack;
+        private int ticksUntilNextRangedAttack;
         private long lastCanUseCheck;
         private int failedPathFindingPenalty = 0;
         private boolean canPenalize = false;
@@ -468,6 +514,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
             this.ticksUntilNextAttack = 5;
+            this.ticksUntilNextRangedAttack = 120;
             this.lastCanUpdateStateCheck = 150;
             int r = this.mob.getRandom().nextInt(2048);
             if(r<=840) {
@@ -510,6 +557,10 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
 
             this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
+            this.ticksUntilNextRangedAttack = Math.max(this.ticksUntilNextRangedAttack - 1, 0);
+            if(this.ticksUntilNextRangedAttack<=0 && this.ticksUntilNextAttack <= 0){
+                    this.ticksUntilNextRangedAttack=10;
+            }
 
         }
 
@@ -581,6 +632,14 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                 }else{
 
                     this.mob.setAnimationState(25);
+                }
+            }
+            if (this.ticksUntilNextRangedAttack <= 2 && this.ticksUntilNextAttack <= 2) {
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=480) {
+
+                    this.mob.setAnimationState(31);
+
                 }
             }
 

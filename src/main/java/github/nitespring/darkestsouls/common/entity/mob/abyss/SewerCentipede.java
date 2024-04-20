@@ -45,7 +45,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 
 	protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	protected int animationTick = 0;
+
 	Vec3 aim;
 
 	public SewerCentipede(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -68,7 +68,10 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
 		}
 
-	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
+
 		
 		if(hitStunTicks>0) {
 		event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sewer_centipede.hit"));
@@ -78,7 +81,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		return PlayState.CONTINUE;
 	}
 	
-	private <E extends GeoAnimatable> PlayState limbsPredicate(AnimationState<E> event) {
+	private <E extends GeoAnimatable> PlayState limbsPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 		int animState = this.getAnimationState();
 		if(this.isDeadOrDying()) {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.sewer_centipede.limbs_death"));
@@ -98,7 +103,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
         return PlayState.CONTINUE;
 	}
 	
-	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 		int animState = this.getAnimationState();
 		int combatState = this.getCombatState();
 		if(this.isDeadOrDying()) {
@@ -242,24 +249,24 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 
 	}
 	protected void playAnimation() {
-		animationTick++;
+		increaseAnimationTick(1);
 		//this.getNavigation().stop();
 		boolean flag = this.getTarget()!=null;
 		boolean flag1 = flag && this.distanceTo(this.getTarget())<=6.0f;
 
 		switch(this.getAnimationState()) {
 			case 1:
-				if(animationTick>=50) {
+				if(getAnimationTick()>=50) {
 					this.resetPoiseHealth();
 					this.getNavigation().stop();
-					animationTick=0;
+					setAnimationTick(0);
 					setAnimationState(0);
 				}
 				break;
 			//Attack
 			case 21:
 				this.moveToTarget();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -270,8 +277,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -294,7 +301,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 22:
 				this.moveToTarget();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -305,8 +312,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -329,7 +336,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 23:
 				this.moveToTarget();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -340,8 +347,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -364,7 +371,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 24:
 				this.moveToTarget();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -375,8 +382,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -399,7 +406,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 25:
 				this.moveToTarget();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -410,8 +417,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -434,7 +441,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 26:
 				this.moveToTarget();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -445,8 +452,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -469,7 +476,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 27:
 				this.moveToTarget();
-				if(animationTick==5) {
+				if(getAnimationTick()==5) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -480,8 +487,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=15) {
-					animationTick=0;
+				if(getAnimationTick()>=15) {
+					setAnimationTick(0);
 					int r=this.getRandom().nextInt(280);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
@@ -504,7 +511,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 				break;
 			case 28:
 				this.getNavigation().stop();
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
 							this.position().add((1.0f)*this.getLookAngle().x,
@@ -515,17 +522,17 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 					h.setTarget(this.getTarget());
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 						setAnimationState(0);
 				}
 				break;
 			case 29:
 				Level levelIn = this.level();
 				Vec3 pos = this.position();
-				if(animationTick<=3){this.moveToTarget();}
+				if(getAnimationTick()<=3){this.moveToTarget();}
 
-				if(animationTick==4){
+				if(getAnimationTick()==4){
 					if(this.getTarget()==null) {
 						aim = this.getLookAngle().normalize();
 					}else{
@@ -534,7 +541,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 
 
 				}
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 
 					this.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED);
 					this.playSound(SoundEvents.SQUID_DEATH);
@@ -556,8 +563,8 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 						levelIn.addFreshEntity(e);
 					}
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
+					setAnimationTick(0);
 					setAnimationState(0);
 				}
 				break;

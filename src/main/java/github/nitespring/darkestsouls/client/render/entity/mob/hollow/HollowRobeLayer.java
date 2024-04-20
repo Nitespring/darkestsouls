@@ -21,6 +21,7 @@ public class HollowRobeLayer<T extends Hollow & GeoEntity> extends GeoRenderLaye
 	private static final ResourceLocation CLOAK = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_gravetender_cloak.png");
 	private static final ResourceLocation LOTHRIC = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_lothric_armour.png");
 	private static final ResourceLocation LORDRAN = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_lordran_armour.png");
+	private static final ResourceLocation ASSASSIN = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_assassin_armour.png");
 
 	public HollowRobeLayer(GeoRenderer<T> entityRendererIn) {
 		super(entityRendererIn);
@@ -53,6 +54,9 @@ public class HollowRobeLayer<T extends Hollow & GeoEntity> extends GeoRenderLaye
 					break;
 				case 7:
 					cameo = RenderType.entityCutoutNoCull(LOINCLOTH);
+					break;
+				case 8:
+					cameo = RenderType.entityCutoutNoCull(ASSASSIN);
 					break;
 			}
 			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);

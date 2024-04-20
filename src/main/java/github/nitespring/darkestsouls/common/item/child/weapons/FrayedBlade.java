@@ -1,7 +1,7 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
@@ -45,7 +45,7 @@ public class FrayedBlade extends Weapon {
             entity.setItemStack(stackIn);
             entity.setMaxTargets(this.getMaxTargets(stackIn));
             entity.setDamage(
-                    this.getAttackDamage(playerIn, stackIn) / 2 - 4,
+                    this.getAttackDamage(playerIn, stackIn) - 4,
                     this.getPoiseDamage(playerIn, stackIn) - 7,
                     this.getFireAttack(stackIn),
                     this.getSmiteAttack(stackIn),

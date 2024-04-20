@@ -8,26 +8,25 @@ import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.BeastPatient;
 import github.nitespring.darkestsouls.common.entity.mob.beast.CloakedBeastPatient;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowBrokenStraightsword;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.GravetenderHollowLongsword;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowSoldierLongsword;
-import github.nitespring.darkestsouls.common.entity.mob.hollow.MadHollowBrokenStraightsword;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
+import github.nitespring.darkestsouls.common.entity.mob.church.*;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.*;
+import github.nitespring.darkestsouls.common.entity.mob.skeleton.*;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.MonstruosityOfSin;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedSwords;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
-import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonSpear;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Bullet;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashParasites;
 import github.nitespring.darkestsouls.common.entity.projectile.TrashPoison;
 import github.nitespring.darkestsouls.common.entity.projectile.spell.*;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeAttackEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.FrayedBladeFlameEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.MolotovCocktailEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.HeavyWeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -57,6 +56,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<SkeletonSpear>of(SkeletonSpear::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("skeleton_spear"));
+	public static final RegistryObject<EntityType<SkeletonSwordsmanTwinShotels>> TALL_SKELETON_TWIN_SHOTELS = ENTITIES.register("skeleton_swordsman_twin_shotels",
+			() -> EntityType.Builder.<SkeletonSwordsmanTwinShotels>of(SkeletonSwordsmanTwinShotels::new, MobCategory.MONSTER)
+					.sized(0.6f, 2.0f)
+					.build("skeleton_swordsman_twin_shotels"));
 	public static final RegistryObject<EntityType<SewerCentipede>> SEWER_CENTIPEDE = ENTITIES.register("sewer_centipede",
 			() -> EntityType.Builder.<SewerCentipede>of(SewerCentipede::new, MobCategory.MONSTER)
 					.sized(1.4f, 1.2f)
@@ -69,11 +72,18 @@ public class EntityInit {
 			() -> EntityType.Builder.<MadHollowBrokenStraightsword>of(MadHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("hollow_broken_straightsword"));
-
+	public static final RegistryObject<EntityType<HollowSoldierAxe>> HOLLOW_AXE = ENTITIES.register("hollow_axe",
+			() -> EntityType.Builder.<HollowSoldierAxe>of(HollowSoldierAxe::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("hollow_axe"));
 	public static final RegistryObject<EntityType<GravetenderHollowLongsword>> GRAVETENDER_HOLLOW_LONGSWORD = ENTITIES.register("gravetender_hollow_longsword",
 			() -> EntityType.Builder.<GravetenderHollowLongsword>of(GravetenderHollowLongsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("hollow_longsword"));
+	public static final RegistryObject<EntityType<HollowAssassin>> HOLLOW_ASSASSIN = ENTITIES.register("hollow_assassin",
+			() -> EntityType.Builder.<HollowAssassin>of(HollowAssassin::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("hollow_assassin"));
 	public static final RegistryObject<EntityType<GravetenderHollowBrokenStraightsword>> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ENTITIES.register("gravetender_hollow_broken_straightsword",
 			() -> EntityType.Builder.<GravetenderHollowBrokenStraightsword>of(GravetenderHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
@@ -94,7 +104,30 @@ public class EntityInit {
 			() -> EntityType.Builder.<Leech>of(Leech::new, MobCategory.MONSTER)
 					.sized(0.9f, 2.4f)
 					.build("leech"));
-
+	public static final RegistryObject<EntityType<ChurchDoctorStick>> CHURCH_DOCTOR = ENTITIES.register("church_doctor",
+			() -> EntityType.Builder.<ChurchDoctorStick>of(ChurchDoctorStick::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor"));
+	public static final RegistryObject<EntityType<ChurchDoctorLantern>> CHURCH_DOCTOR_LANTERN = ENTITIES.register("church_doctor_lantern",
+			() -> EntityType.Builder.<ChurchDoctorLantern>of(ChurchDoctorLantern::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_lantern"));
+	public static final RegistryObject<EntityType<ChurchDoctorScythe>> CHURCH_DOCTOR_SCYTHE = ENTITIES.register("church_doctor_scythe",
+			() -> EntityType.Builder.<ChurchDoctorScythe>of(ChurchDoctorScythe::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_scythe"));
+	public static final RegistryObject<EntityType<ChurchDoctorPistol>> CHURCH_DOCTOR_PISTOL = ENTITIES.register("church_doctor_pistol",
+			() -> EntityType.Builder.<ChurchDoctorPistol>of(ChurchDoctorPistol::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_pistol"));
+	public static final RegistryObject<EntityType<ChurchDoctorFlamesprayer>> CHURCH_DOCTOR_FLAMESPRAYER = ENTITIES.register("church_doctor_flamesprayer",
+			() -> EntityType.Builder.<ChurchDoctorFlamesprayer>of(ChurchDoctorFlamesprayer::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_flamesprayer"));
+	public static final RegistryObject<EntityType<ChurchDoctorCrucifix>> CHURCH_DOCTOR_CRUCIFIX = ENTITIES.register("church_doctor_crucifix",
+			() -> EntityType.Builder.<ChurchDoctorCrucifix>of(ChurchDoctorCrucifix::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("church_doctor_crucifix"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",
@@ -198,8 +231,22 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.5f, 1.5f)
 					.build("hunter_axe"));
-
-
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> BANDIT_KNIFE = ENTITIES.register("bandit_knife",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.0f, 1.0f)
+					.build("bandit_knife"));
+	public static final RegistryObject<EntityType<HeavyWeaponAttackEntity>> GREATAXE = ENTITIES.register("greataxe",
+			() -> EntityType.Builder.<HeavyWeaponAttackEntity>of(HeavyWeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.0f, 2.0f)
+					.build("greataxe"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> CURVED_GREATSWORD = ENTITIES.register("curved_greatsword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.25f, 1.5f)
+					.build("curved_greatsword"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> SHOTEL = ENTITIES.register("shotel",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.5f)
+					.build("shotel"));
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)
@@ -260,7 +307,26 @@ public class EntityInit {
 			() -> EntityType.Builder.<WindSlash>of(WindSlash::new, MobCategory.MISC)
 					.sized(1.2f, 1.2f)
 					.build("wind_slash"));
-
+	public static final RegistryObject<EntityType<ThrowingKnifeEntity>> THROWING_KNIFE = ENTITIES.register("throwing_knife",
+			() -> EntityType.Builder.<ThrowingKnifeEntity>of(ThrowingKnifeEntity::new, MobCategory.MISC)
+					.sized(0.4f, 0.4f)
+					.build("throwing_knife"));
+	public static final RegistryObject<EntityType<FirebombEntity>> FIREBOMB = ENTITIES.register("firebomb",
+			() -> EntityType.Builder.<FirebombEntity>of(FirebombEntity::new, MobCategory.MISC)
+					.sized(0.6f, 0.6f)
+					.build("firebomb"));
+	public static final RegistryObject<EntityType<MolotovCocktailEntity>> MOLOTOV = ENTITIES.register("molotov",
+			() -> EntityType.Builder.<MolotovCocktailEntity>of(MolotovCocktailEntity::new, MobCategory.MISC)
+					.sized(0.6f, 0.8f)
+					.build("molotov"));
+	public static final RegistryObject<EntityType<Bullet>> BULLET = ENTITIES.register("bullet",
+			() -> EntityType.Builder.<Bullet>of(Bullet::new, MobCategory.MISC)
+					.sized(0.2f, 0.2f)
+					.build("bullet"));
+	public static final RegistryObject<EntityType<Flame>> FLAME = ENTITIES.register("flame",
+			() -> EntityType.Builder.<Flame>of(Flame::new, MobCategory.MISC)
+					.sized(0.4f, 0.4f)
+					.build("flame"));
 
 
 }

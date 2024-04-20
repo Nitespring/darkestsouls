@@ -30,7 +30,7 @@ import java.util.EnumSet;
 public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
+
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
     protected Vec3 aimVec;
@@ -50,7 +50,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.hit"));
@@ -62,7 +64,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -86,6 +90,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     break;
                 case 25:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack5"));
+                    break;
+                case 252:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack5_2"));
                     break;
                 case 26:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.curved_swords.attack6"));
@@ -153,25 +160,25 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
     }
 
     protected void playAnimation() {
-        animationTick++;
+        increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
 
         switch(this.getAnimationState()) {
             case 1:
                 this.getNavigation().stop();
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -182,25 +189,24 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=12&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(24);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(24);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -211,25 +217,24 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=12&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(23);}
-                    else if(r<=800) {this.setAnimationState(25);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(23);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(25);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -240,26 +245,25 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=12&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(22);}
-                    else if(r<=800) {this.setAnimationState(24);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(24);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
 
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 24:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -270,24 +274,23 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=12&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(21);}
-                    else if(r<=800) {this.setAnimationState(23);}
-                    else if(r<=1200) {this.setAnimationState(27);}
-                    else if(r<=1800) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(21);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(23);}
+                    else if(r<=1200) {setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1800) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
             case 25:
-                if(animationTick>=18) {this.getNavigation().stop();}
+                if(getAnimationTick()>=18) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8||animationTick==12) {
+                if(getAnimationTick()==8||getAnimationTick()==12) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -298,24 +301,64 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=22&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=22&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(25);}
-                    else if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=400)      {
+                        setAnimationTick(0);
+                        this.setAnimationState(252);
+                        //this.setResetAnimation(true);
+                        }
+                    else if(r<=800) {
+                        setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1600) {
+                        setAnimationTick(0);this.setAnimationState(28);}
+                    else            {
+                        setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=26) {
-                    animationTick=0;
+                if(getAnimationTick()>=26) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 252:
+                if(getAnimationTick()>=18) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+
+                if(getAnimationTick()==8||getAnimationTick()==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE), 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=22&&flag) {
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {
+                        setAnimationTick(0);
+                        this.setAnimationState(25);
+                        //this.setResetAnimation(true);
+                    }
+                    else if(r<=800) {
+                        setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1600) {
+                        setAnimationTick(0);this.setAnimationState(28);}
+                    else            {
+                        setAnimationTick(0);this.setAnimationState(29);}
+                }
+                if(getAnimationTick()>=26) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 26:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -326,23 +369,28 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=12&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=800) {this.setAnimationState(27);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=800) {
+                        setAnimationTick(0);
+                        this.setAnimationState(27);}
+                    else if(r<=1600) {
+                        setAnimationTick(0);
+                        this.setAnimationState(28);}
+                    else            {
+                        setAnimationTick(0);
+                        this.setAnimationState(29);}
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 27:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -353,23 +401,22 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=12&&flag) {
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1600) {this.setAnimationState(28);}
-                    else            {this.setAnimationState(29);}
+                    if(r<=800) {setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1600) {setAnimationTick(0);this.setAnimationState(28);}
+                    else            {setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 28:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==9) {
+                if(getAnimationTick()==9) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -380,16 +427,16 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=15) {
-                    animationTick=0;
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 29:
-                if(animationTick>=4) {this.getNavigation().stop();}
+                if(getAnimationTick()>=4) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -397,7 +444,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==8){
+                if(getAnimationTick()==8){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
@@ -405,7 +452,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick==16) {
+                if(getAnimationTick()==16) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -416,9 +463,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=28) {
+                if(getAnimationTick()>=28) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }

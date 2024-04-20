@@ -65,7 +65,7 @@ public class ChaosStaff extends Staff {
             playerIn.getCooldowns().addCooldown(this, 48);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
             if(!playerIn.isCreative()) {
-                this.consumeAmmo(playerIn, ammoAmount);
+                this.consumeAmmoApplyLuck(playerIn, ammoAmount, this.getLuck(playerIn,stackIn));
             }
         }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
 
@@ -171,7 +171,7 @@ public class ChaosStaff extends Staff {
                     levelIn.playSound((Player) null, player, soundevent1, SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
                 if(!((Player)entityIn).isCreative()) {
-                    this.consumeAmmo((Player)entityIn, ammoAmount);
+                    this.consumeAmmoApplyLuck((Player)entityIn, ammoAmount,this.getLuck((Player) entityIn, stackIn));
                 }
             }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
         }

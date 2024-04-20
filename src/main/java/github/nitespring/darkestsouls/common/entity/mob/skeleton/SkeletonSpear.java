@@ -30,7 +30,7 @@ import java.util.EnumSet;
 public class SkeletonSpear extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
+
 
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
@@ -52,6 +52,9 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
     }
 
     private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+        /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.hit"));
@@ -63,8 +66,13 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
 
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+        
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
+        /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+            this.setResetAnimation(false);
+        }*/
         if(this.isDeadOrDying()) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.death"));
         }else {
@@ -80,6 +88,9 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     break;
                 case 23:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.spear.attack3"));
+                    break;
+                case 24:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.skeleton.spear.attack4"));
                     break;
                 default:
                     if(this.onClimbable()) {
@@ -131,25 +142,28 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
         }
         if(this.tickCount%5==0){this.refreshDimensions();}
         super.tick();
+        /*if(this.shouldResetAnimation()){
+            this.setResetAnimation(false);
+        }*/
     }
 
     protected void playAnimation() {
-        animationTick++;
+        increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
         switch(this.getAnimationState()) {
             case 1:
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             //Attack
             case 21:
-                if(animationTick>=4) {this.getNavigation().stop();}
+                if(getAnimationTick()>=4) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -157,7 +171,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==5){
+                if(getAnimationTick()==5){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.15));
                     }else {
@@ -165,7 +179,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick==6) {
+                if(getAnimationTick()==6) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -176,23 +190,32 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=10&&flag) {
+                if(getAnimationTick()>=10&&flag) {
                     this.getNavigation().stop();
-                    animationTick=0;
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(21);}
-                    else if(r<=800) {this.setAnimationState(22);}
-                    else if(r<=1200){this.setAnimationState(23);}
+                    if(r<=400)      {
+                        //this.setResetAnimation(true);
+                        setAnimationTick(0);
+                        this.setAnimationState(24);
+                        }
+                    else if(r<=800) {
+                        setAnimationTick(0);
+                        this.setAnimationState(22);
+                    }
+                    else if(r<=1200){
+                        setAnimationTick(0);
+                        this.setAnimationState(23);
+                    }
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(!(animationTick>=15&&animationTick<=22)) {this.getNavigation().stop();}
+                if(!(getAnimationTick()>=15&&getAnimationTick()<=22)) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==24) {
+                if(getAnimationTick()==24) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -203,14 +226,14 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=36) {
-                    animationTick=0;
+                if(getAnimationTick()>=36) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
                 this.getNavigation().stop();
-                if(animationTick==11) {
+                if(getAnimationTick()==11) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -218,7 +241,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==12){
+                if(getAnimationTick()==12){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
@@ -226,7 +249,7 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     }
 
                 }
-                if(animationTick==13) {
+                if(getAnimationTick()==13) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -237,14 +260,65 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=20&&flag) {
+                if(getAnimationTick()>=20&&flag) {
                     this.getNavigation().stop();
-                    animationTick=0;
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400) {this.setAnimationState(22);}
+                    if(r<=400) {setAnimationTick(0);
+                        this.setAnimationState(22);}
                 }
-                if(animationTick>=28) {
-                    animationTick=0;
+                if(getAnimationTick()>=28) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 24:
+                if(getAnimationTick()>=4) {this.getNavigation().stop();}
+                else{this.moveToTarget();}
+                if(getAnimationTick()==4) {
+                    this.setDeltaMovement(0,1,0);
+                    if (this.getTarget() != null) {
+                        this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
+                    } else {
+                        this.aimVec = this.getLookAngle();
+                    }
+                }
+                if(getAnimationTick()==5){
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.15));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.15));
+                    }
+
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+1, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=10&&flag) {
+                    this.getNavigation().stop();
+                    int r = this.getRandom().nextInt(2048);
+                    if(r<=400)      {
+                        setAnimationTick(0);
+                        this.setAnimationState(21);
+                    }
+                    else if(r<=800) {
+                        setAnimationTick(0);
+                        this.setAnimationState(22);
+                    }
+                    else if(r<=1200){
+                        setAnimationTick(0);
+                        this.setAnimationState(23);
+                    }
+                }
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
@@ -436,11 +510,11 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
 
                 }else if(r<=1600){
 
-                    this.mob.setAnimationState(22);
+                    this.mob.setAnimationState(21);
 
                 } else{
 
-                    this.mob.setAnimationState(23);
+                    this.mob.setAnimationState(21);
                 }
             }
 

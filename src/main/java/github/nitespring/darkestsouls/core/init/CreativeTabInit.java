@@ -1,16 +1,10 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.effects.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeTabInit {
@@ -23,20 +17,37 @@ public class CreativeTabInit {
                     .title(Component.translatable("itemGroup.darkestsouls.equipment"))
                     .icon(ItemInit.DRAGONSLAYER_SPEAR.get()::getDefaultInstance)
                     .withSearchBar().displayItems((displayParams,output)->{
+                        output.accept(ItemInit.QUICKSILVER_BULLET.get());
+                        output.accept(ItemInit.THROWING_KNIFE.get());
+                        output.accept(ItemInit.BONE_KNIFE.get());
+                        output.accept(ItemInit.BLOOD_KNIFE.get());
+                        output.accept(ItemInit.POISON_KNIFE.get());
+                        output.accept(ItemInit.KUKRI.get());
+                        output.accept(ItemInit.FIREBOMB.get());
+                        output.accept(ItemInit.BLACK_FIREBOMB.get());
+                        output.accept(ItemInit.MOLOTOV.get());
                         output.accept(ItemInit.BROKEN_STRAIGHTSWORD.get());
+                        output.accept(ItemInit.BANDIT_KNIFE.get());
                         output.accept(ItemInit.LONGSWORD.get());
                         output.accept(ItemInit.SCIMITAR.get());
                         output.accept(ItemInit.FALCHION.get());
                         output.accept(ItemInit.BANDIT_CURVED_SWORD.get());
+                        output.accept(ItemInit.SHOTEL.get());
+                        output.accept(ItemInit.CARTHUS_SHOTEL.get());
                         output.accept(ItemInit.HUNTSMAN_CUTLASS.get());
                         output.accept(ItemInit.UCHIGATANA.get());
                         output.accept(ItemInit.SHADOW_BLADE.get());
+                        output.accept(ItemInit.BATTLE_AXE.get());
+                        output.accept(ItemInit.HUNTSMAN_AXE.get());
                         output.accept(ItemInit.CLAYMORE.get());
                         output.accept(ItemInit.FLAMBERGE.get());
                         output.accept(ItemInit.ZWEIHANDER.get());
+                        output.accept(ItemInit.CARTHUS_CURVED_GREATSWORD.get());
+                        output.accept(ItemInit.SPEAR.get());
+                        output.accept(ItemInit.CRESCENT_MOON_GREATAXE.get());
+                        output.accept(ItemInit.EXECUTIONER_GREATAXE.get());
                         output.accept(ItemInit.SPEAR.get());
                         output.accept(ItemInit.HUNTSMAN_PITCHFORK.get());
-                        output.accept(ItemInit.HUNTSMAN_AXE.get());
                         output.accept(ItemInit.GRAVE_SCYTHE.get());
                         output.accept(ItemInit.CHURCH_SCYTHE.get());
                         output.accept(ItemInit.SAW_CLEAVER.get());
@@ -45,9 +56,18 @@ public class CreativeTabInit {
                         output.accept(ItemInit.STORM_CURVED_SWORD.get());
                         output.accept(ItemInit.DRAGONSLAYER_SPEAR.get());
                         output.accept(ItemInit.DRAGONSLAYER_SWORDSPEAR.get());
+                        output.accept(ItemInit.DRAGONSLAYER_GREATAXE.get());
                         output.accept(ItemInit.FRAYED_BLADE.get());
                         output.accept(ItemInit.HUNTER_PISTOL.get());
+                        output.accept(ItemInit.BLUNDERBUSS.get());
+                        output.accept(ItemInit.REPEATING_PISTOL.get());
+                        output.accept(ItemInit.EVELYN.get());
+                        output.accept(ItemInit.GATLING_GUN.get());
+                        output.accept(ItemInit.CHURCH_CANE.get());
+                        output.accept(ItemInit.CRUCIFIX.get());
                         output.accept(ItemInit.HUNTER_TORCH.get());
+                        output.accept(ItemInit.LANTERN.get());
+                        output.accept(ItemInit.FLAMESPRAYER.get());
                         output.accept(ItemInit.SORCERER_STAFF_A.get());
                         output.accept(ItemInit.SORCERER_STAFF_B.get());
                         output.accept(ItemInit.CRYSTAL_STAFF.get());
@@ -123,7 +143,13 @@ public class CreativeTabInit {
                         output.accept(ItemInit.REINFORCED_HANDLE.get());
                         output.accept(ItemInit.CURVED_HANDLE.get());
                         output.accept(ItemInit.REINFORCED_POLE.get());
+                        output.accept(ItemInit.GUN_HANDLE.get());
+                        output.accept(ItemInit.REINFORCED_GUNMETAL_HANDLE.get());
+                        output.accept(ItemInit.GUNMETAL_BARREL.get());
+                        output.accept(ItemInit.REINFORCED_GUNMETAL_BARREL.get());
+                        output.accept(ItemInit.REINFORCED_GUNMETAL_DOUBLE_BARREL.get());
                         output.accept(ItemInit.WORKSHOP_MECHANISM.get());
+                        output.accept(ItemInit.IGNITION_MECHANISM.get());
                         output.accept(ItemInit.SOUL_ESSENCE.get());
                         output.accept(ItemInit.DARK_ESSENCE.get());
                         output.accept(ItemInit.FIRE_ESSENCE.get());
@@ -147,7 +173,7 @@ public class CreativeTabInit {
                     })
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> MOBS =   TABS.register("mobs",
+    public static final RegistryObject<CreativeModeTab> MOBS = TABS.register("mobs",
             () ->CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.darkestsouls.mobs"))
                     .icon(ItemInit.BONEWHEEL.get()::getDefaultInstance)
@@ -156,9 +182,18 @@ public class CreativeTabInit {
                         output.accept(ItemInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.GRAVETENDER_HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.HOLLOW_LONGSWORD.get());
+                        output.accept(ItemInit.HOLLOW_AXE.get());
+                        output.accept(ItemInit.HOLLOW_ASSASSIN.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_LANTERN.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_PISTOL.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_FLAMESPRAYER.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_SCYTHE.get());
+                        output.accept(ItemInit.CHURCH_DOCTOR_CRUCIFIX.get());
                         output.accept(ItemInit.SKELETON_FALCHION.get());
                         output.accept(ItemInit.SKELETON_SPEAR.get());
                         output.accept(ItemInit.SKELETON_CURVED_SWORDS.get());
+                        output.accept(ItemInit.TALL_SKELETON_TWIN_SHOTELS.get());
                         output.accept(ItemInit.BONEWHEEL.get());
                         output.accept(ItemInit.BEAST_PATIENT.get());
                         output.accept(ItemInit.CLOAKED_BEAST_PATIENT.get());

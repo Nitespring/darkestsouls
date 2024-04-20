@@ -17,8 +17,8 @@
   },
   "spawners": {
     "type": "darkestsouls:leech",
-    "weight": 30,
+    "weight": 20,
     "minCount": 1,
-    "maxCount": 3
+    "maxCount": 2
   }
 }

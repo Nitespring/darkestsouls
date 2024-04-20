@@ -1,6 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.config.CommonConfig;

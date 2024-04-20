@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.entity.projectile.weapon;
+package github.nitespring.darkestsouls.common.entity.projectile.weapon.melee;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;

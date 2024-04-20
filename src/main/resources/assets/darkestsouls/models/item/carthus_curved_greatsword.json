@@ -1,0 +1,32 @@
+{
+"parent": "minecraft:item/handheld",
+"textures": {
+    "layer0": "darkestsouls:item/weapon/carthus_curved_greatsword"
+    },
+"display": {
+    "thirdperson_righthand": {
+            "rotation": [ 0, -90, 55 ],
+    		"translation": [0, 8.25, 3],
+            "scale": [ 1.63, 1.63, 0.65 ]
+      		},
+    "firstperson_righthand": {
+    		"rotation": [ 0, -90, 55 ],
+      		"translation": [ 0.13, 4.8, 0.13 ],
+            "scale": [ 1.08, 1.08, 0.48 ]
+    		},
+   "thirdperson_lefthand": {
+    		"rotation": [ 0, 90, -55 ],
+    		"translation": [0, 8.25, 3],
+            "scale": [ 1.63, 1.63, 0.65 ]
+			},
+    "firstperson_lefthand": {
+    		"rotation": [ 0, 90, -55 ],
+      		"translation": [ 0.13, 4.8, 0.13 ],
+      		"scale": [ 1.08, 1.08, 0.48 ]
+    		},
+	"gui": {
+		"rotation": [ 0, 0, 15 ],
+		"scale": [ 1.12, 1.12, 1.0 ]
+	}
+}
+}

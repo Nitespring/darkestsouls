@@ -46,7 +46,6 @@ import java.util.EnumSet;
 public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 
 	protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-	protected int animationTick = 0;
 	public int lastUpdatedStateTick = 0;
 	Vec3 aim;
 	private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
@@ -68,8 +67,13 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 		data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
 		}
 
-	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
-		
+	private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
+		if(this.shouldResetAnimation()){
+			event.getController().forceAnimationReset();
+			this.setResetAnimation(false);
+		}
 		if(hitStunTicks>0) {
 		event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.leech.hit"));
 		}else {
@@ -79,7 +83,9 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	}
 
 	
-	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+	private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 		int animState = this.getAnimationState();
 		int combatState = this.getCombatState();
 		if(this.isDeadOrDying()) {
@@ -215,24 +221,24 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	}
 
 	protected void playAnimation() {
-		animationTick++;
+		increaseAnimationTick(1);
 		//this.getNavigation().stop();
 		boolean flag = this.getTarget()!=null;
 		boolean flag1 = flag && this.distanceTo(this.getTarget())<=6.0f;
 
 		switch(this.getAnimationState()) {
 			case 1:
-				if(animationTick>=50) {
+				if(getAnimationTick()>=50) {
 					this.resetPoiseHealth();
 					this.getNavigation().stop();
-					animationTick=0;
+					setAnimationTick(0);
 					setAnimationState(0);
 				}
 				break;
 			//Attack
 			case 21:
 				this.moveToTarget();
-				if(animationTick==5) {
+				if(getAnimationTick()==5) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					this.playSound(SoundEvents.SQUID_DEATH);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -245,27 +251,31 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=10) {
-					animationTick=0;
+				if(getAnimationTick()>=10) {
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
+						setAnimationTick(0);
 					}else{
 						if(r<=10) {
 							setAnimationState(22);
+							setAnimationTick(0);
 						}else if(r<=20){
 							setAnimationState(23);
+							setAnimationTick(0);
 						}else if(r<=30){
 							setAnimationState(25);
+							setAnimationTick(0);
 						}else if(r<=40){
 							setAnimationState(0);
+							setAnimationTick(0);
 						}
 					}
 				}
 				break;
 			case 22:
 				this.moveToTarget();
-				if(animationTick==5) {
+				if(getAnimationTick()==5) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					this.playSound(SoundEvents.SQUID_DEATH);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -278,26 +288,30 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=10) {
-					animationTick=0;
+				if(getAnimationTick()>=10) {
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
+						setAnimationTick(0);
 					}else{
 						if(r<=10) {
 							setAnimationState(21);
+							setAnimationTick(0);
 						}else if(r<=20){
 							setAnimationState(23);
+							setAnimationTick(0);
 						}else if(r<=30){
 							setAnimationState(25);
+							setAnimationTick(0);
 						}else if(r<=40){
 							setAnimationState(0);
+							setAnimationTick(0);
 						}
 					}
 				}
 				break;
 			case 23:
-				if(animationTick==6) {
+				if(getAnimationTick()==6) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					this.playSound(SoundEvents.SQUID_DEATH);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -310,16 +324,18 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=12) {
-					animationTick=0;
+				if(getAnimationTick()>=12) {
 					int r=this.getRandom().nextInt(80);
 					if(!flag||!flag1||r>60){
 						setAnimationState(0);
+						setAnimationTick(0);
 					}else{
 						if(r<=20){
 							setAnimationState(25);
+							setAnimationTick(0);
 						}else if(r<=40){
 							setAnimationState(0);
+							setAnimationTick(0);
 						}
 					}
 				}
@@ -328,7 +344,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 				Level levelIn = this.level();
 				Vec3 pos = this.position();
 
-				if(animationTick==10){
+				if(getAnimationTick()==10){
 					if(this.getTarget()==null) {
 						aim = this.getLookAngle().normalize();
 					}else{
@@ -337,7 +353,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 
 
 				}
-				if(animationTick==16) {
+				if(getAnimationTick()==16) {
 
 					this.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED);
 					this.playSound(SoundEvents.SQUID_DEATH);
@@ -359,13 +375,13 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 						levelIn.addFreshEntity(e);
 					}
 				}
-				if(animationTick>=22) {
-					animationTick=0;
+				if(getAnimationTick()>=22) {
+					setAnimationTick(0);
 					setAnimationState(0);
 				}
 				break;
 			case 25:
-				if(animationTick==20) {
+				if(getAnimationTick()==20) {
 					this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 					this.playSound(SoundEvents.SQUID_DEATH);
 					DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -378,8 +394,8 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 					h.setHitboxType(3);
 					this.level().addFreshEntity(h);
 				}
-				if(animationTick>=26) {
-					animationTick=0;
+				if(getAnimationTick()>=26) {
+					setAnimationTick(0);
 						setAnimationState(0);
 				}
 				break;

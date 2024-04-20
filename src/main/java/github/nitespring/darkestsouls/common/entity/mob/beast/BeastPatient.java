@@ -36,7 +36,6 @@ import java.util.EnumSet;
 public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuffableBeast{
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
 
     protected Vec3 aimVec;
@@ -54,7 +53,9 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.beast_patient.hit"));
@@ -66,7 +67,9 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -188,18 +191,18 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
     }
 
     protected void playAnimation() {
-        animationTick++;
+        this.increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
 
         switch(this.getAnimationState()) {
             case 1:
                 this.getNavigation().stop();
-                if(animationTick==1){
+                if(getAnimationTick()==1){
                     this.playSound(SoundEvents.BLAZE_HURT);
                 }
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
@@ -207,46 +210,45 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
             //Attack
             case 21:
                 this.getNavigation().stop();
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
-                if(animationTick>=7&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=7&&flag) {
+                    setAnimationTick(0);
                     this.setAnimationState(25);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    animationTick=0;
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(25);}
-                    else if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1200){this.setAnimationState(27);}
-                    else if(r<=1600){this.setAnimationState(28);}
-                    else if(r<=2000){this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(25);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1200){setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1600){setAnimationTick(0);this.setAnimationState(28);}
+                    else if(r<=2000){setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=16) {
-                    animationTick=0;
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==2) {
+                if(getAnimationTick()==2) {
                     this.setDeltaMovement(0,0.3,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -254,7 +256,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==3){
+                if(getAnimationTick()==3){
                     this.playAttackSound();
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.01f,0).scale(0.35));
@@ -263,59 +265,57 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                     }
 
                 }
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.doAttack(1.0f, 0.0f);
                 }
-                if(animationTick>=16) {
+                if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
-                    animationTick=0;
-
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 24:
                 this.getNavigation().stop();
 
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
-                if(animationTick>=7&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=7&&flag) {
+                    setAnimationTick(0);
                     this.setAnimationState(22);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 25:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.doAttack(0.0f, -0.2f);
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                 this.getNavigation().stop();
-                animationTick=0;
                 int r = this.getRandom().nextInt(2048);
-                if(r<=400)      {this.setAnimationState(22);}
-                else if(r<=800) {this.setAnimationState(23);}
-                else if(r<=1200){this.setAnimationState(27);}
-                else if(r<=1600){this.setAnimationState(28);}
-                else if(r<=2000){this.setAnimationState(29);}
+                if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                else if(r<=800) {setAnimationTick(0);this.setAnimationState(23);}
+                else if(r<=1200){setAnimationTick(0);this.setAnimationState(27);}
+                else if(r<=1600){setAnimationTick(0);this.setAnimationState(28);}
+                else if(r<=2000){setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=16) {
-                    animationTick=0;
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 26:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==2) {
+                if(getAnimationTick()==2) {
                     this.setDeltaMovement(0,0.3,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -323,7 +323,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==3){
+                if(getAnimationTick()==3){
                     this.playAttackSound();
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.01f,0).scale(0.35));
@@ -332,12 +332,12 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                     }
 
                 }
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.doAttack(1.0f, 0.0f);
                 }
-                if(animationTick>=16) {
+                if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
-                    animationTick=0;
+    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -345,7 +345,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
             case 27:
                 this.getNavigation().stop();
 
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.setDeltaMovement(0,0.2,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -353,7 +353,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==5){
+                if(getAnimationTick()==5){
                     this.playAttackSound();
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.005f,0).scale(0.25));
@@ -362,21 +362,21 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                     }
 
                 }
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.doAttack(4.0f, 0.0f);
                 }
-                if(animationTick>=15) {
+                if(getAnimationTick()>=15) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);;
 
                     setAnimationState(0);
                 }
                 break;
             case 28:
-                if(animationTick>=1) {this.getNavigation().stop();}
+                if(getAnimationTick()>=1) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==2) {
+                if(getAnimationTick()==2) {
                     this.setDeltaMovement(0,0.5,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -384,7 +384,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==3){
+                if(getAnimationTick()==3){
                     this.playAttackSound();
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.01f,0).scale(0.35));
@@ -393,21 +393,21 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                     }
 
                 }
-                if(animationTick==5) {
+                if(getAnimationTick()==5) {
                     this.doAttack(2.0f, 0.0f);
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
                 break;
             case 29:
-                if(animationTick>=1) {this.getNavigation().stop();}
+                if(getAnimationTick()>=1) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -415,7 +415,7 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==8){
+                if(getAnimationTick()==8){
                     this.playAttackSound();
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
@@ -424,12 +424,12 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
                     }
 
                 }
-                if(animationTick==17) {
+                if(getAnimationTick()==17) {
                     this.doAttack(4.0f, 0.0f);
                 }
-                if(animationTick>=22) {
+                if(getAnimationTick()>=22) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -456,12 +456,16 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
     }
 
     public void playAttackSound(){
-        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),1.6f,1.4f);
+        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),0.2f,1.4f);
     }
 
     @Override
     public float getVoicePitch() {
-        return 2.0f;
+        return 1.4f;
+    }
+    @Override
+    protected float getSoundVolume() {
+        return 0.2f;
     }
 
     @Override

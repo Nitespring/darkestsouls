@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:poison_knife",
+    "count": 8
+  },
+  "group": "darkestsouls:poison_knife"
+}

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " bb",
+        "bc ",
+        "ad "
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:stick"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:beast_blood_clump"
+        },
+        "d": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:bandit_knife",
+        "count": 1
+    },
+    "group": "darkestsouls:bandit_knife"
+}

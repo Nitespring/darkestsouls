@@ -37,7 +37,6 @@ import java.util.EnumSet;
 public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEntity{
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    protected int animationTick = 0;
 
     protected int screamCooldownTick = 0;
     private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f, false);
@@ -58,7 +57,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         data.add(new AnimationController<>(this, "stun_controller", 0, this::hitStunPredicate));
     }
 
-    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState hitStunPredicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
 
         if(hitStunTicks>0) {
             event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.beast_patient.hit"));
@@ -70,7 +71,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
 
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) { /*if(this.shouldResetAnimation()){
+            event.getController().forceAnimationReset();
+        }*/
         int animState = this.getAnimationState();
         int combatState = this.getCombatState();
         if(this.isDeadOrDying()) {
@@ -151,8 +154,14 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     }
     @Override
     public float getVoicePitch() {
-        return 2.0f;
+        return 1.0f;
     }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.4f;
+    }
+
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource p_21239_) {
@@ -165,7 +174,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         return SoundInit.BEAST_PATIENT_ATTACK.get();
     }
     public void playAttackSound(){
-        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),1.6f,1.4f);
+        this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),0.2f,1.4f);
     }
     @Override
     public EntityDimensions getDimensions(Pose p_21047_) {
@@ -193,25 +202,25 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     }
 
     protected void playAnimation() {
-        animationTick++;
+        this.increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
 
         switch(this.getAnimationState()) {
             case 1:
                 this.getNavigation().stop();
-                if(animationTick==1){
+                if(getAnimationTick()==1){
                     this.playSound(SoundEvents.BLAZE_HURT);
                 }
-                if(animationTick>=30) {
+                if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
             case 11:
                 this.getNavigation().stop();
-                if(animationTick==24) {
+                if(getAnimationTick()==24) {
                     this.playAttackSound();
                     this.playSound(SoundInit.BEAST_PATIENT_SCREAM.get(), 3.6f,1.0f);
                     Vec3 aim = this.getLookAngle();
@@ -235,8 +244,8 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                         localTarget.knockback(knock,-knock*(kVec.x),-knock*(kVec.z));
                     }
                 }
-                if(animationTick>=60) {
-                    animationTick=0;
+                if(getAnimationTick()>=60) {
+                    setAnimationTick(0);
                     this.resetScreamCooldown();
                     setAnimationState(0);
                 }
@@ -244,7 +253,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
             //Attack
             case 21:
                 this.getNavigation().stop();
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -257,19 +266,19 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=7&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=7&&flag) {
+                    setAnimationTick(0);
                     this.setAnimationState(25);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 22:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -282,26 +291,25 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    animationTick=0;
                     int r = this.getRandom().nextInt(2048);
-                    if(r<=400)      {this.setAnimationState(25);}
-                    else if(r<=800) {this.setAnimationState(26);}
-                    else if(r<=1200){this.setAnimationState(27);}
-                    else if(r<=1600){this.setAnimationState(28);}
-                    else if(r<=2000){this.setAnimationState(29);}
+                    if(r<=400)      {setAnimationTick(0);this.setAnimationState(25);}
+                    else if(r<=800) {setAnimationTick(0);this.setAnimationState(26);}
+                    else if(r<=1200){setAnimationTick(0);this.setAnimationState(27);}
+                    else if(r<=1600){setAnimationTick(0);this.setAnimationState(28);}
+                    else if(r<=2000){setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=16) {
-                    animationTick=0;
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 23:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==2) {
+                if(getAnimationTick()==2) {
                     this.setDeltaMovement(0,0.3,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -309,7 +317,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==3){
+                if(getAnimationTick()==3){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.01f,0).scale(0.35));
                     }else {
@@ -317,7 +325,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     }
 
                 }
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -330,9 +338,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=16) {
+                if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -340,7 +348,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
             case 24:
                 this.getNavigation().stop();
 
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -353,19 +361,19 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=7&&flag) {
-                    animationTick=0;
+                if(getAnimationTick()>=7&&flag) {
+                    setAnimationTick(0);
                     this.setAnimationState(22);
                 }
-                if(animationTick>=12) {
-                    animationTick=0;
+                if(getAnimationTick()>=12) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 25:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -378,26 +386,25 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                 this.getNavigation().stop();
-                animationTick=0;
                 int r = this.getRandom().nextInt(2048);
-                if(r<=400)      {this.setAnimationState(22);}
-                else if(r<=800) {this.setAnimationState(23);}
-                else if(r<=1200){this.setAnimationState(27);}
-                else if(r<=1600){this.setAnimationState(28);}
-                else if(r<=2000){this.setAnimationState(29);}
+                if(r<=400)      {setAnimationTick(0);this.setAnimationState(22);}
+                else if(r<=800) {setAnimationTick(0);this.setAnimationState(23);}
+                else if(r<=1200){setAnimationTick(0);this.setAnimationState(27);}
+                else if(r<=1600){setAnimationTick(0);this.setAnimationState(28);}
+                else if(r<=2000){setAnimationTick(0);this.setAnimationState(29);}
                 }
-                if(animationTick>=16) {
-                    animationTick=0;
+                if(getAnimationTick()>=16) {
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;
             case 26:
-                if(animationTick>=2) {this.getNavigation().stop();}
+                if(getAnimationTick()>=2) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==2) {
+                if(getAnimationTick()==2) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     this.setDeltaMovement(0,0.3,0);
                     if (this.getTarget() != null) {
@@ -406,7 +413,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==3){
+                if(getAnimationTick()==3){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.01f,0).scale(0.35));
                     }else {
@@ -414,7 +421,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     }
 
                 }
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.playAttackSound();
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
@@ -426,9 +433,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=16) {
+                if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
@@ -436,7 +443,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
             case 27:
                 this.getNavigation().stop();
 
-                if(animationTick==4) {
+                if(getAnimationTick()==4) {
                     this.setDeltaMovement(0,0.2,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -444,7 +451,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==5){
+                if(getAnimationTick()==5){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.005f,0).scale(0.25));
                     }else {
@@ -452,7 +459,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     }
 
                 }
-                if(animationTick==8) {
+                if(getAnimationTick()==8) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -465,18 +472,18 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=15) {
+                if(getAnimationTick()>=15) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
                 break;
             case 28:
-                if(animationTick>=1) {this.getNavigation().stop();}
+                if(getAnimationTick()>=1) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==2) {
+                if(getAnimationTick()==2) {
                     this.setDeltaMovement(0,0.5,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -484,7 +491,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==3){
+                if(getAnimationTick()==3){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.01f,0).scale(0.35));
                     }else {
@@ -492,7 +499,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     }
 
                 }
-                if(animationTick==5) {
+                if(getAnimationTick()==5) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -505,18 +512,18 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=12) {
+                if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
-                    animationTick=0;
+                    setAnimationTick(0);
 
                     setAnimationState(0);
                 }
                 break;
             case 29:
-                if(animationTick>=1) {this.getNavigation().stop();}
+                if(getAnimationTick()>=1) {this.getNavigation().stop();}
                 else{this.moveToTarget();}
 
-                if(animationTick==7) {
+                if(getAnimationTick()==7) {
                     this.setDeltaMovement(0,1,0);
                     if (this.getTarget() != null) {
                         this.aimVec = this.getTarget().position().add(this.position().scale(-1.0));
@@ -524,7 +531,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                         this.aimVec = this.getLookAngle();
                     }
                 }
-                if(animationTick==8){
+                if(getAnimationTick()==8){
                     if(this.aimVec!=null) {
                         this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
                     }else {
@@ -532,7 +539,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     }
 
                 }
-                if(animationTick==17) {
+                if(getAnimationTick()==17) {
                     this.playAttackSound();
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
@@ -545,10 +552,9 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     h.setHitboxType(2);
                     this.level().addFreshEntity(h);
                 }
-                if(animationTick>=22) {
+                if(getAnimationTick()>=22) {
                     this.getNavigation().stop();
-                    animationTick=0;
-
+                    setAnimationTick(0);
                     setAnimationState(0);
                 }
                 break;

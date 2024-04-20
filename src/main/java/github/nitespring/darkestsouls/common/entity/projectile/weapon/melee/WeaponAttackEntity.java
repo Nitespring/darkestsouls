@@ -1,8 +1,7 @@
-package github.nitespring.darkestsouls.common.entity.projectile.weapon;
+package github.nitespring.darkestsouls.common.entity.projectile.weapon.melee;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -11,6 +10,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -48,6 +48,13 @@ public class WeaponAttackEntity extends Entity {
     public  int fire=0;
     public float baneOfArthropods=0;
     public float smite=0;
+    public int beastHunter=0;
+    public int demonSlayer=0;
+    public int kinHunter=0;
+    public int abyssCleanser=0;
+    public int godSlayer=0;
+    public int hollowSlayer=0;
+
 
     public double inflateX=1.2;
     public double inflateY=0;
@@ -66,7 +73,7 @@ public class WeaponAttackEntity extends Entity {
 
     protected static final EntityDataAccessor<Integer> ANIMATIONSTATE = SynchedEntityData.defineId(WeaponAttackEntity.class, EntityDataSerializers.INT);
 
-    public WeaponAttackEntity(EntityType<?> e, Level level, Vec3 pos, float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death , int updateTickAnimation, int updateTickPosition, int attackTick, int finalTick, double playerDistance, double hitboxHeight, double inflatex,double inflatey,double inflatez,float rotation) {
+   /* public WeaponAttackEntity(EntityType<?> e, Level level, Vec3 pos, float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death , int updateTickAnimation, int updateTickPosition, int attackTick, int finalTick, double playerDistance, double hitboxHeight, double inflatex,double inflatey,double inflatez,float rotation) {
         this(e, level);
         this.setPos(pos);
         this.damage=dmg;
@@ -89,7 +96,7 @@ public class WeaponAttackEntity extends Entity {
         this.inflateX=inflatex;
         this.inflateY=inflatey;
         this.inflateZ=inflatez;
-    }
+    }*/
 
     public WeaponAttackEntity(EntityType<?> e, Level level,Vec3 pos,float rotation) {
         this(e, level);
@@ -200,11 +207,18 @@ public class WeaponAttackEntity extends Entity {
 
 
 
+    public SoundEvent getAttackSound(){
 
+          return SoundEvents.PLAYER_ATTACK_SWEEP;
+    }
+    public void playAttackSound(){
+
+        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), this.getAttackSound(), this.getSoundSource(), 0.25F, this.random.nextFloat() * 0.2F + 1.0F, false);
+    }
 
     public void attackEntity(){
 
-        this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, this.getSoundSource(), 0.25F, this.random.nextFloat() * 0.2F + 1.0F, false);
+        this.playAttackSound();
         for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(inflateX, inflateY, inflateZ))) {
             this.dealDamageTo(livingentity);
         }
@@ -286,7 +300,9 @@ public class WeaponAttackEntity extends Entity {
     public void damageWeapon(){
         if(this.getItemStack()!=null&&this.getOwner()!=null) {
             this.getItemStack().hurtAndBreak(1, this.getOwner(), (p_43296_) -> {
-                p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
+                if(getItemStack().getEquipmentSlot()!=null) {
+                    p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
+                }
             });
         }
     }
@@ -324,7 +340,5 @@ public class WeaponAttackEntity extends Entity {
         this.rot=rot;
         this.frost=frost;
         this.death=death;
-
-
     }
 }

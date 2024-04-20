@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:bone_fragment"
+    },
+    {
+      "item": "minecraft:bone"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:bone_knife",
+    "count": 8
+  },
+  "group": "darkestsouls:bone_knife"
+}

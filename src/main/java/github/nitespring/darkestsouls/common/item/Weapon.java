@@ -110,15 +110,17 @@ public class Weapon extends Item implements Vanishable,ILeftClickItem {
         }
         */
         if(stackIn.isEnchanted()) {
-
-            enchantmentsModifier = enchantmentsModifier + 0.5f*EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stackIn);
-
+            if(stackIn.getAllEnchantments().containsKey(Enchantments.SHARPNESS)) {
+                enchantmentsModifier = enchantmentsModifier + 0.5f * (1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stackIn));
+            }
         }
 
         float f = (float) (strengthModifier + enchantmentsModifier);
 
-        //System.out.println("weapon damage " + f+this.getAttackDamage());
-        return f+this.getAttackDamage();
+        //System.out.println(strengthModifier);
+        //return f+this.getAttackDamage();
+        //System.out.println(f);
+        return f;
 
     }
     public float getAttackSpeed() {return this.attackSpeed;}

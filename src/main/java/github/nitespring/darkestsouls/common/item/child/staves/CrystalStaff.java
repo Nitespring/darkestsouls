@@ -98,7 +98,7 @@ public class CrystalStaff extends Staff {
             playerIn.getCooldowns().addCooldown(this, 12);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.GLASS_BREAK, SoundSource.PLAYERS, 1.0F, 1.2F);
             if(!playerIn.isCreative()) {
-                this.consumeAmmo(playerIn, ammoAmount);
+                this.consumeAmmoApplyLuck(playerIn, ammoAmount, this.getLuck(playerIn,stackIn));
             }
         }else if(!playerIn.getCooldowns().isOnCooldown(this)){playerIn.level().playSound((Player)null, playerIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
 
@@ -172,7 +172,7 @@ public class CrystalStaff extends Staff {
         if(this.hasAmmo((Player) entityIn,ammoAmount)||((Player)entityIn).isCreative()) {
             this.doSpellB((Player) entityIn, stackIn, ((Player) entityIn).getUsedItemHand(), i);
             if(!((Player)entityIn).isCreative()) {
-                this.consumeAmmo((Player)entityIn, ammoAmount);
+                this.consumeAmmoApplyLuck((Player)entityIn, ammoAmount,this.getLuck((Player) entityIn, stackIn));
             }
         }else{entityIn.level().playSound((Player)null, entityIn, SoundEvents.BLAZE_HURT, SoundSource.PLAYERS, 0.6F, 0.4F);}
     }

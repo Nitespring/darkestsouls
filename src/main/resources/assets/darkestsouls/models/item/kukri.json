@@ -1,0 +1,28 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "darkestsouls:item/weapon/kukri"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, -90, 55 ],
+      "translation": [ 0, 2.0, 0.5 ],
+      "scale": [ 0.45, 0.45, 0.45 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, 90, -55 ],
+      "translation": [ 0, 2.0, 0.5 ],
+      "scale": [ 0.45, 0.45, 0.45 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, -90, 35 ],
+      "translation": [ 1.13, 3.2, 1.13 ],
+      "scale": [ 0.48, 0.48, 0.28 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 90, -35 ],
+      "translation": [ 1.13, 3.2, 1.13 ],
+      "scale": [ 0.48, 0.48, 0.28 ]
+    }
+  }
+}

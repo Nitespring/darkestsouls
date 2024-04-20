@@ -59,6 +59,8 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	//protected int poiseHealth;
 
 	private static final EntityDataAccessor<Integer> ANIMATION_STATE = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> ANIMATION_TICK = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Boolean> SHOULD_RESET_ANIMATION = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> COMBAT_STATE = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> ENTITY_PHASE = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> TEAM = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
@@ -81,6 +83,19 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 
 	public void setAnimationState(int anim) {
 		this.entityData.set(ANIMATION_STATE, anim);
+	}
+	public int getAnimationTick() {return this.entityData.get(ANIMATION_TICK);}
+	public void setAnimationTick(int anim) {
+		this.entityData.set(ANIMATION_TICK, anim);
+	}
+
+	public boolean shouldResetAnimation() {return this.entityData.get(SHOULD_RESET_ANIMATION);}
+	public void setResetAnimation(boolean anim) {
+		this.entityData.set(SHOULD_RESET_ANIMATION, anim);
+	}
+
+	public void increaseAnimationTick(int amount) {
+		this.entityData.set(ANIMATION_TICK, this.getAnimationTick()+amount);
 	}
 
 	public int getCombatState() {
@@ -150,6 +165,8 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(ANIMATION_STATE, 0);
+		this.entityData.define(ANIMATION_TICK, 0);
+		this.entityData.define(SHOULD_RESET_ANIMATION, false);
 		this.entityData.define(COMBAT_STATE, 0);
 		this.entityData.define(ENTITY_PHASE, 0);
 		this.entityData.define(TEAM, getDSDefaultTeam());
@@ -336,6 +353,11 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	}
 	public ParticleOptions getBloodParticles(){
 		return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
+	}
+
+	@Override
+	public float getStepHeight() {
+		return 1.0f;
 	}
 
 	public class CopyOwnerTargetGoal extends TargetGoal {

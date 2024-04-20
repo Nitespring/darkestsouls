@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bba",
+        "cdc",
+        "abb"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:paper"
+        },
+        "b": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:gunmetal_barrel"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:reinforced_gunmetal_barrel",
+        "count": 1
+    },
+    "group": "darkestsouls:gun_barrel"
+}

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbc",
+        "ada",
+        "caa"
+    ],
+    "key": {
+        "a": {
+            "tag": "minecraft:logs"
+        },
+        "b": {
+            "item": "minecraft:iron_ingot"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:gun_handle",
+        "count": 1
+    },
+    "group": "darkestsouls:gun_handle"
+}

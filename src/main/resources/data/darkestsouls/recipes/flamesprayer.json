@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "afd",
+        "cec",
+        "fcb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_gunmetal_barrel"
+        },
+        "b": {
+            "item": "darkestsouls:reinforced_gunmetal_handle"
+        },
+        "c": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:ignition_mechanism"
+        },
+        "e": {
+            "item": "minecraft:glass_bottle"
+        },
+        "f": {
+            "item": "minecraft:blaze_powder"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:flamesprayer",
+        "count": 1
+    },
+    "group": "darkestsouls:flamesprayer"
+}

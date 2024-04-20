@@ -1,12 +1,10 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
 import github.nitespring.darkestsouls.common.entity.projectile.spell.LightningSpear;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.SoulDart;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.WeaponAttackEntity;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -18,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -52,7 +49,7 @@ public class DragonslayerSpear extends Weapon {
                 entity.setItemStack(stackIn);
                 entity.setMaxTargets(this.getMaxTargets(stackIn));
                 entity.setDamage(
-                        (this.getAttackDamage(playerIn, stackIn) / 2) - 2.0f,
+                        (this.getAttackDamage(playerIn, stackIn)) - 2.0f,
                         this.getPoiseDamage(playerIn, stackIn),
                         this.getFireAttack(stackIn),
                         this.getSmiteAttack(stackIn),
@@ -79,7 +76,7 @@ public class DragonslayerSpear extends Weapon {
             entity.setItemStack(stackIn);
             entity.setMaxTargets(this.getMaxTargets(stackIn));
             entity.setDamage(
-                    this.getAttackDamage(playerIn, stackIn) / 2,
+                    this.getAttackDamage(playerIn, stackIn),
                     this.getPoiseDamage(playerIn, stackIn),
                     this.getFireAttack(stackIn),
                     this.getSmiteAttack(stackIn),
@@ -130,7 +127,7 @@ public class DragonslayerSpear extends Weapon {
         entity.setItemStack(stackIn);
         entity.setMaxTargets(this.getMaxTargets(stackIn));
         entity.setDamage(
-                this.getAttackDamage(playerIn, stackIn) / 2,
+                this.getAttackDamage(playerIn, stackIn),
                 this.getPoiseDamage(playerIn, stackIn),
                 this.getFireAttack(stackIn),
                 this.getSmiteAttack(stackIn),

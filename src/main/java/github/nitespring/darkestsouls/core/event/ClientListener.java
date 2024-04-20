@@ -7,22 +7,23 @@ import github.nitespring.darkestsouls.client.render.entity.mob.abyss.LeechGeoRen
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.MonstruosityOfSinGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.SewerCentipedeGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.beast.BeastPatientGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.mob.church.doctor.ChurchDoctorGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.BonewheelGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonCurvedSwordsGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonFalchionGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.SkeletonSpearGeoRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.LitItemRenderer;
+import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.*;
+import github.nitespring.darkestsouls.client.render.entity.projectile.*;
+import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletModel;
+import github.nitespring.darkestsouls.client.render.entity.projectile.bullet.BulletRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.spell.*;
+import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.FirebombRenderer;
+import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.MolotovCocktailModel;
+import github.nitespring.darkestsouls.client.render.entity.projectile.throwable.MolotovCocktailRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.InvisibleProjectileRenderer;
-import github.nitespring.darkestsouls.client.render.entity.projectile.SquareTextureEntityModel;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.LightningSpear;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +37,8 @@ public class ClientListener {
 
 	public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "square_texture"), "main");
 	public static final ModelLayerLocation FRAYED_BLADE_FLAME = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "frayed_blade_fire"), "main");
+	public static final ModelLayerLocation BULLET = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "bullet"), "main");
+	public static final ModelLayerLocation MOLOTOV = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "molotov"), "main");
 
 
 	@SubscribeEvent
@@ -43,6 +46,8 @@ public class ClientListener {
 
 		event.registerLayerDefinition(SQUARE_TEXTURE, SquareTextureEntityModel::createBodyLayer);
 		event.registerLayerDefinition(FRAYED_BLADE_FLAME, FrayedBladeFlameModel::createBodyLayer);
+		event.registerLayerDefinition(BULLET, BulletModel::createBodyLayer);
+		event.registerLayerDefinition(MOLOTOV, MolotovCocktailModel::createBodyLayer);
 
 	}
 
@@ -57,7 +62,10 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.SKELETON_FALCHION.get(), SkeletonFalchionGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_CURVED_SWORDS.get(), SkeletonCurvedSwordsGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SKELETON_SPEAR.get(), SkeletonSpearGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.TALL_SKELETON_TWIN_SHOTELS.get(), TallSkeletonGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_AXE.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_ASSASSIN.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
@@ -65,6 +73,12 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CLOAKED_BEAST_PATIENT.get(), BeastPatientGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.ASHEN_BLOOD_BEAST_PATIENT.get(), BeastPatientGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.LEECH.get(), LeechGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_LANTERN.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_PISTOL.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_SCYTHE.get(), ChurchDoctorGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_CRUCIFIX.get(), ChurchDoctorGeoRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.HITBOX_SMALL.get(), InvisibleProjectileRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HITBOX.get(), InvisibleProjectileRenderer::new);
@@ -91,6 +105,12 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.DRAGONSLAYER_SPEAR.get(), DragonslayerSpearRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HUNTER_AXE.get(), HunterAxeRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HUNTING_AXE.get(), HuntingAxeRenderer::new);
+		 event.registerEntityRenderer(EntityInit.GREATAXE.get(), GreataxeRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CURVED_GREATSWORD.get(), CurvedGreatswordRenderer::new);
+		 event.registerEntityRenderer(EntityInit.SHOTEL.get(), ShotelRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BANDIT_KNIFE.get(), BanditKnifeRenderer::new);
+
+
 
 		 event.registerEntityRenderer(EntityInit.SOUL_DART.get(), SoulDartRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SOUL_ARROW.get(), SoulDartRenderer::new);
@@ -105,7 +125,11 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_SHARD.get(), CrystalShardRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CRYSTAL_RAIN.get(), CrystalBallRenderer::new);
 		 event.registerEntityRenderer(EntityInit.WIND_SLASH.get(), WindSlashRenderer::new);
-
+		 event.registerEntityRenderer(EntityInit.THROWING_KNIFE.get(), (EntityRendererProvider.Context context) -> new DirectionalAsItemRenderer(context));
+		 event.registerEntityRenderer(EntityInit.FIREBOMB.get(), FirebombRenderer::new);
+		 event.registerEntityRenderer(EntityInit.MOLOTOV.get(), MolotovCocktailRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BULLET.get(), BulletRenderer::new);
+		 event.registerEntityRenderer(EntityInit.FLAME.get(), FlameRenderer::new);
 		 
 	 }
 

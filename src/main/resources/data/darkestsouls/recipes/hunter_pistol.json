@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ad",
+        "cb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:gunmetal_barrel"
+        },
+        "b": {
+            "item": "darkestsouls:gun_handle"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:ignition_mechanism"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:hunter_pistol",
+        "count": 1
+    },
+    "group": "darkestsouls:hunter_pistol"
+}

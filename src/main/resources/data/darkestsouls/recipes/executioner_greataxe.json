@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " b ",
+        "bdc",
+        "ac "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_pole"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:bone_fragment"
+        },
+        "d": {
+            "item": "darkestsouls:steel_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:executioner_greataxe",
+        "count": 1
+    },
+    "group": "darkestsouls:executioner_greataxe"
+}

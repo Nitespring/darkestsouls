@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.entity.mob.skeleton;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.Hollow;
+import github.nitespring.darkestsouls.core.init.SoundInit;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -62,7 +63,10 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
     public ParticleOptions getBloodParticles() {
         return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.BONE_MEAL));
     }
+    public ItemStack getRightHandItem(){return null;}
+    public ItemStack getLeftHandItem(){return null;}
 
+    public void populateClothing(){}
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
@@ -92,6 +96,9 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
+        return SoundEvents.SKELETON_AMBIENT;
+    }
+    protected SoundEvent getAttackSound() {
         return SoundEvents.SKELETON_AMBIENT;
     }
 }

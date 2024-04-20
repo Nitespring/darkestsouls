@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " ae",
+        "ebc",
+        " df"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:redstone_torch"
+        },
+        "b": {
+            "item": "minecraft:lever"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:gunpowder"
+        },
+        "e": {
+            "item": "minecraft:iron_ingot"
+        },
+        "f": {
+            "item": "minecraft:flint_and_steel"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:ignition_mechanism",
+        "count": 1
+    },
+    "group": "darkestsouls:ignition_mechanism"
+}
