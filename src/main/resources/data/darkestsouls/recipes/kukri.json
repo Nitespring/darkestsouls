@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bc",
+        "ab"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:stick"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_nugget"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:kukri",
+        "count": 4
+    },
+    "group": "darkestsouls:kukri"
+}

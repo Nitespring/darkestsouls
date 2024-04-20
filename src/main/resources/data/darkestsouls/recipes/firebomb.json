@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cac",
+        "dbd",
+        "cac"
+    ],
+    "key": {
+        "a": {
+            "tag": "minecraft:logs"
+        },
+        "b": {
+            "item": "minecraft:gunpowder"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:firebomb",
+        "count": 4
+    },
+    "group": "darkestsouls:firebomb"
+}

@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "c  ",
+        "cad",
+        " eb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:gunmetal_barrel"
+        },
+        "b": {
+            "item": "darkestsouls:gun_handle"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:ignition_mechanism"
+        },
+        "e": {
+            "item": "darkestsouls:steel_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:blunderbuss",
+        "count": 1
+    },
+    "group": "darkestsouls:blunderbuss"
+}

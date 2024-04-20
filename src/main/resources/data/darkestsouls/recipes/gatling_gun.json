@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ca ",
+        "aed",
+        " fb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_gunmetal_double_barrel"
+        },
+        "b": {
+            "item": "darkestsouls:reinforced_gunmetal_handle"
+        },
+        "c": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:ignition_mechanism"
+        },
+        "e": {
+            "item": "darkestsouls:workshop_mechanism"
+        },
+        "f": {
+            "item": "minecraft:iron_block"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:gatling_gun",
+        "count": 1
+    },
+    "group": "darkestsouls:gatling_gun"
+}

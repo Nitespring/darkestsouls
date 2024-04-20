@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "acc",
+        "bdb",
+        "cca"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "b": {
+            "item": "minecraft:iron_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:gun_handle"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:reinforced_gunmetal_handle",
+        "count": 1
+    },
+    "group": "darkestsouls:gun_handle"
+}

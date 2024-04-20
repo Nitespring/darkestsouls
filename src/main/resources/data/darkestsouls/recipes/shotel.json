@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  b",
+        " bb",
+        "a  "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:curved_sword_hilt"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:shotel",
+        "count": 1
+    },
+    "group": "darkestsouls:shotel"
+}

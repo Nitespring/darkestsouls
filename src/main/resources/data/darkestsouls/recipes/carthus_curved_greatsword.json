@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " bb",
+        "fbd",
+        "ace"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:greatsword_hilt"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:bone_fragment"
+        },
+        "d": {
+            "item": "darkestsouls:blood_stone_fragment"
+        },
+        "e": {
+            "item": "minecraft:string"
+        },
+        "f": {
+            "item": "minecraft:paper"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:carthus_curved_greatsword",
+        "count": 1
+    },
+    "group": "darkestsouls:carthus_curved_greatsword"
+}

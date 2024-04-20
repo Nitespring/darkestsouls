@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbb",
+        "bbc",
+        "a  "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_pole"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:siderite_fragment"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:crescent_moon_greataxe",
+        "count": 1
+    },
+    "group": "darkestsouls:crescent_moon_greataxe"
+}

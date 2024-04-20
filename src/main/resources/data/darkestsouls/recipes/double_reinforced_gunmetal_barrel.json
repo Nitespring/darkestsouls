@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aca",
+        "dbd",
+        "aca"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:iron_ingot"
+        },
+        "b": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:reinforced_gunmetal_barrel"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:reinforced_gunmetal_double_barrel",
+        "count": 1
+    },
+    "group": "darkestsouls:gun_barrel"
+}

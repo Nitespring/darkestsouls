@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " c ",
+        "ead",
+        " cb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_gunmetal_barrel"
+        },
+        "b": {
+            "item": "darkestsouls:gun_handle"
+        },
+        "c": {
+            "item": "minecraft:copper_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:ignition_mechanism"
+        },
+        "e": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:evelyn",
+        "count": 1
+    },
+    "group": "darkestsouls:evelyn"
+}

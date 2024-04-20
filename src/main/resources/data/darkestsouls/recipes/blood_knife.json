@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:beast_blood_clump"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    },
+    {
+      "item": "darkestsouls:throwing_knife"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:blood_knife",
+    "count": 8
+  },
+  "group": "darkestsouls:blood_knife"
+}

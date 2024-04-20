@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bc",
+        "ab"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:stick"
+        },
+        "b": {
+            "item": "minecraft:iron_nugget"
+        },
+        "c": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:throwing_knife",
+        "count": 4
+    },
+    "group": "darkestsouls:throwing_knife"
+}

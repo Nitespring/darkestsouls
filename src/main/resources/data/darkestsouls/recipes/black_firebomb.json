@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "dfd",
+        "cac",
+        "beb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:firebomb"
+        },
+        "b": {
+            "item": "minecraft:gunpowder"
+        },
+        "c": {
+            "item": "minecraft:paper"
+        },
+        "d": {
+            "item": "minecraft:string"
+        },
+        "e": {
+            "item": "minecraft:iron_ingot"
+        },
+        "f": {
+            "item": "minecraft:ink_sac"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:black_firebomb",
+        "count": 4
+    },
+    "group": "darkestsouls:firebomb"
+}
