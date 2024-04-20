@@ -27,15 +27,13 @@ public class GatlingGunGeoRenderer<T extends GatlingGun> extends GeoItemRenderer
 
     }
 
-	
-	@Override
-	public int getPackedOverlay(T animatable, float u) {
 
-		return OverlayTexture.NO_OVERLAY;
-	}
+    @Override
+    public int getPackedOverlay(T animatable, float u, float partialTick) {
+        return OverlayTexture.NO_OVERLAY;
+    }
 
-	
-	 @Override
+    @Override
 	public RenderType getRenderType(T animatable, ResourceLocation texture, MultiBufferSource bufferSource,
 			float partialTick) {
 		 return RenderType.entityCutoutNoCull(texture);

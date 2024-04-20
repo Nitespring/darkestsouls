@@ -31,7 +31,7 @@ public class HollowGeoRenderer<T extends Hollow & GeoEntity> extends GeoEntityRe
 	}
 	
 	@Override
-	public int getPackedOverlay(T animatable, float u) {
+	public int getPackedOverlay(T animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}

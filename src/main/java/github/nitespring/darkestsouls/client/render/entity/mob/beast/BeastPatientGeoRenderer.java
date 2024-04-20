@@ -39,7 +39,7 @@ public class BeastPatientGeoRenderer<T extends BeastPatientEntity & GeoEntity> e
 	}
 	
 	@Override
-	public int getPackedOverlay(T animatable, float u) {
+	public int getPackedOverlay(T animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}

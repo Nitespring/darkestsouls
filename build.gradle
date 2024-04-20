@@ -219,10 +219,14 @@ sourceSets.each {
 repositories {
     maven {
         name = 'GeckoLib'
-        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' 
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
     }
-} 	
+}
 
 dependencies {
-        implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.4:4.4.2')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.4:4.4.4')
 }

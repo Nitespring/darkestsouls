@@ -28,7 +28,7 @@ public class ChurchDoctorGeoRenderer<T extends ChurchDoctor & GeoEntity> extends
 	}
 	
 	@Override
-	public int getPackedOverlay(T animatable, float u) {
+	public int getPackedOverlay(T animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}

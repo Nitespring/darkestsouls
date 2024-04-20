@@ -27,7 +27,7 @@ public class SkeletonCurvedSwordsGeoRenderer<T extends SkeletonCurvedSwords> ext
 	}
 	
 	@Override
-	public int getPackedOverlay(T animatable, float u) {
+	public int getPackedOverlay(T animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}
