@@ -229,6 +229,7 @@
   "itemGroup.darkestsouls.materials" : "DS Materials",
   "itemGroup.darkestsouls.equipment" : "DS Equipment",
   "itemGroup.darkestsouls.mobs" : "DS Mobs",
+  "itemGroup.darkestsouls.blocks" : "DS Blocks",
 
   "translation.darkestsouls.trick1" : "Press ",
   "translation.darkestsouls.trick2" : " to Transform Weapon",

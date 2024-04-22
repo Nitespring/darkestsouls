@@ -203,7 +203,23 @@ public class CreativeTabInit {
                         output.accept(ItemInit.SIN.get());
                     })
                     .build());
-
+    public static final RegistryObject<CreativeModeTab> BLOCKS = TABS.register("blocks",
+            () ->CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.darkestsouls.blocks"))
+                    .icon(ItemInit.CINNABAR_ORE.get()::getDefaultInstance)
+                    .withSearchBar().displayItems((displayParams,output)->{
+                        output.accept(ItemInit.CINNABAR_ORE.get());
+                        output.accept(ItemInit.DEEPSLATE_CINNABAR_ORE.get());
+                        output.accept(ItemInit.NETHER_CINNABAR_ORE.get());
+                        output.accept(ItemInit.BLACKSTONE_CINNABAR_ORE.get());
+                        output.accept(ItemInit.ENDER_CINNABAR_ORE.get());
+                        output.accept(ItemInit.SIDERITE_ORE.get());
+                        output.accept(ItemInit.DEEPSLATE_SIDERITE_ORE.get());
+                        output.accept(ItemInit.NETHER_SIDERITE_ORE.get());
+                        output.accept(ItemInit.BLACKSTONE_SIDERITE_ORE.get());
+                        output.accept(ItemInit.ENDER_SIDERITE_ORE.get());
+                    })
+                    .build());
 
 
 

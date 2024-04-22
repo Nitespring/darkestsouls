@@ -16,9 +16,15 @@ import github.nitespring.darkestsouls.common.item.throwing.Firebomb;
 import github.nitespring.darkestsouls.common.item.throwing.MolotovCocktail;
 import github.nitespring.darkestsouls.common.item.throwing.ThrowingKnife;
 import github.nitespring.darkestsouls.core.enums.Tiers;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -390,6 +396,29 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLOOD_ROCK = ITEMS.register("blood_rock",
 			() -> new Item(new Item.Properties()));
+
+	//Blocks
+
+	public static final RegistryObject<BlockItem> CINNABAR_ORE = ITEMS.register("cinnabar_ore",
+			() -> new BlockItem(BlockInit.CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_ORE = ITEMS.register("siderite_ore",
+			() -> new BlockItem(BlockInit.SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> DEEPSLATE_CINNABAR_ORE = ITEMS.register("deepslate_cinnabar_ore",
+			() -> new BlockItem(BlockInit.DEEPSLATE_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> DEEPSLATE_SIDERITE_ORE = ITEMS.register("deepslate_siderite_ore",
+			() -> new BlockItem(BlockInit.DEEPSLATE_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> NETHER_CINNABAR_ORE = ITEMS.register("nether_cinnabar_ore",
+			() -> new BlockItem(BlockInit.NETHER_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> NETHER_SIDERITE_ORE = ITEMS.register("nether_siderite_ore",
+			() -> new BlockItem(BlockInit.NETHER_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> BLACKSTONE_CINNABAR_ORE = ITEMS.register("blackstone_cinnabar_ore",
+			() -> new BlockItem(BlockInit.BLACKSTONE_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> BLACKSTONE_SIDERITE_ORE = ITEMS.register("blackstone_siderite_ore",
+			() -> new BlockItem(BlockInit.BLACKSTONE_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> ENDER_CINNABAR_ORE = ITEMS.register("ender_cinnabar_ore",
+			() -> new BlockItem(BlockInit.ENDER_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> ENDER_SIDERITE_ORE = ITEMS.register("ender_siderite_ore",
+			() -> new BlockItem(BlockInit.ENDER_SIDERITE_ORE.get(),new Item.Properties()));
 
 
 
