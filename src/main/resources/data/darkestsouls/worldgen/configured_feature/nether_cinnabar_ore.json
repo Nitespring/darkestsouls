@@ -21,6 +21,15 @@
         "state": {
           "Name": "darkestsouls:blackstone_cinnabar_ore"
         }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:basalt"
+        },
+        "state": {
+          "Name": "darkestsouls:basalt_cinnabar_ore"
+        }
       }
     ]
   }

@@ -212,6 +212,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.DEEPSLATE_CINNABAR_ORE.get());
                         output.accept(ItemInit.NETHER_CINNABAR_ORE.get());
                         output.accept(ItemInit.BLACKSTONE_CINNABAR_ORE.get());
+                        output.accept(ItemInit.BASALT_CINNABAR_ORE.get());
                         output.accept(ItemInit.ENDER_CINNABAR_ORE.get());
                         output.accept(ItemInit.SIDERITE_ORE.get());
                         output.accept(ItemInit.DEEPSLATE_SIDERITE_ORE.get());

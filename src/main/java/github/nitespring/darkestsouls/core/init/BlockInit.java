@@ -49,9 +49,9 @@ public class BlockInit {
 	public static final RegistryObject<DropExperienceBlock> DEEPSLATE_SIDERITE_ORE = BLOCKS.register("deepslate_siderite_ore",
 			() -> new DropExperienceBlock(UniformInt.of(2, 8),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.25f,6.5f).pushReaction(PushReaction.BLOCK)));
 	public static final RegistryObject<DropExperienceBlock> NETHER_CINNABAR_ORE = BLOCKS.register("nether_cinnabar_ore",
-			() -> new DropExperienceBlock(UniformInt.of(1, 5),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.75f,6.5f).pushReaction(PushReaction.BLOCK)));
+			() -> new DropExperienceBlock(UniformInt.of(1, 5),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.NETHER_ORE).requiresCorrectToolForDrops().strength(1.75f,6.5f).pushReaction(PushReaction.BLOCK)));
 	public static final RegistryObject<DropExperienceBlock> NETHER_SIDERITE_ORE = BLOCKS.register("nether_siderite_ore",
-			() -> new DropExperienceBlock(UniformInt.of(2, 8),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.75f,6.5f).pushReaction(PushReaction.BLOCK)));
+			() -> new DropExperienceBlock(UniformInt.of(2, 8),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.NETHER_ORE).requiresCorrectToolForDrops().strength(1.75f,6.5f).pushReaction(PushReaction.BLOCK)));
 	public static final RegistryObject<DropExperienceBlock> BLACKSTONE_CINNABAR_ORE = BLOCKS.register("blackstone_cinnabar_ore",
 			() -> new DropExperienceBlock(UniformInt.of(1, 5),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.75f,6.5f).pushReaction(PushReaction.BLOCK)));
 	public static final RegistryObject<DropExperienceBlock> BLACKSTONE_SIDERITE_ORE = BLOCKS.register("blackstone_siderite_ore",
@@ -60,6 +60,8 @@ public class BlockInit {
 			() -> new DropExperienceBlock(UniformInt.of(1, 5),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.25f,9.5f).pushReaction(PushReaction.BLOCK)));
 	public static final RegistryObject<DropExperienceBlock> ENDER_SIDERITE_ORE = BLOCKS.register("ender_siderite_ore",
 			() -> new DropExperienceBlock(UniformInt.of(2, 8),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.25f,9.5f).pushReaction(PushReaction.BLOCK)));
+	public static final RegistryObject<DropExperienceBlock> BASALT_CINNABAR_ORE = BLOCKS.register("basalt_cinnabar_ore",
+			() -> new DropExperienceBlock(UniformInt.of(1, 5),BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.CHIME).sound(SoundType.BASALT).requiresCorrectToolForDrops().strength(2.0f,7.0f).pushReaction(PushReaction.BLOCK)));
 
 
 }
