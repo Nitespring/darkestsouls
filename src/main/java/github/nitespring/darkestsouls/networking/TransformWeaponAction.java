@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.networking;
 
 
 import github.nitespring.darkestsouls.common.item.ILeftClickItem;
+import github.nitespring.darkestsouls.common.item.ITransformableItem;
 import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
@@ -29,9 +30,9 @@ public class TransformWeaponAction {
 
 					ItemStack mainHand = playerIn.getMainHandItem();
 
-					if(mainHand.getItem() instanceof TrickWeapon) {
+					if(mainHand.getItem() instanceof ITransformableItem) {
 
-						((TrickWeapon)mainHand.getItem()).transform(playerIn, playerIn.level());
+						((ITransformableItem)mainHand.getItem()).transform(playerIn, playerIn.level());
 						//((TrickWeapon)mainHand.getItem()).doLeftClickAction(playerIn, mainHand);
 
 					}

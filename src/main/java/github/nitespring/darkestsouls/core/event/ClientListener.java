@@ -109,6 +109,7 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CURVED_GREATSWORD.get(), CurvedGreatswordRenderer::new);
 		 event.registerEntityRenderer(EntityInit.SHOTEL.get(), ShotelRenderer::new);
 		 event.registerEntityRenderer(EntityInit.BANDIT_KNIFE.get(), BanditKnifeRenderer::new);
+		 event.registerEntityRenderer(EntityInit.GREATSWORD.get(), GreatswordRenderer::new);
 
 
 
