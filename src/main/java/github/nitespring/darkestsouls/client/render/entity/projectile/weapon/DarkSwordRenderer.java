@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-public class GraveScytheRenderer<T extends WeaponAttackEntity> extends EntityRenderer<T>{
+public class DarkSwordRenderer<T extends WeaponAttackEntity> extends EntityRenderer<T>{
 
 	public static final ResourceLocation TEXTURE_LOCATION_0 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/frayed_blade/frayed_blade0.png");
 	public static final ResourceLocation TEXTURE_LOCATION_1 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/grave_scythe/grave_scythe_0.png");
@@ -31,7 +31,7 @@ public class GraveScytheRenderer<T extends WeaponAttackEntity> extends EntityRen
 	//EvokerFangsRenderer
 
 
-	public GraveScytheRenderer(Context context) {
+	public DarkSwordRenderer(Context context) {
 		super(context);
 		this.model = new SquareTextureEntityModel<>(context.bakeLayer(ClientListener.SQUARE_TEXTURE));
 		
@@ -73,8 +73,8 @@ public class GraveScytheRenderer<T extends WeaponAttackEntity> extends EntityRen
 	      stack.mulPose(Axis.XP.rotationDegrees(-80));
 
 
-		  stack.translate(0, -6.5, -0.5);
-	      stack.scale(3.75f, 3.75f, 3.75f);
+		  stack.translate(0, -3.75, -0.75);
+	      stack.scale(2.25f, 2.25f, 2.25f);
 	      vertexconsumer = p_114532_.getBuffer(RenderType.entityTranslucentEmissive(getTextureLocation(entity)));
 
 	         

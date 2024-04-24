@@ -29,6 +29,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.BANDIT_KNIFE.get());
                         output.accept(ItemInit.LONGSWORD.get());
+                        output.accept(ItemInit.DARKSWORD.get());
                         output.accept(ItemInit.SCIMITAR.get());
                         output.accept(ItemInit.FALCHION.get());
                         output.accept(ItemInit.BANDIT_CURVED_SWORD.get());

@@ -251,6 +251,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(2.5f, 2.0f)
 					.build("greatsword"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> DARKSWORD = ENTITIES.register("darksword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.25f)
+					.build("darksword"));
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)
