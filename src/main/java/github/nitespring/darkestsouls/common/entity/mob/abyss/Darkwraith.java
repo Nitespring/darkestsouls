@@ -8,8 +8,10 @@ import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
+    protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     public Darkwraith(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
@@ -31,8 +33,7 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return null;
+        return this.factory;
     }
 
-    public ItemStack getRightHandItem(){return null;}
 }
