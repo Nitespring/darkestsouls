@@ -286,5 +286,17 @@ public class EntityAttributes {
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
 				.add(Attributes.FOLLOW_RANGE, 20);
 	}
+	public static  AttributeSupplier.Builder setDarkwraithAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 80.0D)
+				.add(Attributes.ARMOR, 5.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 3.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D)
+				.add(Attributes.ATTACK_DAMAGE, 6.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.6D)
+				.add(Attributes.FOLLOW_RANGE, 20);
+	}
 
 }

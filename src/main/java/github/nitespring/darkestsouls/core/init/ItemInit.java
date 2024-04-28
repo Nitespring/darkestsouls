@@ -221,7 +221,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 4475990, 16736256, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_CRUCIFIX = ITEMS.register("church_doctor_crucifix_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 4475990, 2097152, new Item.Properties()));
-
+	public static final RegistryObject<Item> DARKWRAITH = ITEMS.register("darkwraith_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.DARKWRAITH, 987415, 6750208, new Item.Properties()));
 
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",

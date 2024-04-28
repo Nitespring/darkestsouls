@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.core.init;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.entity.mob.abyss.Darkwraith;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.Leech;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
@@ -128,6 +129,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<ChurchDoctorCrucifix>of(ChurchDoctorCrucifix::new, MobCategory.MONSTER)
 					.sized(0.65f, 2.0f)
 					.build("church_doctor_crucifix"));
+	public static final RegistryObject<EntityType<Darkwraith>> DARKWRAITH = ENTITIES.register("darkwraith",
+			() -> EntityType.Builder.<Darkwraith>of(Darkwraith::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("darkwraith"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",

@@ -179,6 +179,7 @@
   "item.darkestsouls.leech_spawn_egg" : "Leech Spawn Egg",
   "item.darkestsouls.sewer_centipede_spawn_egg" : "Sewer Centipede Spawn Egg",
   "item.darkestsouls.sin_spawn_egg" : "Monstruosity of Sin Spawn Egg",
+  "item.darkestsouls.darkwraith_spawn_egg" : "Darkwraith Spawn Egg",
 
   "entity.darkestsouls.hollow_broken_straightsword" : "Mad Hollow",
   "entity.darkestsouls.gravetender_hollow_broken_straightsword" : "Gravetender Hollow",
@@ -203,6 +204,7 @@
   "entity.darkestsouls.leech" : "Leech",
   "entity.darkestsouls.sewer_centipede" : "Sewer Centipede",
   "entity.darkestsouls.monstruosity_of_sin" : "Monstruosity of Sin",
+  "entity.darkestsouls.darkwraith" : "Darkwraith",
 
   "block.darkestsouls.cinnabar_ore" : "Cinnabar Ore",
   "block.darkestsouls.deepslate_cinnabar_ore" : "Deepslate Cinnabar Ore",

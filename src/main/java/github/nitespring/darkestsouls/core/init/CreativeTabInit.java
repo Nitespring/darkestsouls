@@ -200,6 +200,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BEAST_PATIENT.get());
                         output.accept(ItemInit.CLOAKED_BEAST_PATIENT.get());
                         output.accept(ItemInit.ASHEN_BLOOD_BEAST_PATIENT.get());
+                        output.accept(ItemInit.DARKWRAITH.get());
                         output.accept(ItemInit.LEECH.get());
                         output.accept(ItemInit.SEWER_CENTIPEDE.get());
                         output.accept(ItemInit.SIN.get());

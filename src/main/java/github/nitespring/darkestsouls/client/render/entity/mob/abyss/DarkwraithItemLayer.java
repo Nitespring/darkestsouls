@@ -24,7 +24,7 @@ public class DarkwraithItemLayer<T extends Darkwraith & GeoEntity> extends Block
 
 	@Override
 	protected ItemStack getStackForBone(GeoBone bone, T animatable) {
-		 if (bone.getName().equals("itemRight")) {
+		 if (bone.getName().equals("right_item")) {
 				 return ItemInit.DARKSWORD.get().getDefaultInstance();
 		 }else{
 				 return null;
@@ -33,7 +33,7 @@ public class DarkwraithItemLayer<T extends Darkwraith & GeoEntity> extends Block
 	
 	@Override
 	protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, T animatable) {
-		if (bone.getName().equals("itemRight")) {
+		if (bone.getName().equals("right_item")) {
 			  return ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
 		  }else{
 			return null;
@@ -48,13 +48,13 @@ public class DarkwraithItemLayer<T extends Darkwraith & GeoEntity> extends Block
 protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, T animatable,
 		MultiBufferSource bufferSource, float partialTick, int packedLight, int packedOverlay) {
 		poseStack.pushPose();
-	if (bone.getName().equals("itemRight")) {
+	if (bone.getName().equals("right_item")) {
 
-		poseStack.translate(0, -0.12, 0);
+		poseStack.translate(0, -0.06, -0.1);
 		poseStack.mulPose(Axis.XP.rotationDegrees(-90));
 		poseStack.mulPose(Axis.YP.rotationDegrees(0));
 		poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-		poseStack.scale(1.0f,1.0f,1.0f);
+		poseStack.scale(0.8f,0.8f,0.8f);
 
 	}
 	super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick, packedLight, packedOverlay);

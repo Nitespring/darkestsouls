@@ -25,7 +25,7 @@ public class DarkwraithGeoRenderer<T extends Darkwraith & GeoEntity> extends Geo
 
 	public DarkwraithGeoRenderer(EntityRendererProvider.Context renderManager)
     {
-        super(renderManager, new HollowModel());
+        super(renderManager, new DarkwraithModel<T>());
         this.addRenderLayer(new DarkwraithItemLayer<T>(this));
 		this.addRenderLayer(new DarkwraithEmissiveLayer<T>(this));
         this.shadowRadius = 0.5F;
@@ -55,7 +55,7 @@ public class DarkwraithGeoRenderer<T extends Darkwraith & GeoEntity> extends Geo
 	 @Override
 	public void render(T entity, float entityYaw, float partialTick, PoseStack poseStack,
 			MultiBufferSource bufferSource, int packedLight) {
-		 float scaleFactor = 1.0f;
+		 float scaleFactor = 1.08f;
 		 poseStack.pushPose();
 		 poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
 
