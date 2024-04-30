@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.mob.abyss;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
+import github.nitespring.darkestsouls.common.entity.mob.hollow.HollowAssassin;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -8,16 +9,22 @@ import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Random;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -28,7 +35,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.Random;
+import java.util.EnumSet;
 
 public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -85,6 +92,12 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
             switch(animState) {
                 case 1:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.darkwraith.stun"));
+                    break;
+                case 11:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.darkwraith.shield.arm"));
+                    break;
+                case 12:
+                    event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.darkwraith.shield.unarm"));
                     break;
                 case 21:
                     event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.darkwraith.attack1"));
@@ -170,6 +183,23 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
         }
         return PlayState.CONTINUE;
     }
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new BreakDoorGoal(this, (p_34082_) -> {
+            return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
+        }));
+        this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
+
+        this.goalSelector.addGoal(2, new Darkwraith.AttackGoal(this));
+        this.goalSelector.addGoal(2, new Darkwraith.AttackGoalRunning(this));
+
+
+        this.goalSelector.addGoal(4, new RandomSwimmingGoal(this,0.2f,1));
+        super.registerGoals();
+
+    }
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource p_21239_) {
@@ -219,41 +249,109 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
         this.getNavigation().stop();
         switch(this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if(getAnimationTick()>=55) {
-                    this.getNavigation().stop();
                     setAnimationTick(0);
                     this.resetPoiseHealth();
                     setAnimationState(0);
                 }
                 break;
+            case 11:
+                this.getNavigation().stop();
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                    setEntityState(1);
+                }
+                break;
+            case 12:
+                this.getNavigation().stop();
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                    setEntityState(0);
+                }
+                break;
             //Attack
             case 21:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
                 if(getAnimationTick()==6) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(getAnimationTick()==8) {
+                if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
                             this.position().add((1.0f)*this.getLookAngle().x,
                                     0.25,
                                     (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.9f, 5);
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
-                    h.setHitboxType(4);
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=14&&flag) {
-                    int r = this.getRandom().nextInt(2048);
-                    if (r <= 480) {
-                        setAnimationTick(0);
-                        setAnimationState(20);
-                    }else if (r <= 720) {
-                        setAnimationTick(0);
-                        setAnimationState(27);
-                    }
+                if(getAnimationTick()>=16&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(22);
                 }
-                if(getAnimationTick()>=16) {
+                if(getAnimationTick()>=18) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 22:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(23);
+                }
+                if(getAnimationTick()>=18) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 23:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.0f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.0f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=18) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -269,4 +367,423 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
             this.getNavigation().moveTo(path, speedModifier);
         }
     }
+
+    protected void checkForAttack(double distance, double reach, Darkwraith mob, int ticksUntilNextAttack){
+        if (distance <= reach && ticksUntilNextAttack <= 0) {
+            int r = new Random().nextInt(1024);
+            if(r<=360) {
+                mob.setAnimationState(21);
+            }else if(r<=520){
+                mob.setAnimationState(22);
+            }else{
+                mob.setAnimationState(23);
+            }
+        }
+            /*if (distance <= reach*4 && ticksUntilNextAttack <= 0) {
+                int r = new Random().nextInt(2048);
+                if(r<=36) {
+                    mob.setAnimationState(21);
+                }else if(r<=84){
+                    mob.setAnimationState(22);
+                }
+                else if(r<=132){
+                    mob.setAnimationState(23);
+                }
+            }*/
+    }
+
+    protected void updateShieldState(){
+        if(this.getEntityState()==0) {
+            this.setAnimationState(11);
+        }else{
+            this.setAnimationState(12);
+        }
+    }
+
+
+    @Override
+    public boolean isBlocking() {
+        return this.getEntityState()!=0&&this.getAnimationState()==0;
+    }
+
+    public class AttackGoal extends Goal {
+
+
+        private final double speedModifier = 1.0f;
+        private final boolean followingTargetEvenIfNotSeen = true;
+        protected final Darkwraith mob;
+        private Path path;
+        private double pathedTargetX;
+        private double pathedTargetY;
+        private double pathedTargetZ;
+        private int ticksUntilNextPathRecalculation;
+        private int ticksUntilNextAttack;
+        private int ticksUntilShieldUpdateCheck;
+        private long lastCanUseCheck;
+        private int failedPathFindingPenalty = 0;
+        private boolean canPenalize = false;
+        private int lastCanUpdateStateCheck;
+
+
+
+
+        public AttackGoal(Darkwraith entityIn) {
+            this.mob = entityIn;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+
+        @Override
+        public boolean canUse() {
+            if(this.mob.getAnimationState()==0&&this.mob.getCombatState()!=1) {
+                long i = this.mob.level().getGameTime();
+                if (i - this.lastCanUseCheck < 20L) {
+                    return false;
+                } else {
+                    this.lastCanUseCheck = i;
+                    LivingEntity livingentity = this.mob.getTarget();
+                    if (livingentity == null) {
+                        return false;
+                    } else if (!livingentity.isAlive()) {
+                        return false;
+                    } else {
+                        if (canPenalize) {
+                            if (--this.ticksUntilNextPathRecalculation <= 0) {
+                                this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                                this.ticksUntilNextPathRecalculation = 4 + this.mob.getRandom().nextInt(7);
+                                return this.path != null;
+                            } else {
+                                return true;
+                            }
+                        }
+                        this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                        if (this.path != null) {
+                            return true;
+                        } else {
+                            return this.getAttackReachSqr(livingentity) >= this.mob.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
+                        }
+                    }
+                }
+            }else{
+                return false;
+            }
+        }
+
+
+        @Override
+        public boolean canContinueToUse() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if(this.mob.getAnimationState()!=0||this.mob.getCombatState()==1) {
+                return false;
+            }else if (livingentity == null) {
+                return false;
+            } else if (!livingentity.isAlive()) {
+                return false;
+            } else if (!this.followingTargetEvenIfNotSeen) {
+                return !this.mob.getNavigation().isDone();
+            } else if (!this.mob.isWithinRestriction(livingentity.blockPosition())) {
+                return false;
+            } else {
+                return !(livingentity instanceof Player) || !livingentity.isSpectator() && !((Player)livingentity).isCreative();
+            }
+        }
+        @Override
+        public void start() {
+            this.mob.getNavigation().moveTo(this.path, this.speedModifier);
+            this.mob.setAggressive(true);
+            this.ticksUntilNextPathRecalculation = 0;
+            this.ticksUntilNextAttack = 5;
+            this.ticksUntilShieldUpdateCheck = 20;
+            this.lastCanUpdateStateCheck = 150;
+            int r = this.mob.getRandom().nextInt(2048);
+            if(r<=1040) {
+                this.mob.setCombatState(1);
+                this.stop();
+            }
+            this.mob.setAnimationState(0);
+            int r1 = this.mob.getRandom().nextInt(2048);
+            if(r1<=640) {
+                this.mob.updateShieldState();
+            }
+        }
+        @Override
+        public void stop() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+                this.mob.setTarget((LivingEntity)null);
+            }
+            this.mob.getNavigation().stop();
+        }
+
+
+        @Override
+        public void tick() {
+            LivingEntity target = this.mob.getTarget();
+            double distance = this.mob.distanceToSqr(target.getX(), target.getY(), target.getZ());
+            double reach = this.getAttackReachSqr(target);
+
+            this.doMovement(target, reach);
+            this.mob.checkForAttack(distance, reach, this.mob, this.ticksUntilNextAttack);
+
+            this.lastCanUpdateStateCheck = Math.max(this.lastCanUpdateStateCheck-1, 0);
+            if(this.lastCanUpdateStateCheck<=0){
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=450) {
+                    this.mob.setCombatState(1);
+                    this.stop();
+                }
+                this.lastCanUpdateStateCheck=200;
+            }
+            this.ticksUntilShieldUpdateCheck = Math.max(this.ticksUntilShieldUpdateCheck-1, 0);
+            if(this.ticksUntilShieldUpdateCheck<=0){
+                int r = new Random().nextInt(2048);
+                if(r<=60) {
+                    this.mob.updateShieldState();
+                }
+                this.ticksUntilShieldUpdateCheck=200;
+            }
+
+            this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
+
+
+        }
+        @SuppressWarnings("unused")
+        private void checkForPreciseAttack() {
+            if (this.ticksUntilNextAttack <= 0) {
+
+                this.mob.setAnimationState(42);
+            }
+
+        }
+        @SuppressWarnings("unused")
+        protected void doMovement(LivingEntity livingentity, Double d0) {
+            this.mob.getLookControl().setLookAt(this.mob.getTarget(), 30.0F, 30.0F);
+            this.ticksUntilNextPathRecalculation = Math.max(this.ticksUntilNextPathRecalculation - 1, 0);
+            if ((this.followingTargetEvenIfNotSeen || this.mob.getSensing().hasLineOfSight(livingentity)) && this.ticksUntilNextPathRecalculation <= 0 && (this.pathedTargetX == 0.0D && this.pathedTargetY == 0.0D && this.pathedTargetZ == 0.0D || livingentity.distanceToSqr(this.pathedTargetX, this.pathedTargetY, this.pathedTargetZ) >= 1.0D || this.mob.getRandom().nextFloat() < 0.05F)) {
+                this.pathedTargetX = livingentity.getX();
+                this.pathedTargetY = livingentity.getY();
+                this.pathedTargetZ = livingentity.getZ();
+                this.ticksUntilNextPathRecalculation = 4 + this.mob.getRandom().nextInt(7);
+                if (this.canPenalize) {
+                    this.ticksUntilNextPathRecalculation += failedPathFindingPenalty;
+                    if (this.mob.getNavigation().getPath() != null) {
+                        net.minecraft.world.level.pathfinder.Node finalPathPoint = this.mob.getNavigation().getPath().getEndNode();
+                        if (finalPathPoint != null && livingentity.distanceToSqr(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
+                            failedPathFindingPenalty = 0;
+                        else
+                            failedPathFindingPenalty += 10;
+                    } else {
+                        failedPathFindingPenalty += 10;
+                    }
+                }
+                if (d0 > 1024.0D) {
+                    this.ticksUntilNextPathRecalculation += 10;
+                } else if (d0 > 256.0D) {
+                    this.ticksUntilNextPathRecalculation += 5;
+                }
+
+                if (!this.mob.getNavigation().moveTo(livingentity, this.speedModifier)) {
+                    this.ticksUntilNextPathRecalculation += 15;
+                }
+            }
+
+        }
+
+        protected void resetAttackCooldown() {
+            this.ticksUntilNextAttack = 20;
+        }
+
+
+        protected double getAttackReachSqr(LivingEntity p_179512_1_) {
+            return (double)(this.mob.getBbWidth() * 16.0F * this.mob.getBbWidth());
+        }
+
+    }
+
+    public class AttackGoalRunning extends Goal {
+
+
+        private final double speedModifier = 2.0f;
+        private final boolean followingTargetEvenIfNotSeen = true;
+        protected final Darkwraith mob;
+        private Path path;
+        private double pathedTargetX;
+        private double pathedTargetY;
+        private double pathedTargetZ;
+        private int ticksUntilNextPathRecalculation;
+        private int ticksUntilNextAttack;
+        private int ticksUntilShieldUpdateCheck;
+        private long lastCanUseCheck;
+        private int failedPathFindingPenalty = 0;
+        private boolean canPenalize = false;
+
+        private int lastCanUpdateStateCheck;
+
+
+
+
+        public AttackGoalRunning(Darkwraith entityIn) {
+            this.mob = entityIn;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+
+        @Override
+        public boolean canUse() {
+            if(this.mob.getAnimationState()==0&&this.mob.getCombatState()==1) {
+                long i = this.mob.level().getGameTime();
+                if (i - this.lastCanUseCheck < 20L) {
+                    return false;
+                } else {
+                    this.lastCanUseCheck = i;
+                    LivingEntity livingentity = this.mob.getTarget();
+                    if (livingentity == null) {
+                        return false;
+                    } else if (!livingentity.isAlive()) {
+                        return false;
+                    } else {
+                        if (canPenalize) {
+                            if (--this.ticksUntilNextPathRecalculation <= 0) {
+                                this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                                this.ticksUntilNextPathRecalculation = 4 + this.mob.getRandom().nextInt(7);
+                                return this.path != null;
+                            } else {
+                                return true;
+                            }
+                        }
+                        this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                        if (this.path != null) {
+                            return true;
+                        } else {
+                            return this.getAttackReachSqr(livingentity) >= this.mob.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
+                        }
+                    }
+                }
+            }else{
+                return false;
+            }
+        }
+        @Override
+        public boolean canContinueToUse() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if(this.mob.getAnimationState()!=0||this.mob.getCombatState()!=1) {
+                return false;
+            }else if (livingentity == null) {
+                return false;
+            } else if (!livingentity.isAlive()) {
+                return false;
+            } else if (!this.followingTargetEvenIfNotSeen) {
+                return !this.mob.getNavigation().isDone();
+            } else if (!this.mob.isWithinRestriction(livingentity.blockPosition())) {
+                return false;
+            } else {
+                return !(livingentity instanceof Player) || !livingentity.isSpectator() && !((Player)livingentity).isCreative();
+            }
+        }
+        @Override
+        public void start() {
+            this.mob.getNavigation().moveTo(this.path, this.speedModifier);
+            this.mob.setAggressive(true);
+            this.ticksUntilNextPathRecalculation = 0;
+            this.ticksUntilNextAttack = 5;
+            this.ticksUntilShieldUpdateCheck = 20;
+            this.lastCanUpdateStateCheck = 666;
+            this.mob.setAnimationState(0);
+            int r1 = this.mob.getRandom().nextInt(2048);
+            if(r1<=640) {
+                this.mob.updateShieldState();
+            }
+        }
+        @Override
+        public void stop() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+                this.mob.setTarget((LivingEntity)null);
+            }
+            int r = this.mob.getRandom().nextInt(2048);
+            if(r<=650 || livingentity==null || !livingentity.isAlive() || livingentity.isSpectator()
+                    || (livingentity instanceof Player && ((Player)livingentity).isCreative())) {
+
+                this.mob.setCombatState(0);
+
+            }
+            this.mob.getNavigation().stop();
+        }
+        @Override
+        public void tick() {
+            LivingEntity target = this.mob.getTarget();
+            double distance = this.mob.distanceToSqr(target.getX(), target.getY(), target.getZ());
+            double reach = this.getAttackReachSqr(target);
+
+            this.doMovement(target, reach);
+            this.mob.checkForAttack(distance, reach, this.mob, ticksUntilNextAttack);
+
+
+            this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
+            this.lastCanUpdateStateCheck = Math.max(this.lastCanUpdateStateCheck-1, 0);
+            if(this.lastCanUpdateStateCheck<=0){
+                int r = this.mob.getRandom().nextInt(2048);
+                if(r<=480) {
+                    this.mob.setCombatState(0);
+                    this.stop();
+                }
+                this.lastCanUpdateStateCheck=200;
+            }
+            this.ticksUntilShieldUpdateCheck = Math.max(this.ticksUntilShieldUpdateCheck-1, 0);
+            if(this.ticksUntilShieldUpdateCheck<=0){
+                int r = new Random().nextInt(2048);
+                if(r<=60) {
+                    this.mob.updateShieldState();
+                }
+                this.ticksUntilShieldUpdateCheck=200;
+            }
+        }
+        @SuppressWarnings("unused")
+        private void checkForPreciseAttack() {
+            if (this.ticksUntilNextAttack <= 0) {
+
+                this.mob.setAnimationState(42);
+            }
+        }
+        @SuppressWarnings("unused")
+        protected void doMovement(LivingEntity livingentity, Double d0) {
+            this.mob.getLookControl().setLookAt(this.mob.getTarget(), 30.0F, 30.0F);
+            this.ticksUntilNextPathRecalculation = Math.max(this.ticksUntilNextPathRecalculation - 1, 0);
+            if ((this.followingTargetEvenIfNotSeen || this.mob.getSensing().hasLineOfSight(livingentity)) && this.ticksUntilNextPathRecalculation <= 0 && (this.pathedTargetX == 0.0D && this.pathedTargetY == 0.0D && this.pathedTargetZ == 0.0D || livingentity.distanceToSqr(this.pathedTargetX, this.pathedTargetY, this.pathedTargetZ) >= 1.0D || this.mob.getRandom().nextFloat() < 0.05F)) {
+                this.pathedTargetX = livingentity.getX();
+                this.pathedTargetY = livingentity.getY();
+                this.pathedTargetZ = livingentity.getZ();
+                this.ticksUntilNextPathRecalculation = 4 + this.mob.getRandom().nextInt(7);
+                if (this.canPenalize) {
+                    this.ticksUntilNextPathRecalculation += failedPathFindingPenalty;
+                    if (this.mob.getNavigation().getPath() != null) {
+                        net.minecraft.world.level.pathfinder.Node finalPathPoint = this.mob.getNavigation().getPath().getEndNode();
+                        if (finalPathPoint != null && livingentity.distanceToSqr(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
+                            failedPathFindingPenalty = 0;
+                        else
+                            failedPathFindingPenalty += 10;
+                    } else {
+                        failedPathFindingPenalty += 10;
+                    }
+                }
+                if (d0 > 1024.0D) {
+                    this.ticksUntilNextPathRecalculation += 10;
+                } else if (d0 > 256.0D) {
+                    this.ticksUntilNextPathRecalculation += 5;
+                }
+
+                if (!this.mob.getNavigation().moveTo(livingentity, this.speedModifier)) {
+                    this.ticksUntilNextPathRecalculation += 15;
+                }
+            }
+        }
+        protected void resetAttackCooldown() {
+            this.ticksUntilNextAttack = 20;
+        }
+        protected double getAttackReachSqr(LivingEntity p_179512_1_) {
+            return (double)(this.mob.getBbWidth() * 16.0F * this.mob.getBbWidth());
+        }
+    }
 }
+
+

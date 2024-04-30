@@ -289,36 +289,39 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	@Override
 	public boolean hurt(DamageSource source, float f) {
 		Entity e = source.getEntity();
-		if (f > 0 && (e != null && !(e instanceof DarkestSoulsAbstractEntity && ((DarkestSoulsAbstractEntity) e).getOwner() == this))) {
-			if (hitStunTicks <= 0) {
-				hitStunTicks = 5;
-			}
-			if(this.getAnimationState()==this.getStunAnimation()){
-				this.playSound(SoundEvents.BLAZE_HURT, 0.4f, 1.0f);
-			}
-
-			/*
-			if(!source.is(DamageTypes.PLAYER_ATTACK)&&!(source.getEntity()!=null && source.getEntity() instanceof Player)) {
-				float poiseDmgMod = 1;
-
-				if (source.is(DamageTypes.ARROW) || source.is(DamageTypes.MAGIC)) {
-					poiseDmgMod = poiseDmgMod / 2;
+		if(!(this.isBlocking()&&this.isDamageSourceBlocked(source))) {
+			if (f > 0 && (e != null && !(e instanceof DarkestSoulsAbstractEntity && ((DarkestSoulsAbstractEntity) e).getOwner() == this))) {
+				if (hitStunTicks <= 0) {
+					hitStunTicks = 5;
+				}
+				if(this.getAnimationState()==this.getStunAnimation()){
+					this.playSound(SoundEvents.BLAZE_HURT, 0.4f, 1.0f);
 				}
 
-				if (source.is(DamageTypes.EXPLOSION)) {
-					poiseDmgMod = poiseDmgMod * 2;
+				/*
+				if(!source.is(DamageTypes.PLAYER_ATTACK)&&!(source.getEntity()!=null && source.getEntity() instanceof Player)) {
+					float poiseDmgMod = 1;
+
+					if (source.is(DamageTypes.ARROW) || source.is(DamageTypes.MAGIC)) {
+						poiseDmgMod = poiseDmgMod / 2;
+					}
+
+					if (source.is(DamageTypes.EXPLOSION)) {
+						poiseDmgMod = poiseDmgMod * 2;
+					}
+
+					if (source.is(DamageTypes.DRY_OUT) || source.is(DamageTypes.DRY_OUT)) {
+						poiseDmgMod = 0;
+					}
+
+					int finalPoiseDmg = (int) (f * poiseDmgMod);
+
+					this.damagePoiseHealth(finalPoiseDmg);
 				}
+				*/
 
-				if (source.is(DamageTypes.DRY_OUT) || source.is(DamageTypes.DRY_OUT)) {
-					poiseDmgMod = 0;
-				}
-
-				int finalPoiseDmg = (int) (f * poiseDmgMod);
-
-				this.damagePoiseHealth(finalPoiseDmg);
+				this.spawnBloodParticles(source, f);
 			}
-			*/
-			this.spawnBloodParticles(source, f);
 
 
 		}
