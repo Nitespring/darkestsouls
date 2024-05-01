@@ -11,20 +11,19 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Random;
+import org.joml.Vector3f;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -185,12 +184,12 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
     }
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
+        //this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(0, new BreakDoorGoal(this, (p_34082_) -> {
             return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
         }));
         this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
+        //this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
 
         this.goalSelector.addGoal(2, new Darkwraith.AttackGoal(this));
         this.goalSelector.addGoal(2, new Darkwraith.AttackGoalRunning(this));
@@ -245,10 +244,12 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
         this.increaseAnimationTick(1);
         Level levelIn = this.level();
         Vec3 pos = this.position();
+        Vec3 aim = this.getLookAngle();
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=2;
         this.getNavigation().stop();
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 this.getNavigation().stop();
                 if(getAnimationTick()>=55) {
                     setAnimationTick(0);
@@ -285,19 +286,25 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((1.2f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
+                                    (1.2f)*this.getLookAngle().z),
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=16&&flag) {
-                    setAnimationTick(0);
-                    setAnimationState(22);
+                if(getAnimationTick()>=18&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=360) {
+                        setAnimationTick(0);
+                        setAnimationState(28);
+                    }else if (r<=540) {
+                        setAnimationTick(0);
+                        setAnimationState(22);
+                    }
                 }
-                if(getAnimationTick()>=18) {
+                if(getAnimationTick()>=20) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -311,22 +318,22 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                 if(getAnimationTick()==6) {
                     this.playSound(this.getAttackSound(), 0.2f,1.0f);
                 }
-                if(getAnimationTick()==14) {
+                if(getAnimationTick()==12) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((1.2f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
+                                    (1.2f)*this.getLookAngle().z),
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=16&&flag) {
+                if(getAnimationTick()>=17&&flag) {
                     setAnimationTick(0);
                     setAnimationState(23);
                 }
-                if(getAnimationTick()>=18) {
+                if(getAnimationTick()>=19) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -343,15 +350,15 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((1.2f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.9f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=18) {
+                if(getAnimationTick()>=20) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -368,19 +375,19 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((1.2f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
+                                    (1.2f)*this.getLookAngle().z),
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=16&&flag) {
+                if(getAnimationTick()>=17&&flag) {
                     setAnimationTick(0);
                     setAnimationState(23);
                 }
-                if(getAnimationTick()>=18) {
+                if(getAnimationTick()>=19) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -397,15 +404,15 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((1.2f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
+                                    (1.2f)*this.getLookAngle().z),
                             (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
                 }
-                if(getAnimationTick()>=16&&flag) {
+                if(getAnimationTick()>=17&&flag) {
                     int r = new Random().nextInt(1024);
                     if(r<=360) {
                         setAnimationTick(0);
@@ -415,7 +422,7 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                         setAnimationState(23);
                     }
                 }
-                if(getAnimationTick()>=18) {
+                if(getAnimationTick()>=19) {
                     setAnimationTick(0);
                     setAnimationState(0);
                 }
@@ -432,10 +439,10 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                 if(getAnimationTick()==14) {
                     this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
                     DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
-                            this.position().add((1.0f)*this.getLookAngle().x,
+                            this.position().add((1.2f)*this.getLookAngle().x,
                                     0.25,
-                                    (1.0f)*this.getLookAngle().z),
-                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f, 5);
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.0f, 5);
                     h.setOwner(this);
                     h.setTarget(this.getTarget());
                     this.level().addFreshEntity(h);
@@ -455,6 +462,357 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
                     setAnimationState(0);
                 }
                 break;
+            case 27:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==17) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=21&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(29);
+                }
+                if(getAnimationTick()>=24) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 28:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(23);
+                }
+                if(getAnimationTick()>=18) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 29:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=16&&flag) {
+                    setAnimationTick(0);
+                    setAnimationState(23);
+                }
+                if(getAnimationTick()>=18) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 30:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==14) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.1f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=22) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 31:
+                if(getAnimationTick()<=4){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==16) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*1.2f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=24) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 32:
+                if(getAnimationTick()<=1){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==8) {
+                    //this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.4f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=14&&flag) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=120) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }else if (r<=240) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    }else if (r<=360) {
+                        setAnimationTick(0);
+                        setAnimationState(24);
+                    }else if (r<=480) {
+                        setAnimationTick(0);
+                        setAnimationState(27);
+                    }else if (r<=600) {
+                        setAnimationTick(0);
+                        setAnimationState(31);
+                    } else if (r<=720) {
+                        setAnimationTick(0);
+                        setAnimationState(33);
+                    }
+                }
+                if(getAnimationTick()>=16) {
+                    int r = new Random().nextInt(1024);
+                    if(r<=120) {
+                        setAnimationTick(0);
+                        setAnimationState(21);
+                    }else if (r<=240) {
+                        setAnimationTick(0);
+                        setAnimationState(23);
+                    }else if (r<=360) {
+                        setAnimationTick(0);
+                        setAnimationState(24);
+                    }else if (r<=480) {
+                        setAnimationTick(0);
+                        setAnimationState(27);
+                    }else if (r<=600) {
+                        setAnimationTick(0);
+                        setAnimationState(31);
+                    } else if (r<=720) {
+                        setAnimationTick(0);
+                        setAnimationState(33);
+                    }else {
+                        setAnimationTick(0);
+                        setAnimationState(0);
+                    }
+                }
+                break;
+            case 33:
+                if(getAnimationTick()==1) {
+                    this.setDeltaMovement(0,1.0,0);
+                    if(this.getTarget()==null) {
+                        aimVec = this.getLookAngle().normalize();
+                    }else{
+                        aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
+                    }
+                }
+                if(getAnimationTick()==2) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if(this.aimVec!=null) {
+                        this.setDeltaMovement(this.aimVec.normalize().add(0,0.05f,0).scale(0.5));
+                    }else {
+                        this.setDeltaMovement(this.getLookAngle().normalize().add(0,0.05f,0).scale(0.5));
+                    }
+                }
+                if(getAnimationTick()==12) {
+                    this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)+2.0f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>18) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 34:
+                if(getAnimationTick()<=1){
+                    this.moveToTarget(0.8f);
+                }else{
+                    this.getNavigation().stop();
+                }
+                if(getAnimationTick()==6) {
+                    if(this.getTarget()==null) {
+                        aimVec = this.getLookAngle().normalize();
+                    }else{
+                        aimVec = this.getTarget().position().add(pos.scale(-1)).normalize();
+                    }
+                }
+                if(getAnimationTick()==16) {
+                    this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                }
+                if(getAnimationTick()==18) {
+                    //this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    DamageHitboxEntity h = new DamageHitboxEntity(EntityInit.HITBOX.get(), level(),
+                            this.position().add((1.2f)*this.getLookAngle().x,
+                                    0.25,
+                                    (1.2f)*this.getLookAngle().z),
+                            (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.4f, 5);
+                    h.setOwner(this);
+                    h.setTarget(this.getTarget());
+                    this.level().addFreshEntity(h);
+                }
+                if(getAnimationTick()>=18&&getAnimationTick()<=22) {
+                    for (LivingEntity localTarget : this.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos.x(), pos.y() - 0.5f, pos.z(), pos.x() + aim.x() * 2.5f, pos.y() + 2.5f, pos.z() + aim.z() * 2.5f))) {
+                        if ((this.getTarget() != null) && (localTarget == this.getTarget())) {
+                            localTarget.startRiding(this);
+                            this.setTarget(localTarget);
+                            setAnimationTick(0);
+                            setAnimationState(35);
+                        }
+                    }
+                }
+                if(getAnimationTick()>=30) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+            case 35:
+                this.getNavigation().stop();
+                if(this.getTarget()!=null&&!this.getTarget().isDeadOrDying()){
+                    this.getTarget().startRiding(this);
+                }
+                if(getAnimationTick()%10==0) {
+                    //this.hurtTime = 22;
+                    //this.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
+                    if(this.getFirstPassenger()!=null){
+                        this.getFirstPassenger().hurt(this.level().damageSources().magic(),(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.1f+1);
+                        if(this.getFirstPassenger() instanceof Player player){
+                            if(player.totalExperience>0) {
+                                player.giveExperiencePoints(-10);
+                            }
+                        }
+                    }
+                }
+                if(this.getTarget()!=null&&(this.getTarget().isDeadOrDying()||this.getTarget().distanceTo(this)>=4)){
+                    setAnimationTick(0);
+                    setAnimationState(36);
+                }
+                if(getAnimationTick()>=120) {
+                    setAnimationTick(0);
+                    setAnimationState(36);
+                }
+                break;
+            case 36:
+                this.getNavigation().stop();
+                /*if(this.getAnimationTick()<=8) {
+                    if (this.getTarget() != null&&!this.getTarget().isDeadOrDying()&&this.getTarget().distanceTo(this)<=4) {
+                        this.getTarget().startRiding(this);
+                    }
+                }else{*/
+                if(this.getAnimationTick()==8) {
+                    if (this.getFirstPassenger() != null) {
+                        Entity e = this.getFirstPassenger();
+                        //this.getFirstPassenger().hurt(this.level().damageSources().magic(),(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.2f);
+                        this.getFirstPassenger().stopRiding();
+                        if(e instanceof LivingEntity liv){
+                            if(this.aimVec!=null) {
+                                liv.knockback(5.6f,aimVec.x()+0.25f, aimVec.z()+0.25f);
+
+                            }else{
+                                liv.knockback(5.6f,aim.x()+0.25f, aim.z()+0.25f);
+                            }
+
+
+                        }
+
+                    }
+                }
+                //}
+                if(getAnimationTick()>=15) {
+                    setAnimationTick(0);
+                    setAnimationState(0);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public Vec3 getPassengerRidingPosition(Entity p_299288_) {
+        return super.getPassengerRidingPosition(p_299288_);
+    }
+
+    @Override
+    protected Vector3f getPassengerAttachmentPoint(Entity e, EntityDimensions dim, float f) {
+        if(this.aimVec!=null) {
+            return new Vector3f((float) (-aimVec.normalize().x()*0.6f), dim.height*0.5f, (float) (-aimVec.normalize().z()*0.6f));
+        }else {
+            return new Vector3f((float) (-this.getLookAngle().normalize().x()*0.6f), dim.height*0.5f, (float) (-this.getLookAngle().normalize().z()*0.6f));
         }
     }
 
@@ -469,26 +827,43 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
 
     protected void checkForAttack(double distance, double reach, Darkwraith mob, int ticksUntilNextAttack){
         if (distance <= reach && ticksUntilNextAttack <= 0) {
-            int r = new Random().nextInt(1024);
+            int r = new Random().nextInt(3600);
             if(r<=360) {
                 mob.setAnimationState(21);
             }else if(r<=520){
                 mob.setAnimationState(22);
-            }else{
+            }else if(r<=840){
                 mob.setAnimationState(23);
+            }else if(r<=1024){
+                mob.setAnimationState(24);
+            }else if(r<=1200){
+                mob.setAnimationState(25);
+            }else if(r<=1440){
+                mob.setAnimationState(26);
+            }else if(r<=1800){
+                mob.setAnimationState(27);
+            }else if(r<=2000){
+                mob.setAnimationState(28);
+            }else if(r<=2100){
+                mob.setAnimationState(29);
+            }else if(r<=2400){
+                mob.setAnimationState(30);
+            }else if(r<=2700){
+                mob.setAnimationState(31);
+            }else if(r<=3000){
+                mob.setAnimationState(32);
+            }else if(r<=3200){
+                mob.setAnimationState(33);
+            }else{
+                mob.setAnimationState(34);
             }
         }
-            /*if (distance <= reach*4 && ticksUntilNextAttack <= 0) {
-                int r = new Random().nextInt(2048);
-                if(r<=36) {
-                    mob.setAnimationState(21);
-                }else if(r<=84){
-                    mob.setAnimationState(22);
-                }
-                else if(r<=132){
-                    mob.setAnimationState(23);
-                }
-            }*/
+        if (distance <= reach*4 && ticksUntilNextAttack <= 0) {
+            int r = new Random().nextInt(2048);
+            if(r<=36) {
+                mob.setAnimationState(33);
+            }
+        }
     }
 
     protected void updateShieldState(){
@@ -601,8 +976,10 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
             }
             this.mob.setAnimationState(0);
             int r1 = this.mob.getRandom().nextInt(2048);
-            if(r1<=640) {
-                this.mob.updateShieldState();
+            if(r1<=360) {
+                if(this.mob.getEntityState()==0||r1<=120){
+                    this.mob.updateShieldState();
+                }
             }
         }
         @Override
@@ -789,8 +1166,10 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
             this.lastCanUpdateStateCheck = 666;
             this.mob.setAnimationState(0);
             int r1 = this.mob.getRandom().nextInt(2048);
-            if(r1<=640) {
-                this.mob.updateShieldState();
+            if(r1<=240) {
+                if(this.mob.getEntityState()==0||r1<=80){
+                    this.mob.updateShieldState();
+                }
             }
         }
         @Override

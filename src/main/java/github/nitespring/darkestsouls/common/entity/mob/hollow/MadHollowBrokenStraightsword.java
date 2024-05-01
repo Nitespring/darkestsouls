@@ -219,8 +219,9 @@ public class MadHollowBrokenStraightsword extends Hollow implements GeoEntity {
         this.increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
         this.getNavigation().stop();
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if(getAnimationTick()>=85) {
                     this.getNavigation().stop();
                     setAnimationTick(0);

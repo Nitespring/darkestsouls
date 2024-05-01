@@ -228,6 +228,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 
 		switch(this.getAnimationState()) {
 			case 1:
+				this.getNavigation().stop();
 				if(getAnimationTick()>=50) {
 					this.resetPoiseHealth();
 					this.getNavigation().stop();

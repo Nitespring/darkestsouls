@@ -6,6 +6,8 @@ public class CommonConfig {
 
 
 		public static ForgeConfigSpec.BooleanValue do_special_attacks;
+		public static ForgeConfigSpec.BooleanValue do_blood_particles;
+		public static ForgeConfigSpec.BooleanValue spawn_darkwraith;
 		public static ForgeConfigSpec.BooleanValue spawn_mad_hollow;
 		public static ForgeConfigSpec.BooleanValue spawn_gravetender_hollow;
 		public static ForgeConfigSpec.BooleanValue spawn_hollow_longsword;
@@ -37,6 +39,10 @@ public class CommonConfig {
 		do_special_attacks = server
 				.comment("Set to false to disable special attacks on common weapons")
 				.define("config.do_special_attacks", true);
+
+		do_blood_particles = server
+				.comment("Set to false to disable blood particles")
+				.define("config.do_blood_particles", true);
 
 		server.comment("Spawn configs:");
 
@@ -103,6 +109,9 @@ public class CommonConfig {
 		spawn_leech = server
 				.comment("Set to false to disable Leech")
 				.define("spawnconfig.spawn_leech", true);
+		spawn_darkwraith = server
+				.comment("Set to false to disable Darkwraith")
+				.define("spawnconfig.spawn_darkwraith", true);
 
 		}
 

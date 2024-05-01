@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import github.nitespring.darkestsouls.config.CommonConfig;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -45,6 +46,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeConfig;
 import org.joml.Vector3f;
 
 public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
@@ -319,8 +321,9 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 					this.damagePoiseHealth(finalPoiseDmg);
 				}
 				*/
-
-				this.spawnBloodParticles(source, f);
+				if(CommonConfig.do_blood_particles.get()) {
+					this.spawnBloodParticles(source, f);
+				}
 			}
 
 

@@ -150,8 +150,9 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
     protected void playAnimation() {
         increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
                     setAnimationTick(0);
