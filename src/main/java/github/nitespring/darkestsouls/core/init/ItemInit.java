@@ -426,8 +426,11 @@ public class ItemInit {
 			() -> new BlockItem(BlockInit.ENDER_CINNABAR_ORE.get(),new Item.Properties()));
 	public static final RegistryObject<BlockItem> ENDER_SIDERITE_ORE = ITEMS.register("ender_siderite_ore",
 			() -> new BlockItem(BlockInit.ENDER_SIDERITE_ORE.get(),new Item.Properties()));
-
 	public static final RegistryObject<BlockItem> BASALT_CINNABAR_ORE = ITEMS.register("basalt_cinnabar_ore",
 			() -> new BlockItem(BlockInit.BASALT_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS = ITEMS.register("siderite_bricks",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> CRACKED_SIDERITE_BRICKS = ITEMS.register("cracked_siderite_bricks",
+			() -> new BlockItem(BlockInit.CRACKED_SIDERITE_BRICKS.get(),new Item.Properties()));
 
 }

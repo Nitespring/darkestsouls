@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "darkestsouls:block/siderite_bricks1"
+      },
+      {
+        "model": "darkestsouls:block/siderite_bricks2"
+      }
+    ]
+  }
+}

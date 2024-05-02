@@ -1,0 +1,7 @@
+{
+  "parent": "darkestsouls:block/multilayer_cube_all_emissive3",
+  "textures": {
+    "layer0": "darkestsouls:block/siderite_bricks_background1",
+    "layer1": "darkestsouls:block/siderite_bricks_venature1"
+  }
+}

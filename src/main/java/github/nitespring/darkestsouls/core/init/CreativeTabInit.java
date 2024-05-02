@@ -222,6 +222,8 @@ public class CreativeTabInit {
                         output.accept(ItemInit.NETHER_SIDERITE_ORE.get());
                         output.accept(ItemInit.BLACKSTONE_SIDERITE_ORE.get());
                         output.accept(ItemInit.ENDER_SIDERITE_ORE.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS.get());
+                        output.accept(ItemInit.CRACKED_SIDERITE_BRICKS.get());
                     })
                     .build());
 
