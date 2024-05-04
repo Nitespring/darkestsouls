@@ -224,6 +224,9 @@ public class CreativeTabInit {
                         output.accept(ItemInit.ENDER_SIDERITE_ORE.get());
                         output.accept(ItemInit.SIDERITE_BRICKS.get());
                         output.accept(ItemInit.CRACKED_SIDERITE_BRICKS.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS_SLAB.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS_STAIRS.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS_WALL.get());
                     })
                     .build());
 

@@ -217,7 +217,11 @@
   "block.darkestsouls.blackstone_siderite_ore" : "Blackstone Siderite Ore",
   "block.darkestsouls.ender_siderite_ore" : "Ender Siderite Ore",
   "block.darkestsouls.basalt_cinnabar_ore" : "Basalt Cinnabar Ore",
-
+  "block.darkestsouls.siderite_bricks" : "Siderite Bricks",
+  "block.darkestsouls.cracked_siderite_bricks" : "Cracked Siderite Bricks",
+  "block.darkestsouls.siderite_brick_wall" : "Siderite Brick Wall",
+  "block.darkestsouls.siderite_brick_stairs" : "Siderite Brick Stairs",
+  "block.darkestsouls.siderite_brick_slab" : "Siderite Brick Slab",
 
   "effect.darkestsouls.chikage" : "Self Hurt",
   "effect.darkestsouls.hemorragie" : "Blood loss",
@@ -243,6 +247,7 @@
   "subtitles.darkestsouls.monstruosity_of_sin" : "Monstruosity",
   "subtitles.darkestsouls.hollow" : "Hollow",
   "subtitles.darkestsouls.sewer_centipede" : "Centipede",
+  "subtitles.darkestsouls.darkwraith" : "Darkwraith",
 
   "itemGroup.darkestsouls.materials" : "DS Materials",
   "itemGroup.darkestsouls.equipment" : "DS Equipment",

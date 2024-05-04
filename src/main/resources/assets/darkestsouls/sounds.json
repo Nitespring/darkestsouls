@@ -131,6 +131,31 @@
 			"darkestsouls:entity/sewer_centipede/step4"
 		],
 		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"entity.darkwraith_attack": {
+		"sounds": [
+			"darkestsouls:entity/darkwraith/darkwraith1",
+			"darkestsouls:entity/darkwraith/darkwraith3"
+		],
+		"subtitle": "subtitles.darkestsouls.darkwraith"
+	},
+	"entity.darkwraith_ambient": {
+		"sounds": [
+			"darkestsouls:entity/darkwraith/darkwraith4"
+		],
+		"subtitle": "subtitles.darkestsouls.darkwraith"
+	},
+	"entity.darkwraith_death": {
+		"sounds": [
+			"darkestsouls:entity/darkwraith/darkwraith2",
+			"darkestsouls:entity/darkwraith/darkwraith3"
+		],
+		"subtitle": "subtitles.darkestsouls.darkwraith"
+	},
+	"entity.darkwraith_hurt": {
+		"sounds": [
+			"darkestsouls:entity/darkwraith/darkwraith1"
+		],
+		"subtitle": "subtitles.darkestsouls.darkwraith"
 	}
-
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "darkestsouls:block/wall_side_emissive3",
+  "textures": {
+    "particle": "darkestsouls:block/siderite_bricks_background1",
+    "wall0": "darkestsouls:block/siderite_bricks_background1",
+    "wall1": "darkestsouls:block/siderite_bricks_venature1"
+  }
+}

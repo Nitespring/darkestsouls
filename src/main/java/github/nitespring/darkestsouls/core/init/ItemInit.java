@@ -21,6 +21,7 @@ import net.minecraft.world.item.Item;
 
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -432,5 +433,10 @@ public class ItemInit {
 			() -> new BlockItem(BlockInit.SIDERITE_BRICKS.get(),new Item.Properties()));
 	public static final RegistryObject<BlockItem> CRACKED_SIDERITE_BRICKS = ITEMS.register("cracked_siderite_bricks",
 			() -> new BlockItem(BlockInit.CRACKED_SIDERITE_BRICKS.get(),new Item.Properties()));
-
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS_SLAB = ITEMS.register("siderite_brick_slab",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS_SLAB.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS_STAIRS = ITEMS.register("siderite_brick_stairs",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS_STAIRS.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS_WALL = ITEMS.register("siderite_brick_wall",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS_WALL.get(),new Item.Properties()));
 }

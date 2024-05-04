@@ -39,6 +39,10 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> SEWER_CENTIPEDE_HURT = build("entity.sewer_centipede_hurt");
     public static final RegistryObject<SoundEvent> SEWER_CENTIPEDE_STEP = build("entity.sewer_centipede_step");
 
+    public static final RegistryObject<SoundEvent> DARKWRAITH_IDLE = build("entity.darkwraith_ambient");
+    public static final RegistryObject<SoundEvent> DARKWRAITH_ATTACK = build("entity.darkwraith_attack");
+    public static final RegistryObject<SoundEvent> DARKWRAITH_HURT = build("entity.darkwraith_hurt");
+    public static final RegistryObject<SoundEvent> DARKWRAITH_DEATH = build("entity.darkwraith_death");
 
     private static RegistryObject<SoundEvent> build(String id)
     {

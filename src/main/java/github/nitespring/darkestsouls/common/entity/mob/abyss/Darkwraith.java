@@ -6,6 +6,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Throwin
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.core.init.SoundInit;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -201,22 +202,24 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
     }
     @Nullable
     @Override
-    protected SoundEvent getHurtSound(DamageSource p_21239_) {
-        return SoundEvents.SKELETON_HURT;
-    }
+    protected SoundEvent getHurtSound(DamageSource p_21239_) {return SoundInit.DARKWRAITH_HURT.get();}
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.SKELETON_DEATH;
+        return SoundInit.DARKWRAITH_DEATH.get();
     }
     @Nullable
     @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.SKELETON_AMBIENT;
-    }
+    protected SoundEvent getAmbientSound() {return SoundInit.DARKWRAITH_IDLE.get();}
     protected SoundEvent getAttackSound() {
-        return SoundEvents.SKELETON_AMBIENT;
+        return SoundInit.DARKWRAITH_ATTACK.get();
     }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.2f;
+    }
+
     @Override
     public int getMaxPoise() {return 36;}
     @Override
