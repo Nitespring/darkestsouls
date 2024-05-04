@@ -21,6 +21,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Firebom
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.MolotovCocktailEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.MoonlightSlash;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.HeavyWeaponAttackEntity;
@@ -320,6 +321,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<WindSlash>of(WindSlash::new, MobCategory.MISC)
 					.sized(1.2f, 1.2f)
 					.build("wind_slash"));
+	public static final RegistryObject<EntityType<MoonlightSlash>> MOONLIGHT_WAVE = ENTITIES.register("moonlight_wave",
+			() -> EntityType.Builder.<MoonlightSlash>of(MoonlightSlash::new, MobCategory.MISC)
+					.sized(1.8f, 1.2f)
+					.build("moonlight_wave"));
 	public static final RegistryObject<EntityType<ThrowingKnifeEntity>> THROWING_KNIFE = ENTITIES.register("throwing_knife",
 			() -> EntityType.Builder.<ThrowingKnifeEntity>of(ThrowingKnifeEntity::new, MobCategory.MISC)
 					.sized(0.4f, 0.4f)

@@ -220,7 +220,9 @@ public class WeaponAttackEntity extends Entity {
 
         this.playAttackSound();
         for(LivingEntity livingentity : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(inflateX, inflateY, inflateZ))) {
-            this.dealDamageTo(livingentity);
+            if(livingentity.hurtTime<=0) {
+                this.dealDamageTo(livingentity);
+            }
         }
         /*for(int i = 0; i < 6; ++i) {
             double d0 = this.getX() + (this.random.nextDouble() * 2.0D - 1.0D) * (double)this.getBbWidth() * 0.5D;
@@ -280,8 +282,11 @@ public class WeaponAttackEntity extends Entity {
                         target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 180, amount));
                     }
                 }
+                if(this.rot>=1){
+                    target.addEffect(new MobEffectInstance(EffectInit.ROT.get(),40+this.rot*40,this.poison-1), this.getOwner());
+                }
 
-                if (target instanceof DarkestSoulsAbstractEntity && this.itemStack!=null && this.getOwner()!=null){
+                if (target instanceof DarkestSoulsAbstractEntity /*&& this.itemStack!=null && this.getOwner()!=null*/){
                     ((DarkestSoulsAbstractEntity) target).damagePoiseHealth(this.poiseDmg);
                 }
                 //System.out.println("entity damage " + damage+ mobTypeBonus);

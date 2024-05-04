@@ -134,6 +134,8 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.MOLOTOV.get(), MolotovCocktailRenderer::new);
 		 event.registerEntityRenderer(EntityInit.BULLET.get(), BulletRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FLAME.get(), FlameRenderer::new);
+		 event.registerEntityRenderer(EntityInit.MOONLIGHT_WAVE.get(), MoonlightSlashRenderer::new);
+
 		 
 	 }
 
