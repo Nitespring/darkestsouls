@@ -88,6 +88,10 @@ public class SpawnRules{
         return isDeepEnoughForDeepMob(pos)
                 &&checkVanillaMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random) && CommonConfig.spawn_monstruosity_of_sin.get();
     }
+    public static boolean checkDarkwraithSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        return isDeepEnoughForDeepMob(pos)
+                &&checkVanillaMonsterSpawnRules(mob, levelAccessor, spawnType, pos, random) && CommonConfig.spawn_darkwraith.get();
+    }
     public static boolean checkSkeletonFalchionSpawnRules(EntityType<? extends DarkestSoulsAbstractEntity> mob, ServerLevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return checkSkeletonSpawnRules(mob, levelAccessor, spawnType, pos, random) && CommonConfig.spawn_skeleton_falchion.get();
     }

@@ -294,7 +294,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		if(!(this.isBlocking()&&this.isDamageSourceBlocked(source))) {
 			if (f > 0 && (e != null && !(e instanceof DarkestSoulsAbstractEntity && ((DarkestSoulsAbstractEntity) e).getOwner() == this))) {
 				if (hitStunTicks <= 0) {
-					hitStunTicks = 5;
+					hitStunTicks = 3;
 				}
 				if(this.getAnimationState()==this.getStunAnimation()){
 					this.playSound(SoundEvents.BLAZE_HURT, 0.4f, 1.0f);

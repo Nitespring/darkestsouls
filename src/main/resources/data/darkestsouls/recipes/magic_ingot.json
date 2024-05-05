@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bcf",
+        "eae",
+        "dcb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:soul_essence"
+        },
+        "b": {
+            "item": "darkestsouls:quicksilver"
+        },
+        "c": {
+            "item": "darkestsouls:twinkling_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "e": {
+            "item": "darkestsouls:siderite_ingot"
+        },
+        "f": {
+            "item": "darkestsouls:crystal"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:magic_ingot",
+        "count": 1
+    },
+    "group": "darkestsouls:magic_ingot"
+}
