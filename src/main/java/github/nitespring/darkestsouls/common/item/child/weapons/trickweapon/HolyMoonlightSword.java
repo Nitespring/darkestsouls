@@ -5,6 +5,9 @@ import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -50,5 +53,17 @@ public class HolyMoonlightSword extends TrickWeapon {
                 levelIn.addFreshEntity(entity);
             }
         }
+    }
+    @Override
+    public void playTrickSound(Level worldIn, Vec3 pos) {
+        float r = worldIn.getRandom().nextFloat();
+        worldIn.playSound((Player)null, pos.x, pos.y, pos.z, getEquipSound(), SoundSource.PLAYERS, 0.6f, 0.2f+0.4f*r);
+        float r1 = worldIn.getRandom().nextFloat();
+        worldIn.playSound((Player)null, pos.x, pos.y, pos.z, SoundEvents.BELL_RESONATE, SoundSource.PLAYERS, 0.6f, 0.2f+0.4f*r1);
+
+    }
+    @Override
+    public SoundEvent getEquipSound() {
+        return SoundEvents.PLAYER_SPLASH_HIGH_SPEED;
     }
 }

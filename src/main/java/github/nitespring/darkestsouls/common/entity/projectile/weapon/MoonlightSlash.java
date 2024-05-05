@@ -102,8 +102,9 @@ public class MoonlightSlash extends AbstractHurtingProjectile {
     protected void onHitEntity(EntityHitResult p_37259_) {
         super.onHitEntity(p_37259_);
         Entity e = p_37259_.getEntity();
-        e.hurt(e.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()),this.damage);
-        //this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.WOOL_BREAK, this.getSoundSource(), 1.0f, 2.0f);
+        //e.hurt(e.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()),this.damage);
+        e.hurt(e.level().damageSources().indirectMagic(this, (LivingEntity) this.getOwner()),this.damage);
+        this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.PLAYER_SPLASH_HIGH_SPEED, this.getSoundSource(), 0.2f, 0.2f);
         for(int i=0; i<=12; i++){
             RandomSource r = this.random;
             Vec3 off = new Vec3(r.nextFloat()-0.5, r.nextFloat()-0.5,r.nextFloat()-0.5).multiply(0.5f,0.5f,0.5f);
@@ -130,6 +131,7 @@ public class MoonlightSlash extends AbstractHurtingProjectile {
 
 
             this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.BELL_RESONATE, this.getSoundSource(), 1.0f, 2.0f);
+        this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.PLAYER_SPLASH_HIGH_SPEED, this.getSoundSource(), 0.6f, 0.4f);
             for (int i = 0; i <= 8; i++) {
                 RandomSource r = this.random;
                 Vec3 off = new Vec3(r.nextFloat() - 0.5, r.nextFloat() - 0.5, r.nextFloat() - 0.5).multiply(0.75f, 0.75f, 0.75f);

@@ -6,6 +6,9 @@ import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -73,6 +76,15 @@ public class ChikageExtended extends TrickWeapon {
 
 
     }
+    @Override
+    public void playTrickSound(Level worldIn, Vec3 pos) {
+        float r = worldIn.getRandom().nextFloat();
+        worldIn.playSound((Player)null, pos.x, pos.y, pos.z, getEquipSound(), SoundSource.PLAYERS, 0.6f, 0.2f+0.4f*r);
 
+    }
+    @Override
+    public SoundEvent getEquipSound() {
+        return SoundEvents.PLAYER_SPLASH_HIGH_SPEED;
+    }
 
 }

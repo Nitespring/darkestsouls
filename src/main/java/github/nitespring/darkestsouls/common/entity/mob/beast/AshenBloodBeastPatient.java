@@ -159,7 +159,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
 
     @Override
     protected float getSoundVolume() {
-        return 0.4f;
+        return 0.25f;
     }
 
     @Nullable
