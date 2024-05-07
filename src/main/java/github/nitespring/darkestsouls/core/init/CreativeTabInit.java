@@ -29,6 +29,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.BANDIT_KNIFE.get());
                         output.accept(ItemInit.LONGSWORD.get());
+                        output.accept(ItemInit.DARKSWORD.get());
                         output.accept(ItemInit.SCIMITAR.get());
                         output.accept(ItemInit.FALCHION.get());
                         output.accept(ItemInit.BANDIT_CURVED_SWORD.get());
@@ -52,7 +53,8 @@ public class CreativeTabInit {
                         output.accept(ItemInit.CHURCH_SCYTHE.get());
                         output.accept(ItemInit.SAW_CLEAVER.get());
                         output.accept(ItemInit.HUNTER_AXE.get());
-                        output.accept(ItemInit.CHIKAGE.get());
+                        output.accept(ItemInit.CHIKAGE_EXTENDED.get());
+                        output.accept(ItemInit.HOLY_MOONLIGHT_LIT.get());
                         output.accept(ItemInit.STORM_CURVED_SWORD.get());
                         output.accept(ItemInit.DRAGONSLAYER_SPEAR.get());
                         output.accept(ItemInit.DRAGONSLAYER_SWORDSPEAR.get());
@@ -198,12 +200,35 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BEAST_PATIENT.get());
                         output.accept(ItemInit.CLOAKED_BEAST_PATIENT.get());
                         output.accept(ItemInit.ASHEN_BLOOD_BEAST_PATIENT.get());
+                        output.accept(ItemInit.DARKWRAITH.get());
                         output.accept(ItemInit.LEECH.get());
                         output.accept(ItemInit.SEWER_CENTIPEDE.get());
                         output.accept(ItemInit.SIN.get());
                     })
                     .build());
-
+    public static final RegistryObject<CreativeModeTab> BLOCKS = TABS.register("blocks",
+            () ->CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.darkestsouls.blocks"))
+                    .icon(ItemInit.CINNABAR_ORE.get()::getDefaultInstance)
+                    .withSearchBar().displayItems((displayParams,output)->{
+                        output.accept(ItemInit.CINNABAR_ORE.get());
+                        output.accept(ItemInit.DEEPSLATE_CINNABAR_ORE.get());
+                        output.accept(ItemInit.NETHER_CINNABAR_ORE.get());
+                        output.accept(ItemInit.BLACKSTONE_CINNABAR_ORE.get());
+                        output.accept(ItemInit.BASALT_CINNABAR_ORE.get());
+                        output.accept(ItemInit.ENDER_CINNABAR_ORE.get());
+                        output.accept(ItemInit.SIDERITE_ORE.get());
+                        output.accept(ItemInit.DEEPSLATE_SIDERITE_ORE.get());
+                        output.accept(ItemInit.NETHER_SIDERITE_ORE.get());
+                        output.accept(ItemInit.BLACKSTONE_SIDERITE_ORE.get());
+                        output.accept(ItemInit.ENDER_SIDERITE_ORE.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS.get());
+                        output.accept(ItemInit.CRACKED_SIDERITE_BRICKS.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS_SLAB.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS_STAIRS.get());
+                        output.accept(ItemInit.SIDERITE_BRICKS_WALL.get());
+                    })
+                    .build());
 
 
 

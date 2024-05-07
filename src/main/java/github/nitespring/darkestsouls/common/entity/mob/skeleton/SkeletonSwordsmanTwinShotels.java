@@ -209,6 +209,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
             return p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
         }));
         this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 1.0D, false, 4, ()->true));
 
         this.goalSelector.addGoal(2, new SkeletonSwordsmanTwinShotels.AttackGoal(this));
         this.goalSelector.addGoal(2, new SkeletonSwordsmanTwinShotels.AttackGoalRunning(this));
@@ -261,8 +262,9 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
         Vec3 pos = this.position();
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=2;
         this.getNavigation().stop();
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if(getAnimationTick()>=55) {
                     this.getNavigation().stop();
                     setAnimationTick(0);

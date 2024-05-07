@@ -209,6 +209,7 @@ public class ChurchDoctorStick extends ChurchDoctor implements GeoEntity {
         boolean flag = this.getTarget() != null && this.distanceTo(this.getTarget()) <= 2;
         switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if (getAnimationTick() >= 85) {
                     this.getNavigation().stop();
                     setAnimationTick(0);

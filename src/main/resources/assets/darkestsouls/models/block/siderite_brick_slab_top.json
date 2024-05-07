@@ -1,0 +1,12 @@
+{
+  "parent": "darkestsouls:block/slab_top_emissive3",
+  "textures": {
+    "particle": "darkestsouls:block/siderite_bricks_background1",
+    "bottom0": "darkestsouls:block/siderite_bricks_background1",
+    "top0": "darkestsouls:block/siderite_bricks_background1",
+    "side0": "darkestsouls:block/siderite_bricks_background1",
+    "bottom1": "darkestsouls:block/siderite_bricks_venature1",
+    "top1": "darkestsouls:block/siderite_bricks_venature1",
+    "side1": "darkestsouls:block/siderite_bricks_venature1"
+  }
+}

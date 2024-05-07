@@ -56,12 +56,15 @@ public class ThrowingKnife extends Item {
         float y = (float) (pos.y + 1.4 + 0.6 * aim.y);
         float z = (float) (pos.z + 0.6 * aim.z);
 
-        ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), playerIn, x, y, z, stackIn.copyWithCount(1),0.4f, levelIn);
+        ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(),levelIn);
         double d0 = aim.horizontalDistance();
         float roty = (float) (Mth.atan2(aim.x, aim.z) * (double) (180F / (float) Math.PI));
         float rotx = (float) (Mth.atan2(aim.y, d0) * (double) (180F / (float) Math.PI));
         entity.setXRot(rotx);
         entity.setYRot(roty);
+        entity.setSize(0.4f);
+        entity.setPos(x,y,z);
+        entity.setItem(playerIn.getItemInHand(handIn).copyWithCount(1));
         //entity.shootFromRotation(playerIn, (float) (0.25f*aim.x), (float) (0.25f*aim.y), (float) (0.25f*aim.z), rotx, roty);
         entity.xPower=flyingPower*aim.x;
         entity.yPower=flyingPower*aim.y;

@@ -1,0 +1,21 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:siderite_ore",
+    "darkestsouls:cinnabar_ore",
+    "darkestsouls:deepslate_siderite_ore",
+    "darkestsouls:deepslate_cinnabar_ore",
+    "darkestsouls:nether_siderite_ore",
+    "darkestsouls:nether_cinnabar_ore",
+    "darkestsouls:blackstone_siderite_ore",
+    "darkestsouls:blackstone_cinnabar_ore",
+    "darkestsouls:ender_siderite_ore",
+    "darkestsouls:ender_cinnabar_ore",
+    "darkestsouls:basalt_cinnabar_ore",
+    "darkestsouls:siderite_bricks",
+    "darkestsouls:cracked_siderite_bricks",
+    "darkestsouls:siderite_brick_wall",
+    "darkestsouls:siderite_brick_slab",
+    "darkestsouls:siderite_brick_stairs"
+  ]
+}

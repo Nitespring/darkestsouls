@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkestsouls:block/siderite_brick_slab"
+    },
+    "type=double": {
+      "model": "darkestsouls:block/siderite_bricks1"
+    },
+    "type=top": {
+      "model": "darkestsouls:block/siderite_brick_slab_top"
+    }
+  }
+}

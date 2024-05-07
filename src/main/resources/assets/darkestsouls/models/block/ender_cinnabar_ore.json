@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "darkestsouls:block/ender_cinnabar_ore"
+  }
+}

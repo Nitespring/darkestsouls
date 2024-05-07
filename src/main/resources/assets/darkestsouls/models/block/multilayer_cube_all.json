@@ -1,0 +1,18 @@
+{
+    "parent": "darkestsouls:block/multilayer_cube",
+    "textures": {
+        "particle": "#layer1",
+        "down0": "#layer0",
+        "up0": "#layer0",
+        "north0": "#layer0",
+        "east0": "#layer0",
+        "south0": "#layer0",
+        "west0": "#layer0",
+        "down1": "#layer1",
+        "up1": "#layer1",
+        "north1": "#layer1",
+        "east1": "#layer1",
+        "south1": "#layer1",
+        "west1": "#layer1"
+    }
+}

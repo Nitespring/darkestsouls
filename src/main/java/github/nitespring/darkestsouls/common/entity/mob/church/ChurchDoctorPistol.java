@@ -215,6 +215,7 @@ public class ChurchDoctorPistol extends ChurchDoctor implements GeoEntity {
         this.getNavigation().stop();
         switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if (getAnimationTick() >= 85) {
                     this.getNavigation().stop();
                     setAnimationTick(0);

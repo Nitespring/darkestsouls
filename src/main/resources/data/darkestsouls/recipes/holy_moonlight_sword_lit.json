@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " ab",
+        "cba",
+        "dc "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:soul_fragment"
+        },
+        "b": {
+            "item": "darkestsouls:magic_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:steel_ingot"
+        },
+        "d": {
+            "item": "darkestsouls:greatsword_hilt"
+        }
+    },
+    "result": {
+        "item": "darkestsouls:holy_moonlight_sword_lit",
+        "count": 1
+    },
+    "group": "darkestsouls:holy_moonlight_sword_lit"
+}

@@ -1,0 +1,48 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks1"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks2"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks3"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks4"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks5"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks6"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks7"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks8"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks9"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks10"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks11"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks12"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks13"
+      },
+      {
+        "model": "darkestsouls:block/cracked_siderite_bricks14"
+      }
+    ]
+  }
+}

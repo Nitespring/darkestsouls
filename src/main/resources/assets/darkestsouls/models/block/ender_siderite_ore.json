@@ -1,0 +1,7 @@
+{
+  "parent": "darkestsouls:block/multilayer_cube_all_emissive",
+  "textures": {
+    "layer0": "darkestsouls:block/ender_siderite_ore",
+    "layer1": "darkestsouls:block/siderite_ore_layer_emissive"
+  }
+}

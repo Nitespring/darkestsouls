@@ -1,0 +1,33 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore"
+      },
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore",
+        "x": 90
+      },
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore",
+        "x": 180
+      },
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore",
+        "x": 270
+      },
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore",
+        "y": 90
+      },
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore",
+        "y": 180
+      },
+      {
+        "model": "darkestsouls:block/deepslate_cinnabar_ore",
+        "y": 270
+      }
+    ]
+  }
+}

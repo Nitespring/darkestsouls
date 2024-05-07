@@ -163,8 +163,9 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
         increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
 
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 this.getNavigation().stop();
                 if(getAnimationTick()>=30) {
                     this.getNavigation().stop();

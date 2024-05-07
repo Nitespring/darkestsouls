@@ -114,7 +114,7 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     @Nullable
     @Override
     protected ParticleOptions getTrailParticle() {
-        return ParticleTypes.ENCHANT;
+        return ParticleTypes.ASH;
     }
 
     @Override

@@ -109,6 +109,10 @@ public class EntitySpawnRegistration {
                     SpawnPlacements.Type.ON_GROUND,
                     Types.MOTION_BLOCKING_NO_LEAVES,
                     SpawnRules::checkSinSpawnRules);
+            SpawnPlacements.register(EntityInit.DARKWRAITH.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Types.MOTION_BLOCKING_NO_LEAVES,
+                    SpawnRules::checkDarkwraithSpawnRules);
             
       
         });

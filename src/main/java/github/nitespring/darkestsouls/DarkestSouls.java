@@ -32,6 +32,7 @@ public class DarkestSouls
         modEventBus.addListener(this::setup);
         GeckoLib.initialize();
         SoundInit.SOUNDS.register(modEventBus);
+        BlockInit.BLOCKS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
         EffectInit.EFFECTS.register(modEventBus);

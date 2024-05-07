@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "darkestsouls:siderite_bricks"
+  },
+  "result": "darkestsouls:cracked_siderite_bricks"
+}

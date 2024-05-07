@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkestsouls:siderite_ingot"
+    }
+  ],
+  "result": {
+    "item": "darkestsouls:siderite_nugget",
+    "count": 9
+  },
+  "group": "darkestsouls:siderite_nugget"
+}

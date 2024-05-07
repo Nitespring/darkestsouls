@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.core.init;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.entity.mob.abyss.Darkwraith;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.Leech;
 import github.nitespring.darkestsouls.common.entity.mob.abyss.SewerCentipede;
 import github.nitespring.darkestsouls.common.entity.mob.beast.AshenBloodBeastPatient;
@@ -20,6 +21,7 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Firebom
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.MolotovCocktailEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.MoonlightSlash;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.HeavyWeaponAttackEntity;
@@ -128,6 +130,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<ChurchDoctorCrucifix>of(ChurchDoctorCrucifix::new, MobCategory.MONSTER)
 					.sized(0.65f, 2.0f)
 					.build("church_doctor_crucifix"));
+	public static final RegistryObject<EntityType<Darkwraith>> DARKWRAITH = ENTITIES.register("darkwraith",
+			() -> EntityType.Builder.<Darkwraith>of(Darkwraith::new, MobCategory.MONSTER)
+					.sized(0.65f, 2.0f)
+					.build("darkwraith"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",
@@ -247,6 +253,14 @@ public class EntityInit {
 			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
 					.sized(1.5f, 1.5f)
 					.build("shotel"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> GREATSWORD = ENTITIES.register("greatsword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(2.5f, 2.0f)
+					.build("greatsword"));
+	public static final RegistryObject<EntityType<WeaponAttackEntity>> DARKSWORD = ENTITIES.register("darksword",
+			() -> EntityType.Builder.<WeaponAttackEntity>of(WeaponAttackEntity::new, MobCategory.MISC)
+					.sized(1.5f, 1.25f)
+					.build("darksword"));
 
 	public static final RegistryObject<EntityType<SoulDart>> SOUL_DART = ENTITIES.register("soul_dart",
 			() -> EntityType.Builder.<SoulDart>of(SoulDart::new, MobCategory.MISC)
@@ -307,6 +321,10 @@ public class EntityInit {
 			() -> EntityType.Builder.<WindSlash>of(WindSlash::new, MobCategory.MISC)
 					.sized(1.2f, 1.2f)
 					.build("wind_slash"));
+	public static final RegistryObject<EntityType<MoonlightSlash>> MOONLIGHT_WAVE = ENTITIES.register("moonlight_wave",
+			() -> EntityType.Builder.<MoonlightSlash>of(MoonlightSlash::new, MobCategory.MISC)
+					.sized(1.8f, 1.2f)
+					.build("moonlight_wave"));
 	public static final RegistryObject<EntityType<ThrowingKnifeEntity>> THROWING_KNIFE = ENTITIES.register("throwing_knife",
 			() -> EntityType.Builder.<ThrowingKnifeEntity>of(ThrowingKnifeEntity::new, MobCategory.MISC)
 					.sized(0.4f, 0.4f)

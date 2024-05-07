@@ -1,0 +1,37 @@
+{   "parent": "block/block",
+  "render_type": "minecraft:cutout_mipped",
+  "elements": [
+    {   "from": [ 4, 0, 4 ],
+      "to": [ 12, 16, 12 ],
+      "forge_data": {
+        "block_light": 7,
+        "sky_light": 7
+      },
+      "faces": {
+        "down":  { "texture": "#wall0", "cullface": "down" },
+        "up":    { "texture": "#wall0", "cullface": "up" },
+        "north": { "texture": "#wall0" },
+        "south": { "texture": "#wall0" },
+        "west":  { "texture": "#wall0" },
+        "east":  { "texture": "#wall0" }
+      },
+      "__comment": "Center post"
+    },
+    {   "from": [ 4, 0, 4 ],
+      "to": [ 12, 16, 12 ],
+      "forge_data": {
+        "block_light": 13,
+        "sky_light": 13
+      },
+      "faces": {
+        "down":  { "texture": "#wall1", "cullface": "down" },
+        "up":    { "texture": "#wall1", "cullface": "up" },
+        "north": { "texture": "#wall1" },
+        "south": { "texture": "#wall1" },
+        "west":  { "texture": "#wall1" },
+        "east":  { "texture": "#wall1" }
+      },
+      "__comment": "Center post"
+    }
+  ]
+}

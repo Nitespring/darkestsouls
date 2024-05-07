@@ -1,0 +1,33 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore"
+      },
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore",
+        "x": 90
+      },
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore",
+        "x": 180
+      },
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore",
+        "x": 270
+      },
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore",
+        "y": 90
+      },
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore",
+        "y": 180
+      },
+      {
+        "model": "darkestsouls:block/blackstone_siderite_ore",
+        "y": 270
+      }
+    ]
+  }
+}

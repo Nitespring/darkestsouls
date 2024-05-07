@@ -190,8 +190,9 @@ public Bonewheel(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
     protected void playAnimation() {
         increaseAnimationTick(1);
         this.getNavigation().stop();
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 if(getAnimationTick()>=30) {
                     this.getNavigation().stop();
                     setAnimationTick(0);

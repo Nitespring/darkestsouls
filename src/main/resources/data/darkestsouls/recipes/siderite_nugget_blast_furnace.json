@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "darkestsouls:siderite_fragment"
+  },
+  "result": "darkestsouls:siderite_nugget",
+  "experience": 8.0,
+  "cookingtime": 70,
+  "group": "darkestsouls:siderite_nugget"
+}

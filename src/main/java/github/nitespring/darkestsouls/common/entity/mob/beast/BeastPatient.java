@@ -194,8 +194,9 @@ public class BeastPatient extends BeastPatientEntity implements GeoEntity, IBuff
         this.increaseAnimationTick(1);
         boolean flag = this.getTarget()!=null && this.distanceTo(this.getTarget())<=4;
 
-        switch(this.getAnimationState()) {
+        switch (this.getAnimationState()) {
             case 1:
+                this.getNavigation().stop();
                 this.getNavigation().stop();
                 if(getAnimationTick()==1){
                     this.playSound(SoundEvents.BLAZE_HURT);

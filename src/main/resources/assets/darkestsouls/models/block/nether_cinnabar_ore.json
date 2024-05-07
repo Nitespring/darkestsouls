@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "darkestsouls:block/nether_cinnabar_ore"
+  }
+}

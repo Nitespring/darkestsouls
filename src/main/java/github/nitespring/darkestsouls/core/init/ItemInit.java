@@ -16,9 +16,16 @@ import github.nitespring.darkestsouls.common.item.throwing.Firebomb;
 import github.nitespring.darkestsouls.common.item.throwing.MolotovCocktail;
 import github.nitespring.darkestsouls.common.item.throwing.ThrowingKnife;
 import github.nitespring.darkestsouls.core.enums.Tiers;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -58,6 +65,10 @@ public class ItemInit {
 			() -> new Chikage(Tiers.TITANITE, 6.0f, 1.9f, 0.1f, 5,1,0,0,0,0,0,0, 1350,15,0.12f, 2,new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<ChikageExtended> CHIKAGE_EXTENDED = ITEMS.register("chikage_extended",
 			() -> new ChikageExtended(Tiers.TITANITE, 12.0f, 1.7f, 0.3f, 8,4,0,0,0,0,0,0, 1350,15,0.112f, 2,new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<HolyMoonlightSword> HOLY_MOONLIGHT = ITEMS.register("holy_moonlight_sword",
+			() -> new HolyMoonlightSword(Tiers.TITANITE, 7.0f, 1.4f, 0.2f, 6, 0,0,0,0,0,0,0,1350,17,0.1f, 3,new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<HolyMoonlightSwordLit> HOLY_MOONLIGHT_LIT = ITEMS.register("holy_moonlight_sword_lit",
+			() -> new HolyMoonlightSwordLit(Tiers.TITANITE, 8.0f, 1.2f, 0.2f, 6, 0,0,0,0,0,0,0,1350,17,0.1f, -1,new Item.Properties().rarity(Rarity.RARE)));
 
 	public static final RegistryObject<BrokenStraightsword> BROKEN_STRAIGHTSWORD = ITEMS.register("broken_straightsword",
 			() -> new BrokenStraightsword(Tiers.TITANITE, 3.0f, 1.6f, 0.0f, 2, 0,0,0,0,0,0,0,127,8,0.1f, 1,new Item.Properties()));
@@ -65,6 +76,8 @@ public class ItemInit {
 			() -> new BanditKnife(Tiers.TITANITE, 3.0f, 2.4f, 0.0f, 2, 3,0,0,0,0,0,0,63,6,0.18f, 1,new Item.Properties()));
 	public static final RegistryObject<Longsword> LONGSWORD = ITEMS.register("longsword",
 			() -> new Longsword(Tiers.TITANITE, 7.0f, 1.6f, 0.0f, 6, 0,0,0,0,0,0,0,225,8,0.1f, 2,new Item.Properties()));
+	public static final RegistryObject<DarkSword> DARKSWORD = ITEMS.register("dark_sword",
+			() -> new DarkSword(Tiers.TITANITE, 7.5f, 1.5f, 0.05f, 6, 0,0,0,0,0,0,0,1024,10,0.0975f, 2,new Item.Properties()));
 	public static final RegistryObject<Scimitar> SCIMITAR = ITEMS.register("scimitar",
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f, -0.2f, 4, 225,8,0.14f, 2,new Item.Properties()));
 	public static final RegistryObject<Falchion> FALCHION = ITEMS.register("falchion",
@@ -135,7 +148,7 @@ public class ItemInit {
 	public static final RegistryObject<Pistol> REPEATING_PISTOL = ITEMS.register("repeating_pistol",
 			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 511, 8, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<GatlingGun> GATLING_GUN = ITEMS.register("gatling_gun",
-			() -> new GatlingGun(2.0f, 60,0,0.3f,0.5f, 12, 0,0,1, 511, 5, new Item.Properties().rarity(Rarity.RARE)));
+			() -> new GatlingGun(2.0f, 60,0,0.2f,0.5f, 12, 0,0,1, 511, 5, new Item.Properties().rarity(Rarity.RARE)));
 
 	//Alchemy
 	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
@@ -209,7 +222,8 @@ public class ItemInit {
 			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 4475990, 16736256, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_CRUCIFIX = ITEMS.register("church_doctor_crucifix_spawn_egg",
 			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 4475990, 2097152, new Item.Properties()));
-
+	public static final RegistryObject<Item> DARKWRAITH = ITEMS.register("darkwraith_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.DARKWRAITH, 987415, 6750208, new Item.Properties()));
 
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",
@@ -391,6 +405,38 @@ public class ItemInit {
 	public static final RegistryObject<Item> BLOOD_ROCK = ITEMS.register("blood_rock",
 			() -> new Item(new Item.Properties()));
 
+	//Blocks
 
-
+	public static final RegistryObject<BlockItem> CINNABAR_ORE = ITEMS.register("cinnabar_ore",
+			() -> new BlockItem(BlockInit.CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_ORE = ITEMS.register("siderite_ore",
+			() -> new BlockItem(BlockInit.SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> DEEPSLATE_CINNABAR_ORE = ITEMS.register("deepslate_cinnabar_ore",
+			() -> new BlockItem(BlockInit.DEEPSLATE_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> DEEPSLATE_SIDERITE_ORE = ITEMS.register("deepslate_siderite_ore",
+			() -> new BlockItem(BlockInit.DEEPSLATE_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> NETHER_CINNABAR_ORE = ITEMS.register("nether_cinnabar_ore",
+			() -> new BlockItem(BlockInit.NETHER_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> NETHER_SIDERITE_ORE = ITEMS.register("nether_siderite_ore",
+			() -> new BlockItem(BlockInit.NETHER_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> BLACKSTONE_CINNABAR_ORE = ITEMS.register("blackstone_cinnabar_ore",
+			() -> new BlockItem(BlockInit.BLACKSTONE_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> BLACKSTONE_SIDERITE_ORE = ITEMS.register("blackstone_siderite_ore",
+			() -> new BlockItem(BlockInit.BLACKSTONE_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> ENDER_CINNABAR_ORE = ITEMS.register("ender_cinnabar_ore",
+			() -> new BlockItem(BlockInit.ENDER_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> ENDER_SIDERITE_ORE = ITEMS.register("ender_siderite_ore",
+			() -> new BlockItem(BlockInit.ENDER_SIDERITE_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> BASALT_CINNABAR_ORE = ITEMS.register("basalt_cinnabar_ore",
+			() -> new BlockItem(BlockInit.BASALT_CINNABAR_ORE.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS = ITEMS.register("siderite_bricks",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> CRACKED_SIDERITE_BRICKS = ITEMS.register("cracked_siderite_bricks",
+			() -> new BlockItem(BlockInit.CRACKED_SIDERITE_BRICKS.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS_SLAB = ITEMS.register("siderite_brick_slab",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS_SLAB.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS_STAIRS = ITEMS.register("siderite_brick_stairs",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS_STAIRS.get(),new Item.Properties()));
+	public static final RegistryObject<BlockItem> SIDERITE_BRICKS_WALL = ITEMS.register("siderite_brick_wall",
+			() -> new BlockItem(BlockInit.SIDERITE_BRICKS_WALL.get(),new Item.Properties()));
 }

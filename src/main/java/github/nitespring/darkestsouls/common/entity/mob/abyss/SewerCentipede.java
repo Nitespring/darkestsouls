@@ -255,7 +255,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 		boolean flag1 = flag && this.distanceTo(this.getTarget())<=6.0f;
 
 		switch(this.getAnimationState()) {
-			case 1:
+			case 1:this.getNavigation().stop();
 				if(getAnimationTick()>=50) {
 					this.resetPoiseHealth();
 					this.getNavigation().stop();

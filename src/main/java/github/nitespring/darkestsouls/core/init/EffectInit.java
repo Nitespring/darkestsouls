@@ -1,7 +1,7 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
-import github.nitespring.darkestsouls.common.effects.*;
+import github.nitespring.darkestsouls.common.effect.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 

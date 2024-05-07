@@ -39,7 +39,7 @@ public class EntityAttributeRegistration {
 		event.put(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER.get(), EntityAttributes.setChurchDoctorFlamesprayerAttributes().build());
 		event.put(EntityInit.CHURCH_DOCTOR_SCYTHE.get(), EntityAttributes.setChurchDoctorScytheAttributes().build());
 		event.put(EntityInit.CHURCH_DOCTOR_CRUCIFIX.get(), EntityAttributes.setChurchDoctorCrucifixAttributes().build());
-
+		event.put(EntityInit.DARKWRAITH.get(), EntityAttributes.setDarkwraithAttributes().build());
 
 	}
 

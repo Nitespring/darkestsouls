@@ -1,0 +1,43 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:translucent",
+	"elements": [
+		{   "from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down":  { "texture": "#down0", "cullface": "down" },
+				"up":    { "texture": "#up0", "cullface": "up" },
+				"north": { "texture": "#north0", "cullface": "north" },
+				"south": { "texture": "#south0", "cullface": "south" },
+				"west":  { "texture": "#west0", "cullface": "west" },
+				"east":  { "texture": "#east0", "cullface": "east" }
+			}
+		},
+		{   "from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down":  { "texture": "#down1", "cullface": "down" },
+				"up":    { "texture": "#up1", "cullface": "up" },
+				"north": { "texture": "#north1", "cullface": "north" },
+				"south": { "texture": "#south1", "cullface": "south" },
+				"west":  { "texture": "#west1", "cullface": "west" },
+				"east":  { "texture": "#east1", "cullface": "east" }
+			}
+		},
+		{   "from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"forge_data": {
+				"block_light": 15,
+				"sky_light": 15
+			},
+			"faces": {
+				"down":  { "texture": "#down2", "cullface": "down" },
+				"up":    { "texture": "#up2", "cullface": "up" },
+				"north": { "texture": "#north2", "cullface": "north" },
+				"south": { "texture": "#south2", "cullface": "south" },
+				"west":  { "texture": "#west2", "cullface": "west" },
+				"east":  { "texture": "#east2", "cullface": "east" }
+			}
+		}
+	]
+}
