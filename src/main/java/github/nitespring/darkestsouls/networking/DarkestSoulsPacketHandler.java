@@ -17,7 +17,7 @@ public class DarkestSoulsPacketHandler {
 					new ResourceLocation(DarkestSouls.MODID, "main"))
 			.serverAcceptedVersions((status, version) -> true)
 			.clientAcceptedVersions((status, version) -> true)
-			.networkProtocolVersion(1)
+			.networkProtocolVersion(1).optional()
 			.simpleChannel();
 	/* private static final SimpleChannel INSTANCE = ChannelBuilder.named(
 	            new ResourceLocation(DarkestSouls.MODID, "main"))
