@@ -112,12 +112,12 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
+    mavenLocal()
     maven {
         name = 'GeckoLib'
         url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
         content {
-            //includeGroup("software.bernie.geckolib")
-            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("software.bernie.geckolib")
         }
     }
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
@@ -140,7 +140,11 @@ dependencies {
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
     // compileOnly "mezz.jei:jei-${mc_version}-forge-api:${jei_version}"
     // runtimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
-    implementation ("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+
+
+    //implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+    implementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"
+
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
@@ -211,12 +215,7 @@ eclipse {
     // Run when importing the project
     synchronizationTasks 'genEclipseRuns'
 }
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
-}
+
 // Merge the resources and classes into the same directory. 
 // This is done because java expects modules to be in a single directory.
 // And if we have it in multiple we have to do performance intensive hacks like having the UnionFileSystem
@@ -227,6 +226,16 @@ sourceSets.each {
     it.java.destinationDirectory = dir
 }
 
-//dependencies {
-//    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
-//}
+/*repositories {
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+}
+dependencies {
+    implementation ("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+}*/
+

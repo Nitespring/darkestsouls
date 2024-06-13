@@ -7,23 +7,24 @@ package github.nitespring.darkestsouls.networking;
 import github.nitespring.darkestsouls.DarkestSouls;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.ChannelBuilder;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.SimpleChannel;
+import net.minecraftforge.network.*;
 
 
 public class DarkestSoulsPacketHandler {
-	
-	
-	
-	 private static final SimpleChannel INSTANCE = ChannelBuilder.named(
+
+	//private static final String PROTOCOL_VERSION = "1";
+	private static final SimpleChannel INSTANCE = ChannelBuilder.named(
+					new ResourceLocation(DarkestSouls.MODID, "main"))
+			.serverAcceptedVersions((status, version) -> true)
+			.clientAcceptedVersions((status, version) -> true)
+			.networkProtocolVersion(1)
+			.simpleChannel();
+	/* private static final SimpleChannel INSTANCE = ChannelBuilder.named(
 	            new ResourceLocation(DarkestSouls.MODID, "main"))
 	            .serverAcceptedVersions((status, version) -> true)
 	            .clientAcceptedVersions((status, version) -> true)
 	            .networkProtocolVersion(1)
-	            .simpleChannel();
-	
+	            .simpleChannel();*/
 	
 	 public static void register() {
 	        INSTANCE.messageBuilder(ItemLeftClickAction.class, NetworkDirection.PLAY_TO_SERVER)

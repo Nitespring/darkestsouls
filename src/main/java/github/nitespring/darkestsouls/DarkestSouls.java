@@ -16,6 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import software.bernie.geckolib.GeckoLib;
+import software.bernie.geckolib.GeckoLibServices;
 
 
 @Mod(DarkestSouls.MODID)
@@ -31,7 +32,6 @@ public class DarkestSouls
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::setup);
-        //GeckoLib.
         SoundInit.SOUNDS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);

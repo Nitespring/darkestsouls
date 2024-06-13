@@ -33,6 +33,7 @@ public class ItemLeftClickAction {
 	    			}
 
 				});
+				ctx.setPacketHandled(true);
 	            
 	        } 
 	      

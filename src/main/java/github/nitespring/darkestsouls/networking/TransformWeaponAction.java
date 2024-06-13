@@ -37,7 +37,8 @@ public class TransformWeaponAction {
 
 					}
 				});
+				ctx.setPacketHandled(true);
 	        } 
-	      
+
 }
 
