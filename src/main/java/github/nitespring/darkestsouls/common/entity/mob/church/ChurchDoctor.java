@@ -45,27 +45,24 @@ public abstract class ChurchDoctor extends DarkestSoulsAbstractEntity {
     public int getDefaultRobeType(){return 0;}
     public int getDefaultHatType(){return 0;}
 
-    public int getRobeType(){return this.entityData.get(ROBE_TYPE);}
-    public void setRobeType(int i){this.entityData.set(ROBE_TYPE, i);}
-    public int getHatType(){return this.entityData.get(HAT_TYPE);}
-    public void setHatType(int i){this.entityData.set(HAT_TYPE, i);}
-    public ItemStack getRightHandItem(){return this.entityData.get(RIGHT_HAND);}
-    public void setRightHandItem(ItemStack stack){this.entityData.set(RIGHT_HAND, stack);}
-    public ItemStack getLeftHandItem(){return this.entityData.get(LEFT_HAND);}
-    public void setLeftHandItem(ItemStack stack){this.entityData.set(LEFT_HAND, stack);}
+    public int getRobeType(){return this.getEntityData().get(ROBE_TYPE);}
+    public void setRobeType(int i){this.getEntityData().set(ROBE_TYPE, i);}
+    public int getHatType(){return this.getEntityData().get(HAT_TYPE);}
+    public void setHatType(int i){this.getEntityData().set(HAT_TYPE, i);}
+    public ItemStack getRightHandItem(){return this.getEntityData().get(RIGHT_HAND);}
+    public void setRightHandItem(ItemStack stack){this.getEntityData().set(RIGHT_HAND, stack);}
+    public ItemStack getLeftHandItem(){return this.getEntityData().get(LEFT_HAND);}
+    public void setLeftHandItem(ItemStack stack){this.getEntityData().set(LEFT_HAND, stack);}
+
+
 
     @Override
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(ROBE_TYPE, this.getDefaultRobeType());
-        this.entityData.define(HAT_TYPE, this.getDefaultHatType());
-        this.entityData.define(RIGHT_HAND, ItemStack.EMPTY);
-        this.entityData.define(LEFT_HAND, ItemStack.EMPTY);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+         super.defineSynchedData(builder);
+        builder.define(ROBE_TYPE, this.getDefaultRobeType());
+        builder.define(HAT_TYPE, this.getDefaultHatType());
+        builder.define(RIGHT_HAND, ItemStack.EMPTY);
+        builder.define(LEFT_HAND, ItemStack.EMPTY);
     }
 
     @Override
@@ -116,9 +113,9 @@ public abstract class ChurchDoctor extends DarkestSoulsAbstractEntity {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_) {
         this.populateClothing();
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_);
     }
 
     protected SoundEvent getAttackSound() {

@@ -2,6 +2,9 @@ package github.nitespring.darkestsouls.common.entity.projectile.weapon.melee;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
+import github.nitespring.darkestsouls.core.util.CustomEntityTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -12,16 +15,21 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.*;
+
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.EvokerFangs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.DamageEnchantment;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.EntityTypeTest;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -43,12 +51,13 @@ public class WeaponAttackEntity extends Entity {
     public int bleed=0;
     public int poison=0;
     public int rot=0;
+    public int toxic=0;
     public int frost=0;
-    public int death=0;
+    public int wither=0;
     public  int fire=0;
     public float baneOfArthropods=0;
     public float smite=0;
-    public int beastHunter=0;
+    public float beastHunter=0;
     public int demonSlayer=0;
     public int kinHunter=0;
     public int abyssCleanser=0;
@@ -110,17 +119,17 @@ public class WeaponAttackEntity extends Entity {
 
 
     public int getAnimationState() {
-        return this.entityData.get(ANIMATIONSTATE);
+        return this.getEntityData().get(ANIMATIONSTATE);
     }
 
     public void setAnimationState(int anim) {
-        this.entityData.set(ANIMATIONSTATE, anim);
+        this.getEntityData().set(ANIMATIONSTATE, anim);
     }
 
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(ANIMATIONSTATE, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(ANIMATIONSTATE, 0);
 
     }
 
@@ -233,7 +242,35 @@ public class WeaponAttackEntity extends Entity {
             double d5 = (this.random.nextDouble() * 2.0D - 1.0D) * 0.75D;
             this.level().addParticle(ParticleTypes.AMBIENT_ENTITY_EFFECT, d0, d1 + 1.0D, d2, d3, d4, d5);
         }*/
+        Vec3 pos = this.position();
+        Level world = this.level();
+        int xSpread = Math.toIntExact((long) (this.getBoundingBox().getXsize() * 1.0));
+        int zSpread = Math.toIntExact((long) (this.getBoundingBox().getZsize() * 1.0));
+        int ySpread = Math.toIntExact((long) (this.getBoundingBox().getYsize() * 1.0));
+        int x0 = this.blockPosition().getX();
+        int y0 = this.blockPosition().getY();
+        int z0 = this.blockPosition().getZ();
+        for(int i = 0; i<=24; i++) {
+            for (int j = 0; j <= zSpread; j++) {
+                for (int k = -ySpread; k <= ySpread; k++) {
+                    double a = Math.PI / 12;
+                    double d = j;
+                    int xVar = (int) (d * Math.sin(i * a));
+                    int yVar = k;
+                    int zVar = (int) (d * Math.cos(i * a));
+                    ;
+                    int x = x0 + xVar;
+                    int z = z0 + zVar;
+                    int y = y0 + yVar;
 
+                    BlockPos blockPos = new BlockPos(x, y, z);
+                    if (level().getBlockState(blockPos).is(CustomBlockTags.FLAME_BREAKABLE)) {
+                        level().destroyBlock(blockPos, true, this.getOwner());
+                        level().gameEvent(this, GameEvent.BLOCK_DESTROY, blockPos);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -244,13 +281,15 @@ public class WeaponAttackEntity extends Entity {
         if (target.isAlive() && !target.isInvulnerable() && target != livingentity) {
             if(this.maxTargets<=0||this.hitEntities<=maxTargets) {
                 float mobTypeBonus = 0;
-                if(this.baneOfArthropods>=1&&target.getMobType()== MobType.ARTHROPOD){
+                if(this.baneOfArthropods>=1&& target.getType().is(EntityTypeTags.SENSITIVE_TO_BANE_OF_ARTHROPODS)){
                     mobTypeBonus=mobTypeBonus+this.baneOfArthropods;
                     target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, (int) (10+this.baneOfArthropods*8),2), this.getOwner());
                 }
-
-                if(this.smite>=1&&target.getMobType()== MobType.UNDEAD){
+                if(this.smite>=1&&target.getType().is(EntityTypeTags.SENSITIVE_TO_SMITE)){
                     mobTypeBonus=mobTypeBonus+this.smite;
+                }
+                if(this.beastHunter>=1&&target.getType().is(CustomEntityTags.BEAST)){
+                    mobTypeBonus=mobTypeBonus+this.beastHunter;
                 }
 
                 if (livingentity == null) {
@@ -265,25 +304,37 @@ public class WeaponAttackEntity extends Entity {
                 }
 
                 if(this.fire>=1){
-                    target.setSecondsOnFire(40*fire);
+
+                        target.igniteForTicks(40 * fire);
+
                 }
 
                 if(this.poison>=1){
                     target.addEffect(new MobEffectInstance(MobEffects.POISON,40+this.poison*40,this.poison-1), this.getOwner());
                 }
-
-                if(this.bleed>=1){
-                    if(target.hasEffect(EffectInit.BLEED.get())){
-                        int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ this.bleed;
-                        target.removeEffect(EffectInit.BLEED.get());
-                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 180, amount));
-                    }else{
-                        int amount = this.bleed-1;
-                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 180, amount));
+                if(this.wither>=1){
+                    target.addEffect(new MobEffectInstance(MobEffects.WITHER,40+this.wither*40,this.wither-1), this.getOwner());
+                }
+                if(!target.getType().is(CustomEntityTags.BLEED_IMMUNE)) {
+                    if (this.bleed >= 1) {
+                        if (target.hasEffect(EffectInit.BLEED.getHolder().get())) {
+                            int amount = target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier() + this.bleed;
+                            target.removeEffect(EffectInit.BLEED.getHolder().get());
+                            target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 180, amount));
+                        } else {
+                            int amount = this.bleed - 1;
+                            target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 180, amount));
+                        }
                     }
                 }
                 if(this.rot>=1){
-                    target.addEffect(new MobEffectInstance(EffectInit.ROT.get(),40+this.rot*40,this.poison-1), this.getOwner());
+                    target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(),40+this.rot*40,this.rot-1), this.getOwner());
+                }
+                if(this.toxic>=1){
+                    target.addEffect(new MobEffectInstance(EffectInit.TOXIC.getHolder().get(),40+this.toxic*40,this.toxic-1), this.getOwner());
+                }
+                if(this.frost>=1){
+                    target.addEffect(new MobEffectInstance(EffectInit.FROST.getHolder().get(),40+this.frost*40,this.frost-1), this.getOwner());
                 }
 
                 if (target instanceof DarkestSoulsAbstractEntity /*&& this.itemStack!=null && this.getOwner()!=null*/){
@@ -304,11 +355,7 @@ public class WeaponAttackEntity extends Entity {
     }
     public void damageWeapon(){
         if(this.getItemStack()!=null&&this.getOwner()!=null) {
-            this.getItemStack().hurtAndBreak(1, this.getOwner(), (p_43296_) -> {
-                if(getItemStack().getEquipmentSlot()!=null) {
-                    p_43296_.broadcastBreakEvent(getItemStack().getEquipmentSlot());
-                }
-            });
+                getItemStack().hurtAndBreak(1, this.getOwner(), getItemStack().getEquipmentSlot());
         }
     }
     public int getMaxTargets() {
@@ -333,17 +380,19 @@ public class WeaponAttackEntity extends Entity {
         this.playerDistance=distance;
     }
 
-    public void setDamage(float dmg, int poisedmg, int fire, float smite, float bane,int bleed, int poison, int rot, int frost, int death){
+    public void setDamage(float dmg, int poisedmg, int fire, float smite, float bane, float beastHunter, int bleed, int poison, int toxic, int rot, int frost, int wither){
         this.damage=dmg;
         //System.out.println(dmg);
         this.poiseDmg=poisedmg;
         this.fire=fire;
         this.smite=smite;
         this.baneOfArthropods=bane;
+        this.beastHunter=beastHunter;
         this.bleed=bleed;
         this.poison=poison;
+        this.toxic = toxic;
         this.rot=rot;
         this.frost=frost;
-        this.death=death;
+        this.wither=wither;
     }
 }

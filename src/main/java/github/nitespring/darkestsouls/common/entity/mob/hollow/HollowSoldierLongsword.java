@@ -25,17 +25,17 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
+ 
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -46,7 +46,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     public Vec3 aimVec;
 
-    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, 0.6f, EntityAttachments.createDefault(0.9f, 0.8f),false);
 
     public HollowSoldierLongsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -149,9 +149,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_) {
 
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_);
     }
     @Override
     public void populateClothing(){
@@ -225,7 +225,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
 
 
     @Override
-    public EntityDimensions getDimensions(Pose p_21047_) {
+    public EntityDimensions getDefaultDimensions(Pose p_21047_) {
 
          if((this.isInWater()&&this.getAnimationState()==0)||this.getAnimationState()==1) {
              return CRAWLING_BB;

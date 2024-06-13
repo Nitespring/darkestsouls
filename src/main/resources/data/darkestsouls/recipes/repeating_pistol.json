@@ -19,7 +19,7 @@
         }
     },
     "result": {
-        "item": "darkestsouls:repeating_pistol",
+    "id": "darkestsouls:repeating_pistol",
         "count": 1
     },
     "group": "darkestsouls:repeating_pistol"

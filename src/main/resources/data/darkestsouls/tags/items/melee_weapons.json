@@ -1,0 +1,32 @@
+{
+  "replace" : false,
+  "values" : [
+    "#darkestsouls:legendary_melee_weapons",
+    "#darkestsouls:trick_weapons",
+    "darkestsouls:broken_straightsword",
+    "darkestsouls:bandit_knife",
+    "darkestsouls:longsword",
+    "darkestsouls:dark_sword",
+    "darkestsouls:scimitar",
+    "darkestsouls:falchion",
+    "darkestsouls:shotel",
+    "darkestsouls:carthus_shotel",
+    "darkestsouls:carthus_curved_greatsword",
+    "darkestsouls:claymore",
+    "darkestsouls:flamberge",
+    "darkestsouls:zweihander",
+    "darkestsouls:bandit_curved_sword",
+    "darkestsouls:spear",
+    "darkestsouls:grave_scythe",
+    "darkestsouls:uchigatana",
+    "darkestsouls:battle_axe",
+    "darkestsouls:executioner_greataxe",
+    "darkestsouls:crescent_moon_greataxe",
+    "darkestsouls:hunting_axe",
+    "darkestsouls:huntsman_cutlass",
+    "darkestsouls:huntsman_pitchfork",
+    "darkestsouls:church_scythe",
+    "darkestsouls:church_cane",
+    "darkestsouls:crucifix"
+  ]
+}

@@ -50,34 +50,34 @@ public class ThrowingKnife extends Item {
         ItemStack stackIn = playerIn.getItemInHand(handIn);
         Vec3 pos = playerIn.position();
         Vec3 aim = playerIn.getLookAngle();
+        if(!levelIn.isClientSide()) {
 
+            float x = (float) (pos.x + 0.6 * aim.x);
+            float y = (float) (pos.y + 1.4 + 0.6 * aim.y);
+            float z = (float) (pos.z + 0.6 * aim.z);
 
-        float x = (float) (pos.x + 0.6 * aim.x);
-        float y = (float) (pos.y + 1.4 + 0.6 * aim.y);
-        float z = (float) (pos.z + 0.6 * aim.z);
-
-        ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), x, y, z, stackIn.copyWithCount(1),0.4f, levelIn);
-        double d0 = aim.horizontalDistance();
-        float roty = (float) (Mth.atan2(aim.x, aim.z) * (double) (180F / (float) Math.PI));
-        float rotx = (float) (Mth.atan2(aim.y, d0) * (double) (180F / (float) Math.PI));
-        entity.setXRot(rotx);
-        entity.setYRot(roty);
-        //entity.shootFromRotation(playerIn, (float) (0.25f*aim.x), (float) (0.25f*aim.y), (float) (0.25f*aim.z), rotx, roty);
-        entity.xPower=flyingPower*aim.x;
-        entity.yPower=flyingPower*aim.y;
-        entity.zPower=flyingPower*aim.z;
-        entity.setOwner(playerIn);
-        //entity.setZTilt(90*type);
-        //entity.setToRotate(true);
-        entity.setToPickUp(true);
-        entity.setAttackPower(this.attackDamage);
-        entity.setPoisonDamage(this.poisonDamage);
-        entity.setBloodDamage(this.bloodDamage);
-        entity.setPoiseDamage(this.poiseDamage);
-        entity.setGravPower(this.gravPower);
-        levelIn.addFreshEntity(entity);
-        entity.setToRotate(shouldRotate);
-
+            ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), x, y, z, stackIn.copyWithCount(1), 0.4f, levelIn);
+            double d0 = aim.horizontalDistance();
+            float roty = (float) (Mth.atan2(aim.x, aim.z) * (double) (180F / (float) Math.PI));
+            float rotx = (float) (Mth.atan2(aim.y, d0) * (double) (180F / (float) Math.PI));
+            entity.setXRot(rotx);
+            entity.setYRot(roty);
+            //entity.shootFromRotation(playerIn, (float) (0.25f*aim.x), (float) (0.25f*aim.y), (float) (0.25f*aim.z), rotx, roty);
+            entity.xPower = flyingPower * aim.x;
+            entity.yPower = flyingPower * aim.y;
+            entity.zPower = flyingPower * aim.z;
+            entity.setOwner(playerIn);
+            //entity.setZTilt(90*type);
+            //entity.setToRotate(true);
+            entity.setToPickUp(true);
+            entity.setAttackPower(this.attackDamage);
+            entity.setPoisonDamage(this.poisonDamage);
+            entity.setBloodDamage(this.bloodDamage);
+            entity.setPoiseDamage(this.poiseDamage);
+            entity.setGravPower(this.gravPower);
+            levelIn.addFreshEntity(entity);
+            entity.setToRotate(shouldRotate);
+        }
         playerIn.getCooldowns().addCooldown(stackIn.getItem(), useCooldown);
         if(!playerIn.isCreative()){
             stackIn.shrink(1);
@@ -89,7 +89,7 @@ public class ThrowingKnife extends Item {
 
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.literal("+").append(Component.literal(""+this.attackDamage)).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         if(this.bloodDamage>=1) {
             tooltip.add(Component.literal("+").append(Component.literal(""+this.bloodDamage)).append(Component.translatable("translation.darkestsouls.blood")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_RED));

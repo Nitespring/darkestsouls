@@ -26,7 +26,7 @@
         }
     },
     "result": {
-        "item": "darkestsouls:black_firebomb",
+    "id": "darkestsouls:black_firebomb",
         "count": 4
     },
     "group": "darkestsouls:firebomb"

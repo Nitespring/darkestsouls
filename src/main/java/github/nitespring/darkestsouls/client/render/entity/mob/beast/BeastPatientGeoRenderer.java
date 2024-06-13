@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
@@ -90,13 +90,13 @@ public class BeastPatientGeoRenderer<T extends BeastPatientEntity & GeoEntity> e
         @Override
         public void setCustomAnimations(T entity, long uniqueID, AnimationState<T> customPredicate) {
             super.setCustomAnimations(entity, uniqueID, customPredicate);
-            CoreGeoBone head = this.getAnimationProcessor().getBone("head_rotation");
-            CoreGeoBone cloakHead = this.getAnimationProcessor().getBone("cloak_head");
-            CoreGeoBone cloakChest = this.getAnimationProcessor().getBone("cloak_chest");
-            CoreGeoBone cloakRightArm = this.getAnimationProcessor().getBone("cloak_arm_right");
-            CoreGeoBone cloakLeftArm = this.getAnimationProcessor().getBone("cloak_arm_left");
-            CoreGeoBone hair = this.getAnimationProcessor().getBone("hair");
-            CoreGeoBone beard = this.getAnimationProcessor().getBone("beard2");
+            GeoBone head = this.getAnimationProcessor().getBone("head_rotation");
+            GeoBone cloakHead = this.getAnimationProcessor().getBone("cloak_head");
+            GeoBone cloakChest = this.getAnimationProcessor().getBone("cloak_chest");
+            GeoBone cloakRightArm = this.getAnimationProcessor().getBone("cloak_arm_right");
+            GeoBone cloakLeftArm = this.getAnimationProcessor().getBone("cloak_arm_left");
+            GeoBone hair = this.getAnimationProcessor().getBone("hair");
+            GeoBone beard = this.getAnimationProcessor().getBone("beard2");
             assert customPredicate != null;
             EntityModelData extraData = (EntityModelData) customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);
             head.setRotX(extraData.headPitch() * ((float) Math.PI / 180F));

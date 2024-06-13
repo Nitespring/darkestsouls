@@ -23,7 +23,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
+ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class CrystalStaff extends Staff {
     }
 
     @Override
-    public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
+    public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand handIn) {
         int ammoAmount = 1;
         if(!playerIn.getCooldowns().isOnCooldown(this)&&(this.hasAmmo(playerIn,ammoAmount)||playerIn.isCreative())) {
             Level levelIn = playerIn.level();
@@ -60,9 +60,8 @@ public class CrystalStaff extends Staff {
                 e.xPower = 0.1 * (0.5f*aim.x+aim1.x);
                 e.yPower = 0.1 * (0.5f*aim.y+aim1.y);
                 e.zPower = 0.1 * (0.5f*aim.z+aim1.z);
-                stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
-                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                });
+                if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
+                if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
                 double d0 = aim1.horizontalDistance();
                 e.setOwner(playerIn);
                 levelIn.addFreshEntity(e);
@@ -85,9 +84,8 @@ public class CrystalStaff extends Staff {
                 e.xPower = 0.05 * (0.5f*aim.x+aim1.x);
                 e.yPower = 0.05 * (0.5f*aim.y+aim1.y);
                 e.zPower = 0.05 * (0.5f*aim.z+aim1.z);
-                stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
-                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                });
+                if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
+                if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
                 double d0 = aim1.horizontalDistance();
                 e.setOwner(playerIn);
                 levelIn.addFreshEntity(e);
@@ -127,13 +125,12 @@ public class CrystalStaff extends Staff {
         e.yPower = 0.1+0.1 * Math.max(aim.y, 0);
         e.zPower = 0.1 * aim.z;
 
-        stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
-            p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+        if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.MAINHAND);}
+        if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.OFFHAND);}
 
         levelIn.addFreshEntity(e);
         playerIn.getCooldowns().addCooldown(this, 15);
-        playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
+        playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(), SoundSource.PLAYERS, 0.6F, 1.0F);
     }
 
     public int getCastingDurationSpellB(){return 40;}
@@ -185,8 +182,8 @@ public class CrystalStaff extends Staff {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
-        super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag p_41424_) {
+        super.appendHoverText(stack, context, tooltip, p_41424_);
         String colour = "§3";
 
         switch(this.type){

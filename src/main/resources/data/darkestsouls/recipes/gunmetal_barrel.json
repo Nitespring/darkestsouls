@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "darkestsouls:gunmetal_barrel",
+    "id": "darkestsouls:gunmetal_barrel",
         "count": 1
     },
     "group": "darkestsouls:gun_barrel"

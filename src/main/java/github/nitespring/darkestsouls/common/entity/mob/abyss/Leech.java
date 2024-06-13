@@ -28,17 +28,16 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager.ControllerRegistrar;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -48,7 +47,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	public int lastUpdatedStateTick = 0;
 	Vec3 aim;
-	private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
+	private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f,0.6f, EntityAttachments.createDefault(0.9f, 0.8f), false);
 	public Leech(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
 		super(p_21683_, p_21684_);
 		this.xpReward=12;
@@ -185,7 +184,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	public int getBloodResistance() {return 6;}
 
 	@Override
-	public EntityDimensions getDimensions(Pose p_21047_) {
+	public EntityDimensions getDefaultDimensions(Pose p_21047_) {
 
 		if(this.getCombatState()==1||this.isInWater()) {
 			return CRAWLING_BB;

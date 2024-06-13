@@ -3,7 +3,9 @@
   "ingredient": {
     "item": "darkestsouls:cinnabar"
   },
-  "result": "darkestsouls:quicksilver",
+  "result": {
+    "id": "darkestsouls:quicksilver"
+  },
   "experience": 6.9,
   "cookingtime": 60,
   "group": "darkestsouls:quicksilver"

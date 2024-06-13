@@ -3,11 +3,13 @@ package github.nitespring.darkestsouls.common.effect;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.core.init.EffectInit;
+import github.nitespring.darkestsouls.core.util.CustomEntityTags;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -29,49 +31,49 @@ public class BleedMobEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity living, int amount) {
+    public boolean applyEffectTick(LivingEntity living, int amount) {
         super.applyEffectTick(living, amount);
 
 
 
 
-        if(living instanceof Skeleton || living instanceof Bonewheel){
-            living.removeEffect(EffectInit.BLEED.get());
-        }
-        //int amount = living.getEffect(EffectInit.BLEED.get()).getAmplifier();
-        if(living instanceof DarkestSoulsAbstractEntity){
-            int res = ((DarkestSoulsAbstractEntity) living).getBloodResistance()-1;
-            if(amount>=res){
-                living.invulnerableTime = 0;
-                applyDamage(living, 12.0f+living.getMaxHealth()*0.05f);
-                living.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
-            }
-        }else if(living instanceof Player p){
-            if(amount>=8){
-                living.invulnerableTime = 0;
-                applyDamage(living, 2.0f+living.getMaxHealth()*0.3f);
-                p.level().playSound((Player) p, p.getX(), p.getY(), p.getZ(), SoundEvents.PLAYER_SPLASH_HIGH_SPEED, p.getSoundSource(), 1.0f, 1.0f);
+        if(living.getType().is(CustomEntityTags.BLEED_IMMUNE)){
+            living.removeEffect(EffectInit.BLEED.getHolder().get());
+        }else{
+        //int amount = living.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier();
+            if(living instanceof DarkestSoulsAbstractEntity){
+                int res = ((DarkestSoulsAbstractEntity) living).getBloodResistance()-1;
+                if(amount>=res){
+                    living.invulnerableTime = 0;
+                    applyDamage(living, 12.0f+living.getMaxHealth()*0.05f);
+                    living.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
+                }
+            }else if(living instanceof Player p){
+                if(amount>=16){
+                    living.invulnerableTime = 0;
+                    applyDamage(living, 2.0f+living.getMaxHealth()*0.3f);
+                    p.level().playSound((Player) p, p.getX(), p.getY(), p.getZ(), SoundEvents.PLAYER_SPLASH_HIGH_SPEED, p.getSoundSource(), 1.0f, 1.0f);
 
-                //p.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
-                ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
-                float width = living.getBbWidth() * 0.75f;
-                float height = living.getBbHeight() * 0.75f;
-                Vec3 pos = new Vec3(living.getX(), living.getEyeY(), living.getZ());
-                Level world = living.level();
-                RandomSource rng = living.getRandom();
-                for (int i = 0; i < 24; ++i) {
-                    Vec3 off = new Vec3(rng.nextDouble() * width - width / 2, rng.nextDouble() * height - height / 2,
-                                rng.nextDouble() * width - width / 2);
-                    if(world instanceof ServerLevel) {
-                        ((ServerLevel) world).sendParticles( blood, pos.x+off.x, pos.y+off.y, pos.z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
+                    //p.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
+                    ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
+                    float width = living.getBbWidth() * 0.75f;
+                    float height = living.getBbHeight() * 0.75f;
+                    Vec3 pos = new Vec3(living.getX(), living.getEyeY(), living.getZ());
+                    Level world = living.level();
+                    RandomSource rng = living.getRandom();
+                    for (int i = 0; i < 24; ++i) {
+                        Vec3 off = new Vec3(rng.nextDouble() * width - width / 2, rng.nextDouble() * height - height / 2,
+                                    rng.nextDouble() * width - width / 2);
+                        if(world instanceof ServerLevel) {
+                            ((ServerLevel) world).sendParticles( blood, pos.x+off.x, pos.y+off.y, pos.z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
+                        }
                     }
                 }
-            }
-        }else if(!(living instanceof Skeleton)){
-            if(amount>=5){
-                living.invulnerableTime = 0;
-                applyDamage(living, 12.0f+living.getMaxHealth()*0.05f);
-                living.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
+            }else{
+                if(amount>=12) {
+                    living.invulnerableTime = 0;
+                    applyDamage(living, 12.0f + living.getMaxHealth() * 0.05f);
+                    living.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED, 1.0f, 3.6f);
                     ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
                     float width = living.getBbWidth() * 0.5f;
                     float height = living.getBbHeight() * 0.5f;
@@ -81,15 +83,14 @@ public class BleedMobEffect extends MobEffect {
                     for (int i = 0; i < 20; ++i) {
                         Vec3 off = new Vec3(rng.nextDouble() * width - width / 2, rng.nextDouble() * height - height / 2,
                                 rng.nextDouble() * width - width / 2);
-                        if(world instanceof ServerLevel) {
-                            ((ServerLevel) world).sendParticles( blood, pos.x, pos.y, pos.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
+                        if (world instanceof ServerLevel) {
+                            ((ServerLevel) world).sendParticles(blood, pos.x, pos.y, pos.z, 5, off.x, off.y + 0.05D, off.z, 0.05D + 5 * 0.003);
                         }
                     }
+                }
             }
         }
-
-
-
+        return true;
     }
 
     @Override
@@ -102,7 +103,7 @@ public class BleedMobEffect extends MobEffect {
         if(!(living instanceof Player p && p.isCreative())) {
             living.hurt(living.level().damageSources().genericKill(), dmg);
         }
-        living.removeEffect(EffectInit.BLEED.get());
+        living.removeEffect(EffectInit.BLEED.getHolder().get());
 
         ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
         float width = living.getBbWidth() * 0.5f;

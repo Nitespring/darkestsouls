@@ -16,13 +16,13 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -31,7 +31,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, 0.6f, EntityAttachments.createDefault(0.9f, 0.8f),false);
 
     protected Vec3 aimVec;
 
@@ -137,7 +137,7 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
     @Override
     public boolean canDrownInFluidType(FluidType type) {return false;}
     @Override
-    public EntityDimensions getDimensions(Pose p_21047_) {
+    public EntityDimensions getDefaultDimensions(Pose p_21047_) {
 
         if(this.getAnimationState()==1) {
             return CRAWLING_BB;
@@ -149,8 +149,8 @@ public class SkeletonCurvedSwords extends Skeleton implements GeoEntity {
 
     @Override
     public void tick() {
-        if(this.tickCount%5==0&&this.hasEffect(EffectInit.BLEED.get())){
-            this.removeEffect(EffectInit.BLEED.get());
+        if(this.tickCount%5==0&&this.hasEffect(EffectInit.BLEED.getHolder().get())){
+            this.removeEffect(EffectInit.BLEED.getHolder().get());
         }
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();

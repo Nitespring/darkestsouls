@@ -14,7 +14,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -42,21 +41,17 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
     public int getDefaultRobeType(){return 0;}
     public int getDefaultHatType(){return 0;}
 
-    public int getRobeType(){return this.entityData.get(ROBE_TYPE);}
-    public void setRobeType(int i){this.entityData.set(ROBE_TYPE, i);}
-    public int getHatType(){return this.entityData.get(HAT_TYPE);}
-    public void setHatType(int i){this.entityData.set(HAT_TYPE, i);}
+    public int getRobeType(){return this.getEntityData().get(ROBE_TYPE);}
+    public void setRobeType(int i){this.getEntityData().set(ROBE_TYPE, i);}
+    public int getHatType(){return this.getEntityData().get(HAT_TYPE);}
+    public void setHatType(int i){this.getEntityData().set(HAT_TYPE, i);}
+
 
     @Override
-    public MobType getMobType() {
-        return MobType.UNDEAD;
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(ROBE_TYPE, this.getDefaultRobeType());
-        this.entityData.define(HAT_TYPE, this.getDefaultHatType());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+         super.defineSynchedData(builder);
+        builder.define(ROBE_TYPE, this.getDefaultRobeType());
+        builder.define(HAT_TYPE, this.getDefaultHatType());
     }
 
     @Override

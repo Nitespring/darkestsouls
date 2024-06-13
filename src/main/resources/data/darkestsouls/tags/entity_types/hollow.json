@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:hollow_longsword",
+    "darkestsouls:hollow_broken_straightsword",
+    "darkestsouls:hollow_axe",
+    "darkestsouls:gravetender_hollow_longsword",
+    "darkestsouls:gravetender_hollow_broken_straightsword",
+    "darkestsouls:hollow_assassin"
+  ]
+}

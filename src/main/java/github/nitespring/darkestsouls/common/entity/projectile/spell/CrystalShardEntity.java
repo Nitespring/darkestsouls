@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.entity.projectile.spell;
 
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -19,6 +20,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -81,10 +84,11 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
     }
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(CRYSTAL_TYPE, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(CRYSTAL_TYPE, 0);
 
     }
+
 
     @Override
     public void onAddedToWorld() {
@@ -130,7 +134,7 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
             this.doRemoval();
             Entity e = p_37259_.getEntity();
             e.hurt(e.level().damageSources().indirectMagic(this, this.getOwner()),this.damage);
-            this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), this.getSoundSource(), 1.0f, 1.4f);
+            this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(), this.getSoundSource(), 1.0f, 1.4f);
             for(int i=0; i<=2; i++){
                 RandomSource r = this.random;
                 Vec3 off = new Vec3(r.nextFloat() - 0.5, r.nextFloat() - 0.5, r.nextFloat() - 0.5).multiply(0.25f, 0.25f, 0.25f);
@@ -142,7 +146,12 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult p_37258_) {
+    protected void onHitBlock(BlockHitResult result) {
+        BlockState block = this.level().getBlockState(result.getBlockPos());
+        if(block.is(CustomBlockTags.BOMB_BREAKABLE)){
+            this.level().destroyBlock(result.getBlockPos(), true, this.getOwner());
+            level().gameEvent(this, GameEvent.BLOCK_DESTROY, result.getBlockPos());
+        }
         this.discard();
         for(int i=0; i<=2; i++){
             RandomSource r = this.random;
@@ -151,7 +160,7 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
                 level.sendParticles(ParticleTypes.ENCHANT, this.position().x+off.x, this.position().y+this.getBbHeight()*0.5f+off.y, this.position().z+off.z, 5,  off.x, off.y + 0.05D, off.z, 0.05D + 5*0.003);
             }
         }
-        this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), this.getSoundSource(), 1.0f, 1.4f);
+        this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(), this.getSoundSource(), 1.0f, 1.4f);
     }
 
     public int getLifeTicks() {

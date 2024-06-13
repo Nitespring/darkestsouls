@@ -1,12 +1,13 @@
 package github.nitespring.darkestsouls.common.enchantment;
 
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class ChildOfTheThunderGodEnchantment extends Enchantment {
-    public ChildOfTheThunderGodEnchantment(Rarity rarity) {
-        super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
+    public ChildOfTheThunderGodEnchantment(EnchantmentDefinition pDefinition) {
+        super(pDefinition);
     }
 
     @Override
@@ -18,18 +19,7 @@ public class ChildOfTheThunderGodEnchantment extends Enchantment {
         }
     }
 
-    @Override
-    public int getMinCost(int i) {
-        return 25;
-    }
-    @Override
-    public int getMaxCost(int i) {
-        return 50;
-    }
-    @Override
-    public int getMaxLevel() {
-        return 1;
-    }
+
 
     @Override
     public boolean isTradeable() {

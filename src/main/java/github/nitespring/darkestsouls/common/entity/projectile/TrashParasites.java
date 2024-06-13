@@ -175,14 +175,14 @@ public class TrashParasites extends AbstractHurtingProjectile implements ItemSup
         if (p_36945_.isAlive() && !p_36945_.isInvulnerable() && p_36945_ != livingentity) {
             if (livingentity == null) {
                 p_36945_.hurt(this.level().damageSources().generic(), 1.0F);
-                p_36945_.addEffect(new MobEffectInstance(EffectInit.PARASITES.get(),360));
+                p_36945_.addEffect(new MobEffectInstance(EffectInit.PARASITES.getHolder().get(),360));
             } else {
                 if (livingentity.isAlliedTo(p_36945_)) {
                     return;
                 }
 
                 p_36945_.hurt(this.level().damageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
-                p_36945_.addEffect(new MobEffectInstance(EffectInit.PARASITES.get(),360));
+                p_36945_.addEffect(new MobEffectInstance(EffectInit.PARASITES.getHolder().get(),360));
             }
 
         }

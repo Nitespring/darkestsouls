@@ -3,7 +3,9 @@
   "ingredient": {
     "item": "darkestsouls:siderite_fragment"
   },
-  "result": "darkestsouls:siderite_nugget",
+  "result": {
+    "id": "darkestsouls:siderite_nugget"
+  },
   "experience": 7.4,
   "cookingtime": 200,
   "group": "darkestsouls:siderite_nugget"

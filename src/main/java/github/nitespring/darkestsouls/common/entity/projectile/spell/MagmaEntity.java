@@ -1,24 +1,29 @@
 package github.nitespring.darkestsouls.common.entity.projectile.spell;
 
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
@@ -67,7 +72,7 @@ public class MagmaEntity extends Entity implements GeoEntity{
         return PlayState.CONTINUE;
     }
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
 
 
     }
@@ -156,6 +161,36 @@ public class MagmaEntity extends Entity implements GeoEntity{
             this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.LAVA_EXTINGUISH, this.getSoundSource(), 0.1F, this.random.nextFloat() * 0.4F + 0.25F, false);
         }
 
+        Vec3 pos = this.position();
+        Level world = this.level();
+        int xSpread = Math.toIntExact((long) (this.getBoundingBox().getXsize() * 1.0));
+        int zSpread = Math.toIntExact((long) (this.getBoundingBox().getZsize() * 1.0));
+        int ySpread = Math.toIntExact((long) (this.getBoundingBox().getYsize() * 1.0));
+        int x0 = this.blockPosition().getX();
+        int y0 = this.blockPosition().getY();
+        int z0 = this.blockPosition().getZ();
+        for(int i = 0; i<=24; i++) {
+            for (int j = 0; j <= zSpread; j++) {
+                for (int k = -ySpread; k <= ySpread; k++) {
+                    double a = Math.PI / 12;
+                    double d = j;
+                    int xVar = (int) (d * Math.sin(i * a));
+                    int yVar = k;
+                    int zVar = (int) (d * Math.cos(i * a));
+                    ;
+                    int x = x0 + xVar;
+                    int z = z0 + zVar;
+                    int y = y0 + yVar;
+
+                    BlockPos blockPos = new BlockPos(x, y, z);
+                    if (level().getBlockState(blockPos).is(CustomBlockTags.FLAME_BREAKABLE)) {
+                        level().destroyBlock(blockPos, true, this.getOwner());
+                        level().gameEvent(this, GameEvent.BLOCK_DESTROY, blockPos);
+                    }
+                }
+            }
+        }
+
     }
 
     private void dealDamageTo(LivingEntity p_36945_) {
@@ -163,14 +198,14 @@ public class MagmaEntity extends Entity implements GeoEntity{
         if (p_36945_.isAlive() && !p_36945_.isInvulnerable() && p_36945_ != livingentity) {
             if (livingentity == null) {
                 p_36945_.hurt(this.level().damageSources().inFire(), 6.0F);
-                p_36945_.setSecondsOnFire(2);
+                p_36945_.igniteForTicks(40);
             } else {
                 if (livingentity.isAlliedTo(p_36945_)) {
                     return;
                 }
 
                 p_36945_.hurt(this.level().damageSources().inFire(), damage);
-                p_36945_.setSecondsOnFire(2);
+                p_36945_.igniteForTicks(40);
             }
 
         }

@@ -1,5 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.projectile.spell;
 
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -19,6 +21,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -31,8 +35,8 @@ public class WindSlash extends AbstractHurtingProjectile {
     public int maxLifeTime=20;
     public int lifeTicks=0;
 
-    protected static final EntityDataAccessor<Integer> INITIAL_X_ROT = SynchedEntityData.defineId(WindSlash.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Integer> INITIAL_Y_ROT = SynchedEntityData.defineId(WindSlash.class, EntityDataSerializers.INT);
+    //protected static final EntityDataAccessor<Integer> INITIAL_X_ROT = SynchedEntityData.defineId(WindSlash.class, EntityDataSerializers.INT);
+    //protected static final EntityDataAccessor<Integer> INITIAL_Y_ROT = SynchedEntityData.defineId(WindSlash.class, EntityDataSerializers.INT);
 
     public WindSlash(EntityType<? extends AbstractHurtingProjectile> e, Level level) {
         super(e, level);
@@ -72,7 +76,35 @@ public class WindSlash extends AbstractHurtingProjectile {
             this.level().addAlwaysVisibleParticle(ParticleTypes.WHITE_SMOKE,
                     this.position().x + 1.5  * off.x, this.position().y + 0.5 +this.getBbHeight()*1.5f * off.y, this.position().z + 1.5  * off.z, off.x * r.nextFloat(), off.y * r.nextFloat(), off.z * r.nextFloat());
         }
+        Vec3 pos = this.position();
+        Level world = this.level();
+        int xSpread = Math.toIntExact((long) (this.getBoundingBox().getXsize() * 1.0));
+        int zSpread = Math.toIntExact((long) (this.getBoundingBox().getZsize() * 1.0));
+        int ySpread = Math.toIntExact((long) (this.getBoundingBox().getYsize() * 1.0));
+        int x0 = this.blockPosition().getX();
+        int y0 = this.blockPosition().getY();
+        int z0 = this.blockPosition().getZ();
+        for(int i = 0; i<=24; i++) {
+            for (int j = 0; j <= zSpread; j++) {
+                for (int k = -ySpread; k <= ySpread; k++) {
+                    double a = Math.PI / 12;
+                    double d = j;
+                    int xVar = (int) (d * Math.sin(i * a));
+                    int yVar = k;
+                    int zVar = (int) (d * Math.cos(i * a));
+                    ;
+                    int x = x0 + xVar;
+                    int z = z0 + zVar;
+                    int y = y0 + yVar;
 
+                    BlockPos blockPos = new BlockPos(x, y, z);
+                    if (level().getBlockState(blockPos).is(CustomBlockTags.FLAME_BREAKABLE)) {
+                        level().destroyBlock(blockPos, true, this.getOwner());
+                        level().gameEvent(this, GameEvent.BLOCK_DESTROY, blockPos);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -121,8 +153,13 @@ public class WindSlash extends AbstractHurtingProjectile {
 
 
     @Override
-    protected void onHitBlock(BlockHitResult p_37258_) {
-        super.onHitBlock(p_37258_);
+    protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
+        BlockState block = this.level().getBlockState(result.getBlockPos());
+        if(block.is(CustomBlockTags.BOMB_BREAKABLE)){
+            this.level().destroyBlock(result.getBlockPos(), true, this.getOwner());
+            level().gameEvent(this, GameEvent.BLOCK_DESTROY, result.getBlockPos());
+        }
         this.doDiscard();
         this.level().addAlwaysVisibleParticle(ParticleTypes.EXPLOSION,
                 this.position().x, this.position().y + 0.5, this.position().z, 0, 0, 0);
@@ -148,6 +185,4 @@ public class WindSlash extends AbstractHurtingProjectile {
         }
         super.discard();
     }
-
-
 }

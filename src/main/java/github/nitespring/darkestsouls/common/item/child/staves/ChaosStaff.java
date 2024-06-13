@@ -57,10 +57,12 @@ public class ChaosStaff extends Staff {
             e.yPower = 0.05 * aim.y + 0.08f;
             e.zPower = 0.05 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.4);
             e.setDamage(this.getAttackDamage(playerIn,stackIn));
-            e.setOwner(playerIn);
-                stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
-                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                });
+            if(playerIn.getItemInHand(InteractionHand.MAIN_HAND)==stackIn) {
+                stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
+            }
+            if(playerIn.getItemInHand(InteractionHand.OFF_HAND)==stackIn) {
+                stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);
+            }
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 48);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
@@ -101,10 +103,12 @@ public class ChaosStaff extends Staff {
             e.yPower = 0.035 * aim.y + 0.035;
             e.zPower = 0.045 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
         }
-            stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
-                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
-
+        if(playerIn.getItemInHand(InteractionHand.MAIN_HAND)==stackIn) {
+            stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
+        }
+        if(playerIn.getItemInHand(InteractionHand.OFF_HAND)==stackIn) {
+            stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);
+        }
         levelIn.addFreshEntity(e);
         playerIn.level().playSound((Player)null, playerIn, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.6F, 1.2F);
 
@@ -185,8 +189,8 @@ public class ChaosStaff extends Staff {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
-        super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag p_41424_) {
+        super.appendHoverText(stack,  context, tooltip, p_41424_);
         String spellA = "\u00A76Magma Burst (1)";
         //tooltip.add(Component.literal(spellA));
 

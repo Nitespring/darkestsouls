@@ -61,7 +61,7 @@ public class MagmaBurstParent extends MagmaBurstEntity{
             if (e.isAlive() && !e.isInvulnerable() && e != livingentity && e instanceof LivingEntity) {
                 if (livingentity == null) {
                     e.hurt(this.level().damageSources().inFire(), 6.0F);
-                    e.setSecondsOnFire(2);
+                    e.igniteForTicks(40);
                 } else {
                     if (livingentity.isAlliedTo(e)) {
                         return;
@@ -69,7 +69,7 @@ public class MagmaBurstParent extends MagmaBurstEntity{
 
                     e.hurt(this.level().damageSources().inFire(), damage);
                     ((LivingEntity)e).setLastHurtByMob(livingentity);
-                    e.setSecondsOnFire(2);
+                    e.igniteForTicks(40);
                 }
             }
         }

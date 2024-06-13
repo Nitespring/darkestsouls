@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:frayed_blade",
+    "darkestsouls:shadow_blade",
+    "darkestsouls:dragonslayer_spear",
+    "darkestsouls:dragonslayer_swordspear",
+    "darkestsouls:storm_curved_sword",
+    "darkestsouls:dragonslayer_greataxe"
+  ]
+}

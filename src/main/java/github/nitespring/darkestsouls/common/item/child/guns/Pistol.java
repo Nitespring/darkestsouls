@@ -20,38 +20,39 @@ public class Pistol extends Gun{
 
     @Override
     public void shoot(Player player, Level level, ItemStack stackIn) {
-        Vec3 pos = player.position();
-        Vec3 aim = player.getLookAngle();
+        if(!level.isClientSide()) {
+            Vec3 pos = player.position();
+            Vec3 aim = player.getLookAngle();
 
 
-        float x = (float) (pos.x + 0.6 * aim.x);
-        float y = (float) (pos.y + 1.5 + 0.6 * aim.y);
-        float z = (float) (pos.z + 0.6 * aim.z);
+            float x = (float) (pos.x + 0.6 * aim.x);
+            float y = (float) (pos.y + 1.5 + 0.6 * aim.y);
+            float z = (float) (pos.z + 0.6 * aim.z);
 
-        Bullet entity = new Bullet(EntityInit.BULLET.get(), level);
-        entity.setPos(x, y, z);
-        float flyingPower = this.flyingPower(player, stackIn);
-        //float flyingPower = 0.5f;
-        entity.xPower = flyingPower * aim.x;
-        entity.yPower = flyingPower * aim.y;
-        entity.zPower = flyingPower * aim.z;
-        entity.setOwner(player);
-        entity.setAttackDamage(this.getAttackDamage(player, stackIn));
-        entity.setPoiseDamage(this.getPoiseDamage(player, stackIn));
-        entity.setFlyingTime(this.getFlyingTime(stackIn));
-        entity.setBlood(this.getBlood(player,stackIn));
-        entity.setPoison(this.getPoison(player,stackIn));
-        entity.setFire(this.isFire(player,stackIn));
-        entity.setExplosion(this.getExplosion(stackIn));
-        entity.setThunder(this.isLightning(player,stackIn));
-        entity.setSize(this.getBaseSize());
-        entity.setPierce(this.getPierce(player, stackIn));
-        entity.setRicochet(this.getRicochet(player, stackIn));
-        level.addFreshEntity(entity);
-
+            Bullet entity = new Bullet(EntityInit.BULLET.get(), level);
+            entity.setPos(x, y, z);
+            float flyingPower = this.flyingPower(player, stackIn);
+            //float flyingPower = 0.5f;
+            entity.xPower = flyingPower * aim.x;
+            entity.yPower = flyingPower * aim.y;
+            entity.zPower = flyingPower * aim.z;
+            entity.setOwner(player);
+            entity.setAttackDamage(this.getAttackDamage(player, stackIn));
+            entity.setPoiseDamage(this.getPoiseDamage(player, stackIn));
+            entity.setFlyingTime(this.getFlyingTime(stackIn));
+            entity.setBlood(this.getBlood(player, stackIn));
+            entity.setPoison(this.getPoison(player, stackIn));
+            entity.setFire(this.isFire(player, stackIn));
+            entity.setExplosion(this.getExplosion(stackIn));
+            entity.setThunder(this.isLightning(player, stackIn));
+            entity.setSize(this.getBaseSize());
+            entity.setPierce(this.getPierce(player, stackIn));
+            entity.setRicochet(this.getRicochet(player, stackIn));
+            level.addFreshEntity(entity);
+        }
         player.getCooldowns().addCooldown(stackIn.getItem(), this.getUseCooldown(player, stackIn));
 
-        player.level().playSound((Player) null, player, SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.0F, 1.0f);
+        player.level().playSound((Player) null, player, SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS, 1.0F, 1.0f);
     }
 
 

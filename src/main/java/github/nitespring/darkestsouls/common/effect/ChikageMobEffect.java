@@ -21,7 +21,7 @@ public class ChikageMobEffect extends MobEffect{
 		
 	}
 	@Override
-	public void applyEffectTick(LivingEntity entityIn, int id) {
+	public boolean applyEffectTick(LivingEntity entityIn, int id) {
 		ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
 
 
@@ -48,6 +48,7 @@ public class ChikageMobEffect extends MobEffect{
 		entityIn.hurt(entityIn.damageSources().fellOutOfWorld(), 1);
 	}
 
+		return true;
 	}
 
 

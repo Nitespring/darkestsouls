@@ -23,7 +23,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
+ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class SorcererStaff extends Staff {
     }
 
     @Override
-    public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand HandIn) {
+    public void doSpellA(Player playerIn, ItemStack stackIn, InteractionHand handIn) {
         int ammoAmount = 1;
         if(!playerIn.getCooldowns().isOnCooldown(this)&&(this.hasAmmo(playerIn,ammoAmount)||playerIn.isCreative())) {
             Level levelIn = playerIn.level();
@@ -50,9 +50,8 @@ public class SorcererStaff extends Staff {
             e.xPower = 0.25 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
             e.yPower = 0.25 * aim.y;
             e.zPower = 0.25 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
-                stackIn.hurtAndBreak(1, playerIn, (p_43276_) -> {
-                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                });
+            if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
+            if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
             levelIn.addFreshEntity(e);
             playerIn.getCooldowns().addCooldown(this, 5);
             playerIn.level().playSound((Player)null, playerIn, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.6F, 1.2F);
@@ -90,9 +89,8 @@ public class SorcererStaff extends Staff {
             e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
         }
 
-            stackIn.hurtAndBreak(2, playerIn, (p_43276_) -> {
-                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+        if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.MAINHAND);}
+        if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.OFFHAND);}
 
         levelIn.addFreshEntity(e);
         playerIn.getCooldowns().addCooldown(this, 15);
@@ -148,7 +146,7 @@ public class SorcererStaff extends Staff {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, Level p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
+    public void appendHoverText(ItemStack stack, TooltipContext p_41422_, List<Component> tooltip, TooltipFlag p_41424_) {
         super.appendHoverText(stack, p_41422_, tooltip, p_41424_);
 
         String spellA = "\u00A7bSoul Dart (1)";

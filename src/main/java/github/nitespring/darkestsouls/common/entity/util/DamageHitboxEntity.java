@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -71,7 +72,8 @@ public class DamageHitboxEntity extends Entity {
 	}
 
 	@Override
-	protected void defineSynchedData() {
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+
 	}
 
 	@Override
@@ -200,22 +202,22 @@ public class DamageHitboxEntity extends Entity {
 							break;
 						case 3:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
-							if(target.hasEffect(EffectInit.BLEED.get())){
-								int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ 2;
-								target.removeEffect(EffectInit.BLEED.get());
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, amount));
+							if(target.hasEffect(EffectInit.BLEED.getHolder().get())){
+								int amount= target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier()+ 2;
+								target.removeEffect(EffectInit.BLEED.getHolder().get());
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, amount));
 							}else {
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, 1), this.getOwner());
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, 1), this.getOwner());
 							}
 							break;
 						case 4:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
-							if(target.hasEffect(EffectInit.BLEED.get())){
-								int amount= target.getEffect(EffectInit.BLEED.get()).getAmplifier()+ 1;
-								target.removeEffect(EffectInit.BLEED.get());
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, amount));
+							if(target.hasEffect(EffectInit.BLEED.getHolder().get())){
+								int amount= target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier()+ 1;
+								target.removeEffect(EffectInit.BLEED.getHolder().get());
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, amount));
 							}else {
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 400, 0), this.getOwner());
+								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, 0), this.getOwner());
 							}
 							break;
 						case 5:

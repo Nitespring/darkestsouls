@@ -20,7 +20,7 @@
         }
     },
     "result": {
-        "item": "darkestsouls:reinforced_gunmetal_barrel",
+    "id": "darkestsouls:reinforced_gunmetal_barrel",
         "count": 1
     },
     "group": "darkestsouls:gun_barrel"

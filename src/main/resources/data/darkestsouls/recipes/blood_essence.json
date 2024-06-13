@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "darkestsouls:blood_essence",
+    "id": "darkestsouls:blood_essence",
         "count": 1
     },
     "group": "darkestsouls:blood_essence"

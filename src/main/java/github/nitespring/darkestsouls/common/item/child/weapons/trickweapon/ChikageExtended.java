@@ -22,8 +22,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class ChikageExtended extends TrickWeapon {
-    public ChikageExtended(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, poise, blood, poison, frost, rot, death, fire, holy, durability, enchantability, movementSpeed, maxTargets, properties);
+    public ChikageExtended(Tier tier, float attack, float speed, float reach, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy,int serrated, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, reach, knockback, poise, blood, poison, frost, rot, death, fire, holy, serrated, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override
@@ -34,10 +34,10 @@ public class ChikageExtended extends TrickWeapon {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean b) {
 
-        if (entity instanceof LivingEntity living && !living.hasEffect(EffectInit.CHIKAGE.get())) {
+        if (entity instanceof LivingEntity living && !living.hasEffect(EffectInit.CHIKAGE.getHolder().get())) {
             if(stack==living.getItemInHand(InteractionHand.MAIN_HAND)||stack==living.getItemInHand(InteractionHand.OFF_HAND))
                 if(!level.isClientSide()) {
-                    living.addEffect(new MobEffectInstance(EffectInit.CHIKAGE.get(), 40));
+                    living.addEffect(new MobEffectInstance(EffectInit.CHIKAGE.getHolder().get(), 40));
             }
 
         }
@@ -57,14 +57,16 @@ public class ChikageExtended extends TrickWeapon {
             entity.setDamage(
                     this.getAttackDamage(playerIn, stackIn),
                     this.getPoiseDamage(playerIn, stackIn),
-                    this.getFireAttack(stackIn),
-                    this.getSmiteAttack(stackIn),
-                    this.getBaneOfArthropodsAttack(stackIn),
-                    this.getBloodAttack(stackIn),
-                    this.getPoisonAttack(stackIn),
-                    this.getRotAttack(stackIn),
-                    this.getFrostAttack(stackIn),
-                    this.getDeathAttack(stackIn));
+                        this.getFireAttack(stackIn),
+                        this.getSmiteAttack(stackIn),
+                        this.getBaneOfArthropodsAttack(stackIn),
+                        this.getBeastHunterAttack(stackIn),
+                        this.getBloodAttack(stackIn),
+                        this.getPoisonAttack(stackIn),
+                        this.getToxicAttack(stackIn),
+                        this.getRotAttack(stackIn),
+                        this.getFrostAttack(stackIn),
+                        this.getWitherAttack(stackIn));
             entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
             entity.configureTicks(6, 12, 2, 3);
             levelIn.addFreshEntity(entity);

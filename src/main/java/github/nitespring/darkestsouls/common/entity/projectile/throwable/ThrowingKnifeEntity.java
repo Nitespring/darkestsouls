@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.entity.projectile.throwable;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -18,6 +19,8 @@ import github.nitespring.darkestsouls.core.interfaces.CustomItemSupplier;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -76,11 +79,11 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     public void setGravPower(float f) {this.gravPower=f;}
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(ITEM, ItemInit.THROWING_KNIFE.get().getDefaultInstance());
-        this.entityData.define(SIZE, 0.4f);
-        this.entityData.define(SHOULD_ROTATE, false);
-        this.entityData.define(ZTILT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(ITEM, ItemInit.THROWING_KNIFE.get().getDefaultInstance());
+        builder.define(SIZE, 0.4f);
+        builder.define(SHOULD_ROTATE, false);
+        builder.define(ZTILT, 0);
 
     }
 
@@ -116,13 +119,19 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult p_37258_) {
-        this.setDeltaMovement(0,0,0);
-        this.setToRotate(false);
-        this.rotationTick=0;
-        int r = this.level().getRandom().nextInt(1000);
-        if(r >= 600){
-            //this.discard();
+    protected void onHitBlock(BlockHitResult result) {
+        BlockState block = this.level().getBlockState(result.getBlockPos());
+        if(block.is(CustomBlockTags.BOMB_BREAKABLE)){
+            this.level().destroyBlock(result.getBlockPos(), true, this.getOwner());
+            level().gameEvent(this, GameEvent.BLOCK_DESTROY, result.getBlockPos());
+        }else {
+            this.setDeltaMovement(0, 0, 0);
+            this.setToRotate(false);
+            this.rotationTick = 0;
+            int r = this.level().getRandom().nextInt(1000);
+            if (r >= 600) {
+                //this.discard();
+            }
         }
     }
 
@@ -144,12 +153,12 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
                     target.addEffect(new MobEffectInstance(MobEffects.POISON, 60, this.poisonDamage - 1));
                 }
                 if (this.getBloodDamage() >= 1) {
-                    if (target.hasEffect(EffectInit.BLEED.get())) {
-                        int amount = target.getEffect(EffectInit.BLEED.get()).getAmplifier();
-                        target.removeEffect(EffectInit.BLEED.get());
-                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage + amount));
+                    if (target.hasEffect(EffectInit.BLEED.getHolder().get())) {
+                        int amount = target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier();
+                        target.removeEffect(EffectInit.BLEED.getHolder().get());
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 120, this.bloodDamage + amount));
                     } else {
-                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.bloodDamage - 1));
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 120, this.bloodDamage - 1));
                     }
                 }
                 int r = this.level().getRandom().nextInt(1000);

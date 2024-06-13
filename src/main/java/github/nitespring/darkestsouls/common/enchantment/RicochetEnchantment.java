@@ -5,21 +5,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class RicochetEnchantment extends Enchantment {
-    public RicochetEnchantment(Rarity rarity) {
-        super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
-    }
-
-    @Override
-    public int getMinCost(int i) {
-        return 10+10 * i;
-    }
-    @Override
-    public int getMaxCost(int i) {
-        return this.getMinCost(i) + 30;
-    }
-    @Override
-    public int getMaxLevel() {
-        return 5;
+    public RicochetEnchantment(EnchantmentDefinition pDefinition) {
+        super(pDefinition);
     }
 
     @Override

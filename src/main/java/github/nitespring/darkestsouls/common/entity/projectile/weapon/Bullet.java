@@ -2,7 +2,7 @@ package github.nitespring.darkestsouls.common.entity.projectile.weapon;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
-import github.nitespring.darkestsouls.common.entity.util.CustomBlockTags;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -18,6 +18,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.EvokerFangs;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,11 +43,11 @@ public class Bullet extends AbstractHurtingProjectile {
     protected boolean isThunder;
     public int gravTick;
     protected int hitBlocks;
-    protected static final EntityDataAccessor<Integer> FLYING_TIME = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.FLOAT);
-    protected static final EntityDataAccessor<Integer> PIERCE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Integer> RICOCHET = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Boolean> FIRE = SynchedEntityData.defineId(ThrowingKnifeEntity.class, EntityDataSerializers.BOOLEAN);
+    protected static final EntityDataAccessor<Integer> FLYING_TIME = SynchedEntityData.defineId(Bullet.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(Bullet.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Integer> PIERCE = SynchedEntityData.defineId(Bullet.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> RICOCHET = SynchedEntityData.defineId(Bullet.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Boolean> FIRE = SynchedEntityData.defineId(Bullet.class, EntityDataSerializers.BOOLEAN);
     public Bullet(EntityType<? extends AbstractHurtingProjectile> e, Level l) {
         super(e, l);
     }
@@ -81,15 +82,17 @@ public class Bullet extends AbstractHurtingProjectile {
     public float getSize() {return entityData.get(SIZE);}
     public void setSize(float size){entityData.set(SIZE,size);}
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(SIZE, 0.4f);
-        this.entityData.define(RICOCHET, 0);
-        this.entityData.define(PIERCE, 0);
-        this.entityData.define(FLYING_TIME, 100);
-        this.entityData.define(FIRE, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SIZE, 0.4f);
+        builder.define(RICOCHET, 0);
+        builder.define(PIERCE, 0);
+        builder.define(FLYING_TIME, 100);
+        builder.define(FIRE, false);
     }
     public int getRicochet() {return entityData.get(RICOCHET);}
-    public void setRicochet(int ricochet) {entityData.set(RICOCHET,ricochet);}
+    public void setRicochet(int ricochet) {
+        entityData.set(RICOCHET,ricochet);}
 
     @Override
     protected void onHitEntity(EntityHitResult p_37259_) {
@@ -108,17 +111,19 @@ public class Bullet extends AbstractHurtingProjectile {
                     mob.addEffect(new MobEffectInstance(MobEffects.POISON, 60, this.getPoison() - 1));
                 }
                 if (this.getBlood() >= 1) {
-                    if (mob.hasEffect(EffectInit.BLEED.get())) {
-                        int amount = mob.getEffect(EffectInit.BLEED.get()).getAmplifier();
-                        mob.removeEffect(EffectInit.BLEED.get());
-                        mob.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.getBlood() + amount));
+                    if (mob.hasEffect(EffectInit.BLEED.getHolder().get())) {
+                        int amount = mob.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier();
+                        mob.removeEffect(EffectInit.BLEED.getHolder().get());
+                        mob.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 120, this.getBlood() + amount));
                     } else {
-                        mob.addEffect(new MobEffectInstance(EffectInit.BLEED.get(), 120, this.getBlood() - 1));
+                        mob.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 120, this.getBlood() - 1));
                     }
                 }
             }
             if(isFire()){
-                e.setSecondsOnFire(3);
+
+                    e.igniteForTicks(60);
+
             }
             if(isThunder()){
                this.spawnThunder();

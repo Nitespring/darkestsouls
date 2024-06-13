@@ -22,17 +22,16 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
+
 import org.jetbrains.annotations.Nullable;
 import org.joml.Random;
 import org.joml.Vector3f;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -222,8 +221,12 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
 
     @Override
     public int getMaxPoise() {return 36;}
+
     @Override
-    public boolean canDrownInFluidType(FluidType type) {return false;}
+    public boolean canDrownInFluidType(FluidType type) {
+        return false;
+    }
+
     @Override
     public int getBloodResistance() {return 12;}
     @Override
@@ -811,11 +814,11 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
     }
 
     @Override
-    protected Vector3f getPassengerAttachmentPoint(Entity e, EntityDimensions dim, float f) {
+    protected Vec3 getPassengerAttachmentPoint(Entity e, EntityDimensions dim, float f) {
         if(this.aimVec!=null) {
-            return new Vector3f((float) (-aimVec.normalize().x()*0.6f), dim.height*0.5f, (float) (-aimVec.normalize().z()*0.6f));
+            return new Vec3((float) (-aimVec.normalize().x()*0.6f), dim.height()*0.5f, (float) (-aimVec.normalize().z()*0.6f));
         }else {
-            return new Vector3f((float) (-this.getLookAngle().normalize().x()*0.6f), dim.height*0.5f, (float) (-this.getLookAngle().normalize().z()*0.6f));
+            return new Vec3((float) (-this.getLookAngle().normalize().x()*0.6f), dim.height()*0.5f, (float) (-this.getLookAngle().normalize().z()*0.6f));
         }
     }
 

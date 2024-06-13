@@ -11,8 +11,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
@@ -35,7 +35,7 @@ public class LeechGeoRenderer extends GeoEntityRenderer<Leech>{
 	}
 	
 	@Override
-	public int getPackedOverlay(Leech animatable, float u) {
+	public int getPackedOverlay(Leech animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}
@@ -85,12 +85,12 @@ public class LeechGeoRenderer extends GeoEntityRenderer<Leech>{
         @Override
         public void setCustomAnimations(Leech entity, long uniqueID, AnimationState<Leech> customPredicate) {
             super.setCustomAnimations(entity, uniqueID, customPredicate);
-            CoreGeoBone hips = this.getAnimationProcessor().getBone("hips_rotation");
-            CoreGeoBone waist = this.getAnimationProcessor().getBone("waist_rotation");
-            CoreGeoBone neck = this.getAnimationProcessor().getBone("neck_rotation");
-            CoreGeoBone neck1 = this.getAnimationProcessor().getBone("neck1_rotation");
-            CoreGeoBone neck2 = this.getAnimationProcessor().getBone("neck2_rotation");
-            CoreGeoBone head = this.getAnimationProcessor().getBone("head_rotation");
+            GeoBone hips = this.getAnimationProcessor().getBone("hips_rotation");
+            GeoBone waist = this.getAnimationProcessor().getBone("waist_rotation");
+            GeoBone neck = this.getAnimationProcessor().getBone("neck_rotation");
+            GeoBone neck1 = this.getAnimationProcessor().getBone("neck1_rotation");
+            GeoBone neck2 = this.getAnimationProcessor().getBone("neck2_rotation");
+            GeoBone head = this.getAnimationProcessor().getBone("head_rotation");
 
             assert customPredicate != null;
             EntityModelData extraData = (EntityModelData) customPredicate.getData(DataTickets.ENTITY_MODEL_DATA);

@@ -20,7 +20,7 @@ public class RotMobEffect extends MobEffect{
 		
 	}
 	@Override
-	public void applyEffectTick(LivingEntity entityIn, int id) {
+	public boolean applyEffectTick(LivingEntity entityIn, int id) {
 		ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.MUD_BRICKS));
 
 
@@ -46,6 +46,7 @@ public class RotMobEffect extends MobEffect{
 
 		entityIn.hurt(entityIn.damageSources().magic(), 5);
 
+		return true;
 	}
 
 

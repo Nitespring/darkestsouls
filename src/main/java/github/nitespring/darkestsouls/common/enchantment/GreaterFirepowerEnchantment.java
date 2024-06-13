@@ -5,22 +5,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class GreaterFirepowerEnchantment extends Enchantment {
-    public GreaterFirepowerEnchantment(Rarity rarity) {
-        super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
-    }
-    @Override
-    public int getMinCost(int i) {
-        return 12 * i;
+    public GreaterFirepowerEnchantment(EnchantmentDefinition pDefinition) {
+        super(pDefinition);
     }
 
-    @Override
-    public int getMaxCost(int i) {
-        return this.getMinCost(i) + 30;
-    }
-    @Override
-    public int getMaxLevel() {
-        return 5;
-    }
 
     @Override
     public boolean isTradeable() {

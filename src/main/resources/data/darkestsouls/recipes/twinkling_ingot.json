@@ -20,7 +20,7 @@
         }
     },
     "result": {
-        "item": "darkestsouls:twinkling_ingot",
+    "id": "darkestsouls:twinkling_ingot",
         "count": 1
     },
     "group": "darkestsouls:twinkling_ingot"

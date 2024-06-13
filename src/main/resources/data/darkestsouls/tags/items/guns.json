@@ -1,0 +1,10 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:hunter_pistol",
+    "darkestsouls:blunderbuss",
+    "darkestsouls:evelyn",
+    "darkestsouls:repeating_pistol",
+    "darkestsouls:gatling_gun"
+  ]
+}

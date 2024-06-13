@@ -23,13 +23,13 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -39,7 +39,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     protected int screamCooldownTick = 0;
-    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f, false);
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f, 0.8f, EntityAttachments.createDefault(1.0f, 1.0f),false);
 
     protected Vec3 aimVec;
     public AshenBloodBeastPatient(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -177,7 +177,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         this.playSound(SoundInit.BEAST_PATIENT_ATTACK.get(),0.2f,1.4f);
     }
     @Override
-    public EntityDimensions getDimensions(Pose p_21047_) {
+    public EntityDimensions getDefaultDimensions(Pose p_21047_) {
 
         if(this.getAnimationState()==1||this.isInWater()) {
             return CRAWLING_BB;
@@ -195,7 +195,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();
         }
-        if(!this.hasEffect(EffectInit.FAKE_POISON.get())){this.addEffect(new MobEffectInstance(EffectInit.FAKE_POISON.get(),40));}
+        if(!this.hasEffect(EffectInit.FAKE_POISON.getHolder().get())){this.addEffect(new MobEffectInstance(EffectInit.FAKE_POISON.getHolder().get(),40));}
 
         if(this.tickCount%5==0){this.refreshDimensions();}
         super.tick();

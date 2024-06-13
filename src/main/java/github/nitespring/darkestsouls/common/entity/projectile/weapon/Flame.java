@@ -1,9 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.projectile.weapon;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
-import github.nitespring.darkestsouls.common.entity.util.CustomBlockTags;
-import github.nitespring.darkestsouls.core.init.EffectInit;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -12,12 +10,9 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -66,10 +61,10 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
     public float getSize() {return entityData.get(SIZE);}
     public void setSize(float size){entityData.set(SIZE,size);}
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(SIZE, 0.4f);
-        this.entityData.define(RICOCHET, 0);
-        this.entityData.define(FLYING_TIME, 60);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(SIZE, 0.4f);
+        builder.define(RICOCHET, 0);
+        builder.define(FLYING_TIME, 60);
     }
     public int getRicochet() {return entityData.get(RICOCHET);}
     public void setRicochet(int ricochet) {entityData.set(RICOCHET,ricochet);}
@@ -88,7 +83,7 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
                     }
                 }
             }
-                e.setSecondsOnFire(5);
+                e.igniteForTicks(100);
 
             }
         }

@@ -1,0 +1,9 @@
+{
+  "replace" : false,
+  "values" : [
+    "#darkestsouls:melee_weapons",
+    "#darkestsouls:guns",
+    "#darkestsouls:staves",
+    "darkestsouls:flamesprayer"
+  ]
+}

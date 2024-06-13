@@ -15,10 +15,7 @@ public class LanternNormal extends Item {
     }
 
 
-    @Override
-    public int getMaxStackSize(ItemStack stack) {
-        return 1;
-    }
+
 
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {

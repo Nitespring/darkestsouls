@@ -1,0 +1,12 @@
+{
+  "replace" : false,
+  "values" : [
+    "#darkestsouls:skeleton",
+    "darkestsouls:leech",
+    "darkestsouls:sewer_centipede",
+    "#skeletons",
+    "iron_golem",
+    "snow_golem",
+    "#ignores_poison_and_regen"
+  ]
+}

@@ -212,7 +212,7 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_KNOCKBACK, 0.8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
 				.add(Attributes.FOLLOW_RANGE, 30)
-				.add(ForgeMod.SWIM_SPEED.get(),2.0f);
+				.add(ForgeMod.SWIM_SPEED.getHolder().get(),2.0f);
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorAttributes(){
 		return Monster.createMonsterAttributes()

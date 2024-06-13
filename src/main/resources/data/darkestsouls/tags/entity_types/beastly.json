@@ -1,0 +1,17 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:leech",
+    "darkestsouls:monstruosity_of_sin",
+    "wolf",
+    "polar_bear",
+    "piglin",
+    "piglin_brute",
+    "hoglin",
+    "zombified_piglin",
+    "zoglin",
+    "ravager",
+    "guardian",
+    "elder_guardian"
+  ]
+}

@@ -5,22 +5,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class GunslingerEnchantment extends Enchantment {
-    public GunslingerEnchantment(Rarity rarity) {
-        super(rarity,  EnchantmentInit.GUN, EnchantmentInit.HAND_SLOTS);
-    }
-    @Override
-    public int getMinCost(int i) {
-        return 10 * i;
+    public GunslingerEnchantment(EnchantmentDefinition pDefinition) {
+        super(pDefinition);
     }
 
-    @Override
-    public int getMaxCost(int i) {
-        return this.getMinCost(i) + 30;
-    }
-    @Override
-    public int getMaxLevel() {
-        return 3;
-    }
 
     @Override
     public boolean isTradeable() {

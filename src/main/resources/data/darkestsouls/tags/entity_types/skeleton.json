@@ -1,0 +1,10 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:bonewheel",
+    "darkestsouls:skeleton_falchion",
+    "darkestsouls:skeleton_spear",
+    "darkestsouls:skeleton_curved_swords",
+    "darkestsouls:skeleton_swordsman_twin_shotels"
+  ]
+}

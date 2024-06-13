@@ -4,5 +4,7 @@
   "ingredient": {
     "item": "darkestsouls:siderite_bricks"
   },
-  "result": "darkestsouls:cracked_siderite_bricks"
+  "result": {
+    "id": "darkestsouls:cracked_siderite_bricks"
+  }
 }

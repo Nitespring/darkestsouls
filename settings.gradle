@@ -4,7 +4,13 @@ pluginManagement {
         maven {
             name = 'MinecraftForge'
             url = 'https://maven.minecraftforge.net/'
-	    url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
+        maven {
+            name = "Sponge"
+            url = uri("https://repo.spongepowered.org/repository/maven-public/")
+            content {
+                includeGroupAndSubgroups("org.spongepowered")
+            }
         }
     }
 }
