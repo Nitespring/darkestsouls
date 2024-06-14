@@ -30,7 +30,7 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
     private final int durability;
     private final int enchantability;
     public AlchemyTool(float damage, int cooldown, int poise, int ammoAmount, int durability, int enchantability, Properties properties) {
-        super(properties);
+        super(properties.durability(durability).stacksTo(1));
         this.attackDamage = damage;
         this.useCooldown = cooldown;
         this.poiseDamage = poise;

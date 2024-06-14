@@ -42,7 +42,7 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
     private final int enchantability;
 
     public Gun(float damage, int cooldown, int poise, float size, float flyingPower, int flyingTime, int ricochet, int pierce, int ammoAmount, int durability, int enchantability, Properties properties) {
-        super(properties);
+        super(properties.durability(durability).stacksTo(1));
         this.attackDamage = damage;
         this.useCooldown = cooldown;
         this.poiseDamage = poise;

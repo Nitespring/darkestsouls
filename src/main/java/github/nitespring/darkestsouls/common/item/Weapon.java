@@ -20,6 +20,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -59,7 +60,8 @@ public class Weapon extends Item implements ILeftClickItem {
     protected static final UUID BASE_ATTACK_REACH_UUID=UUID.randomUUID();
 
     public Weapon(Tier tier, float attack, float speed,float reach, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy,int serrated, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(properties.attributes(
+        super(properties.durability(durability).stacksTo(1)
+                .attributes(
                 Weapon.createAttributes(
                         attack-1.0f, reach-3.0, speed-4.0f, knockback, movementSpeed-0.1f)));
         this.tier=tier;
@@ -80,7 +82,9 @@ public class Weapon extends Item implements ILeftClickItem {
         this.holy=holy;
         this.serrated=serrated;
     }
-
+    private static Tool createToolProperties() {
+        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
+    }
     public static ItemAttributeModifiers createAttributes(double attackDamage, double reach, double attackSpeed, double attackKnockback, double movementSpeed) {
         return ItemAttributeModifiers.builder()
                 .add(
@@ -311,6 +315,7 @@ public class Weapon extends Item implements ILeftClickItem {
     public int getDefaultMaxStackSize() {
         return 1;
     }
+
 
     @Override
     public boolean isEnchantable(ItemStack p_41456_) {

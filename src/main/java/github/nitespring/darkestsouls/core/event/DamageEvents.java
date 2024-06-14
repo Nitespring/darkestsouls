@@ -26,8 +26,8 @@ public class DamageEvents {
 	public static void applyDamageEvent(final LivingHurtEvent event){
 		DamageSource source = event.getSource();
 		//System.out.println(event.getAmount());
-		//System.out.println(event.getEntity().getType());
-		//System.out.println(event.getEntity().getType().getTags().count());
+		System.out.println(event.getEntity().getType());
+		System.out.println(event.getEntity().getType().getTags().count());
 
 		if(event.getEntity().getType().is(CustomEntityTags.BEASTLY)){
 			if(source.is(DamageTypeTags.IS_FIRE)) {
