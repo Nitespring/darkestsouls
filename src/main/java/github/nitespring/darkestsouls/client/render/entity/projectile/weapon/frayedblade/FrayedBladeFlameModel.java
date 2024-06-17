@@ -51,8 +51,8 @@ public class FrayedBladeFlameModel<T extends FrayedBladeFlameEntity> extends Ent
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		base.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		interior.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int i) {
+		base.render(poseStack, vertexConsumer, packedLight, packedOverlay);
+		interior.render(poseStack, vertexConsumer, packedLight, packedOverlay);
 	}
 }

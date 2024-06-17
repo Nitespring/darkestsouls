@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.effect.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
@@ -22,13 +23,13 @@ public class EffectInit {
 
     public static final RegistryObject<MobEffect> FROST =   EFFECTS.register("frost",
             () -> new FrostMobEffect(MobEffectCategory.HARMFUL,15072511)
-                    .addAttributeModifier(Attributes.ARMOR,"648d7064-6A60-4F59-8ABE-C2C23A6DD7A9",
+                    .addAttributeModifier(Attributes.ARMOR, ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID,"effect.weakness"),
                             -2.0, AttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(Attributes.ARMOR_TOUGHNESS,"648d7064-6A60-4F59-8ABE-C2C23A6DD7A9",
+                    .addAttributeModifier(Attributes.ARMOR_TOUGHNESS,ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID,"effect.weakness_toughness"),
                             -1.0, AttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED,"55FCED67-E92A-486E-9800-B47F202C4386",
+                    .addAttributeModifier(Attributes.ATTACK_SPEED,ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID,"effect.attack_slowness"),
                             -0.05000000149011612, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED,"7107DE5E-7CE8-4030-940E-514C1F160890",
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED,ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID,"effect.slowness"),
                             -0.15000000596046448, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
     );
 

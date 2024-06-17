@@ -25,7 +25,7 @@ public final class CustomItemTags {
 
 
     private static TagKey<Item> create(String p_203847_) {
-        return TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation(DarkestSouls.MODID , p_203847_));
+        return TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID , p_203847_));
     }
 
    /* public static TagKey<Item> create(ResourceLocation name) {

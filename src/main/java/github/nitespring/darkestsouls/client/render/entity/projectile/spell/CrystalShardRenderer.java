@@ -17,9 +17,9 @@ import net.minecraft.resources.ResourceLocation;
 
 public class CrystalShardRenderer<T extends CrystalShardEntity> extends EntityRenderer<T>{
 
-	public static final ResourceLocation LIGHT_BLUE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_shard_blue.png");
-	public static final ResourceLocation DARK_BLUE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_shard_dark_blue.png");
-	public static final ResourceLocation PURPLE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_shard.png");
+	public static final ResourceLocation LIGHT_BLUE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_shard_blue.png");
+	public static final ResourceLocation DARK_BLUE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_shard_dark_blue.png");
+	public static final ResourceLocation PURPLE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_shard.png");
 	private final SquareTextureEntityModel<T> model;
 
 	//EvokerFangsRenderer
@@ -69,7 +69,7 @@ public class CrystalShardRenderer<T extends CrystalShardEntity> extends EntityRe
 		vertexconsumer = p_114532_.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(entity)));
 
 	         
-		this.model.renderToBuffer(stack, vertexconsumer, p_114533_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		this.model.renderToBuffer(stack, vertexconsumer, p_114533_, OverlayTexture.NO_OVERLAY, 1);
 		stack.popPose();
 		super.render(entity, p_114529_, p_114530_, stack, p_114532_, p_114533_);
 	      

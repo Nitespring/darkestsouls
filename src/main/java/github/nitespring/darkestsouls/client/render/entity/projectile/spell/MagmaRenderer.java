@@ -50,17 +50,17 @@ public class MagmaRenderer<T extends MagmaEntity> extends GeoEntityRenderer<T> {
 
         @Override
         public ResourceLocation getModelResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "geo/magma.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/magma.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/magma.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/magma.png");
         }
 
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "animations/magma.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/magma.animation.json");
         }
     }
 }

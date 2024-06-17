@@ -15,13 +15,13 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class HollowRobeLayer<T extends Hollow & GeoEntity> extends GeoRenderLayer<T>{
 
-	private static final ResourceLocation LOINCLOTH = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_loincloth.png");
-	private static final ResourceLocation TROUSERS = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_trousers.png");
-	private static final ResourceLocation VEST = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_vest.png");
-	private static final ResourceLocation CLOAK = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_gravetender_cloak.png");
-	private static final ResourceLocation LOTHRIC = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_lothric_armour.png");
-	private static final ResourceLocation LORDRAN = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_lordran_armour.png");
-	private static final ResourceLocation ASSASSIN = new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_assassin_armour.png");
+	private static final ResourceLocation LOINCLOTH = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_loincloth.png");
+	private static final ResourceLocation TROUSERS = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_trousers.png");
+	private static final ResourceLocation VEST = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_vest.png");
+	private static final ResourceLocation CLOAK = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_gravetender_cloak.png");
+	private static final ResourceLocation LOTHRIC = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_lothric_armour.png");
+	private static final ResourceLocation LORDRAN = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_lordran_armour.png");
+	private static final ResourceLocation ASSASSIN = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_assassin_armour.png");
 
 	public HollowRobeLayer(GeoRenderer<T> entityRendererIn) {
 		super(entityRendererIn);
@@ -59,7 +59,7 @@ public class HollowRobeLayer<T extends Hollow & GeoEntity> extends GeoRenderLaye
 					cameo = RenderType.entityCutoutNoCull(ASSASSIN);
 					break;
 			}
-			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);
+			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, -1);
 		}
 	}
 	

@@ -23,7 +23,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
- import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
@@ -47,9 +47,11 @@ public class SorcererStaff extends Staff {
             e.setDimensionScale(0.1f);
             e.setMaxLifeTime(12);
             e.setPos(pos.add(0, 1.5, 0).add(aim.normalize().multiply(1.5f, 1.5f, 1.5f)));
-            e.xPower = 0.25 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
+            e.accelerationPower=0.25f;
+            e.setDeltaMovement(new Vec3(aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25),aim.y,aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25)));
+            /*e.xPower = 0.25 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
             e.yPower = 0.25 * aim.y;
-            e.zPower = 0.25 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);
+            e.zPower = 0.25 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.25);*/
             if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
             if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
             levelIn.addFreshEntity(e);
@@ -77,16 +79,20 @@ public class SorcererStaff extends Staff {
             e.setDamage(this.getAttackDamage(playerIn, stackIn) * 2 * (i / getCastingDurationSpellB()));
             e.setMaxLifeTime(10 + 30*i/getCastingDurationSpellB());
             e.setDimensionScale((float) (0.12+0.03*i/getCastingDurationSpellB()));
-            e.xPower = 0.1 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB());
+            e.accelerationPower=0.1f;
+            e.setDeltaMovement(new Vec3(aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB()),aim.y * (1 + 0.1 * i / getCastingDurationSpellB()),aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB())));
+            /*e.xPower = 0.1 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB());
             e.yPower = 0.1 * aim.y * (1 + 0.1 * i / getCastingDurationSpellB());
-            e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB());
+            e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.03 * i / getCastingDurationSpellB());*/
         }else{
             e.setDamage(this.getAttackDamage(playerIn, stackIn) * 2.5f);
             e.setMaxLifeTime(50);
             e.setDimensionScale(0.20f);
-            e.xPower = 0.1 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
+            e.accelerationPower=0.1f;
+            e.setDeltaMovement(new Vec3(aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06),aim.y * (1 + 0.12),aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06)));
+            /*e.xPower = 0.1 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
             e.yPower = 0.1 * aim.y * (1 + 0.12);
-            e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);
+            e.zPower = 0.1 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05) * (1 + 0.06);*/
         }
 
         if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.MAINHAND);}
@@ -111,7 +117,7 @@ public class SorcererStaff extends Staff {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_41454_) {
+       public int getUseDuration(ItemStack stackIn, LivingEntity entityIn) {
         return 72000;
     }
 

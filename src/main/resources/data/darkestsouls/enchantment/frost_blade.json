@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.frost_blade"
+  },
+  "primary_items": "#darkestsouls:enchantable/weapon_extended",
+  "supported_items": "#darkestsouls:enchantable/weapon_extended",
+  "weight": 2,
+  "max_level": 2,
+  "anvil_cost": 2,
+  "min_cost": {
+    "base": 4,
+    "per_level_above_first": 14
+  },
+  "max_cost": {
+    "base": 24,
+    "per_level_above_first": 16
+  },
+  "slots": [
+    "mainhand"
+  ]
+}

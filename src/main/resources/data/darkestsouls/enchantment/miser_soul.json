@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.miser_soul"
+  },
+  "primary_items": "#darkestsouls:enchantable/ammo_consuming",
+  "supported_items": "#darkestsouls:enchantable/ammo_consuming",
+  "weight": 6,
+  "max_level": 6,
+  "anvil_cost": 1,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 20,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "hand"
+  ]
+}

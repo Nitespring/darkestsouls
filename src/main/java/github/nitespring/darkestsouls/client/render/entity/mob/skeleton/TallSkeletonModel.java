@@ -15,19 +15,19 @@ public class TallSkeletonModel<T extends Skeleton & GeoEntity> extends GeoModel<
     @Override
     public ResourceLocation getAnimationResource(T animatable) {
 
-        return new ResourceLocation(DarkestSouls.MODID, "animations/tall_skeleton.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/tall_skeleton.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(T object) {
 
-        return new ResourceLocation(DarkestSouls.MODID, "geo/tall_skeleton.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/tall_skeleton.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T object) {
 
-        return new ResourceLocation(DarkestSouls.MODID, "textures/entity/skeleton/tall_skeleton.png");
+        return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/skeleton/tall_skeleton.png");
     }
 
     @Override

@@ -15,7 +15,10 @@ public class LanternNormal extends Item {
     }
 
 
-
+    @Override
+    public int getDefaultMaxStackSize() {
+        return 1;
+    }
 
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
@@ -28,9 +31,11 @@ public class LanternNormal extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_41454_) {
+    public int getUseDuration(ItemStack stackIn, LivingEntity entityIn) {
         return 40000;
     }
+    
+    
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {

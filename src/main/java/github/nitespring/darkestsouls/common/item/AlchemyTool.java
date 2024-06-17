@@ -3,8 +3,11 @@ package github.nitespring.darkestsouls.common.item;
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import github.nitespring.darkestsouls.core.util.CustomItemTags;
+  
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,6 +18,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -30,7 +34,7 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
     private final int durability;
     private final int enchantability;
     public AlchemyTool(float damage, int cooldown, int poise, int ammoAmount, int durability, int enchantability, Properties properties) {
-        super(properties.durability(durability).stacksTo(1));
+        super(properties.stacksTo(1).durability(durability));
         this.attackDamage = damage;
         this.useCooldown = cooldown;
         this.poiseDamage = poise;
@@ -38,25 +42,28 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
         this.durability=durability;
         this.enchantability=enchantability;
     }
-    public float getAttackDamage(@Nullable Player playerIn, ItemStack stackIn) {
-        return attackDamage* (1 + 0.2f * stackIn.getEnchantmentLevel(EnchantmentInit.MOON_BLESSING.get()))
-                + 2.0f * stackIn.getEnchantmentLevel(EnchantmentInit.STARPOWER.get());
+    public float getBaseAttackDamage(){
+        return attackDamage;
+    }
+    public float getAttackDamage(Player playerIn, ItemStack stackIn) {
+        return attackDamage* (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(), stackIn))
+                + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.STARPOWER).get(), stackIn);
 
     }
-    public int getUseCooldown(@Nullable Player playerIn, ItemStack stackIn) {
+    public int getUseCooldown(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            //enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.GUNSLINGER.get(), stackIn);
+            enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(), stackIn);
         }
         return (int) (useCooldown*(1-0.1*enchantModifier));
     }
     public int getPoiseDamage(Player playerIn, ItemStack stackIn) {
         return poiseDamage;
     }
-    public float getLuck(@Nullable Player playerIn, ItemStack stackIn) {
+    public float getLuck(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            enchantModifier=EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.MISER_SOUL.get(), stackIn);
+            enchantModifier= EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MISER_SOUL).get(), stackIn);
         }
         return 0.1f*enchantModifier;
     }
@@ -78,14 +85,15 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
     public int getDefaultMaxStackSize() {
         return 1;
     }
-
     @Override
     public UseAnim getUseAnimation(ItemStack p_41452_) {
         return UseAnim.BOW;
     }
 
+
+
     @Override
-    public int getUseDuration(ItemStack p_41454_) {
+    public int getUseDuration(ItemStack stackIn, LivingEntity entity) {
         return 40000;
     }
 
@@ -118,15 +126,15 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
         return true;
     }
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
 
         //tooltip.add(Component.literal("+").append(Component.literal(""+this.getAttackDamage(null,stack))).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
-
-        if(this.getLuck(null,stack)>0) {
-            tooltip.add(Component.literal("+").append(Component.literal(""+(int)(this.getLuck(null,stack)*100))).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        int luck=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL), stack);
+        if(luck>0) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+(luck*10))).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         }
         if(stack.isEnchanted()){
-            int i=EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.GUNSLINGER.get(), stack);
+            int i=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.GUNSLINGER), stack);
             if(i>=1) {
                 tooltip.add(Component.literal("+").append(Component.literal("" + i * 10)).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.cooldown")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
             }

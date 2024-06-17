@@ -64,19 +64,19 @@ public class BonewheelGeoRenderer extends GeoEntityRenderer<Bonewheel>{
         @Override
         public ResourceLocation getAnimationResource(Bonewheel animatable) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "animations/bonewheel.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/bonewheel.animation.json");
         }
 
         @Override
         public ResourceLocation getModelResource(Bonewheel object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "geo/bonewheel.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/bonewheel.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(Bonewheel object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/skeleton/bonewheel.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/skeleton/bonewheel.png");
         }
 
 

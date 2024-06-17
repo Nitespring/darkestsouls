@@ -45,7 +45,7 @@ public class SoundInit {
 
     private static RegistryObject<SoundEvent> build(String id)
     {
-        return SOUNDS.register(id, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DarkestSouls.MODID, id)));
+        return SOUNDS.register(id, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, id)));
 
     }
 

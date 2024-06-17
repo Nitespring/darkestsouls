@@ -72,18 +72,18 @@ public class DarkwraithGeoRenderer<T extends Darkwraith & GeoEntity> extends Geo
 		@Override
 		public ResourceLocation getAnimationResource(T animatable) {
 
-			return new ResourceLocation(DarkestSouls.MODID, "animations/darkwraith.animation.json");
+			return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/darkwraith.animation.json");
 		}
 
 		@Override
 		public ResourceLocation getModelResource(T object) {
 
-			return new ResourceLocation(DarkestSouls.MODID, "geo/darkwraith.geo.json");
+			return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/darkwraith.geo.json");
 		}
 
 		@Override
 		public ResourceLocation getTextureResource(T object) {
-					return new ResourceLocation(DarkestSouls.MODID, "textures/entity/darkwraith/darkwraith.png");
+					return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/darkwraith/darkwraith.png");
 
 		}
 

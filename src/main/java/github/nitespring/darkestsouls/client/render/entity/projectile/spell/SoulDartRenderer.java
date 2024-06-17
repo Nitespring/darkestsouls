@@ -47,17 +47,17 @@ public class SoulDartRenderer<T extends SoulDartEntity & GeoEntity> extends GeoE
 
         @Override
         public ResourceLocation getModelResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "geo/soul_dart.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/soul_dart.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/soul_dart_b.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/soul_dart_b.png");
         }
 
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "animations/soul_dart.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/soul_dart.animation.json");
         }
     }
 }

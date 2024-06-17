@@ -16,30 +16,30 @@ public class HollowModel<T extends Hollow & GeoEntity> extends GeoModel<T> {
     @Override
     public ResourceLocation getAnimationResource(T animatable) {
 
-        return new ResourceLocation(DarkestSouls.MODID, "animations/hollow.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/hollow.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(T object) {
 
-        return new ResourceLocation(DarkestSouls.MODID, "geo/hollow.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/hollow.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T object) {
         switch(object.getSkinType()) {
             case 1:
-                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_yellow.png");
+                return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_yellow.png");
             case 2:
-                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_gray.png");
+                return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_gray.png");
             case 3:
-                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_brown.png");
+                return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_brown.png");
             case 4:
-                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_red.png");
+                return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_red.png");
             case 5:
-                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow_green.png");
+                return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow_green.png");
             default:
-                return new ResourceLocation(DarkestSouls.MODID, "textures/entity/hollow/hollow.png");
+                return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/hollow/hollow.png");
         }
     }
 

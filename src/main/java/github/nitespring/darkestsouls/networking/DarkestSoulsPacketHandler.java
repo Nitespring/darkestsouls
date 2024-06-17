@@ -14,13 +14,13 @@ public class DarkestSoulsPacketHandler {
 
 	//private static final String PROTOCOL_VERSION = "1";
 	private static final SimpleChannel INSTANCE = ChannelBuilder.named(
-					new ResourceLocation(DarkestSouls.MODID, "main"))
+					ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "main"))
 			.serverAcceptedVersions((status, version) -> true)
 			.clientAcceptedVersions((status, version) -> true)
 			.networkProtocolVersion(1).optional()
 			.simpleChannel();
 	/* private static final SimpleChannel INSTANCE = ChannelBuilder.named(
-	            new ResourceLocation(DarkestSouls.MODID, "main"))
+	            ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "main"))
 	            .serverAcceptedVersions((status, version) -> true)
 	            .clientAcceptedVersions((status, version) -> true)
 	            .networkProtocolVersion(1)

@@ -42,9 +42,11 @@ public class HolyMoonlightSwordLit extends TrickWeapon {
                 e.setOwner(playerIn);
                 e.setDamage(this.getAttackDamage(playerIn, stackIn));
                 e.setMaxLifeTime(16);
-                e.xPower = 0.2 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
+                e.setDeltaMovement(0.2 *aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05),0.2 *aim.y,0.2 *aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05));
+                e.accelerationPower=0.2f;
+                /*e.xPower = 0.2 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
                 e.yPower = 0.2 * aim.y;
-                e.zPower = 0.2 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
+                e.zPower = 0.2 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);*/
                 if(stackIn == playerIn.getItemInHand(InteractionHand.MAIN_HAND)) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
                 if(stackIn == playerIn.getItemInHand(InteractionHand.OFF_HAND)) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
 
@@ -60,7 +62,7 @@ public class HolyMoonlightSwordLit extends TrickWeapon {
                 WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.CHURCH_SCYTHE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
                 entity.setOwner(playerIn);
                 entity.setItemStack(stackIn);
-                entity.setMaxTargets(this.getMaxTargets(stackIn));
+                entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
                 entity.setDamage(
                         this.getAttackDamage(playerIn, stackIn),
                         this.getPoiseDamage(playerIn, stackIn),

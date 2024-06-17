@@ -87,9 +87,11 @@ public class CrystalRain extends CrystalBallEntity implements GeoEntity {
                     e.hurtMarked=true;
 
                     e.setPos(pos.add(aim.multiply(1.25f, 0.75f, 1.25f)));
-                    e.xPower = 0.05 * aim.x;
+                    e.accelerationPower=0.05;
+                    e.setDeltaMovement(aim);
+                    /*e.xPower = 0.05 * aim.x;
                     e.yPower = 0.05 * aim.y;
-                    e.zPower = 0.05 * aim.z;
+                    e.zPower = 0.05 * aim.z;*/
 
                     e.setOwner(this.getOwner());
                     this.level().addFreshEntity(e);

@@ -13,7 +13,7 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class MonstruosityOfSinEmissiveLayer<T extends MonstruosityOfSin> extends GeoRenderLayer<MonstruosityOfSin>{
 
-	private static final ResourceLocation EYES = new ResourceLocation(DarkestSouls.MODID, "textures/entity/sin_emissive.png");
+	private static final ResourceLocation EYES = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/sin_emissive.png");
 
 	public MonstruosityOfSinEmissiveLayer(GeoRenderer<MonstruosityOfSin> entityRendererIn) {
 		super(entityRendererIn);
@@ -28,7 +28,7 @@ public class MonstruosityOfSinEmissiveLayer<T extends MonstruosityOfSin> extends
 		
 		RenderType cameo = RenderType.entityTranslucentEmissive(EYES);
 
-		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);
+		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, -1);
 		
 
 		

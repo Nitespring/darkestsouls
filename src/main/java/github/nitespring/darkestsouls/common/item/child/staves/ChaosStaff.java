@@ -53,9 +53,12 @@ public class ChaosStaff extends Staff {
             e.setDamage(this.getAttackDamage(playerIn, stackIn));
             e.setLifeTicks(36);
             e.setPos(pos.add(0, 1.25, 0).add(aim.normalize().multiply(1.5f, 1.5f, 1.5f)));
-            e.xPower = 0.05 * aim.x * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.4));
+            Vec3 aim2 = new Vec3(0.05*aim.x * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.4)),0.05*aim.y + 0.08f,0.05*aim.z * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.4)));
+            e.setDeltaMovement(aim2);
+            e.accelerationPower=0.05;
+            /*e.xPower = 0.05 * aim.x * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.4));
             e.yPower = 0.05 * aim.y + 0.08f;
-            e.zPower = 0.05 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.4);
+            e.zPower = 0.05 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.4);*/
             e.setDamage(this.getAttackDamage(playerIn,stackIn));
             if(playerIn.getItemInHand(InteractionHand.MAIN_HAND)==stackIn) {
                 stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
@@ -88,9 +91,12 @@ public class ChaosStaff extends Staff {
             e.setMaxLifeTime(100);
             e.setDimensionScale(1.5f);
             e.setOwner(playerIn);
-            e.xPower = 0.045 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
+            Vec3 aim2 = new Vec3(0.045 *aim.x * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1)),0.03*aim.y + 0.035f,0.045 *aim.z * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1)));
+            e.setDeltaMovement(aim2);
+            e.accelerationPower=0.035;
+            /*e.xPower = 0.045 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
             e.yPower = 0.035 * aim.y + 0.035;
-            e.zPower = 0.045 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
+            e.zPower = 0.045 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);*/
 
 
         }else{
@@ -99,9 +105,12 @@ public class ChaosStaff extends Staff {
             e.setMaxLifeTime(80);
             e.setDimensionScale(1.25f);
             e.setOwner(playerIn);
-            e.xPower = 0.045 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
+            Vec3 aim2 = new Vec3(0.045f*aim.x * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1)),0.035*aim.y + 0.035f,0.045f*aim.z * (1 + ((playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1)));
+            e.setDeltaMovement(aim2);
+            e.accelerationPower=0.035;
+            /*e.xPower = 0.045 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
             e.yPower = 0.035 * aim.y + 0.035;
-            e.zPower = 0.045 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);
+            e.zPower = 0.045 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.025) * (1 + 0.1);*/
         }
         if(playerIn.getItemInHand(InteractionHand.MAIN_HAND)==stackIn) {
             stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
@@ -128,7 +137,7 @@ public class ChaosStaff extends Staff {
 
 
     @Override
-    public int getUseDuration(ItemStack p_43419_) {
+    public int getUseDuration(ItemStack stackIn, LivingEntity entityIn) {
         return 72000;
     }
 
@@ -142,7 +151,7 @@ public class ChaosStaff extends Staff {
         super.onUseTick(levelIn, entityIn, stackIn, n);
         SoundEvent soundevent = SoundEvents.FIRE_AMBIENT;
         SoundEvent soundevent1 = SoundEvents.FIRE_EXTINGUISH;
-        int i = this.getUseDuration(stackIn) - n;
+        int i = this.getUseDuration(stackIn, entityIn) - n;
         if(i==10||i==80){
             levelIn.playSound((Player) null, entityIn, soundevent, SoundSource.PLAYERS, 0.5f, 1.25F);
         }
@@ -164,7 +173,7 @@ public class ChaosStaff extends Staff {
         if (entityIn instanceof Player player) {
             int ammoAmount = 3;
             if(this.hasAmmo((Player) entityIn,ammoAmount)||((Player)entityIn).isCreative()) {
-                int i = this.getUseDuration(stackIn) - n;
+                int i = this.getUseDuration(stackIn, entityIn) - n;
                 if (i >= 10) {
                     SoundEvent soundevent = SoundEvents.FIRECHARGE_USE;
                     SoundEvent soundevent1 = SoundEvents.FIREWORK_ROCKET_LARGE_BLAST;

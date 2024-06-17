@@ -121,6 +121,8 @@ public class ItemInit {
 			() -> new Spear(Tiers.TITANITE, 5.0f, 1.9f,3.8f, -0.2f, 4, 225,0,0,0,0,0,0,0,0,8,0.12f, 2,new Item.Properties()));
 	public static final RegistryObject<ChurchScythe> CHURCH_SCYTHE= ITEMS.register("church_scythe",
 			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f,4.5f, 0.2f, 7, 0,0,0,0,0,0,1,0,325,12,0.105f, 5,new Item.Properties()));
+	public static final RegistryObject<ChurchScythe> CHURCH_SCYTHE_UNLIT= ITEMS.register("church_scythe_unlit",
+			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f,4.5f, 0.2f, 7, 0,0,0,0,0,0,1,0,325,12,0.105f, 5,new Item.Properties()));
 	public static final RegistryObject<Weapon> CHURCH_CANE = ITEMS.register("church_cane",
 			() -> new Weapon(Tiers.TITANITE, 4.0f, 1.4f, 2.5f,0.1f, 6, 0,0,0,0,0,0,0,0,255,8,0.1f, 0,new Item.Properties()));
 	public static final RegistryObject<Spear> CRUCIFIX = ITEMS.register("crucifix",

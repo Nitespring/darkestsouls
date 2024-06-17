@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.greater_firepower"
+  },
+  "primary_items": "#darkestsouls:enchantable/gun",
+  "supported_items": "#darkestsouls:enchantable/gun",
+  "weight": 2,
+  "max_level": 5,
+  "anvil_cost": 1,
+  "min_cost": {
+    "base": 6,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 36,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "hand"
+  ]
+}

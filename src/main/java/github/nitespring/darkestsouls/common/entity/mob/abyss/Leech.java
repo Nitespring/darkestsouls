@@ -22,6 +22,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Rotation;
@@ -367,9 +368,11 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 						double y = (this.getRandom().nextFloat()-0.5f);
 						double z = (aim.z*Math.cos(angle) + aim.x * Math.sin(angle));
 						e.setPos(pos.add(1.5*x, 1.75+1.5*y, 1.5*z));
-						e.xPower = 0.15 * (aim.x+x);
+						e.setDeltaMovement(0.15f*(aim.x+x),0.15f*(aim.y+y),0.15f*(aim.z+z));
+						e.accelerationPower = 0.15f;
+						/*e.xPower = 0.15 * (aim.x+x);
 						e.yPower = 0.15 * (aim.y+y);
-						e.zPower = 0.15 * (aim.z+z);
+						e.zPower = 0.15 * (aim.z+z);*/
 						e.setDamage(Math.max(1f,(float)this.getAttributeValue(Attributes.ATTACK_DAMAGE)-4));
 						e.setOwner(this);
 						levelIn.addFreshEntity(e);

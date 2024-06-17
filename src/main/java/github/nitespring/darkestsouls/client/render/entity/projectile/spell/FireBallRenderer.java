@@ -49,26 +49,26 @@ public class FireBallRenderer<T extends FireBallEntity & GeoEntity> extends GeoE
 
         @Override
         public ResourceLocation getModelResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "geo/fireball.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/fireball.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T animatable) {
             switch(animatable.getFireballType()) {
                 case 1:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/chaos_fireball.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/chaos_fireball.png");
                 case 2:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/black_fireball.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/black_fireball.png");
                 case 3:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/soul_fireball.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/soul_fireball.png");
                 default:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/fireball.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/fireball.png");
             }
         }
 
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "animations/fireball.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/fireball.animation.json");
         }
     }
 }

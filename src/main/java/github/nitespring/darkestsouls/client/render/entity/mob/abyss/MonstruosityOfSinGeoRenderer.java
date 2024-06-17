@@ -65,19 +65,19 @@ public class MonstruosityOfSinGeoRenderer extends GeoEntityRenderer<Monstruosity
         @Override
         public ResourceLocation getAnimationResource(MonstruosityOfSin animatable) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "animations/sin.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/sin.animation.json");
         }
 
         @Override
         public ResourceLocation getModelResource(MonstruosityOfSin object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "geo/sin.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/sin.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(MonstruosityOfSin object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/sin.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/sin.png");
         }
 
 

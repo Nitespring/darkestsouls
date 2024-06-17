@@ -14,7 +14,7 @@ import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 
 public class MolotovCocktailModel<T extends AbstractHurtingProjectile> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "molotovcocktail"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "molotovcocktail"), "main");
 	private final ModelPart main;
 
 	public MolotovCocktailModel(ModelPart root) {
@@ -41,7 +41,7 @@ public class MolotovCocktailModel<T extends AbstractHurtingProjectile> extends E
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		main.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int i) {
+		main.render(poseStack, vertexConsumer, packedLight, packedOverlay);
 	}
 }

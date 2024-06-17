@@ -46,19 +46,19 @@ public class GatlingGunGeoRenderer<T extends GatlingGun> extends GeoItemRenderer
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "animations/gatling_gun.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/gatling_gun.animation.json");
         }
 
         @Override
         public ResourceLocation getModelResource(T object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "geo/gatling_gun.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/gatling_gun.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "textures/item/weapon/gatling_gun.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/item/weapon/gatling_gun.png");
         }
 
 

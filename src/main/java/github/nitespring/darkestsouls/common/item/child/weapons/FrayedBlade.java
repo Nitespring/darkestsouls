@@ -44,20 +44,20 @@ public class FrayedBlade extends Weapon {
             FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
             entity.setOwner(playerIn);
             entity.setItemStack(stackIn);
-            entity.setMaxTargets(this.getMaxTargets(stackIn));
+            entity.setMaxTargets(this.getMaxTargets(playerIn,stackIn));
             entity.setDamage(
                     this.getAttackDamage(playerIn, stackIn) - 4,
                     this.getPoiseDamage(playerIn, stackIn) - 7,
-                    this.getFireAttack(stackIn),
-                    this.getSmiteAttack(stackIn),
-                    this.getBaneOfArthropodsAttack(stackIn),
-                    this.getBeastHunterAttack(stackIn),
-                    this.getBloodAttack(stackIn) - 2,
-                    this.getPoisonAttack(stackIn),
-                    this.getToxicAttack(stackIn),
-                    this.getRotAttack(stackIn),
-                    this.getFrostAttack(stackIn),
-                    this.getWitherAttack(stackIn));
+                    this.getFireAttack(playerIn,stackIn),
+                    this.getSmiteAttack(playerIn,stackIn),
+                    this.getBaneOfArthropodsAttack(playerIn,stackIn),
+                    this.getBeastHunterAttack(playerIn,stackIn),
+                    this.getBloodAttack(playerIn,stackIn) - 2,
+                    this.getPoisonAttack(playerIn,stackIn),
+                    this.getToxicAttack(playerIn,stackIn),
+                    this.getRotAttack(playerIn,stackIn),
+                    this.getFrostAttack(playerIn,stackIn),
+                    this.getWitherAttack(playerIn,stackIn));
             entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
             entity.configureTicks(14, 22, 1, 2);
             levelIn.addFreshEntity(entity);

@@ -28,6 +28,6 @@ public final class CustomEntityTags {
 
 
     private static TagKey<EntityType<?>> create(String p_203847_) {
-        return TagKey.create(BuiltInRegistries.ENTITY_TYPE.key(), new ResourceLocation(DarkestSouls.MODID , p_203847_));
+        return TagKey.create(BuiltInRegistries.ENTITY_TYPE.key(), ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID , p_203847_));
     }
 }

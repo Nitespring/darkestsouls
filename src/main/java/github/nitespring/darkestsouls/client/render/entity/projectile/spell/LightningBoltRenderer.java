@@ -45,17 +45,17 @@ public class LightningBoltRenderer<T extends LightningBolt & GeoEntity> extends 
 
         @Override
         public ResourceLocation getModelResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "geo/lightning_bolt.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/lightning_bolt.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/lightning_bolt.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/lightning_bolt.png");
         }
 
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "animations/lightning_bolt.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/lightning_bolt.animation.json");
         }
     }
 }

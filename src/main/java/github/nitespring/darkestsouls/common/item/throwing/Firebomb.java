@@ -45,9 +45,11 @@ public class Firebomb extends Item {
             FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
             entity.setPos(x, y, z);
             float flyingPower = 0.25f;
-            entity.xPower = flyingPower * aim.x;
+            entity.setDeltaMovement(aim.scale(flyingPower));
+            entity.accelerationPower=flyingPower;
+            /*entity.xPower = flyingPower * aim.x;
             entity.yPower = flyingPower * aim.y;
-            entity.zPower = flyingPower * aim.z;
+            entity.zPower = flyingPower * aim.z;*/
             entity.setOwner(playerIn);
             entity.setAttackDamage(this.attackDamage);
             entity.setPoiseDamage(this.poiseDamage);

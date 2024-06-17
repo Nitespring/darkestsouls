@@ -15,9 +15,9 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class CrystalBallEmissiveLayer<T extends CrystalBallEntity & GeoEntity> extends GeoRenderLayer<T> {
 
-	private static final ResourceLocation PURPLE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball.png");
-	private static final ResourceLocation DARK_BLUE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_dark_blue.png");
-	private static final ResourceLocation LIGHT_BLUE = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_blue.png");
+	private static final ResourceLocation PURPLE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball.png");
+	private static final ResourceLocation DARK_BLUE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_dark_blue.png");
+	private static final ResourceLocation LIGHT_BLUE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_blue.png");
 
 
 	public CrystalBallEmissiveLayer(GeoRenderer<T> entityRendererIn) {
@@ -50,7 +50,7 @@ public class CrystalBallEmissiveLayer<T extends CrystalBallEntity & GeoEntity> e
 
 
 
-		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);
+		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, -1);
 		poseStack.popPose();
 
 	}

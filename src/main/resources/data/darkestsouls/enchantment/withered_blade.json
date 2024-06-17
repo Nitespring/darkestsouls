@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.withered_blade"
+  },
+  "primary_items": "#darkestsouls:enchantable/weapon_extended",
+  "supported_items": "#darkestsouls:enchantable/weapon_extended",
+  "weight": 1,
+  "max_level": 2,
+  "anvil_cost": 4,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 12
+  },
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 14
+  },
+  "slots": [
+    "mainhand"
+  ]
+}

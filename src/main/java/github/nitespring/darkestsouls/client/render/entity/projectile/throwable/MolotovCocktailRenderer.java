@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class MolotovCocktailRenderer<T extends FirebombEntity> extends EntityRenderer<T> {
 
-    public static final ResourceLocation MAIN = new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/molotov.png");
+    public static final ResourceLocation MAIN = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/molotov.png");
     private final MolotovCocktailModel<T> model;
 
     public MolotovCocktailRenderer(EntityRendererProvider.Context context) {
@@ -39,7 +39,7 @@ public class MolotovCocktailRenderer<T extends FirebombEntity> extends EntityRen
         stack.translate(0, -1.5f, 0);
 
         if(!e.isExploding) {
-            this.model.renderToBuffer(stack, vertexconsumer, i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.renderToBuffer(stack, vertexconsumer, i, OverlayTexture.NO_OVERLAY, 1);
             super.render(e, f1, f2, stack, buf, i);
         }
         stack.popPose();

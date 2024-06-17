@@ -169,9 +169,10 @@ public class Bullet extends AbstractHurtingProjectile {
                 float r2 = 2 * (r.nextFloat() - 0.5f);
                 float r3 = 2 * (r.nextFloat() - 0.5f);
                 this.setDeltaMovement(-mov.x * (0.6 - 0.4 * r1), -mov.y * (0.6 - 0.4 * r2), -mov.z * (0.6 - 0.4 * r3));
-                this.xPower = -xPower * (0.6 - 0.4 * r1);
+
+                /*this.xPower = -xPower * (0.6 - 0.4 * r1);
                 this.yPower = -yPower * (0.6 - 0.4 * r2);
-                this.zPower = -zPower * (0.6 - 0.4 * r3);
+                this.zPower = -zPower * (0.6 - 0.4 * r3);*/
                 this.getOwner().level().playSound((Player)null, this.position().x(),this.position().y(),this.position().z(), SoundEvents.ANVIL_HIT, SoundSource.AMBIENT, 0.2F, 1.6f);
                 gravTick=0;
                 if(this.getExplosion()>=3){

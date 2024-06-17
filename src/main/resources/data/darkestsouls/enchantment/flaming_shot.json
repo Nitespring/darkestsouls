@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.flaming_shot"
+  },
+  "primary_items": "#darkestsouls:enchantable/gun",
+  "supported_items": "#darkestsouls:enchantable/gun",
+  "weight": 4,
+  "max_level": 1,
+  "anvil_cost": 1,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 0
+  },
+  "max_cost": {
+    "base": 46,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "hand"
+  ]
+}

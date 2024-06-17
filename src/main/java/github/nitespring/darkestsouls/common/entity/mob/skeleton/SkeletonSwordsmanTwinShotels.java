@@ -933,9 +933,11 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
             ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), levelIn);
             entity.setPos(x,y,z);
             float flyingPower = 0.15f;
-            entity.xPower=flyingPower*(aimVec.x+aim1.x);
+            entity.setDeltaMovement(aimVec);
+            entity.accelerationPower=flyingPower;
+            /*entity.xPower=flyingPower*(aimVec.x+aim1.x);
             entity.yPower=flyingPower*(aimVec.y+aim1.y);
-            entity.zPower=flyingPower*(aimVec.z+aim1.z);
+            entity.zPower=flyingPower*(aimVec.z+aim1.z);*/
             entity.setOwner(this);
             entity.setItem(ItemInit.KUKRI.get().getDefaultInstance());
             entity.setAttackPower((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));

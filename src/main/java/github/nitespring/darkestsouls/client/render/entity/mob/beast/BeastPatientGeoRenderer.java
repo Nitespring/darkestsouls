@@ -71,19 +71,19 @@ public class BeastPatientGeoRenderer<T extends BeastPatientEntity & GeoEntity> e
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "animations/beast_patient.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/beast_patient.animation.json");
         }
 
         @Override
         public ResourceLocation getModelResource(T object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "geo/beast_patient.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/beast_patient.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/beast/beast_patient.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/beast/beast_patient.png");
         }
 
 

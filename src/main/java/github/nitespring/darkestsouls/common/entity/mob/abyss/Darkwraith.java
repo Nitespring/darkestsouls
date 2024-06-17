@@ -22,7 +22,6 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
-
 import org.jetbrains.annotations.Nullable;
 import org.joml.Random;
 import org.joml.Vector3f;
@@ -221,12 +220,8 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
 
     @Override
     public int getMaxPoise() {return 36;}
-
     @Override
-    public boolean canDrownInFluidType(FluidType type) {
-        return false;
-    }
-
+    public boolean canDrownInFluidType(FluidType type) {return false;}
     @Override
     public int getBloodResistance() {return 12;}
     @Override

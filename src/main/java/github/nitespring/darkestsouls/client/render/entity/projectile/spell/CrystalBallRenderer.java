@@ -50,24 +50,24 @@ public class CrystalBallRenderer<T extends CrystalBallEntity & GeoEntity> extend
 
         @Override
         public ResourceLocation getModelResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "geo/crystal_ball.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/crystal_ball.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(T animatable) {
             switch(animatable.getCrystalType()) {
                 case 1:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball.png");
                 case 2:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_dark_blue.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_dark_blue.png");
                 default:
-                    return new ResourceLocation(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_blue.png");
+                    return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/projectiles/crystal_ball_blue.png");
             }
         }
 
         @Override
         public ResourceLocation getAnimationResource(T animatable) {
-            return new ResourceLocation(DarkestSouls.MODID, "animations/crystal_ball.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/crystal_ball.animation.json");
         }
     }
 }

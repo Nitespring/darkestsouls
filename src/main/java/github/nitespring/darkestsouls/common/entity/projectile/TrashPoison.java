@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -47,9 +48,9 @@ public class TrashPoison extends AbstractHurtingProjectile implements ItemSuppli
         super(p_310629_, p_311590_, p_312782_, p_309484_, p_311660_);
     }
 
-    public TrashPoison(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
+    /*public TrashPoison(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
         super(p_36826_, p_36827_, p_36828_, p_36829_, p_36830_, p_36831_);
-    }
+    }*/
 
     @Override
     public ItemStack getItem() {
@@ -80,9 +81,9 @@ public class TrashPoison extends AbstractHurtingProjectile implements ItemSuppli
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity e) {
 
-        return new ClientboundAddEntityPacket(this);
+        return new ClientboundAddEntityPacket(this,e);
     }
 
 

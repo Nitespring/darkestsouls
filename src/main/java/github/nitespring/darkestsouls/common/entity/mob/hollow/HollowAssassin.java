@@ -571,9 +571,11 @@ public class HollowAssassin extends Hollow implements GeoEntity {
                     ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), levelIn);
                     entity.setPos(x,y,z);
                     float flyingPower = 0.25f;
-                    entity.xPower=flyingPower*aimVec.x;
+                    entity.setDeltaMovement(aimVec);
+                    entity.accelerationPower=flyingPower;
+                    /*entity.xPower=flyingPower*aimVec.x;
                     entity.yPower=flyingPower*aimVec.y;
-                    entity.zPower=flyingPower*aimVec.z;
+                    entity.zPower=flyingPower*aimVec.z;*/
                     entity.setOwner(this);
                     entity.setItem(ItemInit.THROWING_KNIFE.get().getDefaultInstance());
                     entity.setAttackPower((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));

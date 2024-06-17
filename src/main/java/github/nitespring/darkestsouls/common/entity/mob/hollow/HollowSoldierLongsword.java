@@ -25,7 +25,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
- 
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -407,9 +407,11 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
                     entity.setPos(x,y,z);
                     float flyingPower = 0.25f;
-                    entity.xPower=flyingPower*aimVec.x;
+                    entity.setDeltaMovement(aimVec.scale(flyingPower));
+                    entity.accelerationPower=flyingPower;
+                    /*entity.xPower=flyingPower*aimVec.x;
                     entity.yPower=flyingPower*aimVec.y+0.01;
-                    entity.zPower=flyingPower*aimVec.z;
+                    entity.zPower=flyingPower*aimVec.z;*/
                     entity.setOwner(this);
                     entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f);
                     entity.setPoiseDamage(4);

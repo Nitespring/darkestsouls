@@ -120,14 +120,10 @@ public class ChurchDoctorScythe extends ChurchDoctor implements GeoEntity {
     }
     @Override
     public ItemStack getRightHandItem() {
-        return ItemInit.CHURCH_SCYTHE.get().getDefaultInstance();
+        return ItemInit.CHURCH_SCYTHE_UNLIT.get().getDefaultInstance();
     }
 
-    @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_) {
 
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_);
-    }
     @Override
     public void populateClothing(){
         Random rn = new Random();

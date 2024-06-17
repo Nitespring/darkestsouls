@@ -13,7 +13,7 @@ import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 
 public class BulletModel<T extends AbstractHurtingProjectile> extends EntityModel<T> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "bullet"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "bullet"), "main");
 
     private final ModelPart main;
 
@@ -167,9 +167,12 @@ public class BulletModel<T extends AbstractHurtingProjectile> extends EntityMode
 
     }
 
+
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        main.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int i) {
+        main.render(poseStack, vertexConsumer, packedLight, packedOverlay);
     }
+
+
 
 }

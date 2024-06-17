@@ -19,7 +19,7 @@ public final class CustomBlockTags{
 
 
     private static TagKey<Block> create(String p_203847_) {
-        return TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation(DarkestSouls.MODID , p_203847_));
+        return TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID , p_203847_));
     }
 
     /*public static TagKey<Block> create(ResourceLocation name) {

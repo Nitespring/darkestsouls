@@ -66,19 +66,19 @@ public class LeechGeoRenderer extends GeoEntityRenderer<Leech>{
         @Override
         public ResourceLocation getAnimationResource(Leech animatable) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "animations/leech.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/leech.animation.json");
         }
 
         @Override
         public ResourceLocation getModelResource(Leech object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "geo/leech.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/leech.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(Leech object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/leech.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/leech.png");
         }
 
 

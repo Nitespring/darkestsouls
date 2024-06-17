@@ -36,10 +36,10 @@ import net.minecraftforge.fml.common.Mod;
 public class ClientListener {
 
 
-	public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "square_texture"), "main");
-	public static final ModelLayerLocation FRAYED_BLADE_FLAME = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "frayed_blade_fire"), "main");
-	public static final ModelLayerLocation BULLET = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "bullet"), "main");
-	public static final ModelLayerLocation MOLOTOV = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "molotov"), "main");
+	public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "square_texture"), "main");
+	public static final ModelLayerLocation FRAYED_BLADE_FLAME = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "frayed_blade_fire"), "main");
+	public static final ModelLayerLocation BULLET = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "bullet"), "main");
+	public static final ModelLayerLocation MOLOTOV = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "molotov"), "main");
 
 
 	@SubscribeEvent

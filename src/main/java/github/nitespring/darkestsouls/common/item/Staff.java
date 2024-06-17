@@ -6,6 +6,7 @@ import github.nitespring.darkestsouls.core.util.CustomItemTags;
 import github.nitespring.darkestsouls.core.util.MathUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -17,10 +18,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
- import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
@@ -38,34 +40,29 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
 
 
     public Staff(float attackDamage, int durability, int tier, Properties properties) {
-        super(properties.durability(durability).stacksTo(1));
+        super(properties.stacksTo(1).durability(durability));
         this.attackDamage=attackDamage;
         this.durability=durability;
         this.tier=tier;
     }
-    public float getAttackDamage(@Nullable Player playerIn, ItemStack stackIn) {
+    public float getAttackDamage(Player playerIn, ItemStack stackIn) {
         return attackDamage
-                * (1 + 0.2f * stackIn.getEnchantmentLevel(EnchantmentInit.MOON_BLESSING.get()))
-                + 2.0f * stackIn.getEnchantmentLevel(EnchantmentInit.STARPOWER.get());
+                * (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(), stackIn)
+                + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.STARPOWER).get(), stackIn));
     }
 
-    public float getAttackDamage( ItemStack stackIn) {
-        return this.getAttackDamage(null,stackIn);
-    }
     public int getCatalystTier() {return tier;}
-    public float getLuck(@org.jetbrains.annotations.Nullable Player playerIn, ItemStack stackIn) {
+    public float getLuck(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            enchantModifier= EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.MISER_SOUL.get(), stackIn);
+            enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MISER_SOUL).get(), stackIn);
         }
         return 0.1f*enchantModifier;
     }
-
     @Override
     public int getDefaultMaxStackSize() {
         return 1;
     }
-
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
         doSpellA(playerIn, stackIn, InteractionHand.MAIN_HAND);
@@ -120,12 +117,16 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
             info = " 0";
         }
         tooltip.add(Component.translatable("translation.darkestsouls.tier").append(Component.literal(info)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.DARK_GRAY));
-        String info2 = "\u00A78\u00A7oConsumes Small Soul Fragments";
+
         tooltip.add(Component.translatable("translation.darkestsouls.consumes_small_soul").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
-        String info1 = "\u00A78" + this.getAttackDamage(stack) + " Damage";
-        tooltip.add(Component.literal(""+this.getAttackDamage(stack)).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
-        if(this.getLuck(null,stack)>0) {
-            tooltip.add(Component.literal("+").append(Component.literal(""+(int)(this.getLuck(null,stack)*100))).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+
+        int moon=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack);
+        int star=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack);
+        tooltip.add(Component.literal(""+attackDamage*(1+0.2*moon)+2.0f*star).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
+
+        int luck = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL), stack);
+        if(luck>0) {
+            tooltip.add(Component.literal("+").append(Component.literal(""+luck*10)).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         }
 
 
@@ -135,67 +136,4 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
     public Predicate<ItemStack> getAmmoType(){return (p_43015_) -> {
         return p_43015_.is(ItemInit.SMALL_SOUL_FRAGMENT.get());
     };}
-
-/*
-    public ItemStack getAmmo(Player playerIn){
-
-        ItemStack ammo = null;
-        int size = playerIn.getInventory().getContainerSize();
-        Predicate<ItemStack> predicate = this.getAmmoType();
-
-        for(int i = 0; i < size; ++i) {
-            ItemStack itemstack1 = playerIn.getInventory().getItem(i);
-            if (predicate.test(itemstack1)) {
-                ammo=itemstack1;
-            }
-        }
-
-        return ammo;
-    }
-
-    public boolean hasAmmo(Player playerIn, int amount){
-        int size = playerIn.getInventory().getContainerSize();
-        int lastCheckedSlot=0;
-        int amountInPossession=0;
-        Predicate<ItemStack> predicate = this.getAmmoType();
-        while(lastCheckedSlot<size && amountInPossession<amount) {
-            for (int i = lastCheckedSlot; i < size; ++i) {
-                ItemStack itemstack1 = playerIn.getInventory().getItem(i);
-                if (predicate.test(itemstack1)) {
-                    if(itemstack1.getCount()>=amount-amountInPossession){
-                        amountInPossession=amount;
-                    }else{
-                         amountInPossession=amountInPossession+itemstack1.getCount();
-                    }
-                }
-                lastCheckedSlot++;
-            }
-        }
-        if(amountInPossession>=amount){return true;}else{return false;}
-    }
-    public void consumeAmmo(Player playerIn, int amount){
-        int size = playerIn.getInventory().getContainerSize();
-        int lastCheckedSlot=0;
-        int amountInPossession=0;
-        Predicate<ItemStack> predicate = this.getAmmoType();
-        while(lastCheckedSlot<size && amountInPossession<amount) {
-            for (int i = lastCheckedSlot; i < size; ++i) {
-                ItemStack itemstack1 = playerIn.getInventory().getItem(i);
-                if (predicate.test(itemstack1)) {
-                    if(itemstack1.getCount()>=amount-amountInPossession){
-
-                        itemstack1.shrink(amount-amountInPossession);
-                        amountInPossession=amount;
-                    }else{
-                        amountInPossession=amountInPossession+itemstack1.getCount();
-                        itemstack1.shrink(itemstack1.getCount());
-                    }
-                }
-                lastCheckedSlot++;
-            }
-        }
-    }
-*/
-
-
 }

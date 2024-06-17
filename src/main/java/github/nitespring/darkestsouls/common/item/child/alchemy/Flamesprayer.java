@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.common.item.AlchemyTool;
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -40,7 +41,7 @@ public class Flamesprayer extends AlchemyTool {
     public int getFlyingTime(ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            //enchantModifier= EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.SHARPSHOOTER.get(), stackIn);
+            //enchantModifier= EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.SHARPSHOOTER.get(), stackIn);
         }
         return (int) (flyingTime*(1+0.1* enchantModifier));
     }
@@ -50,14 +51,14 @@ public class Flamesprayer extends AlchemyTool {
     public float flyingPower(Player playerIn, ItemStack stackIn){
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            //enchantModifier=EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.SHARPSHOOTER.get(), stackIn);
+            //enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.SHARPSHOOTER.get(), stackIn);
         }
         return flyingPower+0.025f* enchantModifier;
     }
     public int getRicochet(@Nullable Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            //enchantModifier=EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.RICOCHET_SHOT.get(), stackIn);
+            //enchantModifier=EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.RICOCHET_SHOT.get(), stackIn);
         }
         return ricochet+enchantModifier;
     }
@@ -126,9 +127,11 @@ public class Flamesprayer extends AlchemyTool {
             entity.setPos(x, y, z);
             float flyingPower = this.flyingPower(player, stackIn);
             //float flyingPower = 0.1f;
-            entity.xPower = flyingPower * aim1.x;
+            entity.setDeltaMovement(aim1.scale(flyingPower));
+            entity.accelerationPower=flyingPower;
+            /*entity.xPower = flyingPower * aim1.x;
             entity.yPower = flyingPower * aim1.y;
-            entity.zPower = flyingPower * aim1.z;
+            entity.zPower = flyingPower * aim1.z;*/
             entity.setOwner(player);
             entity.setAttackDamage(this.getAttackDamage(player, stackIn));
             entity.setPoiseDamage(this.getPoiseDamage(player, stackIn));
@@ -158,8 +161,9 @@ public class Flamesprayer extends AlchemyTool {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-
-        tooltip.add(Component.literal("+").append(Component.literal(""+this.getAttackDamage(null,stack))).append(Component.translatable("translation.darkestsouls.fire_damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
+float attackDamage=this.getBaseAttackDamage()* (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack))
+        + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.STARPOWER), stack);
+        tooltip.add(Component.literal("+").append(Component.literal(""+attackDamage)).append(Component.translatable("translation.darkestsouls.fire_damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
 
         super.appendHoverText(stack, context, tooltip, flag);
     }

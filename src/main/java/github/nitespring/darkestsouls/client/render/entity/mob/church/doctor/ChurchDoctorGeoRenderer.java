@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
@@ -40,24 +41,16 @@ public class ChurchDoctorGeoRenderer<T extends ChurchDoctor & GeoEntity> extends
 		 return RenderType.entityCutoutNoCull(texture);
 	}
 	 
-	 @Override
-	public void render(T entity, float entityYaw, float partialTick, PoseStack poseStack,
-			MultiBufferSource bufferSource, int packedLight) {
+	@Override
+	public void render(@NotNull T entity, float entityYaw, float partialTick, PoseStack poseStack,
+					   @NotNull MultiBufferSource bufferSource, int packedLight) {
 		 float scaleFactor = 1.1f;
 		 poseStack.pushPose();
 		 poseStack.scale(scaleFactor, scaleFactor, scaleFactor);
 
-		 poseStack.translate(0, 0, 0);
-
+		 //poseStack.translate(0, 0, 0);
 		 super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
 		 poseStack.popPose();
 	}
-
-
-
-
-
-
-
 
 }

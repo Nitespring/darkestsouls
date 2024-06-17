@@ -64,19 +64,19 @@ public class SewerCentipedeGeoRenderer extends GeoEntityRenderer<SewerCentipede>
         @Override
         public ResourceLocation getAnimationResource(SewerCentipede animatable) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "animations/sewer_centipede.animation.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "animations/sewer_centipede.animation.json");
         }
 
         @Override
         public ResourceLocation getModelResource(SewerCentipede object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "geo/sewer_centipede.geo.json");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "geo/sewer_centipede.geo.json");
         }
 
         @Override
         public ResourceLocation getTextureResource(SewerCentipede object) {
 
-            return new ResourceLocation(DarkestSouls.MODID, "textures/entity/sewer_centipede.png");
+            return ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/sewer_centipede.png");
         }
 
 

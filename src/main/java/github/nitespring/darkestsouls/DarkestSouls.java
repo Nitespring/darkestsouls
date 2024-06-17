@@ -38,7 +38,6 @@ public class DarkestSouls
         EntityInit.ENTITIES.register(modEventBus);
         EffectInit.EFFECTS.register(modEventBus);
         CreativeTabInit.TABS.register(modEventBus);
-        EnchantmentInit.ENCHANTMENTS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
         

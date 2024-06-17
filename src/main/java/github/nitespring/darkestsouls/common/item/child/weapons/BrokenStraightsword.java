@@ -28,20 +28,20 @@ public class BrokenStraightsword extends Weapon {
                 WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.BROKEN_STRAIGHTSWORD.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
                 entity.setOwner(playerIn);
                 entity.setItemStack(stackIn);
-                entity.setMaxTargets(this.getMaxTargets(stackIn));
+                entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
                 entity.setDamage(
                         this.getAttackDamage(playerIn, stackIn),
                         this.getPoiseDamage(playerIn, stackIn),
-                        this.getFireAttack(stackIn),
-                        this.getSmiteAttack(stackIn),
-                        this.getBaneOfArthropodsAttack(stackIn),
-                        this.getBeastHunterAttack(stackIn),
-                        this.getBloodAttack(stackIn),
-                        this.getPoisonAttack(stackIn),
-                        this.getToxicAttack(stackIn),
-                        this.getRotAttack(stackIn),
-                        this.getFrostAttack(stackIn),
-                        this.getWitherAttack(stackIn));
+                        this.getFireAttack(playerIn,stackIn),
+                        this.getSmiteAttack(playerIn,stackIn),
+                        this.getBaneOfArthropodsAttack(playerIn,stackIn),
+                        this.getBeastHunterAttack(playerIn,stackIn),
+                        this.getBloodAttack(playerIn,stackIn),
+                        this.getPoisonAttack(playerIn,stackIn),
+                        this.getToxicAttack(playerIn,stackIn),
+                        this.getRotAttack(playerIn,stackIn),
+                        this.getFrostAttack(playerIn,stackIn),
+                        this.getWitherAttack(playerIn,stackIn));
                 entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.25f);
                 entity.configureTicks(6, 12, 2, 3);
                 levelIn.addFreshEntity(entity);

@@ -15,8 +15,8 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class BeastPatientEmissiveLayer<T extends BeastPatientEntity & GeoEntity> extends GeoRenderLayer<T>{
 
-	private static final ResourceLocation YELLOW_EYES = new ResourceLocation(DarkestSouls.MODID, "textures/entity/beast/beast_patient_eyes_yellow.png");
-	private static final ResourceLocation RED_EYES = new ResourceLocation(DarkestSouls.MODID, "textures/entity/beast/beast_patient_eyes_red.png");
+	private static final ResourceLocation YELLOW_EYES = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/beast/beast_patient_eyes_yellow.png");
+	private static final ResourceLocation RED_EYES = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/beast/beast_patient_eyes_red.png");
 
 	public BeastPatientEmissiveLayer(GeoRenderer<T> entityRendererIn) {
 		super(entityRendererIn);
@@ -32,7 +32,7 @@ public class BeastPatientEmissiveLayer<T extends BeastPatientEntity & GeoEntity>
 		RenderType cameo = RenderType.entityTranslucentEmissive(YELLOW_EYES);
 		if(animatable.getBeastPatientType()==2||animatable.getEntityState()!=0){cameo = RenderType.entityTranslucentEmissive(RED_EYES);}
 
-		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);
+		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, -1);
 		
 
 		

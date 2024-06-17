@@ -99,9 +99,10 @@ public class FirebombEntity extends AbstractHurtingProjectile{
 
     public void doOnHit(){
         this.isExploding=true;
-        this.xPower=0;
+        /*this.xPower=0;
         this.yPower=0;
-        this.zPower=0;
+        this.zPower=0;*/
+        this.accelerationPower=0;
         this.setDeltaMovement(0,0,0);
     }
 

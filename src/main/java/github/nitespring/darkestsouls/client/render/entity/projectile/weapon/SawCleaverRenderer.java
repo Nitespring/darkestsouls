@@ -16,15 +16,15 @@ import net.minecraft.resources.ResourceLocation;
 
 public class SawCleaverRenderer<T extends WeaponAttackEntity> extends EntityRenderer<T>{
 
-	public static final ResourceLocation TEXTURE_LOCATION_0 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/frayed_blade/frayed_blade0.png");
-	public static final ResourceLocation TEXTURE_LOCATION_1 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_0.png");
-	public static final ResourceLocation TEXTURE_LOCATION_2 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_1.png");
-	public static final ResourceLocation TEXTURE_LOCATION_3 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_2.png");
-	public static final ResourceLocation TEXTURE_LOCATION_4 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_3.png");
-	public static final ResourceLocation TEXTURE_LOCATION_5 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_4.png");
-	public static final ResourceLocation TEXTURE_LOCATION_6 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_5.png");
-	public static final ResourceLocation TEXTURE_LOCATION_7 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_6.png");
-	public static final ResourceLocation TEXTURE_LOCATION_8 = new ResourceLocation(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_7.png");
+	public static final ResourceLocation TEXTURE_LOCATION_0 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/frayed_blade/frayed_blade0.png");
+	public static final ResourceLocation TEXTURE_LOCATION_1 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_0.png");
+	public static final ResourceLocation TEXTURE_LOCATION_2 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_1.png");
+	public static final ResourceLocation TEXTURE_LOCATION_3 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_2.png");
+	public static final ResourceLocation TEXTURE_LOCATION_4 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_3.png");
+	public static final ResourceLocation TEXTURE_LOCATION_5 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_4.png");
+	public static final ResourceLocation TEXTURE_LOCATION_6 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_5.png");
+	public static final ResourceLocation TEXTURE_LOCATION_7 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_6.png");
+	public static final ResourceLocation TEXTURE_LOCATION_8 = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/weapons/saw_cleaver/saw_cleaver_7.png");
 
 	 private final SquareTextureEntityModel<T> model;
 
@@ -78,7 +78,7 @@ public class SawCleaverRenderer<T extends WeaponAttackEntity> extends EntityRend
 	      vertexconsumer = p_114532_.getBuffer(RenderType.entityTranslucentEmissive(getTextureLocation(entity)));
 
 	         
-	         this.model.renderToBuffer(stack, vertexconsumer, p_114533_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+	         this.model.renderToBuffer(stack, vertexconsumer, p_114533_, OverlayTexture.NO_OVERLAY, 1 );
 	      stack.popPose();
 	         super.render(entity, p_114529_, p_114530_, stack, p_114532_, 255);
 	      

@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.ophidian_bite"
+  },
+  "primary_items": "#darkestsouls:enchantable/gun",
+  "supported_items": "#darkestsouls:enchantable/gun",
+  "weight": 4,
+  "max_level": 2,
+  "anvil_cost": 1,
+  "min_cost": {
+    "base": 6,
+    "per_level_above_first": 12
+  },
+  "max_cost": {
+    "base": 30,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "hand"
+  ]
+}

@@ -56,17 +56,20 @@ public class Shotgun extends Gun{
                     Bullet entity = new Bullet(EntityInit.BULLET.get(), level);
                     entity.setPos(x, y, z);
                     float flyingPower = this.flyingPower(player, stackIn);
-                    entity.xPower = flyingPower * (0.4f * aim.x + aim1.x);
+                    Vec3 aim2 = aim.scale(0.4f).add(aim1);
+                    entity.setDeltaMovement(aim2.scale(flyingPower));
+                    entity.accelerationPower=flyingPower;
+                    /*entity.xPower = flyingPower * (0.4f * aim.x + aim1.x);
                     entity.yPower = flyingPower * (0.4f * aim.y + aim1.y);
-                    entity.zPower = flyingPower * (0.4f * aim.z + aim1.z);
+                    entity.zPower = flyingPower * (0.4f * aim.z + aim1.z);*/
                     entity.setOwner(player);
                     entity.setAttackDamage(this.getAttackDamage(player, stackIn));
                     entity.setPoiseDamage(this.getPoiseDamage(player, stackIn));
-                    entity.setFlyingTime(this.getFlyingTime(stackIn));
+                    entity.setFlyingTime(this.getFlyingTime(player,stackIn));
                     entity.setBlood(this.getBlood(player, stackIn));
                     entity.setPoison(this.getPoison(player, stackIn));
                     entity.setFire(this.isFire(player, stackIn));
-                    entity.setExplosion(this.getExplosion(stackIn));
+                    entity.setExplosion(this.getExplosion(player,stackIn));
                     entity.setThunder(this.isLightning(player, stackIn));
                     entity.setSize((float) (this.getBaseSize() * (1 + 0.8 * rD)));
                     entity.setPierce(this.getPierce(player, stackIn));

@@ -1,0 +1,21 @@
+{
+  "description": {
+  "translate": "enchantment.darkestsouls.poisoned_blade"
+  },
+  "primary_items": "#darkestsouls:enchantable/weapon_extended",
+  "supported_items": "#darkestsouls:enchantable/weapon_extended",
+  "weight": 4,
+  "max_level": 2,
+  "anvil_cost": 2,
+  "min_cost": {
+  "base": 4,
+  "per_level_above_first": 10
+  },
+  "max_cost": {
+  "base": 24,
+  "per_level_above_first": 12
+  },
+  "slots": [
+  "mainhand"
+  ]
+}

@@ -63,9 +63,11 @@ public class ThrowingKnife extends Item {
             entity.setXRot(rotx);
             entity.setYRot(roty);
             //entity.shootFromRotation(playerIn, (float) (0.25f*aim.x), (float) (0.25f*aim.y), (float) (0.25f*aim.z), rotx, roty);
-            entity.xPower = flyingPower * aim.x;
+            entity.accelerationPower=flyingPower;
+            entity.setDeltaMovement(aim.scale(flyingPower));
+            /*entity.xPower = flyingPower * aim.x;
             entity.yPower = flyingPower * aim.y;
-            entity.zPower = flyingPower * aim.z;
+            entity.zPower = flyingPower * aim.z;*/
             entity.setOwner(playerIn);
             //entity.setZTilt(90*type);
             //entity.setToRotate(true);

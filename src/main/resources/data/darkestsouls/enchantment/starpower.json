@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.darkestsouls.starpower"
+  },
+  "primary_items": "#darkestsouls:enchantable/magic",
+  "supported_items": "#darkestsouls:enchantable/magic",
+  "weight": 10,
+  "max_level": 5,
+  "anvil_cost": 1,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 24,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "hand"
+  ]
+}

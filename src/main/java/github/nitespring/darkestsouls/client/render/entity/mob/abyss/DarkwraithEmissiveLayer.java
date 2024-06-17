@@ -15,7 +15,7 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class DarkwraithEmissiveLayer<T extends Darkwraith& GeoEntity> extends GeoRenderLayer<T>{
 
-	private static final ResourceLocation EYES = new ResourceLocation(DarkestSouls.MODID, "textures/entity/darkwraith/darkwraith_emissive.png");
+	private static final ResourceLocation EYES = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/darkwraith/darkwraith_emissive.png");
 
 	public DarkwraithEmissiveLayer(GeoRenderer<T> entityRendererIn) {
 		super(entityRendererIn);
@@ -30,7 +30,7 @@ public class DarkwraithEmissiveLayer<T extends Darkwraith& GeoEntity> extends Ge
 		
 		RenderType cameo = RenderType.eyes(EYES);
 
-		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);
+		this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, -1);
 		
 
 		

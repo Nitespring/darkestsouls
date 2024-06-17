@@ -23,7 +23,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
- import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
@@ -57,9 +57,11 @@ public class CrystalStaff extends Staff {
                 float rz=(r.nextFloat() - 0.5f);
                 Vec3 aim1 = aim.add(rx* 1.5,ry* 0.75,rz* 1.5);
                 e.setPos(pos.add(rx*0.5, ry*0.5+1.5, rz*0.5).add(aim.multiply(0.5f, 0.5f, 0.5f).add(aim1.multiply(0.5f, 0.5f, 0.5f))));
-                e.xPower = 0.1 * (0.5f*aim.x+aim1.x);
+                e.accelerationPower=0.1f;
+                e.setDeltaMovement(aim.scale(0.5f).add(aim1).scale(0.1f));
+                /*e.xPower = 0.1 * (0.5f*aim.x+aim1.x);
                 e.yPower = 0.1 * (0.5f*aim.y+aim1.y);
-                e.zPower = 0.1 * (0.5f*aim.z+aim1.z);
+                e.zPower = 0.1 * (0.5f*aim.z+aim1.z);*/
                 if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
                 if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
                 double d0 = aim1.horizontalDistance();
@@ -81,9 +83,11 @@ public class CrystalStaff extends Staff {
                 float rz=(r.nextFloat() - 0.5f);
                 Vec3 aim1 = aim.add(rx* 0.75,ry* 0.75,rz* 0.75);
                 e.setPos(pos.add(rx*0.5, ry*0.5+1.5, rz*0.5).add(aim.multiply(1.0f, 1.0f, 1.0f).add(aim1.multiply(0.5f, 0.5f, 0.5f))));
-                e.xPower = 0.05 * (0.5f*aim.x+aim1.x);
+                e.accelerationPower=0.05f;
+                e.setDeltaMovement(aim.scale(0.5f).add(aim1).scale(0.05f));
+                /*e.xPower = 0.05 * (0.5f*aim.x+aim1.x);
                 e.yPower = 0.05 * (0.5f*aim.y+aim1.y);
-                e.zPower = 0.05 * (0.5f*aim.z+aim1.z);
+                e.zPower = 0.05 * (0.5f*aim.z+aim1.z);*/
                 if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
                 if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
                 double d0 = aim1.horizontalDistance();
@@ -121,9 +125,11 @@ public class CrystalStaff extends Staff {
         e.setOwner(playerIn);
         e.setStopLifeTime(40);
         e.setMaxLifeTime(100);
-        e.xPower = 0.1 * aim.x;
+        e.accelerationPower=0.1f;
+        e.setDeltaMovement(new Vec3(0.1 * aim.x,0.1f+0.1 * Math.max(aim.y, 0),0.1 * aim.z));
+        /*e.xPower = 0.1 * aim.x;
         e.yPower = 0.1+0.1 * Math.max(aim.y, 0);
-        e.zPower = 0.1 * aim.z;
+        e.zPower = 0.1 * aim.z;*/
 
         if(handIn == InteractionHand.MAIN_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.MAINHAND);}
         if(handIn == InteractionHand.OFF_HAND) {stackIn.hurtAndBreak(2, playerIn, EquipmentSlot.OFFHAND);}
@@ -147,7 +153,7 @@ public class CrystalStaff extends Staff {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_41454_) {
+       public int getUseDuration(ItemStack stackIn, LivingEntity entityIn) {
         return 72000;
     }
 
