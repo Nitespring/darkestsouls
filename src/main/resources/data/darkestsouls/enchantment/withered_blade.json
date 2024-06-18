@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.withered_blade"
   },
-  "primary_items": "#darkestsouls:enchantable/weapon_extended",
   "supported_items": "#darkestsouls:enchantable/weapon_extended",
   "weight": 1,
   "max_level": 2,

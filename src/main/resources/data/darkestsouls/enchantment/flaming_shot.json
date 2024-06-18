@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.flaming_shot"
   },
-  "primary_items": "#darkestsouls:enchantable/gun",
   "supported_items": "#darkestsouls:enchantable/gun",
   "weight": 4,
   "max_level": 1,

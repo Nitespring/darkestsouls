@@ -3,163 +3,62 @@
   "pools": [
     {
       "rolls": {
-        "min": 1,
+        "min": 0,
         "max": 3
       },
       "bonus_rolls": {
         "min": 0,
-        "max": 1
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "quality": 1,
-          "name": "darkestsouls:titanite_fragment",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 5
-              }
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "quality": 5,
-          "name": "darkestsouls:demon_fragment",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 2
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "quality": 5,
-          "name": "darkestsouls:twinkling_fragment",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 2
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
-          "quality": 5,
-          "name": "darkestsouls:dragon_scale_fragment",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 2
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "quality": 10,
-          "name": "darkestsouls:twinkling_titanite",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 1,
         "max": 2
       },
-      "bonus_rolls": {
-        "min": 0,
-        "max": 1
-      },
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 2,
+          "weight": 4,
           "quality": 1,
           "name": "darkestsouls:soul_fragment",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0,
-                "max": 3
-              }
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
+                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 2
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "quality": 1,
+          "name": "darkestsouls:rune_fragment",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 4
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
               }
             }
           ]
@@ -168,18 +67,152 @@
           "type": "minecraft:item",
           "weight": 1,
           "quality": 2,
-          "name": "darkestsouls:dark_fragment",
+          "name": "darkestsouls:siderite_fragment",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0,
-                "max": 2
-              }
+                "type": "minecraft:uniform",
+                "min": -4,
+                "max": 1
+              },
+              "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 2,
+          "name": "darkestsouls:cinnabar",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -2,
+                "max": 2
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "quality": 2,
+          "name": "darkestsouls:quicksilver",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -1,
+                "max": 3
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "quality": 2,
+          "name": "darkestsouls:titanite_fragment",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -2,
+                "max": 2
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 2,
+          "name": "darkestsouls:church_cane",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -10,
+                "max": 1
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 2,
+          "name": "darkestsouls:flamesprayer",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -10,
+                "max": 1
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }

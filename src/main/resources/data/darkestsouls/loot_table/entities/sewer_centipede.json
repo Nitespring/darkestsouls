@@ -6,28 +6,48 @@
         "min": 0,
         "max": 2
       },
-      "bonus_rolls": {
-        "min": 0,
-        "max": 1
-      },
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 2,
+          "weight": 10,
           "quality": 1,
-          "name": "darkestsouls:small_soul_fragment",
+          "name": "darkestsouls:titanite_fragment",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0,
+                "max": 3
+              }
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "quality": 5,
+          "name": "darkestsouls:demon_fragment",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
-                "max": 4
+                "max": 1
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -36,6 +56,70 @@
             }
           ]
         },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "quality": 5,
+          "name": "darkestsouls:twinkling_fragment",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 5,
+          "name": "darkestsouls:dragon_scale_fragment",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": {
+        "min": 0,
+        "max": 1
+      },
+      "entries": [
         {
           "type": "minecraft:item",
           "weight": 3,
@@ -45,41 +129,14 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 2
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 1
               }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
-          "quality": 2,
-          "name": "minecraft:iron_nugget",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 4
-              },
-              "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }
@@ -90,96 +147,19 @@
           "type": "minecraft:item",
           "weight": 1,
           "quality": 2,
-          "name": "darkestsouls:titanite_fragment",
+          "name": "darkestsouls:dark_fragment",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
-                "min": -1,
-                "max": 2
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 3,
-          "quality": 2,
-          "name": "darkestsouls:rune_fragment",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": -1,
-                "max": 2
-              },
-              "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "quality": 2,
-          "name": "darkestsouls:longsword",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": -6,
-                "max": 1
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
-          "quality": 2,
-          "name": "darkestsouls:firebomb",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 2
-              },
-              "add": false
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }

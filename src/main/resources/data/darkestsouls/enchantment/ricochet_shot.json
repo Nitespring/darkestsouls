@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.ricochet_shot"
   },
-  "primary_items": "#darkestsouls:enchantable/gun",
   "supported_items": "#darkestsouls:enchantable/gun",
   "weight": 6,
   "max_level": 5,

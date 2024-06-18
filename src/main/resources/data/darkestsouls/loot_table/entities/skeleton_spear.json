@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 0,
-        "max": 3
+        "max": 2
       },
       "entries": [
         {
@@ -17,13 +17,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -2,
+                "min": -3,
                 "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -42,13 +43,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -1,
+                "min": -2,
                 "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -62,7 +64,7 @@
     {
       "rolls": {
         "min": 0,
-        "max": 3
+        "max": 2
       },
       "entries": [
         {
@@ -75,13 +77,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -2,
+                "min": -3,
                 "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -100,13 +103,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -1,
+                "min": -2,
                 "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -125,13 +129,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -1,
+                "min": -2,
                 "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -150,13 +155,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -1,
-                "max": 6
+                "min": -2,
+                "max": 4
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -167,7 +173,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 8,
           "quality": 1,
           "name": "darkestsouls:rune_fragment",
           "functions": [
@@ -176,12 +182,39 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": -3,
+                "max": 2
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 3,
+          "name": "darkestsouls:spear",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -8,
                 "max": 1
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,

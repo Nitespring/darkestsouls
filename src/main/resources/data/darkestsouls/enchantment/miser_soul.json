@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.miser_soul"
   },
-  "primary_items": "#darkestsouls:enchantable/ammo_consuming",
   "supported_items": "#darkestsouls:enchantable/ammo_consuming",
   "weight": 6,
   "max_level": 6,

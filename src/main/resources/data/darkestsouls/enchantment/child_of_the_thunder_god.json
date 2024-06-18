@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.child_of_the_thunder_god"
   },
-  "primary_items": "#darkestsouls:enchantable/gun",
   "supported_items": "#darkestsouls:enchantable/gun",
   "weight": 2,
   "max_level": 1,

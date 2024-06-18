@@ -3,8 +3,12 @@
   "pools": [
     {
       "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "bonus_rolls": {
         "min": 0,
-        "max": 2
+        "max": 1
       },
       "entries": [
         {
@@ -16,12 +20,13 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0,
-                "max": 3
+                "min": 1,
+                "max": 5
               }
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "min": 0,
                 "max": 1
@@ -40,12 +45,13 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
-                "max": 1
+                "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -65,12 +71,39 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
-                "max": 1
+                "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "quality": 5,
+          "name": "darkestsouls:dragon_scale_fragment",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -82,22 +115,20 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "quality": 5,
-          "name": "darkestsouls:dragon_scale_fragment",
+          "quality": 10,
+          "name": "darkestsouls:twinkling_titanite",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
-              },
-              "add": false
+              }
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }
@@ -118,7 +149,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 2,
           "quality": 1,
           "name": "darkestsouls:soul_fragment",
           "functions": [
@@ -126,14 +157,15 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 0,
-                "max": 2
+                "max": 3
               }
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "min": 0,
-                "max": 1
+                "max": 2
               }
             }
           ]
@@ -148,11 +180,12 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 0,
-                "max": 1
+                "max": 2
               }
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "min": 0,
                 "max": 1

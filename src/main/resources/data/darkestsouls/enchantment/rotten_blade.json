@@ -1,8 +1,7 @@
 {
   "description": {
-    "translate": "enchantment.darkestsouls.toxic_blade"
+    "translate": "enchantment.darkestsouls.rotten_blade"
   },
-  "primary_items": "#darkestsouls:enchantable/weapon_extended",
   "supported_items": "#darkestsouls:enchantable/weapon_extended",
   "weight": 1,
   "max_level": 1,

@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.starpower"
   },
-  "primary_items": "#darkestsouls:enchantable/magic",
   "supported_items": "#darkestsouls:enchantable/magic",
   "weight": 10,
   "max_level": 5,

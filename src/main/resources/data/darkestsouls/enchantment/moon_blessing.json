@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.moon_blessing"
   },
-  "primary_items": "#darkestsouls:enchantable/magic",
   "supported_items": "#darkestsouls:enchantable/magic",
   "weight": 2,
   "max_level": 5,

@@ -122,7 +122,8 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
 
         int moon=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack);
         int star=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack);
-        tooltip.add(Component.literal(""+attackDamage*(1+0.2*moon)+2.0f*star).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
+        double damage = MathUtils.round(attackDamage*(1+0.2*moon)+2.0f*star,1);
+        tooltip.add(Component.literal(""+damage).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
 
         int luck = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL), stack);
         if(luck>0) {

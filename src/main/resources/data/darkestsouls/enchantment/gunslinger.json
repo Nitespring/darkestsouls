@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.gunslinger"
   },
-  "primary_items": "#darkestsouls:enchantable/gun",
   "supported_items": "#darkestsouls:enchantable/gun",
   "weight": 5,
   "max_level": 3,

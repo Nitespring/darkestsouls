@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.bloodblade"
   },
-  "primary_items": "#darkestsouls:enchantable/weapon_extended",
   "supported_items": "#darkestsouls:enchantable/weapon_extended",
   "weight": 4,
   "max_level": 3,

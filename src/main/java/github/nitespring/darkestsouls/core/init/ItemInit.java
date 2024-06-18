@@ -16,6 +16,7 @@ import github.nitespring.darkestsouls.common.item.throwing.Firebomb;
 import github.nitespring.darkestsouls.common.item.throwing.MolotovCocktail;
 import github.nitespring.darkestsouls.common.item.throwing.ThrowingKnife;
 import github.nitespring.darkestsouls.core.enums.Tiers;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
@@ -182,53 +183,53 @@ public class ItemInit {
 			() -> new MolotovCocktail(6.0f, 28, 4, new Item.Properties().stacksTo(16)));
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SIN, 1318437, 16449279, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SIN, FastColor.ARGB32.opaque(1318437), FastColor.ARGB32.opaque(16449279), new Item.Properties()));
 	public static final RegistryObject<Item> BONEWHEEL = ITEMS.register("bonewheel_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, 13684684, 11432504, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
 	public static final RegistryObject<Item> SEWER_CENTIPEDE = ITEMS.register("sewer_centipede_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 13686464, 7373164, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, FastColor.ARGB32.opaque(13686464), FastColor.ARGB32.opaque(7373164), new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_FALCHION = ITEMS.register("skeleton_falchion_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 13684684, 14079971, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(14079971), new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_CURVED_SWORDS = ITEMS.register("skeleton_curved_swords_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 13684684, 7367532, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(7367532), new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_SPEAR = ITEMS.register("skeleton_spear_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, 13684684, 8618640, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(8618640), new Item.Properties()));
 	public static final RegistryObject<Item> TALL_SKELETON_TWIN_SHOTELS = ITEMS.register("skeleton_swordsman_twin_shotels_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.TALL_SKELETON_TWIN_SHOTELS, 13684684, 2239044, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.TALL_SKELETON_TWIN_SHOTELS, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(2239044), new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_LONGSWORD = ITEMS.register("hollow_longsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 13945528, 5202790, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(5202790), new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_AXE = ITEMS.register("hollow_axe_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, 13945528, 6448753, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(6448753), new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("hollow_broken_straightsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 12630442, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(12630442), new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_LONGSWORD = ITEMS.register("gravetender_hollow_longsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, 13945528, 2962739, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(2962739), new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_ASSASSIN = ITEMS.register("hollow_assassin_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, 13945528, 2304301, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(2304301), new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("gravetender_hollow_broken_straightsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 2962739, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(2962739), new Item.Properties()));
 	public static final RegistryObject<Item> BEAST_PATIENT = ITEMS.register("beast_patient_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.BEAST_PATIENT, FastColor.ARGB32.opaque(2962739), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
 	public static final RegistryObject<Item> CLOAKED_BEAST_PATIENT = ITEMS.register("cloaked_beast_patient_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CLOAKED_BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CLOAKED_BEAST_PATIENT, FastColor.ARGB32.opaque(2962739), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
 	public static final RegistryObject<Item> ASHEN_BLOOD_BEAST_PATIENT = ITEMS.register("ashen_blood_beast_patient_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.ASHEN_BLOOD_BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.ASHEN_BLOOD_BEAST_PATIENT, FastColor.ARGB32.opaque(2962739), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
 	public static final RegistryObject<Item> LEECH = ITEMS.register("leech_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.LEECH, 1318437, 7373164, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.LEECH, FastColor.ARGB32.opaque(1318437), FastColor.ARGB32.opaque(7373164), new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR = ITEMS.register("church_doctor_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, 4475990, 14804204, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(14804204), new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_LANTERN = ITEMS.register("church_doctor_lantern_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, 4475990, 16777204, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(16777204), new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_SCYTHE = ITEMS.register("church_doctor_scythe_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, 4475990, 11588863, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(11588863), new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_PISTOL = ITEMS.register("church_doctor_pistol_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, 4475990, 11250609, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(11250609), new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_FLAMESPRAYER = ITEMS.register("church_doctor_flamesprayer_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 4475990, 16736256, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(16736256), new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_CRUCIFIX = ITEMS.register("church_doctor_crucifix_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 4475990, 2097152, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(2097152), new Item.Properties()));
 	public static final RegistryObject<Item> DARKWRAITH = ITEMS.register("darkwraith_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.DARKWRAITH, 987415, 6750208, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.DARKWRAITH, FastColor.ARGB32.opaque(987415), FastColor.ARGB32.opaque(6750208), new Item.Properties()));
 
     //Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",

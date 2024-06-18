@@ -2,7 +2,6 @@
   "description": {
     "translate": "enchantment.darkestsouls.beast_hunter"
   },
-  "primary_items": "#darkestsouls:enchantable/weapon_extended",
   "supported_items": "#darkestsouls:enchantable/weapon_extended",
   "weight": 2,
   "max_level": 5,

@@ -13,7 +13,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 5,
+          "weight": 4,
           "quality": 1,
           "name": "darkestsouls:soul_fragment",
           "functions": [
@@ -22,12 +22,13 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
-                "max": 4
+                "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -47,12 +48,13 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
-                "max": 3
+                "max": 4
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -71,13 +73,14 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -2,
-                "max": 3
+                "min": -4,
+                "max": 1
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -102,7 +105,8 @@
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -113,21 +117,48 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 3,
           "quality": 2,
-          "name": "darkestsouls:quicksilver",
+          "name": "darkestsouls:quicksilver_bullet",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": -5,
+                "min": -1,
+                "max": 3
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "quality": 2,
+          "name": "minecraft:gunpowder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -1,
                 "max": 2
               },
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -152,7 +183,8 @@
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -165,7 +197,7 @@
           "type": "minecraft:item",
           "weight": 1,
           "quality": 2,
-          "name": "darkestsouls:church_scythe",
+          "name": "darkestsouls:church_cane",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -177,7 +209,34 @@
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 2,
+          "name": "darkestsouls:repeating_pistol",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": -10,
+                "max": 1
+              },
+              "add": false
+            },
+            {
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,

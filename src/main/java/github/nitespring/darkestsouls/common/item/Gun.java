@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import github.nitespring.darkestsouls.core.util.CustomItemTags;
+import github.nitespring.darkestsouls.core.util.MathUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -255,8 +256,8 @@ public class Gun extends Item implements IAmmoConsumingItem,ILeftClickItem {
         int luck = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL), stack);
         int flatDamage = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.FIREPOWER), stack);
         int percentDamage = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.GREATER_FIREPOWER), stack);
-
-        tooltip.add(Component.literal("+").append(Component.literal(""+(attackDamage+2*flatDamage)*(1+0.2f*percentDamage))).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        double damage = MathUtils.round((attackDamage+2*flatDamage)*(1+0.2f*percentDamage), 1);
+        tooltip.add(Component.literal("+").append(Component.literal(""+damage)).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
 
         if(blood>=1) {
             tooltip.add(Component.literal("+").append(Component.literal(""+blood)).append(Component.translatable("translation.darkestsouls.blood")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_RED));
