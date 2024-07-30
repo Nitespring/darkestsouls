@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.item.child.weapons;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -36,48 +37,51 @@ public class FrayedBlade extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
-        if(!playerIn.isUsingItem()) {
-            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 1.5, 0.4, playerIn.getLookAngle().z() * 1.5);
+        if(CommonConfig.do_special_weapon_attacks_left_click.get()) {
+            if (!playerIn.isUsingItem()) {
+                Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 1.5, 0.4, playerIn.getLookAngle().z() * 1.5);
 
-            Level levelIn = playerIn.level();
-            FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
-            entity.setOwner(playerIn);
-            entity.setItemStack(stackIn);
-            entity.setMaxTargets(this.getMaxTargets(stackIn));
-            entity.setDamage(
-                    this.getAttackDamage(playerIn, stackIn) - 4,
-                    this.getPoiseDamage(playerIn, stackIn) - 7,
-                    this.getFireAttack(stackIn),
-                    this.getSmiteAttack(stackIn),
-                    this.getBaneOfArthropodsAttack(stackIn),
-                    this.getBloodAttack(stackIn) - 2,
-                    this.getPoisonAttack(stackIn),
-                    this.getRotAttack(stackIn),
-                    this.getFrostAttack(stackIn),
-                    this.getDeathAttack(stackIn));
-            entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
-            entity.configureTicks(14, 22, 1, 2);
-            levelIn.addFreshEntity(entity);
+                Level levelIn = playerIn.level();
+                FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+                entity.setOwner(playerIn);
+                entity.setItemStack(stackIn);
+                entity.setMaxTargets(this.getMaxTargets(stackIn));
+                entity.setDamage(
+                        this.getAttackDamage(playerIn, stackIn) - 4,
+                        this.getPoiseDamage(playerIn, stackIn) - 7,
+                        this.getFireAttack(stackIn),
+                        this.getSmiteAttack(stackIn),
+                        this.getBaneOfArthropodsAttack(stackIn),
+                        this.getBloodAttack(stackIn) - 2,
+                        this.getPoisonAttack(stackIn),
+                        this.getRotAttack(stackIn),
+                        this.getFrostAttack(stackIn),
+                        this.getDeathAttack(stackIn));
+                entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
+                entity.configureTicks(14, 22, 1, 2);
+                levelIn.addFreshEntity(entity);
+            }
         }
 
     }
     @Override
     public void doRightClickAction(Player playerIn, ItemStack stackIn) {
 
+        if(CommonConfig.do_special_weapon_attacks_right_click.get()) {
 
-
-        Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
-        double d0 = Math.min(posTarget.y, playerIn.getY());
-        double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;
-        float f = (float)Mth.atan2(posTarget.z - playerIn.getZ(), posTarget.x - playerIn.getX());
-        for(int l = 0; l < 18; ++l) {
-            double d2 = 0.5D * (double)(l + 1);
-            int j = l/2;
-            this.createSpellEntity(playerIn, playerIn.getX() + (double)Mth.cos(f) * d2, playerIn.getZ() + (double)Mth.sin(f) * d2, d0, d1, f, j,stackIn);
+            Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
+            double d0 = Math.min(posTarget.y, playerIn.getY());
+            double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;
+            float f = (float) Mth.atan2(posTarget.z - playerIn.getZ(), posTarget.x - playerIn.getX());
+            for (int l = 0; l < 18; ++l) {
+                double d2 = 0.5D * (double) (l + 1);
+                int j = l / 2;
+                this.createSpellEntity(playerIn, playerIn.getX() + (double) Mth.cos(f) * d2, playerIn.getZ() + (double) Mth.sin(f) * d2, d0, d1, f, j, stackIn);
+            }
+            stackIn.hurtAndBreak(5, playerIn, (p_43296_) -> {
+                p_43296_.broadcastBreakEvent(stackIn.getEquipmentSlot());
+            });
         }
-        stackIn.hurtAndBreak(5, playerIn, (p_43296_) -> {
-            p_43296_.broadcastBreakEvent(stackIn.getEquipmentSlot());
-        });
 
     }
 
