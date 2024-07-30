@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -882,6 +882,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                 }
                 if(getAnimationTick()==5) {
                     //this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if (aimVec == null) {aimVec = this.getLookAngle().normalize();}
                     this.playSound(SoundEvents.FISHING_BOBBER_THROW);
                     this.doRangedAttack();
 

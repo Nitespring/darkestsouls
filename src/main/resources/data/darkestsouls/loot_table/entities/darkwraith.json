@@ -80,7 +80,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
@@ -104,7 +104,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
@@ -128,7 +128,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
@@ -152,7 +152,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
@@ -176,7 +176,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
@@ -200,7 +200,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "min": 0,
@@ -223,7 +223,7 @@
               }
             },
             {
-              "enchantment": "minecraft:looting",
+                "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
@@ -241,6 +241,16 @@
         {
           "type": "minecraft:item",
           "name": "darkestsouls:dark_sword"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_damage",
+          "damage": {
+            "type": "minecraft:uniform",
+            "min": 0,
+            "max": 1
+          }
         }
       ],
       "conditions": [

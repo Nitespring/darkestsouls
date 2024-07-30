@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bcb",
+        "ada"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_leather"
+        },
+        "b": {
+            "item": "darkestsouls:cloth_piece"
+        },
+        "c": {
+            "item": "minecraft:gunpowder"
+        },
+        "d": {
+            "item": "minecraft:redstone"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:specialist_boots",
+        "count": 1
+    },
+    "group": "darkestsouls:specialist_boots"
+}

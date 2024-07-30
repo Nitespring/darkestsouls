@@ -32,7 +32,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-
 import java.util.List;
 
 public class Weapon extends Item implements ILeftClickItem {
@@ -251,13 +250,13 @@ public class Weapon extends Item implements ILeftClickItem {
             }
             if (!target.getType().is(CustomEntityTags.BLEED_IMMUNE)) {
                 if (this.getBloodAttack(playerIn,stackIn) >= 1) {
-                    if (target.hasEffect(EffectInit.BLEED.getHolder().get())) {
-                        int amount = target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier() + this.getBloodAttack(playerIn,stackIn);
-                        target.removeEffect(EffectInit.BLEED.getHolder().get());
-                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 240, amount));
+                    if (target.hasEffect(EffectInit.ROT.getHolder().get())) {
+                        int amount = target.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier() + this.getBloodAttack(playerIn,stackIn);
+                        target.removeEffect(EffectInit.ROT.getHolder().get());
+                        target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 240, amount));
                     } else {
                         int amount = this.getBloodAttack(playerIn,stackIn) - 1;
-                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 240, amount));
+                        target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 240, amount));
                     }
                 }
             }
@@ -282,18 +281,26 @@ public class Weapon extends Item implements ILeftClickItem {
     }
 
 
+
+
     @Override
-    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return ToolActions.SWORD_DIG==toolAction;
+    public boolean canPerformAction(ItemStack stack, ToolAction itemAbility) {
+        return ToolActions.SWORD_DIG==itemAbility;
     }
 
+ 
+    public boolean isDamageable(ItemStack stack) {
 
+        return true;
+    }
 
-    @Override
-    public int getDefaultMaxStackSize() {
+    public int getMaxStackSize(ItemStack stack) {
         return 1;
     }
 
+    public int getMaxDamage(ItemStack stack) {
+        return this.durability;
+    }
 
 
     @Override
@@ -314,7 +321,12 @@ public class Weapon extends Item implements ILeftClickItem {
         return super.canApplyAtEnchantingTable(stack, enchantment);
     }
 */
+    
 
+    public boolean isRepairable(ItemStack stack) {
+
+        return true;
+    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -323,7 +335,10 @@ public class Weapon extends Item implements ILeftClickItem {
         int fire = this.fire + EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FIRE_ASPECT),stack);
         int holy = this.holy + EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.ABYSS_CLEANSER),stack);
         int serrated = this.serrated + EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.SERRATED),stack);
-        int blood = this.bloodAttack + EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.BLOODBLADE),stack);
+        int blood = this.bloodAttack;
+        if(EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.BLOODBLADE),stack)>=1){
+           blood = blood+1+2*EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.BLOODBLADE),stack);
+        }
         int poison = poisonAttack + EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.POISONED_BLADE),stack);
         int toxic = EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.TOXIC_BLADE),stack);
         int frost = frostAttack + EnchantmentHelper.getItemEnchantmentLevel(pContext.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.FROST_BLADE),stack);

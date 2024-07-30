@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "aca",
+        "bcb"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_metal_piece"
+        },
+        "b": {
+            "item": "darkestsouls:cloth_piece"
+        },
+        "c": {
+            "item": "darkestsouls:reinforced_mail_scrap"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:knight_chestplate",
+        "count": 1
+    },
+    "group": "darkestsouls:knight_chestplate"
+}

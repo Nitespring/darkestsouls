@@ -161,8 +161,8 @@ public class Flamesprayer extends AlchemyTool {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-float attackDamage=this.getBaseAttackDamage()* (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack))
-        + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.STARPOWER), stack);
+float attackDamage=this.getBaseAttackDamage()* (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING),stack))
+        + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.STARPOWER),stack);
         tooltip.add(Component.literal("+").append(Component.literal(""+attackDamage)).append(Component.translatable("translation.darkestsouls.fire_damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
 
         super.appendHoverText(stack, context, tooltip, flag);

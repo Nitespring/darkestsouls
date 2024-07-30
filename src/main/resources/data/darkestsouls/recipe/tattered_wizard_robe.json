@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "a a",
+        "bab",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:enchanted_torn_cloth_piece"
+        },
+        "b": {
+            "item": "darkestsouls:torn_cloth_piece"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:tattered_wizard_robe",
+        "count": 1
+    },
+    "group": "darkestsouls:tattered_wizard_robe"
+}

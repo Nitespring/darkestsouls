@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -402,6 +402,7 @@ public class HollowSoldierAxe extends Hollow implements GeoEntity {
                     }
                 }
                 if(getAnimationTick()==28) {
+                    if (aimVec == null) {aimVec = this.getLookAngle().normalize();}
                     //this.playSound(this.getAttackSound(), 0.2f,1.0f);
                     this.playSound(SoundEvents.EGG_THROW);
                     float x = (float) (pos.x + 0.6 * aimVec.x);
@@ -419,8 +420,8 @@ public class HollowSoldierAxe extends Hollow implements GeoEntity {
                     entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f);
                     entity.setPoiseDamage(4);
                     entity.setGravPower(0.0015f);
-                    entity.setHorizontalSpread(1.0);
-                    entity.setVerticalSpread(1.0);
+                    entity.setHorizontalSpread(1.0f);
+                    entity.setVerticalSpread(1.0f);
                     levelIn.addFreshEntity(entity);
 
                 }

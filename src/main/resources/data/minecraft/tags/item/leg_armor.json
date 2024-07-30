@@ -1,0 +1,10 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:knight_pants",
+    "darkestsouls:hunter_trousers",
+    "darkestsouls:specialist_trousers",
+    "darkestsouls:alchemist_trousers",
+    "darkestsouls:wizard_pants"
+  ]
+}

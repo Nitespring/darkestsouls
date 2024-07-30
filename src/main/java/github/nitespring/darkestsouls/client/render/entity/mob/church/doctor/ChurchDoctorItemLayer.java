@@ -54,27 +54,27 @@ protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack s
 		MultiBufferSource bufferSource, float partialTick, int packedLight, int packedOverlay) {
 		poseStack.pushPose();
 	if (bone.getName().equals("itemRight")) {
-	if(animatable.getRightHandItem().getItem()==ItemInit.CRUCIFIX.get()){
-		poseStack.translate(0, -0.12, -0.5);
-		poseStack.mulPose(Axis.XP.rotationDegrees(-90));
-		poseStack.mulPose(Axis.YP.rotationDegrees(90));
-		poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-		poseStack.scale(1.2f,1.2f,1.2f);
-	}else if(animatable.getRightHandItem().getItem()==ItemInit.CHURCH_SCYTHE.get()){
-		poseStack.translate(0, -0.16, -0.1);
-		poseStack.mulPose(Axis.XP.rotationDegrees(-90));
-		poseStack.mulPose(Axis.YP.rotationDegrees(0));
-		poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-		poseStack.scale(1.4f,1.4f,1.4f);
-	}else{
-		poseStack.translate(0, -0.12, 0);
-		poseStack.mulPose(Axis.XP.rotationDegrees(-90));
-		poseStack.mulPose(Axis.YP.rotationDegrees(0));
-		poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-		poseStack.scale(1.0f,1.0f,1.0f);
-	}
+		if(animatable.getRightHandItem().getItem()==ItemInit.CRUCIFIX.get()){
+			poseStack.translate(0, -0.12, -0.5);
+			poseStack.mulPose(Axis.XP.rotationDegrees(-90));
+			poseStack.mulPose(Axis.YP.rotationDegrees(90));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+			poseStack.scale(1.2f,1.2f,1.2f);
+		}else if(animatable.getRightHandItem().getItem()==ItemInit.CHURCH_SCYTHE.get()||animatable.getRightHandItem().getItem()==ItemInit.CHURCH_SCYTHE_UNLIT.get()){
+			poseStack.translate(0, -0.16, -0.1);
+			poseStack.mulPose(Axis.XP.rotationDegrees(-90));
+			poseStack.mulPose(Axis.YP.rotationDegrees(0));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+			poseStack.scale(1.4f,1.4f,1.4f);
+		}else{
+			poseStack.translate(0, -0.12, 0);
+			poseStack.mulPose(Axis.XP.rotationDegrees(-90));
+			poseStack.mulPose(Axis.YP.rotationDegrees(0));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+			poseStack.scale(1.0f,1.0f,1.0f);
+		}
 
-	  }else if (bone.getName().equals("itemLeft")) {
+	}else if (bone.getName().equals("itemLeft")) {
 		if(animatable.getLeftHandItem().getItem()==ItemInit.REPEATING_PISTOL.get()) {
 			poseStack.translate(0, -0.22, -0.40);
 			poseStack.mulPose(Axis.XP.rotationDegrees(-45));

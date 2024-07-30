@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "aba",
+        " c "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_leather"
+        },
+        "b": {
+            "item": "darkestsouls:cloth_piece"
+        },
+        "c": {
+            "item": "darkestsouls:beast_blood_clump"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:hunter_hat",
+        "count": 1
+    },
+    "group": "darkestsouls:hunter_hat"
+}

@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.item;
 
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.core.util.ArmourUtils;
 import github.nitespring.darkestsouls.core.util.CustomItemTags;
   
 import net.minecraft.ChatFormatting;
@@ -46,14 +47,15 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
         return attackDamage;
     }
     public float getAttackDamage(Player playerIn, ItemStack stackIn) {
-        return attackDamage* (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(), stackIn))
-                + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.STARPOWER).get(), stackIn);
+        float armourModifier = 1 + (float) ArmourUtils.getAlchemyBonus(playerIn) /100;
+        return armourModifier*(attackDamage* (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(),stackIn))
+                + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.STARPOWER).get(),stackIn));
 
     }
     public int getUseCooldown(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(), stackIn);
+            enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(),stackIn);
         }
         return (int) (useCooldown*(1-0.1*enchantModifier));
     }
@@ -63,9 +65,10 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
     public float getLuck(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            enchantModifier= EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MISER_SOUL).get(), stackIn);
+            enchantModifier= EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MISER_SOUL).get(),stackIn);
         }
-        return 0.1f*enchantModifier;
+        float armourModifier = (float) ArmourUtils.getLuckBonus(playerIn) /100;
+        return 0.1f*enchantModifier+armourModifier;
     }
 
     public int getAmmoAmount() {
@@ -81,9 +84,13 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
 
     public void shoot(Player player, Level level, ItemStack stackIn) {
     }
-    @Override
-    public int getDefaultMaxStackSize() {
+
+    public int getMaxStackSize(ItemStack stack) {
         return 1;
+    }
+
+    public int getMaxDamage(ItemStack stack) {
+        return durability;
     }
     @Override
     public UseAnim getUseAnimation(ItemStack p_41452_) {
@@ -102,7 +109,11 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
         return !p_43294_.isCreative();
     }
 
+ 
+    public boolean isDamageable(ItemStack stack) {
 
+        return true;
+    }
 
     @Override
     public int getEnchantmentValue(ItemStack stack) {
@@ -129,12 +140,12 @@ public class AlchemyTool extends Item implements IAmmoConsumingItem{
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
 
         //tooltip.add(Component.literal("+").append(Component.literal(""+this.getAttackDamage(null,stack))).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
-        int luck=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL), stack);
+        int luck=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL),stack);
         if(luck>0) {
             tooltip.add(Component.literal("+").append(Component.literal(""+(luck*10))).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         }
         if(stack.isEnchanted()){
-            int i=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.GUNSLINGER), stack);
+            int i=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.GUNSLINGER),stack);
             if(i>=1) {
                 tooltip.add(Component.literal("+").append(Component.literal("" + i * 10)).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.cooldown")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
             }

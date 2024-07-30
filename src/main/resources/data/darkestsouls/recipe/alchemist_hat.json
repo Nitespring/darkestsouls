@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cac",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_leather"
+        },
+        "b": {
+            "item": "darkestsouls:soul_fragment"
+        },
+        "c": {
+            "item": "darkestsouls:quicksilver"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:alchemist_hat",
+        "count": 1
+    },
+    "group": "darkestsouls:alchemist_hat"
+}

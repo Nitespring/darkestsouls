@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "#darkestsouls:hollow",
+    "darkestsouls:huntsman_rifle",
+    "darkestsouls:huntsman_axe",
+    "darkestsouls:huntsman_pitchfork",
+    "darkestsouls:huntsman_cutlass",
+    "darkestsouls:darkwraith"
+  ]
+}

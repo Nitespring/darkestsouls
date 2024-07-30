@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "dcd",
+        "aba",
+        "dcd"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:titanite_fragment"
+        },
+        "b": {
+            "item": "minecraft:leather"
+        },
+        "c": {
+            "item": "minecraft:iron_nugget"
+        },
+        "d": {
+            "item": "darkestsouls:torn_leather_scrap"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:reinforced_leather",
+        "count": 3
+    },
+    "group": "darkestsouls:reinforced_leather"
+}

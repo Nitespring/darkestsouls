@@ -63,85 +63,92 @@ public class DragonslayerSpear extends Weapon {
             }
 
         } else  if(!playerIn.isUsingItem() /*&& !playerIn.getCooldowns().isOnCooldown(stackIn.getItem())*/){
-            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.1, 0.4, playerIn.getLookAngle().z() * 2.1);
-            Vec3 aim = playerIn.getLookAngle();
+            if(CommonConfig.do_special_weapon_attacks_left_click.get()) {
+                Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.1, 0.4, playerIn.getLookAngle().z() * 2.1);
+                Vec3 aim = playerIn.getLookAngle();
+
+                Level levelIn = playerIn.level();
+                WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.DRAGONSLAYER_SPEAR.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+                entity.setOwner(playerIn);
+                entity.setItemStack(stackIn);
+                entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
+                entity.setDamage(
+                        this.getAttackDamage(playerIn, stackIn),
+                        this.getPoiseDamage(playerIn, stackIn),
+                        this.getFireAttack(playerIn, stackIn),
+                        this.getSmiteAttack(playerIn, stackIn),
+                        this.getBaneOfArthropodsAttack(playerIn, stackIn),
+                        this.getBeastHunterAttack(playerIn, stackIn),
+                        this.getBloodAttack(playerIn, stackIn),
+                        this.getPoisonAttack(playerIn, stackIn),
+                        this.getToxicAttack(playerIn, stackIn),
+                        this.getRotAttack(playerIn, stackIn),
+                        this.getFrostAttack(playerIn, stackIn),
+                        this.getWitherAttack(playerIn, stackIn));
+                entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.1f);
+                entity.configureTicks(4, 10, 1, 2);
+                //levelIn.addFreshEntity(entity);
+
+                LightningSpear e = new LightningSpear(EntityInit.LIGHTNING_SPEAR.get(), levelIn, (float) Mth.atan2(aim.x, aim.z));
+                e.setDamage(this.getAttackDamage(playerIn, stackIn));
+                e.setDimensionScale(1.25f);
+                e.setMaxLifeTime(16);
+                e.setPos(pos.add(0, 0.75, 0).add(aim.normalize().multiply(0.75f, 0.75f, 0.75f)));
+                e.setDeltaMovement(0.35f * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05), 0.35f * (aim.y), 0.35f * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05));
+                e.accelerationPower = 0.35f;
+            /*e.xPower = 0.35 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
+            e.yPower = 0.35 * aim.y;
+            e.zPower = 0.35 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);*/
+                if (stackIn == playerIn.getItemInHand(InteractionHand.MAIN_HAND)) {
+                    stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
+                }
+                if (stackIn == playerIn.getItemInHand(InteractionHand.OFF_HAND)) {
+                    stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);
+                }
+                levelIn.addFreshEntity(e);
+                playerIn.getCooldowns().addCooldown(this, 5);
+
+                playerIn.level().playSound((Player) null, playerIn, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 0.6F, 24.2F);
+            }
+        }
+    }
+    @Override
+    public void doRightClickAction(Player playerIn, ItemStack stackIn) {
+        if (CommonConfig.do_special_weapon_attacks_right_click.get()) {
+            playerIn.push(playerIn.getLookAngle().x * 1.5f, Math.max(playerIn.getLookAngle().y * 1.25f, 0) + 0.25, playerIn.getLookAngle().z * 1.5f);
+            playerIn.awardStat(Stats.ITEM_USED.get(this));
+            playerIn.startAutoSpinAttack(8, this.getAttackDamage(playerIn, stackIn), stackIn);
+
+            playerIn.level().playSound((Player) null, playerIn, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 0.6F, 1.8F);
+            playerIn.getCooldowns().addCooldown(stackIn.getItem(), 32);
+            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.0, 0.4, playerIn.getLookAngle().z() * 2.0);
+            if (playerIn.onGround()) {
+                float f6 = 1.1999999F;
+                playerIn.move(MoverType.SELF, new Vec3(0.0D, (double) 1.1999999F, 0.0D));
+            }
 
             Level levelIn = playerIn.level();
             WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.DRAGONSLAYER_SPEAR.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
             entity.setOwner(playerIn);
             entity.setItemStack(stackIn);
-            entity.setMaxTargets(this.getMaxTargets(playerIn,stackIn));
+            entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
             entity.setDamage(
                     this.getAttackDamage(playerIn, stackIn),
                     this.getPoiseDamage(playerIn, stackIn),
-                    this.getFireAttack(playerIn,stackIn),
-                    this.getSmiteAttack(playerIn,stackIn),
-                    this.getBaneOfArthropodsAttack(playerIn,stackIn),
-                    this.getBeastHunterAttack(playerIn,stackIn),
-                    this.getBloodAttack(playerIn,stackIn),
-                    this.getPoisonAttack(playerIn,stackIn),
-                    this.getToxicAttack(playerIn,stackIn),
-                    this.getRotAttack(playerIn,stackIn),
-                    this.getFrostAttack(playerIn,stackIn),
-                    this.getWitherAttack(playerIn,stackIn));
-            entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.1f);
+                    this.getFireAttack(playerIn, stackIn),
+                    this.getSmiteAttack(playerIn, stackIn),
+                    this.getBaneOfArthropodsAttack(playerIn, stackIn),
+                    this.getBeastHunterAttack(playerIn, stackIn),
+                    this.getBloodAttack(playerIn, stackIn),
+                    this.getPoisonAttack(playerIn, stackIn),
+                    this.getToxicAttack(playerIn, stackIn),
+                    this.getRotAttack(playerIn, stackIn),
+                    this.getFrostAttack(playerIn, stackIn),
+                    this.getWitherAttack(playerIn, stackIn));
+            entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.0f);
             entity.configureTicks(4, 10, 1, 2);
-            //levelIn.addFreshEntity(entity);
-
-            LightningSpear e = new LightningSpear(EntityInit.LIGHTNING_SPEAR.get(), levelIn, (float)Mth.atan2(aim.x, aim.z));
-            e.setDamage(this.getAttackDamage(playerIn, stackIn));
-            e.setDimensionScale(1.25f);
-            e.setMaxLifeTime(16);
-            e.setPos(pos.add(0, 0.75, 0).add(aim.normalize().multiply(0.75f, 0.75f, 0.75f)));
-            e.setDeltaMovement(0.35f*aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05),0.35f*(aim.y),0.35f*aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05));
-            e.accelerationPower = 0.35f;
-            /*e.xPower = 0.35 * aim.x * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);
-            e.yPower = 0.35 * aim.y;
-            e.zPower = 0.35 * aim.z * (1 + (playerIn.getRandom().nextFloat() - 0.5) * 0.05);*/
-            if(stackIn == playerIn.getItemInHand(InteractionHand.MAIN_HAND)) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);}
-            if(stackIn == playerIn.getItemInHand(InteractionHand.OFF_HAND)) {stackIn.hurtAndBreak(1, playerIn, EquipmentSlot.OFFHAND);}
-            levelIn.addFreshEntity(e);
-            playerIn.getCooldowns().addCooldown(this, 5);
-
-            playerIn.level().playSound((Player)null, playerIn, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 0.6F, 24.2F);
-
+            levelIn.addFreshEntity(entity);
         }
-    }
-    @Override
-    public void doRightClickAction(Player playerIn, ItemStack stackIn) {
-        playerIn.push(playerIn.getLookAngle().x*1.5f,Math.max(playerIn.getLookAngle().y*1.25f,0)+0.25,playerIn.getLookAngle().z*1.5f);
-        playerIn.awardStat(Stats.ITEM_USED.get(this));
-        playerIn.startAutoSpinAttack(8, this.getAttackDamage(playerIn,stackIn), stackIn);
-
-        playerIn.level().playSound((Player)null, playerIn, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 0.6F, 1.8F);
-        playerIn.getCooldowns().addCooldown(stackIn.getItem(), 32);
-        Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 2.0, 0.4, playerIn.getLookAngle().z() * 2.0);
-        if (playerIn.onGround()) {
-            float f6 = 1.1999999F;
-            playerIn.move(MoverType.SELF, new Vec3(0.0D, (double)1.1999999F, 0.0D));
-        }
-
-        Level levelIn = playerIn.level();
-        WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.DRAGONSLAYER_SPEAR.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
-        entity.setOwner(playerIn);
-        entity.setItemStack(stackIn);
-        entity.setMaxTargets(this.getMaxTargets(playerIn,stackIn));
-        entity.setDamage(
-                this.getAttackDamage(playerIn, stackIn),
-                this.getPoiseDamage(playerIn, stackIn),
-                this.getFireAttack(playerIn,stackIn),
-                this.getSmiteAttack(playerIn,stackIn),
-                this.getBaneOfArthropodsAttack(playerIn,stackIn),
-                this.getBeastHunterAttack(playerIn,stackIn),
-                this.getBloodAttack(playerIn,stackIn),
-                this.getPoisonAttack(playerIn,stackIn),
-                this.getToxicAttack(playerIn,stackIn),
-                this.getRotAttack(playerIn,stackIn),
-                this.getFrostAttack(playerIn,stackIn),
-                this.getWitherAttack(playerIn,stackIn));
-        entity.setHitboxModifications(1.2f, 0f, 0.4f, 2.0f);
-        entity.configureTicks(4, 10, 1, 2);
-        levelIn.addFreshEntity(entity);
     }
 
 }

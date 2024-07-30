@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cbc",
+        "bab",
+        "cbc"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:rusty_metal_scrap"
+        },
+        "b": {
+            "item": "minecraft:iron_ingot"
+        },
+        "c": {
+            "item": "minecraft:copper_ingot"
+        }
+    },
+    "result": {
+        "id": "darkestsouls:metal_piece",
+        "count": 1
+    },
+    "group": "darkestsouls:metal_piece"
+}

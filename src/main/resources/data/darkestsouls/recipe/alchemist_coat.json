@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bcb",
+        "ada",
+        "bab"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_leather"
+        },
+        "b": {
+            "item": "darkestsouls:cloth_piece"
+        },
+        "c": {
+            "item": "darkestsouls:quicksilver"
+        },
+        "d": {
+            "item": "darkestsouls:enchanted_cloth_piece"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:alchemist_coat",
+        "count": 1
+    },
+    "group": "darkestsouls:alchemist_coat"
+}

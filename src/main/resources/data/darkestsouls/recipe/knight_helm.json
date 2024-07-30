@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bab",
+        "aca"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_metal_piece"
+        },
+        "b": {
+            "item": "darkestsouls:metal_piece"
+        },
+        "c": {
+            "item": "darkestsouls:titanite_ingot"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:knight_helm",
+        "count": 1
+    },
+    "group": "darkestsouls:knight_helm"
+}

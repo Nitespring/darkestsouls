@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cac",
+        "ebe",
+        "ada"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:torn_mail_scrap"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:iron_ingot"
+        },
+        "d": {
+            "item": "minecraft:copper_ingot"
+        },
+        "e": {
+            "item": "minecraft:chain"
+        }
+    },
+    "result": {
+        "id": "darkestsouls:reinforced_mail_scrap",
+        "count": 2
+    },
+    "group": "darkestsouls:reinforced_mail_scrap"
+}

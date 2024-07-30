@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.item.child.weapons;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.item.Weapon;
+import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -37,51 +38,57 @@ public class FrayedBlade extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
-        if(!playerIn.isUsingItem()) {
-            Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 1.5, 0.4, playerIn.getLookAngle().z() * 1.5);
+        if(CommonConfig.do_special_weapon_attacks_left_click.get()) {
+            if (!playerIn.isUsingItem()) {
+                Vec3 pos = playerIn.position().add(playerIn.getLookAngle().x() * 1.5, 0.4, playerIn.getLookAngle().z() * 1.5);
 
-            Level levelIn = playerIn.level();
-            FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
-            entity.setOwner(playerIn);
-            entity.setItemStack(stackIn);
-            entity.setMaxTargets(this.getMaxTargets(playerIn,stackIn));
-            entity.setDamage(
-                    this.getAttackDamage(playerIn, stackIn) - 4,
-                    this.getPoiseDamage(playerIn, stackIn) - 7,
-                    this.getFireAttack(playerIn,stackIn),
-                    this.getSmiteAttack(playerIn,stackIn),
-                    this.getBaneOfArthropodsAttack(playerIn,stackIn),
-                    this.getBeastHunterAttack(playerIn,stackIn),
-                    this.getBloodAttack(playerIn,stackIn) - 2,
-                    this.getPoisonAttack(playerIn,stackIn),
-                    this.getToxicAttack(playerIn,stackIn),
-                    this.getRotAttack(playerIn,stackIn),
-                    this.getFrostAttack(playerIn,stackIn),
-                    this.getWitherAttack(playerIn,stackIn));
-            entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
-            entity.configureTicks(14, 22, 1, 2);
-            levelIn.addFreshEntity(entity);
+                Level levelIn = playerIn.level();
+                FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
+                entity.setOwner(playerIn);
+                entity.setItemStack(stackIn);
+                entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
+                entity.setDamage(
+                        this.getAttackDamage(playerIn, stackIn) - 4,
+                        this.getPoiseDamage(playerIn, stackIn) - 7,
+                        this.getFireAttack(playerIn, stackIn),
+                        this.getSmiteAttack(playerIn, stackIn),
+                        this.getBaneOfArthropodsAttack(playerIn, stackIn),
+                        this.getBeastHunterAttack(playerIn, stackIn),
+                        this.getBloodAttack(playerIn, stackIn) - 2,
+                        this.getPoisonAttack(playerIn, stackIn),
+                        this.getToxicAttack(playerIn, stackIn),
+                        this.getRotAttack(playerIn, stackIn),
+                        this.getFrostAttack(playerIn, stackIn),
+                        this.getWitherAttack(playerIn, stackIn));
+                entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
+                entity.configureTicks(14, 22, 1, 2);
+                levelIn.addFreshEntity(entity);
+            }
         }
 
     }
     @Override
     public void doRightClickAction(Player playerIn, ItemStack stackIn) {
 
-
-        if(!playerIn.level().isClientSide()) {
-            Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
-            double d0 = Math.min(posTarget.y, playerIn.getY());
-            double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;
-            float f = (float) Mth.atan2(posTarget.z - playerIn.getZ(), posTarget.x - playerIn.getX());
-            for (int l = 0; l < 18; ++l) {
-                double d2 = 0.5D * (double) (l + 1);
-                int j = l / 2;
-                this.createSpellEntity(playerIn, playerIn.getX() + (double) Mth.cos(f) * d2, playerIn.getZ() + (double) Mth.sin(f) * d2, d0, d1, f, j, stackIn);
+        if(CommonConfig.do_special_weapon_attacks_right_click.get()) {
+            if (!playerIn.level().isClientSide()) {
+                Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
+                double d0 = Math.min(posTarget.y, playerIn.getY());
+                double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;
+                float f = (float) Mth.atan2(posTarget.z - playerIn.getZ(), posTarget.x - playerIn.getX());
+                for (int l = 0; l < 18; ++l) {
+                    double d2 = 0.5D * (double) (l + 1);
+                    int j = l / 2;
+                    this.createSpellEntity(playerIn, playerIn.getX() + (double) Mth.cos(f) * d2, playerIn.getZ() + (double) Mth.sin(f) * d2, d0, d1, f, j, stackIn);
+                }
+            }
+            if (stackIn == playerIn.getItemInHand(InteractionHand.MAIN_HAND)) {
+                stackIn.hurtAndBreak(5, playerIn, EquipmentSlot.MAINHAND);
+            }
+            if (stackIn == playerIn.getItemInHand(InteractionHand.OFF_HAND)) {
+                stackIn.hurtAndBreak(5, playerIn, EquipmentSlot.OFFHAND);
             }
         }
-        if(stackIn == playerIn.getItemInHand(InteractionHand.MAIN_HAND)) {stackIn.hurtAndBreak(5, playerIn, EquipmentSlot.MAINHAND);}
-        if(stackIn == playerIn.getItemInHand(InteractionHand.OFF_HAND)) {stackIn.hurtAndBreak(5, playerIn, EquipmentSlot.OFFHAND);}
-
     }
 
     private void createSpellEntity(Player playerIn, double p_32673_, double p_32674_, double p_32675_, double p_32676_, float p_32677_, int p_32678_, ItemStack stackIn) {

@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "aca"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_leather"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "darkestsouls:beast_blood_clump"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:hunter_boots",
+        "count": 1
+    },
+    "group": "darkestsouls:hunter_boots"
+}

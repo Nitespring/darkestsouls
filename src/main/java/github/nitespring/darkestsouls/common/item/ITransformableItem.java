@@ -29,9 +29,9 @@ public interface ITransformableItem {
 
         Vec3 pos = playerIn.position();
         ItemStack trick = new ItemStack(getTransformedWeapon(), 1);
-        trick.set(DataComponents.CUSTOM_NAME, name);
-        //trick.set(DataComponents.ENCHANTMENTS)
-        //ItemStack trick = new ItemStack(getTransformedWeapon(), 1, compound).setHoverName(name);
+        if(itemstack.has(DataComponents.CUSTOM_NAME)) {
+            trick.set(DataComponents.CUSTOM_NAME, name);
+        }
 
         playerIn.setItemInHand(InteractionHand.MAIN_HAND, trick);
         trick.applyComponents(componentMap);

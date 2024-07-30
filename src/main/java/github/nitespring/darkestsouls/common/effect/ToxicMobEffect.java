@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.common.effect;
 
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,9 +13,7 @@ public class ToxicMobEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity e, int p_296233_) {
 
-
-
-            e.hurt(e.level().damageSources().magic(), 2.0F);
+            e.hurt(e.damageSources().magic(), 2.0F);
 
         return true;
     }

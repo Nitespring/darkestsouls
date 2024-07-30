@@ -2,6 +2,7 @@ package github.nitespring.darkestsouls.common.item;
 
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.core.util.ArmourUtils;
 import github.nitespring.darkestsouls.core.util.CustomItemTags;
 import github.nitespring.darkestsouls.core.util.MathUtils;
 import net.minecraft.ChatFormatting;
@@ -46,22 +47,27 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
         this.tier=tier;
     }
     public float getAttackDamage(Player playerIn, ItemStack stackIn) {
-        return attackDamage
-                * (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(), stackIn)
-                + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.STARPOWER).get(), stackIn));
+        float armourModifier = 1+(float) ArmourUtils.getMagicBonus(playerIn) /100;
+        return armourModifier*(attackDamage
+                * (1 + 0.2f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MOON_BLESSING).get(),stackIn)
+                + 2.0f * EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.STARPOWER).get(),stackIn)));
     }
 
     public int getCatalystTier() {return tier;}
     public float getLuck(Player playerIn, ItemStack stackIn) {
         int enchantModifier=0;
         if(stackIn.isEnchanted()){
-            enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MISER_SOUL).get(), stackIn);
+            enchantModifier = EnchantmentHelper.getItemEnchantmentLevel(playerIn.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(EnchantmentInit.MISER_SOUL).get(),stackIn);
         }
-        return 0.1f*enchantModifier;
+        float armourModifier = (float) ArmourUtils.getLuckBonus(playerIn) /100;
+        return 0.1f*enchantModifier + armourModifier;
     }
-    @Override
-    public int getDefaultMaxStackSize() {
+
+    public int getMaxStackSize(ItemStack stack) {
         return 1;
+    }
+    public int getMaxDamage(ItemStack stack) {
+        return durability;
     }
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
@@ -74,6 +80,10 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
     }
 
 
+    public boolean isDamageable(ItemStack stack) {
+
+        return true;
+    }
     @Override
     public int getEnchantmentValue(ItemStack stack) {
         return 15;
@@ -120,12 +130,12 @@ public class Staff extends Item implements ILeftClickItem, IAmmoConsumingItem{
 
         tooltip.add(Component.translatable("translation.darkestsouls.consumes_small_soul").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
 
-        int moon=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack);
-        int star=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING), stack);
+        int moon=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING),stack);
+        int star=EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MOON_BLESSING),stack);
         double damage = MathUtils.round(attackDamage*(1+0.2*moon)+2.0f*star,1);
         tooltip.add(Component.literal(""+damage).append(Component.translatable("translation.darkestsouls.damage")).withStyle(ChatFormatting.GRAY));
 
-        int luck = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL), stack);
+        int luck = EnchantmentHelper.getItemEnchantmentLevel(context.registries().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(EnchantmentInit.MISER_SOUL),stack);
         if(luck>0) {
             tooltip.add(Component.literal("+").append(Component.literal(""+luck*10)).append(Component.literal("%")).append(Component.translatable("translation.darkestsouls.luck")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
         }

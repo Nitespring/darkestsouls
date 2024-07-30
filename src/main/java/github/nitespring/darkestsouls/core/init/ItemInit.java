@@ -4,6 +4,7 @@ import github.nitespring.darkestsouls.DarkestSouls;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.common.item.child.alchemy.Flamesprayer;
 import github.nitespring.darkestsouls.common.item.child.alchemy.LanternNormal;
+import github.nitespring.darkestsouls.common.item.child.armour.*;
 import github.nitespring.darkestsouls.common.item.child.guns.GatlingGun;
 import github.nitespring.darkestsouls.common.item.child.guns.Pistol;
 import github.nitespring.darkestsouls.common.item.child.guns.Shotgun;
@@ -16,37 +17,27 @@ import github.nitespring.darkestsouls.common.item.throwing.Firebomb;
 import github.nitespring.darkestsouls.common.item.throwing.MolotovCocktail;
 import github.nitespring.darkestsouls.common.item.throwing.ThrowingKnife;
 import github.nitespring.darkestsouls.core.enums.Tiers;
-import net.minecraft.util.FastColor;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter;
+
 
 import java.util.function.Supplier;
 
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			DarkestSouls.MODID);
-
+	
 
 
 	//Special Weapons
 
-	public static final Supplier<FrayedBlade> FRAYED_BLADE = ITEMS.register("frayed_blade",
+	public static final RegistryObject<FrayedBlade> FRAYED_BLADE = ITEMS.register("frayed_blade",
 			() -> new FrayedBlade(Tiers.TITANITE, 8.0f, 1.6f, 3.5f,0.1f, 8, 3,0,0,0,0,0,0,0,1350,12,0.11f,-1, new Item.Properties().rarity(Rarity.EPIC)));
-	public static final RegistryObject< ShadowBlade> SHADOW_BLADE = ITEMS.register("shadow_blade",
+	public static final RegistryObject<ShadowBlade> SHADOW_BLADE = ITEMS.register("shadow_blade",
 			() -> new ShadowBlade(Tiers.TITANITE, 8.0f, 1.6f,3.5f, 0.2f, 8,1,0,0,0,0,1,0,1, 1350,15,0.11f, 2,new Item.Properties().rarity(Rarity.EPIC)));
 	public static final RegistryObject<DragonslayerSpear> DRAGONSLAYER_SPEAR = ITEMS.register("dragonslayer_spear",
 			() -> new DragonslayerSpear(Tiers.TITANITE, 6.0f, 2.0f, 4.25f, -0.1f,5, 0,0,0,0,0,0,0, 0,1350,10,0.15f, -1,new Item.Properties().rarity(Rarity.EPIC)));
@@ -120,9 +111,9 @@ public class ItemInit {
 			() -> new Scimitar(Tiers.TITANITE, 5.0f, 1.9f,3.0f, -0.2f, 4, 0,0,0,0,0,0,0,0,225,8,0.11f, 2,new Item.Properties()));
 	public static final RegistryObject<Weapon> HUNTSMAN_PITCHFORK = ITEMS.register("huntsman_pitchfork",
 			() -> new Spear(Tiers.TITANITE, 5.0f, 1.9f,3.8f, -0.2f, 4, 225,0,0,0,0,0,0,0,0,8,0.12f, 2,new Item.Properties()));
-	public static final RegistryObject<ChurchScythe> CHURCH_SCYTHE= ITEMS.register("church_scythe",
+	public static final RegistryObject<Weapon> CHURCH_SCYTHE= ITEMS.register("church_scythe",
 			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f,4.5f, 0.2f, 7, 0,0,0,0,0,0,1,0,325,12,0.105f, 5,new Item.Properties()));
-	public static final RegistryObject<ChurchScythe> CHURCH_SCYTHE_UNLIT= ITEMS.register("church_scythe_unlit",
+	public static final RegistryObject<Weapon> CHURCH_SCYTHE_UNLIT = ITEMS.register("church_scythe_unlit",
 			() -> new ChurchScythe(Tiers.TITANITE, 7.5f, 1.6f,4.5f, 0.2f, 7, 0,0,0,0,0,0,1,0,325,12,0.105f, 5,new Item.Properties()));
 	public static final RegistryObject<Weapon> CHURCH_CANE = ITEMS.register("church_cane",
 			() -> new Weapon(Tiers.TITANITE, 4.0f, 1.4f, 2.5f,0.1f, 6, 0,0,0,0,0,0,0,0,255,8,0.1f, 0,new Item.Properties()));
@@ -154,8 +145,9 @@ public class ItemInit {
 	public static final RegistryObject<Pistol> REPEATING_PISTOL = ITEMS.register("repeating_pistol",
 			() -> new Pistol(16.0f, 28,6,0.5f,0.5f, 12, 0,0,2, 511, 8, new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<GatlingGun> GATLING_GUN = ITEMS.register("gatling_gun",
-			() -> new GatlingGun(2.0f, 60,0,0.2f,0.5f, 12, 0,0,1, 511, 5, new Item.Properties().rarity(Rarity.RARE)));
-
+			() -> new GatlingGun(2.0f, 60,0,0.5f,0.5f, 12, 0,0,1, 511, 5, new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Pistol> MUSKET = ITEMS.register("musket",
+			() -> new Pistol(8.0f, 24,2,0.4f,0.5f, 16, 0,0,1, 511, 8, new Item.Properties().rarity(Rarity.UNCOMMON)));
 	//Alchemy
 	public static final RegistryObject<Weapon> HUNTER_TORCH= ITEMS.register("hunter_torch",
 			() -> new Weapon(Tiers.TITANITE, 1.0f, 1.9f, 2.5f,-0.2f, 4, 0,0,0,0,0,2,0,0,225,8,0.10f, 2,new Item.Properties()));
@@ -181,57 +173,129 @@ public class ItemInit {
 			() -> new Firebomb(10.0f, 24, 8, 1, new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(12)));
 	public static final RegistryObject<MolotovCocktail> MOLOTOV = ITEMS.register("molotov",
 			() -> new MolotovCocktail(6.0f, 28, 4, new Item.Properties().stacksTo(16)));
+
+	//Armour
+	public static final RegistryObject< HunterArmourItem> HUNTER_HAT = ITEMS.register("hunter_hat",
+			() -> new HunterArmourItem(1,1,50,3,1,0,0,0.1f,0.3f, 0,0,0,0,0.005f,0.01f,0,0,2,1025,12, ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,new Item.Properties()));
+	public static final RegistryObject< HunterArmourItem> HUNTER_COAT = ITEMS.register("hunter_coat",
+			() -> new HunterArmourItem(1,1,50,5,1,0.1f,0,0.1f,0.3f,0,0,0,0,0.01f,0.02f,0,2,3,1025,12, ArmorMaterials.LEATHER, ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+	public static final RegistryObject< HunterArmourItem> HUNTER_TROUSERS = ITEMS.register("hunter_trousers",
+			() -> new HunterArmourItem(1,1,50,4,0,0,0,0.1f,0.2f,0,0,0,0,0.02f,0.04f, 0,1,2,1025,12, ArmorMaterials.LEATHER, ArmorItem.Type.LEGGINGS,new Item.Properties()));
+	public static final RegistryObject< HunterArmourItem> HUNTER_BOOTS = ITEMS.register("hunter_boots",
+			() -> new HunterArmourItem(1,1,50,2,0,0, 0,0.1f,0.2f,0,0,0,0,0.015f,0.03f,0,0,1, 1025,12, ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS,new Item.Properties()));
+	public static final RegistryObject< AlchemistArmourItem> ALCHEMIST_HAT = ITEMS.register("alchemist_hat",
+			() -> new AlchemistArmourItem(3,1,80,2,0,0,0,0,0,0,10,0,5,0,0,0,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,new Item.Properties()));
+	public static final RegistryObject< AlchemistArmourItem> ALCHEMIST_COAT = ITEMS.register("alchemist_coat",
+			() -> new AlchemistArmourItem(3,1,80,4,1,0,0,0,0,0,10,0,5,0,0,0,0,2,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+	public static final RegistryObject< AlchemistArmourItem> ALCHEMIST_TROUSERS = ITEMS.register("alchemist_trousers",
+			() -> new AlchemistArmourItem(3,1,80,2,0,0,0,0,0,0,5,0,0,0,0,0,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.LEGGINGS,new Item.Properties()));
+	public static final RegistryObject< AlchemistArmourItem> ALCHEMIST_BOOTS = ITEMS.register("alchemist_boots",
+			() -> new AlchemistArmourItem(3,1,80,1,0,0,0,0,0,0,5,0,0,0,0,0,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS,new Item.Properties()));
+	public static final RegistryObject< SpecialistArmourItem> SPECIALIST_HAT = ITEMS.register("specialist_hat",
+			() -> new SpecialistArmourItem(4,1,70,2,1,0,0,0,0,0,0,10,7,0,0,0,0,2,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,new Item.Properties()));
+	public static final RegistryObject< SpecialistArmourItem> SPECIALIST_COAT = ITEMS.register("specialist_coat",
+			() -> new SpecialistArmourItem(4,1,70,4,1,0,0,0,0,0,0,10,0,0,0,0,0,2,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+	public static final RegistryObject< SpecialistArmourItem> SPECIALIST_TROUSERS = ITEMS.register("specialist_trousers",
+			() -> new SpecialistArmourItem(4,1,70,3,1,0,0,0,0,0,0,5,0,0,0,0,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.LEGGINGS,new Item.Properties()));
+	public static final RegistryObject< SpecialistArmourItem> SPECIALIST_BOOTS = ITEMS.register("specialist_boots",
+			() -> new SpecialistArmourItem(4,1,70,2,1,0,0,0,0,0,0,5,0,0,0,0,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS,new Item.Properties()));
+	public static final RegistryObject< TatteredWizardRobeItem> TATTERED_WIZARD_HAT = ITEMS.register("tattered_wizard_hat",
+			() -> new TatteredWizardRobeItem(2,0,10,1,0,0,0,0,0,5,0,0,5,0,0,2,0,0,256,8,ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,new Item.Properties()));
+	public static final RegistryObject< TatteredWizardRobeItem> TATTERED_WIZARD_ROBE = ITEMS.register("tattered_wizard_robe",
+			() -> new TatteredWizardRobeItem(2,0,10,2,0,0,0,0,0,5,0,0,5,0,0,3,0,1,256,8,ArmorMaterials.LEATHER, ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+	public static final RegistryObject< WizardRobeItem> WIZARD_HAT = ITEMS.register("wizard_hat",
+			() -> new WizardRobeItem(2,1,11,2,0,0,0,0,0,10,0,0,10,0,0,5,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,new Item.Properties()));
+	public static final RegistryObject< WizardRobeItem> WIZARD_ROBE = ITEMS.register("wizard_robe",
+			() -> new WizardRobeItem(2,1,11,3,0,0,0,0,0,10,0,0,10,0,0,5,0,2,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+	public static final RegistryObject< WizardRobeItem> WIZARD_PANTS = ITEMS.register("wizard_pants",
+			() -> new WizardRobeItem(2,1,11,2,0,0,0,0,0,5,0,0,5,0,0,2,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.LEGGINGS,new Item.Properties()));
+	public static final RegistryObject< WizardRobeItem> WIZARD_BOOTS = ITEMS.register("wizard_boots",
+			() -> new WizardRobeItem(2,1,11,1,0,0,0,0,0,5,0,0,5,0,0,3,0,1,1024,12,ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS,new Item.Properties()));
+	public static final RegistryObject< KnightArmourItem> KNIGHT_HELM = ITEMS.register("knight_helm",
+			() -> new KnightArmourItem(0,1,20,4,3,0.1f,0.05f,0,0.5f,0,0,0,0,-0.005f,0,0,2,3,1024,12,ArmorMaterials.IRON, ArmorItem.Type.HELMET,new Item.Properties()));
+	public static final RegistryObject< KnightArmourItem> KNIGHT_CHESTPLATE = ITEMS.register("knight_chestplate",
+			() -> new KnightArmourItem(0,1,20,7,3,0.2f,0.1f,-0.1f,0.5f,0,0,0,0,-0.01f,0,0,3,4,1024,12,ArmorMaterials.IRON, ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+	public static final RegistryObject< KnightArmourItem> KNIGHT_PANTS = ITEMS.register("knight_pants",
+			() -> new KnightArmourItem(0,1,20,5,2,0.05f,0,0,0.5f,0,0,0,0,-0.002f,0,0,2,2,1024,12,ArmorMaterials.IRON, ArmorItem.Type.LEGGINGS,new Item.Properties()));
+	public static final RegistryObject< KnightArmourItem> KNIGHT_BOOTS = ITEMS.register("knight_boots",
+			() -> new KnightArmourItem(0,1,20,3,1,0.05f,0.05f,0,0.5f,0,0,0,0,-0.001f,0,0,1,3,1024,12,ArmorMaterials.IRON, ArmorItem.Type.BOOTS,new Item.Properties()));
 	//Eggs
 	public static final RegistryObject<Item> SIN = ITEMS.register("sin_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SIN, FastColor.ARGB32.opaque(1318437), FastColor.ARGB32.opaque(16449279), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SIN, 1318437, 16449279, new Item.Properties()));
 	public static final RegistryObject<Item> BONEWHEEL = ITEMS.register("bonewheel_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.BONEWHEEL, 13684684, 11432504, new Item.Properties()));
 	public static final RegistryObject<Item> SEWER_CENTIPEDE = ITEMS.register("sewer_centipede_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, FastColor.ARGB32.opaque(13686464), FastColor.ARGB32.opaque(7373164), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SEWER_CENTIPEDE, 13686464, 7373164, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_FALCHION = ITEMS.register("skeleton_falchion_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(14079971), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_FALCHION, 13684684, 14079971, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_CURVED_SWORDS = ITEMS.register("skeleton_curved_swords_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(7367532), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_CURVED_SWORDS, 13684684, 7367532, new Item.Properties()));
 	public static final RegistryObject<Item> SKELETON_SPEAR = ITEMS.register("skeleton_spear_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(8618640), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_SPEAR, 13684684, 8618640, new Item.Properties()));
 	public static final RegistryObject<Item> TALL_SKELETON_TWIN_SHOTELS = ITEMS.register("skeleton_swordsman_twin_shotels_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.TALL_SKELETON_TWIN_SHOTELS, FastColor.ARGB32.opaque(13684684), FastColor.ARGB32.opaque(2239044), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.TALL_SKELETON_TWIN_SHOTELS, 13684684, 2239044, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_LONGSWORD = ITEMS.register("hollow_longsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(5202790), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_LONGSWORD, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> HOLLOW_CROSSBOW = ITEMS.register("hollow_crossbow_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_CROSSBOW, 13945528, 6633254, new Item.Properties()));
+	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_CROSSBOW = ITEMS.register("gravetender_hollow_crossbow_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_CROSSBOW, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_AXE = ITEMS.register("hollow_axe_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(6448753), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_AXE, 13945528, 6448753, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("hollow_broken_straightsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(12630442), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 12630442, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_LONGSWORD = ITEMS.register("gravetender_hollow_longsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(2962739), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> HOLLOW_ASSASSIN = ITEMS.register("hollow_assassin_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(2304301), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_ASSASSIN, 13945528, 2304301, new Item.Properties()));
 	public static final RegistryObject<Item> GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD = ITEMS.register("gravetender_hollow_broken_straightsword_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, FastColor.ARGB32.opaque(13945528), FastColor.ARGB32.opaque(2962739), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD, 13945528, 2962739, new Item.Properties()));
 	public static final RegistryObject<Item> BEAST_PATIENT = ITEMS.register("beast_patient_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.BEAST_PATIENT, FastColor.ARGB32.opaque(2962739), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
 	public static final RegistryObject<Item> CLOAKED_BEAST_PATIENT = ITEMS.register("cloaked_beast_patient_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CLOAKED_BEAST_PATIENT, FastColor.ARGB32.opaque(2962739), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CLOAKED_BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
 	public static final RegistryObject<Item> ASHEN_BLOOD_BEAST_PATIENT = ITEMS.register("ashen_blood_beast_patient_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.ASHEN_BLOOD_BEAST_PATIENT, FastColor.ARGB32.opaque(2962739), FastColor.ARGB32.opaque(11432504), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.ASHEN_BLOOD_BEAST_PATIENT, 2962739, 11432504, new Item.Properties()));
 	public static final RegistryObject<Item> LEECH = ITEMS.register("leech_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.LEECH, FastColor.ARGB32.opaque(1318437), FastColor.ARGB32.opaque(7373164), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.LEECH, 1318437, 7373164, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR = ITEMS.register("church_doctor_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(14804204), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR, 4475990, 14804204, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_LANTERN = ITEMS.register("church_doctor_lantern_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(16777204), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_LANTERN, 4475990, 16777204, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_SCYTHE = ITEMS.register("church_doctor_scythe_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(11588863), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_SCYTHE, 4475990, 11588863, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_PISTOL = ITEMS.register("church_doctor_pistol_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(11250609), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_PISTOL, 4475990, 11250609, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_FLAMESPRAYER = ITEMS.register("church_doctor_flamesprayer_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(16736256), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_FLAMESPRAYER, 4475990, 16736256, new Item.Properties()));
 	public static final RegistryObject<Item> CHURCH_DOCTOR_CRUCIFIX = ITEMS.register("church_doctor_crucifix_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, FastColor.ARGB32.opaque(4475990), FastColor.ARGB32.opaque(2097152), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_CRUCIFIX, 4475990, 2097152, new Item.Properties()));
 	public static final RegistryObject<Item> DARKWRAITH = ITEMS.register("darkwraith_spawn_egg",
-			() -> new ForgeSpawnEggItem(EntityInit.DARKWRAITH, FastColor.ARGB32.opaque(987415), FastColor.ARGB32.opaque(6750208), new Item.Properties()));
+			() -> new ForgeSpawnEggItem(EntityInit.DARKWRAITH, 987415, 6750208, new Item.Properties()));
+	public static final RegistryObject<Item> EGG_HUNTSMAN_AXE = ITEMS.register("huntsman_axe_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HUNTSMAN_AXE, 2237490, 11556644, new Item.Properties()));
+	public static final RegistryObject<Item> EGG_HUNTSMAN_CUTLASS = ITEMS.register("huntsman_cutlass_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HUNTSMAN_CUTLASS, 2237490, 7106425, new Item.Properties()));
+	public static final RegistryObject<Item> EGG_HUNTSMAN_PITCHFORK = ITEMS.register("huntsman_pitchfork_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HUNTSMAN_PITCHFORK, 2237490, 3947592, new Item.Properties()));
+	public static final RegistryObject<Item> EGG_HUNTSMAN_RIFLE = ITEMS.register("huntsman_rifle_spawn_egg",
+			() -> new ForgeSpawnEggItem(EntityInit.HUNTSMAN_RIFLE, 2237490, 6633254, new Item.Properties()));
 
-    //Items
+
+	public static final RegistryObject<Item> SPAWN_GROUP_GRAVETENDER_HOLLOW_1 = ITEMS.register("gravetender_hollow_spawn_group_1",
+			() -> new ForgeSpawnEggItem(EntityInit.GRAVETENDER_HOLLOW_GROUP1, 13945528, 2962739, new Item.Properties()));
+	public static final RegistryObject<Item> SPAWN_GROUP_HOLLOW_SOLDIER_1 = ITEMS.register("hollow_soldier_spawn_group_1",
+			() -> new ForgeSpawnEggItem(EntityInit.HOLLOW_SOLDIER_GROUP1, 13945528, 5202790, new Item.Properties()));
+	public static final RegistryObject<Item> SPAWN_GROUP_HUNTSMAN_1 = ITEMS.register("huntsman_spawn_group_1",
+			() -> new ForgeSpawnEggItem(EntityInit.HUNTSMAN_GROUP1, 2237490, 6633254, new Item.Properties()));
+	public static final RegistryObject<Item> SPAWN_GROUP_CHURCH_DOCTOR_1 = ITEMS.register("church_doctor_spawn_group_1",
+			() -> new ForgeSpawnEggItem(EntityInit.CHURCH_DOCTOR_GROUP1, 4475990, 11588863, new Item.Properties()));
+	public static final RegistryObject<Item> SPAWN_GROUP_BEAST_PATIENT_1 = ITEMS.register("beast_patient_spawn_group_1",
+			() -> new ForgeSpawnEggItem(EntityInit.BEAST_PATIENT_GROUP1, 2962739, 11432504, new Item.Properties()));
+	public static final RegistryObject<Item> SPAWN_GROUP_SKELETON_1 = ITEMS.register("skeleton_spawn_group_1",
+			() -> new ForgeSpawnEggItem(EntityInit.SKELETON_GROUP1, 13684684, 14079971, new Item.Properties()));
+
+	//Items
 	public static final RegistryObject<Item> TITANITE_FRAGMENT = ITEMS.register("titanite_fragment",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> RUNE_FRAGMENT = ITEMS.register("rune_fragment",
@@ -409,6 +473,31 @@ public class ItemInit {
 	public static final RegistryObject<Item> BLOOD_STONE_CHUNK = ITEMS.register("blood_stone_chunk",
 			() -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLOOD_ROCK = ITEMS.register("blood_rock",
+			() -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> TORN_LEATHER_SCRAP = ITEMS.register("torn_leather_scrap",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REINFORCED_LEATHER = ITEMS.register("reinforced_leather",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RUSTY_MAIL_SCRAP = ITEMS.register("rusty_mail_scrap",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TORN_MAIL_SCRAP = ITEMS.register("torn_mail_scrap",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REINFORCED_MAIL_SCRAP = ITEMS.register("reinforced_mail_scrap",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RUSTY_METAL_SCRAP = ITEMS.register("rusty_metal_scrap",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> METAL_PIECE = ITEMS.register("metal_piece",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REINFORCED_METAL_PIECE = ITEMS.register("reinforced_metal_piece",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TORN_CLOTH_PIECE = ITEMS.register("torn_cloth_piece",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ENCHANTED_TORN_CLOTH_PIECE = ITEMS.register("enchanted_torn_cloth_piece",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CLOTH_PIECE = ITEMS.register("cloth_piece",
+			() -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ENCHANTED_CLOTH_PIECE = ITEMS.register("enchanted_cloth_piece",
 			() -> new Item(new Item.Properties()));
 
 	//Blocks

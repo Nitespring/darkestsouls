@@ -1,0 +1,10 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:knight_boots",
+    "darkestsouls:hunter_boots",
+    "darkestsouls:specialist_boots",
+    "darkestsouls:alchemist_boots",
+    "darkestsouls:wizard_boots"
+  ]
+}

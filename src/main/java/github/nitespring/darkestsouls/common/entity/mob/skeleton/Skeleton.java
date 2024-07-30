@@ -36,7 +36,7 @@ public abstract class Skeleton extends DarkestSoulsAbstractEntity {
     @Override
     public boolean isBoss() {return false;}
     @Override
-    public int getDSDefaultTeam() {return 0;}
+    public int getDSDefaultTeam() {return 6;}
 
     public int getDefaultRobeType(){return 0;}
     public int getDefaultHatType(){return 0;}

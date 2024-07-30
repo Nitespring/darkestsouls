@@ -29,7 +29,7 @@ public abstract class TrickWeapon extends Weapon implements ITransformableItem{
 
         String colour = "\u00A78\u00A7o";
 
-        tooltip.add(Component.translatable("translation.darkestsouls.trick1").append(KeybindInit.trickKeybind.getName()).append(Component.translatable("translation.darkestsouls.trick2")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
+        tooltip.add(Component.translatable("translation.darkestsouls.trick1").append(Component.translatable(KeybindInit.TRICK_KEYBIND.get().getKey().getName())).append(Component.translatable("translation.darkestsouls.trick2")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.DARK_GRAY));
 
 
 

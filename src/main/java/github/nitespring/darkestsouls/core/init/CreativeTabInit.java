@@ -1,11 +1,19 @@
 package github.nitespring.darkestsouls.core.init;
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.core.util.CustomItemTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Set;
 
 public class CreativeTabInit {
 
@@ -44,12 +52,13 @@ public class CreativeTabInit {
                         output.accept(ItemInit.FLAMBERGE.get());
                         output.accept(ItemInit.ZWEIHANDER.get());
                         output.accept(ItemInit.CARTHUS_CURVED_GREATSWORD.get());
-                        output.accept(ItemInit.SPEAR.get());
+                        //output.accept(ItemInit.SPEAR.get());
                         output.accept(ItemInit.CRESCENT_MOON_GREATAXE.get());
                         output.accept(ItemInit.EXECUTIONER_GREATAXE.get());
                         output.accept(ItemInit.SPEAR.get());
                         output.accept(ItemInit.HUNTSMAN_PITCHFORK.get());
                         output.accept(ItemInit.GRAVE_SCYTHE.get());
+                        output.accept(ItemInit.CHURCH_SCYTHE_UNLIT.get());
                         output.accept(ItemInit.CHURCH_SCYTHE.get());
                         output.accept(ItemInit.SAW_CLEAVER.get());
                         output.accept(ItemInit.HUNTER_AXE.get());
@@ -62,6 +71,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.FRAYED_BLADE.get());
                         output.accept(ItemInit.HUNTER_PISTOL.get());
                         output.accept(ItemInit.BLUNDERBUSS.get());
+                        output.accept(ItemInit.MUSKET.get());
                         output.accept(ItemInit.REPEATING_PISTOL.get());
                         output.accept(ItemInit.EVELYN.get());
                         output.accept(ItemInit.GATLING_GUN.get());
@@ -76,6 +86,46 @@ public class CreativeTabInit {
                         output.accept(ItemInit.CRYSTAL_STAFF_PURPLE.get());
                         output.accept(ItemInit.CRYSTAL_STAFF_BLUE.get());
                         output.accept(ItemInit.CHAOS_STAFF.get());
+                        output.accept(ItemInit.HUNTER_HAT.get());
+                        output.accept(ItemInit.HUNTER_COAT.get());
+                        output.accept(ItemInit.HUNTER_TROUSERS.get());
+                        output.accept(ItemInit.HUNTER_BOOTS.get());
+                        output.accept(ItemInit.ALCHEMIST_HAT.get());
+                        output.accept(ItemInit.ALCHEMIST_COAT.get());
+                        output.accept(ItemInit.ALCHEMIST_TROUSERS.get());
+                        output.accept(ItemInit.ALCHEMIST_BOOTS.get());
+                        output.accept(ItemInit.SPECIALIST_HAT.get());
+                        output.accept(ItemInit.SPECIALIST_COAT.get());
+                        output.accept(ItemInit.SPECIALIST_TROUSERS.get());
+                        output.accept(ItemInit.SPECIALIST_BOOTS.get());
+                        output.accept(ItemInit.TATTERED_WIZARD_HAT.get());
+                        output.accept(ItemInit.TATTERED_WIZARD_ROBE.get());
+                        output.accept(ItemInit.WIZARD_HAT.get());
+                        output.accept(ItemInit.WIZARD_ROBE.get());
+                        output.accept(ItemInit.WIZARD_PANTS.get());
+                        output.accept(ItemInit.WIZARD_BOOTS.get());
+                        output.accept(ItemInit.KNIGHT_HELM.get());
+                        output.accept(ItemInit.KNIGHT_CHESTPLATE.get());
+                        output.accept(ItemInit.KNIGHT_PANTS.get());
+                        output.accept(ItemInit.KNIGHT_BOOTS.get());
+                        Set<TagKey<Item>> set = Set.of(
+                                CustomItemTags.WEAPON_ENCHANTABLE,
+                                CustomItemTags.GUN_ENCHANTABLE,
+                                CustomItemTags.MAGIC_ENCHANTABLE,
+                                CustomItemTags.AMMO_CONSUMING
+                        );
+                        /*displayParams.holders()
+                                .lookup(Registries.ENCHANTMENT)
+                                .ifPresent(
+                                        p_337912_ -> {
+                                            generateEnchantmentBookTypesOnlyMaxLevel(
+                                                    output, p_337912_, set, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY, displayParams.enabledFeatures()
+                                            );
+                                            generateEnchantmentBookTypesAllLevels(
+                                                    output, p_337912_, set, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY, displayParams.enabledFeatures()
+                                            );
+                                        }
+                                );*/
                     })
                     .build());
 
@@ -111,6 +161,18 @@ public class CreativeTabInit {
                         output.accept(ItemInit.BLOOD_CRYSTAL.get());
                         output.accept(ItemInit.CINNABAR.get());
                         output.accept(ItemInit.QUICKSILVER.get());
+                        output.accept(ItemInit.TORN_CLOTH_PIECE.get());
+                        output.accept(ItemInit.ENCHANTED_TORN_CLOTH_PIECE.get());
+                        output.accept(ItemInit.CLOTH_PIECE.get());
+                        output.accept(ItemInit.ENCHANTED_CLOTH_PIECE.get());
+                        output.accept(ItemInit.TORN_LEATHER_SCRAP.get());
+                        output.accept(ItemInit.REINFORCED_LEATHER.get());
+                        output.accept(ItemInit.RUSTY_MAIL_SCRAP.get());
+                        output.accept(ItemInit.TORN_MAIL_SCRAP.get());
+                        output.accept(ItemInit.REINFORCED_MAIL_SCRAP.get());
+                        output.accept(ItemInit.RUSTY_METAL_SCRAP.get());
+                        output.accept(ItemInit.METAL_PIECE.get());
+                        output.accept(ItemInit.REINFORCED_METAL_PIECE.get());
                         output.accept(ItemInit.TITANITE_INGOT.get());
                         output.accept(ItemInit.TITANITE_NUGGET.get());
                         output.accept(ItemInit.GOLDEN_INGOT.get());
@@ -183,9 +245,15 @@ public class CreativeTabInit {
                         output.accept(ItemInit.HOLLOW_BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get());
                         output.accept(ItemInit.GRAVETENDER_HOLLOW_LONGSWORD.get());
+                        output.accept(ItemInit.GRAVETENDER_HOLLOW_CROSSBOW.get());
                         output.accept(ItemInit.HOLLOW_LONGSWORD.get());
                         output.accept(ItemInit.HOLLOW_AXE.get());
+                        output.accept(ItemInit.HOLLOW_CROSSBOW.get());
                         output.accept(ItemInit.HOLLOW_ASSASSIN.get());
+                        output.accept(ItemInit.EGG_HUNTSMAN_AXE.get());
+                        output.accept(ItemInit.EGG_HUNTSMAN_CUTLASS.get());
+                        output.accept(ItemInit.EGG_HUNTSMAN_PITCHFORK.get());
+                        output.accept(ItemInit.EGG_HUNTSMAN_RIFLE.get());
                         output.accept(ItemInit.CHURCH_DOCTOR.get());
                         output.accept(ItemInit.CHURCH_DOCTOR_LANTERN.get());
                         output.accept(ItemInit.CHURCH_DOCTOR_PISTOL.get());
@@ -204,6 +272,12 @@ public class CreativeTabInit {
                         output.accept(ItemInit.LEECH.get());
                         output.accept(ItemInit.SEWER_CENTIPEDE.get());
                         output.accept(ItemInit.SIN.get());
+                        output.accept(ItemInit.SPAWN_GROUP_GRAVETENDER_HOLLOW_1.get());
+                        output.accept(ItemInit.SPAWN_GROUP_HOLLOW_SOLDIER_1.get());
+                        output.accept(ItemInit.SPAWN_GROUP_HUNTSMAN_1.get());
+                        output.accept(ItemInit.SPAWN_GROUP_CHURCH_DOCTOR_1.get());
+                        output.accept(ItemInit.SPAWN_GROUP_BEAST_PATIENT_1.get());
+                        output.accept(ItemInit.SPAWN_GROUP_SKELETON_1.get());
                     })
                     .build());
     public static final RegistryObject<CreativeModeTab> BLOCKS = TABS.register("blocks",
@@ -232,6 +306,47 @@ public class CreativeTabInit {
 
 
 
+    private static void generatePotionEffectTypes(
+            CreativeModeTab.Output pOutput, HolderLookup<Potion> pPotions, Item pItem, CreativeModeTab.TabVisibility pTabVisibility, FeatureFlagSet pRequiredFeatures
+    ) {
+        pPotions.listElements()
+                .filter(p_337926_ -> p_337926_.value().isEnabled(pRequiredFeatures))
+                .map(p_330083_ -> PotionContents.createItemStack(pItem, p_330083_))
+                .forEach(p_270000_ -> pOutput.accept(p_270000_, pTabVisibility));
+    }
+
+    /*private static void generateEnchantmentBookTypesOnlyMaxLevel(
+            CreativeModeTab.Output pOutput,
+            HolderLookup<Enchantment> pEnchantments,
+            Set<TagKey<Item>> pItems,
+            CreativeModeTab.TabVisibility pTabVisibility,
+            FeatureFlagSet pRequiredFeatures
+    ) {
+        pEnchantments.listElements()
+                .map(Holder::value)
+                .filter(p_337914_ -> p_337914_.isEnabled(pRequiredFeatures))
+                .filter(p_270008_ -> p_270008_.allowedInCreativeTab(Items.ENCHANTED_BOOK, pItems))
+                .map(p_270038_ -> EnchantedBookItem.createForEnchantment(new EnchantmentInstance(p_270038_, p_270038_.getMaxLevel())))
+                .forEach(p_269989_ -> pOutput.accept(p_269989_, pTabVisibility));
+    }
+
+    private static void generateEnchantmentBookTypesAllLevels(
+            CreativeModeTab.Output p_270961_,
+            HolderLookup<Enchantment> pEnchantments,
+            Set<TagKey<Item>> pItems,
+            CreativeModeTab.TabVisibility pTabVisibility,
+            FeatureFlagSet pRequiredFeatures
+    ) {
+        pEnchantments.listElements()
+                .map(Holder::value)
+                .filter(p_337930_ -> p_337930_.isEnabled(pRequiredFeatures))
+                .filter(p_269991_ -> p_269991_.allowedInCreativeTab(Items.ENCHANTED_BOOK, pItems))
+                .flatMap(
+                        p_270024_ -> IntStream.rangeClosed(p_270024_.getMinLevel(), p_270024_.getMaxLevel())
+                                .mapToObj(p_270006_ -> EnchantedBookItem.createForEnchantment(new EnchantmentInstance(p_270024_, p_270006_)))
+                )
+                .forEach(p_270017_ -> p_270961_.accept(p_270017_, pTabVisibility));
+    }*/
 
 
 }

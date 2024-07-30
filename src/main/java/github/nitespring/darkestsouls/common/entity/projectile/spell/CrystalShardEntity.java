@@ -97,6 +97,8 @@ public class CrystalShardEntity extends AbstractHurtingProjectile{
         this.zRot = 2*(this.random.nextFloat()-0.5f);
     }
 
+
+
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity e) {
 

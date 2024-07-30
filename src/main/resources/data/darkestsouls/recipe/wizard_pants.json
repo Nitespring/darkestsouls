@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bcb",
+        "a a",
+        "a a"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:enchanted_cloth_piece"
+        },
+        "b": {
+            "item": "minecraft:leather"
+        },
+        "c": {
+            "item": "minecraft:lapis_lazuli"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:wizard_pants",
+        "count": 1
+    },
+    "group": "darkestsouls:wizard_pants"
+}

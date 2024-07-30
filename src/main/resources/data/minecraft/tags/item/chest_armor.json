@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:knight_chestplate",
+    "darkestsouls:hunter_coat",
+    "darkestsouls:specialist_coat",
+    "darkestsouls:alchemist_coat",
+    "darkestsouls:wizard_robe",
+    "darkestsouls:tattered_wizard_robe"
+  ]
+}

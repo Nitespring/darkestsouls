@@ -24,7 +24,7 @@ public class StormCurvedSword extends Weapon {
 
     @Override
     public void doLeftClickAction(Player playerIn, ItemStack stackIn) {
-        if(CommonConfig.do_special_attacks.get()) {
+        if(CommonConfig.do_special_weapon_attacks_left_click.get()) {
             if (!playerIn.isUsingItem()) {
                 Vec3 pos = playerIn.position();
                 Vec3 aim = playerIn.getLookAngle();

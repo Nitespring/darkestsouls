@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bab",
+        "aca",
+        "bab"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:torn_cloth_piece"
+        },
+        "b": {
+            "item": "minecraft:string"
+        },
+        "c": {
+            "tag": "minecraft:wool"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:cloth_piece",
+        "count": 3
+    },
+    "group": "darkestsouls:cloth_piece"
+}

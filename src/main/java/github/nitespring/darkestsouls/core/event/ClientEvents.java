@@ -8,11 +8,13 @@ import github.nitespring.darkestsouls.networking.TransformWeaponAction;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.TickEvent.ClientTickEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = DarkestSouls.MODID, value = Dist.CLIENT)
+
+@EventBusSubscriber(modid = DarkestSouls.MODID, value = Dist.CLIENT)
 public class ClientEvents {
 	
 	private static boolean isAttackKeyDown =false;
@@ -20,7 +22,7 @@ public class ClientEvents {
 	private static boolean isTrickKeyDown =false;
 	
 	@SubscribeEvent
-	 public static void performItemLeftClickAction(ClientTickEvent event) {
+	 public static void performItemLeftClickAction(TickEvent.ClientTickEvent.Pre event) {
 	 Minecraft instance = Minecraft.getInstance();
 	if(instance.options.keyAttack.isDown()) {
 		 if(isAttackKeyDown==false) {
@@ -35,8 +37,8 @@ public class ClientEvents {
 	 }
 
 	@SubscribeEvent
-	public static void trickKeybind(ClientTickEvent event) {
-		if(KeybindInit.trickKeybind.isDown()) {
+	public static void trickKeybind(TickEvent.ClientTickEvent.Pre event) {
+		if(KeybindInit.TRICK_KEYBIND.get().isDown()) {
 			if(isTrickKeyDown==false) {
 				DarkestSoulsPacketHandler.sendToServer(new TransformWeaponAction());
 				isTrickKeyDown=true;
@@ -46,9 +48,8 @@ public class ClientEvents {
 		}
 
 	}
-	 
-	 
-	
+
+
 	    
 	    
 	   

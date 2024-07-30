@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:knight_helm",
+    "darkestsouls:hunter_hat",
+    "darkestsouls:specialist_hat",
+    "darkestsouls:alchemist_hat",
+    "darkestsouls:wizard_hat",
+    "darkestsouls:tattered_wizard_hat"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cbc",
+        "a a",
+        "a a"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:torn_mail_scrap"
+        },
+        "b": {
+            "item": "minecraft:iron_ingot"
+        },
+        "c": {
+            "item": "minecraft:iron_nugget"
+        }
+    },
+    "result": {
+    "id": "minecraft:chainmail_leggings",
+        "count": 1
+    },
+    "group": "minecraft:chainmail_leggings"
+}

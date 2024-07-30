@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.common.item.throwing;
 
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.util.ArmourUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -44,7 +45,10 @@ public class ThrowingKnife extends Item {
         this.type=type;
     }
 
-
+    public float getAttackDamage(Player playerIn) {
+        int armourBonus =  ArmourUtils.getGunBonus(playerIn);
+        return attackDamage*(1+armourBonus);
+    }
     @Override
     public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
         ItemStack stackIn = playerIn.getItemInHand(handIn);
@@ -72,7 +76,7 @@ public class ThrowingKnife extends Item {
             //entity.setZTilt(90*type);
             //entity.setToRotate(true);
             entity.setToPickUp(true);
-            entity.setAttackPower(this.attackDamage);
+            entity.setAttackPower(this.getAttackDamage(playerIn));
             entity.setPoisonDamage(this.poisonDamage);
             entity.setBloodDamage(this.bloodDamage);
             entity.setPoiseDamage(this.poiseDamage);

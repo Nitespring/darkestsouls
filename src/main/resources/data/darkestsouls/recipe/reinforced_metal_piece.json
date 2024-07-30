@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "dcd",
+        "bab",
+        "cdc"
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:metal_piece"
+        },
+        "b": {
+            "item": "darkestsouls:titanite_ingot"
+        },
+        "c": {
+            "item": "minecraft:iron_ingot"
+        },
+        "d": {
+            "item": "minecraft:copper_ingot"
+        }
+    },
+    "result": {
+        "id": "darkestsouls:reinforced_metal_piece",
+        "count": 1
+    },
+    "group": "darkestsouls:reinforced_metal_piece"
+}

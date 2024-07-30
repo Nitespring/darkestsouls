@@ -120,7 +120,7 @@ public class ChurchDoctorScythe extends ChurchDoctor implements GeoEntity {
     }
     @Override
     public ItemStack getRightHandItem() {
-        return ItemInit.CHURCH_SCYTHE_UNLIT.get().getDefaultInstance();
+        return ItemInit.CHURCH_SCYTHE.get().getDefaultInstance();
     }
 
 

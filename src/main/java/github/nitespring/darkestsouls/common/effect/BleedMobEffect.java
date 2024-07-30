@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.effect;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Bonewheel;
 import github.nitespring.darkestsouls.core.init.EffectInit;
+import github.nitespring.darkestsouls.core.util.ArmourUtils;
 import github.nitespring.darkestsouls.core.util.CustomEntityTags;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -38,9 +39,9 @@ public class BleedMobEffect extends MobEffect {
 
 
         if(living.getType().is(CustomEntityTags.BLEED_IMMUNE)){
-            living.removeEffect(EffectInit.BLEED.getHolder().get());
+            living.removeEffect(EffectInit.ROT.getHolder().get());
         }else{
-        //int amount = living.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier();
+        //int amount = living.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier();
             if(living instanceof DarkestSoulsAbstractEntity){
                 int res = ((DarkestSoulsAbstractEntity) living).getBloodResistance()-1;
                 if(amount>=res){
@@ -49,7 +50,7 @@ public class BleedMobEffect extends MobEffect {
                     living.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED,1.0f,3.6f);
                 }
             }else if(living instanceof Player p){
-                if(amount>=16){
+                if(amount>=10 + ArmourUtils.getBleedResistance(p)){
                     living.invulnerableTime = 0;
                     applyDamage(living, 2.0f+living.getMaxHealth()*0.3f);
                     p.level().playSound((Player) p, p.getX(), p.getY(), p.getZ(), SoundEvents.PLAYER_SPLASH_HIGH_SPEED, p.getSoundSource(), 1.0f, 1.0f);
@@ -103,7 +104,7 @@ public class BleedMobEffect extends MobEffect {
         if(!(living instanceof Player p && p.isCreative())) {
             living.hurt(living.level().damageSources().genericKill(), dmg);
         }
-        living.removeEffect(EffectInit.BLEED.getHolder().get());
+        living.removeEffect(EffectInit.ROT.getHolder().get());
 
         ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
         float width = living.getBbWidth() * 0.5f;

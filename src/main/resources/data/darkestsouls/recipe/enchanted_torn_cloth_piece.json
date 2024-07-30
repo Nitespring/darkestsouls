@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " b ",
+        "bab",
+        " b "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:torn_cloth_piece"
+        },
+        "b": {
+            "item": "darkestsouls:small_soul_fragment"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:enchanted_torn_cloth_piece",
+        "count": 1
+    },
+    "group": "darkestsouls:enchanted_torn_cloth_piece"
+}

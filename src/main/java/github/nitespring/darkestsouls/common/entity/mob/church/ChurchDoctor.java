@@ -40,7 +40,7 @@ public abstract class ChurchDoctor extends DarkestSoulsAbstractEntity {
     @Override
     public boolean isBoss() {return false;}
     @Override
-    public int getDSDefaultTeam() {return 0;}
+    public int getDSDefaultTeam() {return 5;}
 
     public int getDefaultRobeType(){return 0;}
     public int getDefaultHatType(){return 0;}

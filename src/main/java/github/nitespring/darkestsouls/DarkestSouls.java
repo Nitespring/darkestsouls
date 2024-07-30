@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls;
 
 import com.mojang.logging.LogUtils;
+import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.config.Config;
 import github.nitespring.darkestsouls.core.init.*;
 import github.nitespring.darkestsouls.networking.DarkestSoulsPacketHandler;
@@ -34,8 +35,8 @@ public class DarkestSouls
         modEventBus.addListener(this::setup);
         SoundInit.SOUNDS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
-        ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
+        ItemInit.ITEMS.register(modEventBus);
         EffectInit.EFFECTS.register(modEventBus);
         CreativeTabInit.TABS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);

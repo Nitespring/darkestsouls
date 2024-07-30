@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " c ",
+        "bab",
+        " c "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:rusty_mail_scrap"
+        },
+        "b": {
+            "item": "minecraft:iron_ingot"
+        },
+        "c": {
+            "item": "minecraft:copper_ingot"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:torn_mail_scrap",
+        "count": 1
+    },
+    "group": "darkestsouls:torn_mail_scrap"
+}

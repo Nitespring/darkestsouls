@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -57,7 +57,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	@Override
 	public boolean isBoss() {return false;}
 	@Override
-	public int getDSDefaultTeam() {return 0;}
+	public int getDSDefaultTeam() {return 1;}
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {return this.factory;}
 	

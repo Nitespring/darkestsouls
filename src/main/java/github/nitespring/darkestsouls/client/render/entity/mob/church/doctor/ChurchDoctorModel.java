@@ -13,13 +13,13 @@ import software.bernie.geckolib.model.data.EntityModelData;
 
 public class ChurchDoctorModel<T extends ChurchDoctor & GeoEntity> extends GeoModel<T> {
 
-    public static final ResourceLocation WHITE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_white.png");
-    public static final ResourceLocation BLUE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_blue.png");
-    public static final ResourceLocation SILVER = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_silver.png");
-    public static final ResourceLocation LIGHT_GRAY = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_light_gray.png");
-    public static final ResourceLocation GRAY = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_gray.png");
-    public static final ResourceLocation DARK_GRAY = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_dark_gray.png");
-    public static final ResourceLocation BLACK = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor_black.png");
+    public static final ResourceLocation WHITE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_white.png");
+    public static final ResourceLocation BLUE = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_blue.png");
+    public static final ResourceLocation SILVER = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_silver.png");
+    public static final ResourceLocation LIGHT_GRAY = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_light_gray.png");
+    public static final ResourceLocation GRAY = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_gray.png");
+    public static final ResourceLocation DARK_GRAY = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_dark_gray.png");
+    public static final ResourceLocation BLACK = ResourceLocation.fromNamespaceAndPath(DarkestSouls.MODID, "textures/entity/church/church_doctor/church_doctor_black.png");
     @Override
     public ResourceLocation getAnimationResource(T animatable) {
 

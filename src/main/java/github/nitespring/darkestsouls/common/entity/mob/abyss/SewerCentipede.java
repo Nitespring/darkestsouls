@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -57,7 +57,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 	@Override
 	public boolean isBoss() {return false;}
 	@Override
-	public int getDSDefaultTeam() {return 0;}
+	public int getDSDefaultTeam() {return 1;}
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {return this.factory;}
 	
@@ -167,10 +167,7 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 	@Override
 	protected void registerGoals() {
 
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
-
-
-
+		/*this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 		this.targetSelector.addGoal(1, new CopyOwnerTargetGoal(this));
 
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -180,7 +177,9 @@ public class SewerCentipede extends DarkestSoulsAbstractEntity implements GeoEnt
 
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, 1.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new DarkestSoulsAbstractEntity.RandomStrollGoal(this, 0.8D));
+		this.goalSelector.addGoal(3, new DarkestSoulsAbstractEntity.RandomStrollGoal(this, 0.8D));*/
+		super.registerGoals();
+		this.goalSelector.addGoal(1, new SewerCentipede.AttackGoal(this));
 	}
 
 	@Nullable

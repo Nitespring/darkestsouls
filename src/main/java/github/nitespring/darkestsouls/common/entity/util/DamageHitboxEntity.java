@@ -203,27 +203,31 @@ public class DamageHitboxEntity extends Entity {
 							break;
 						case 3:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
-							if(target.hasEffect(EffectInit.BLEED.getHolder().get())){
-								int amount= target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier()+ 2;
-								target.removeEffect(EffectInit.BLEED.getHolder().get());
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, amount));
+							if(target.hasEffect(EffectInit.ROT.getHolder().get())){
+								int amount= target.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier()+ 2;
+								target.removeEffect(EffectInit.ROT.getHolder().get());
+								target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 400, amount));
 							}else {
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, 1), this.getOwner());
+								target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 400, 1), this.getOwner());
 							}
 							break;
 						case 4:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
-							if(target.hasEffect(EffectInit.BLEED.getHolder().get())){
-								int amount= target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier()+ 1;
-								target.removeEffect(EffectInit.BLEED.getHolder().get());
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, amount));
+							if(target.hasEffect(EffectInit.ROT.getHolder().get())){
+								int amount= target.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier()+ 1;
+								target.removeEffect(EffectInit.ROT.getHolder().get());
+								target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 400, amount));
 							}else {
-								target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 400, 0), this.getOwner());
+								target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 400, 0), this.getOwner());
 							}
 							break;
 						case 5:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
 							target.addEffect(new MobEffectInstance(MobEffects.WITHER, 140,0), this.getOwner());
+							break;
+						case 6:
+							target.hurt(this.damageSources().inFire(), damage);
+							target.igniteForTicks(60);
 							break;
 						default:
 							target.hurt(this.damageSources().mobAttack(owner), damage);

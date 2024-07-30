@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ead",
+        "aca",
+        " b "
+    ],
+    "key": {
+        "a": {
+            "item": "darkestsouls:reinforced_leather"
+        },
+        "b": {
+            "item": "darkestsouls:cloth_piece"
+        },
+        "c": {
+            "item": "darkestsouls:quicksilver"
+        },
+        "d": {
+            "item": "minecraft:redstone"
+        },
+        "e": {
+            "item": "minecraft:gunpowder"
+        }
+    },
+    "result": {
+    "id": "darkestsouls:specialist_hat",
+        "count": 1
+    },
+    "group": "darkestsouls:specialist_hat"
+}

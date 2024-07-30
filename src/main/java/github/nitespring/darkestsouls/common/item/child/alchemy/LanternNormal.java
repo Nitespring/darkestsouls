@@ -15,8 +15,8 @@ public class LanternNormal extends Item {
     }
 
 
-    @Override
-    public int getDefaultMaxStackSize() {
+
+    public int getMaxStackSize(ItemStack stack) {
         return 1;
     }
 
