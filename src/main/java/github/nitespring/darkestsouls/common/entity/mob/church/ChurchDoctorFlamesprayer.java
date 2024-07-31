@@ -122,9 +122,9 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_,CompoundTag tag) {
 
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_,tag);
     }
     @Override
     public void populateClothing(){
@@ -273,6 +273,8 @@ public class ChurchDoctorFlamesprayer extends ChurchDoctor implements GeoEntity 
                             Flame entity = new Flame(EntityInit.FLAME.get(), this.level());
                             entity.setPos(x, y, z);
                             float flyingPower = 0.08f;
+                            entity.setDeltaMovement(aim1.scale(flyingPower));
+                            //entity.accelerationPower=flyingPower;
                             entity.xPower = flyingPower * aim1.x;
                             entity.yPower = flyingPower * aim1.y;
                             entity.zPower = flyingPower * aim1.z;

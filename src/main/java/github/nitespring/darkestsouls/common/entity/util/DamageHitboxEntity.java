@@ -5,6 +5,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -72,6 +74,7 @@ public class DamageHitboxEntity extends Entity {
 
 	@Override
 	protected void defineSynchedData() {
+
 	}
 
 	@Override
@@ -221,6 +224,10 @@ public class DamageHitboxEntity extends Entity {
 						case 5:
 							target.hurt(this.damageSources().mobAttack(owner), damage);
 							target.addEffect(new MobEffectInstance(MobEffects.WITHER, 140,0), this.getOwner());
+							break;
+						case 6:
+							target.hurt(this.damageSources().inFire(), damage);
+							target.setRemainingFireTicks(target.getRemainingFireTicks()+60);
 							break;
 						default:
 							target.hurt(this.damageSources().mobAttack(owner), damage);

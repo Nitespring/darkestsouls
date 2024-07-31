@@ -21,11 +21,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Random;
 import org.joml.Vector3f;
 import software.bernie.geckolib.animatable.GeoEntity;
+
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -52,7 +53,7 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
 
     @Override
     protected int getDSDefaultTeam() {
-        return 0;
+        return 1;
     }
 
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
@@ -805,12 +806,16 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
         }
     }
 
+
+
+
+
     @Override
     public double getPassengersRidingOffset() {
         return 0.6f;
     }
 
-@Override
+    @Override
     protected void positionRider(Entity e, MoveFunction f) {
         if (this.hasPassenger(e)) {
             if(this.aimVec!=null) {
@@ -821,7 +826,6 @@ public class Darkwraith extends DarkestSoulsAbstractEntity implements GeoEntity{
         }
 
     }
-
 
     public void moveToTarget(float speedModifier){
         boolean flag = this.getTarget()!=null;

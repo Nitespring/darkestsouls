@@ -13,7 +13,7 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-public class DarkwraithEmissiveLayer<T extends Darkwraith& GeoEntity> extends GeoRenderLayer<T>{
+public class DarkwraithEmissiveLayer<T extends Darkwraith & GeoEntity> extends GeoRenderLayer<T>{
 
 	private static final ResourceLocation EYES = new ResourceLocation(DarkestSouls.MODID, "textures/entity/darkwraith/darkwraith_emissive.png");
 

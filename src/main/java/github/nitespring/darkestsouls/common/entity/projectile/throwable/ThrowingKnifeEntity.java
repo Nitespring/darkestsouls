@@ -3,6 +3,8 @@ package github.nitespring.darkestsouls.common.entity.projectile.throwable;
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
 import github.nitespring.darkestsouls.core.init.EffectInit;
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import github.nitespring.darkestsouls.core.init.ParticleInit;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -19,6 +21,8 @@ import github.nitespring.darkestsouls.core.interfaces.CustomItemSupplier;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -45,12 +49,12 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     public ThrowingKnifeEntity(EntityType<? extends AbstractHurtingProjectile> entityType, Level level){
         super(entityType,level);
     }
-    public ThrowingKnifeEntity(EntityType<? extends AbstractHurtingProjectile> entityType, LivingEntity owner, double x, double y, double z, ItemStack stackIn, double size, Level level) {
-        super(entityType, owner, x, y, z, level);
+    public ThrowingKnifeEntity(EntityType<? extends AbstractHurtingProjectile> entityType, double x, double y, double z, ItemStack stackIn, double size, Level level) {
+        super(entityType, level);
+        setPos(x,y,z);
         setItem(stackIn);
         setSize((float) size);
     }
-
     @Override
     public ItemStack getItem() {return entityData.get(ITEM);}
     @Override
@@ -79,10 +83,10 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
 
     @Override
     protected void defineSynchedData() {
-        this.entityData.define(ITEM, ItemInit.THROWING_KNIFE.get().getDefaultInstance());
-        this.entityData.define(SIZE, 0.4f);
-        this.entityData.define(SHOULD_ROTATE, false);
-        this.entityData.define(ZTILT, 0);
+        this.getEntityData().define(ITEM, ItemInit.THROWING_KNIFE.get().getDefaultInstance());
+        this.getEntityData().define(SIZE, 0.4f);
+        this.getEntityData().define(SHOULD_ROTATE, false);
+        this.getEntityData().define(ZTILT, 0);
 
     }
 
@@ -111,20 +115,26 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
         return false;
     }
 
-    @Nullable
     @Override
     protected ParticleOptions getTrailParticle() {
-        return ParticleTypes.ASH;
+        return ParticleInit.INVISIBLE_PARTICLE.get();
     }
+    
 
     @Override
-    protected void onHitBlock(BlockHitResult p_37258_) {
-        this.setDeltaMovement(0,0,0);
-        this.setToRotate(false);
-        this.rotationTick=0;
-        int r = this.level().getRandom().nextInt(1000);
-        if(r >= 600){
-            //this.discard();
+    protected void onHitBlock(BlockHitResult result) {
+        BlockState block = this.level().getBlockState(result.getBlockPos());
+        if(block.is(CustomBlockTags.BOMB_BREAKABLE)){
+            this.level().destroyBlock(result.getBlockPos(), true, this.getOwner());
+            level().gameEvent(this, GameEvent.BLOCK_DESTROY, result.getBlockPos());
+        }else {
+            this.setDeltaMovement(0, 0, 0);
+            this.setToRotate(false);
+            this.rotationTick = 0;
+            int r = this.level().getRandom().nextInt(1000);
+            if (r >= 600) {
+                //this.discard();
+            }
         }
     }
 
@@ -132,7 +142,8 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
     protected void onHitEntity(EntityHitResult hit) {
         if(this.getOwner()==null||this.getOwner() instanceof Player || (hit.getEntity() != this.getOwner()&&!hit.getEntity().isAlliedTo(this.getOwner()))) {
             if (hit.getEntity() instanceof LivingEntity target && this.getDeltaMovement().length() > 0.1) {
-                this.setDeltaMovement(this.getDeltaMovement().multiply(-0.25, -1, -0.25));
+                this.setDeltaMovement(this.getDeltaMovement().multiply(-0.005f,-0.25f,-0.005f).add(0, -2.5, 0));
+                //this.accelerationPower=accelerationPower*0.1f;
                 this.xPower = -0.05 * this.xPower;
                 this.yPower = -0.25;
                 this.zPower = -0.05 * this.zPower;
@@ -168,7 +179,6 @@ public class ThrowingKnifeEntity extends AbstractHurtingProjectile implements Cu
 
         }*/
     }
-
 
 
 

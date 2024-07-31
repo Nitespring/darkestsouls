@@ -39,7 +39,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     protected int screamCooldownTick = 0;
-    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f, false);
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(1.0f, 1.0f,false);
 
     protected Vec3 aimVec;
     public AshenBloodBeastPatient(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -119,7 +119,11 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     }else if(!this.onGround()) {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.beast_patient.fall"));
                     }else if(!(event.getLimbSwingAmount() > -0.06 && event.getLimbSwingAmount() < 0.06f)){
-                        event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.beast_patient.walk1"));
+                        if(getCombatState()==1){
+                            event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.beast_patient.run"));
+                        }else {
+                            event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.beast_patient.walk1"));
+                        }
                     }else {
                         event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.beast_patient.idle"));
                     }
@@ -223,7 +227,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 this.getNavigation().stop();
                 if(getAnimationTick()==24) {
                     this.playAttackSound();
-                    this.playSound(SoundInit.BEAST_PATIENT_SCREAM.get(), 3.6f,1.0f);
+                    this.playSound(SoundInit.BEAST_PATIENT_SCREAM.get(), 1.6f,1.0f);
                     Vec3 aim = this.getLookAngle();
                     Vec3 pos = this.position();
                     this.level().addParticle(ParticleTypes.SONIC_BOOM,pos.x+0.75*aim.x,pos.y+2.15,pos.z+0.75*aim.z,0,0,0);
@@ -274,6 +278,10 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=12) {
                     setAnimationTick(0);
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 120) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 22:
@@ -304,6 +312,10 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=16) {
                     setAnimationTick(0);
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 120) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 23:
@@ -342,8 +354,11 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
                     setAnimationTick(0);
-
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 120) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 24:
@@ -369,6 +384,10 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=12) {
                     setAnimationTick(0);
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 120) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 25:
@@ -399,6 +418,10 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=16) {
                     setAnimationTick(0);
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 120) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 26:
@@ -437,8 +460,11 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=16) {
                     this.getNavigation().stop();
                     setAnimationTick(0);
-
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 120) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 27:
@@ -476,8 +502,11 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=15) {
                     this.getNavigation().stop();
                     setAnimationTick(0);
-
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 540) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 28:
@@ -516,8 +545,11 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(getAnimationTick()>=12) {
                     this.getNavigation().stop();
                     setAnimationTick(0);
-
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 540) {
+                        setCombatState(0);
+                    }
                 }
                 break;
             case 29:
@@ -557,6 +589,10 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     this.getNavigation().stop();
                     setAnimationTick(0);
                     setAnimationState(0);
+                    int r = getRandom().nextInt(2048);
+                    if (r <= 540) {
+                        setCombatState(0);
+                    }
                 }
                 break;
         }
@@ -575,7 +611,8 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
     public class AttackGoal extends Goal {
 
 
-        private final double speedModifier = 1.4f;
+        private final double walkingSpeedModifier = 1.0f;
+        private final double runningSpeedModifier = 2.0f;
         private final boolean followingTargetEvenIfNotSeen = true;
         protected final AshenBloodBeastPatient mob;
         private Path path;
@@ -586,6 +623,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         private int ticksUntilNextAttack;
         private long lastCanUseCheck;
         private int failedPathFindingPenalty = 0;
+        private int lastCanUpdateStateCheck;
         private boolean canPenalize = false;
 
 
@@ -654,11 +692,17 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         }
         @Override
         public void start() {
-            this.mob.getNavigation().moveTo(this.path, this.speedModifier);
+            this.mob.getNavigation().moveTo(this.path, this.getSpeedModifier());
             this.mob.setAggressive(true);
             this.ticksUntilNextPathRecalculation = 0;
             this.ticksUntilNextAttack = 12;
-
+            this.lastCanUpdateStateCheck = 150;
+            int r = this.mob.getRandom().nextInt(2048);
+            if(this.mob.getCombatState()==0) {
+                if (r <= 900) {
+                    this.mob.setCombatState(1);
+                }
+            }
             this.mob.setAnimationState(0);
         }
         @Override
@@ -687,7 +731,22 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                 if(r<=60)      {this.mob.setAnimationState(11);}
             }
             //this.checkForPreciseAttack();
-
+            this.lastCanUpdateStateCheck = Math.max(this.lastCanUpdateStateCheck-1, 0);
+            if(this.lastCanUpdateStateCheck<=0){
+                if(mob.getCombatState()==1) {
+                    int r = this.mob.getRandom().nextInt(2048);
+                    if (r <= 450) {
+                        this.mob.setCombatState(0);
+                    }
+                    this.lastCanUpdateStateCheck = 200;
+                }else{
+                    int r = this.mob.getRandom().nextInt(2048);
+                    if (r <= 450) {
+                        this.mob.setCombatState(1);
+                    }
+                    this.lastCanUpdateStateCheck = 180;
+                }
+            }
 
             this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
 
@@ -734,7 +793,7 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     this.ticksUntilNextPathRecalculation += 5;
                 }
 
-                if (!this.mob.getNavigation().moveTo(livingentity, this.speedModifier)) {
+                if (!this.mob.getNavigation().moveTo(livingentity, this.getSpeedModifier())) {
                     this.ticksUntilNextPathRecalculation += 15;
                 }
             }
@@ -742,7 +801,14 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
         }
 
 
-
+        public double getSpeedModifier(){
+            switch(mob.getCombatState()){
+                case 1:
+                    return runningSpeedModifier;
+                default:
+                    return walkingSpeedModifier;
+            }
+        }
 
 
 

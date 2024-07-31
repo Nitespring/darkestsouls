@@ -35,7 +35,7 @@ public class TallSkeletonRobeLayer<T extends Skeleton & GeoEntity> extends GeoRe
 					cameo = RenderType.entityCutoutNoCull(CLOAK_BLUE);
 					break;
 			}
-			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f, 1f, 1f, 1f);
+			this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, cameo, bufferSource.getBuffer(cameo), partialTick, packedLight, packedOverlay, 1f,1f,1f,1f);
 		}
 	}
 	

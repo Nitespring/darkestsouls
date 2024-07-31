@@ -18,6 +18,11 @@
 				{
 					"name": "hips",
 					"parent": "root",
+					"pivot": [0, 14, 0]
+				},
+				{
+					"name": "upper_body",
+					"parent": "hips",
 					"pivot": [0, 14, 0],
 					"cubes": [
 						{"origin": [-4, 13, -2], "size": [8, 2, 4], "uv": [3, 56]},
@@ -26,7 +31,7 @@
 				},
 				{
 					"name": "robe2",
-					"parent": "hips",
+					"parent": "upper_body",
 					"pivot": [0, 14, 0],
 					"cubes": [
 						{"origin": [-4, 3, -2], "size": [8, 12, 4], "inflate": 0.25, "uv": [49, 42]}
@@ -34,7 +39,7 @@
 				},
 				{
 					"name": "waist_root",
-					"parent": "hips",
+					"parent": "upper_body",
 					"pivot": [0, 14.5, 1.75]
 				},
 				{
@@ -169,8 +174,13 @@
 					]
 				},
 				{
-					"name": "arm_right_root",
+					"name": "shoulders",
 					"parent": "chest",
+					"pivot": [4, 25, 0]
+				},
+				{
+					"name": "arm_right_root",
+					"parent": "shoulders",
 					"pivot": [-4, 25, 0]
 				},
 				{
@@ -222,7 +232,7 @@
 				},
 				{
 					"name": "arm_left_root",
-					"parent": "chest",
+					"parent": "shoulders",
 					"pivot": [4, 25, 0]
 				},
 				{
@@ -273,8 +283,13 @@
 					"pivot": [5.25, 14.25, 0]
 				},
 				{
-					"name": "leg_right",
+					"name": "legs",
 					"parent": "hips",
+					"pivot": [0, 14, 0]
+				},
+				{
+					"name": "leg_right",
+					"parent": "legs",
 					"pivot": [-2, 14.5, 0],
 					"cubes": [
 						{"origin": [-3, 5.75, -1], "size": [2, 7, 2], "inflate": -0.01, "uv": [37, 27]}
@@ -290,7 +305,7 @@
 				},
 				{
 					"name": "leg_left",
-					"parent": "hips",
+					"parent": "legs",
 					"pivot": [2, 14.5, 0],
 					"cubes": [
 						{"origin": [1, 5.75, -1], "size": [2, 7, 2], "inflate": -0.01, "uv": [37, 27]}

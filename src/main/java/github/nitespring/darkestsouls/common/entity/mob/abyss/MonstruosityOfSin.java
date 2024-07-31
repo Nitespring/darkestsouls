@@ -49,7 +49,7 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	@Override
 	public boolean isBoss() {return false;}
 	@Override
-	public int getDSDefaultTeam() {return 0;}
+	public int getDSDefaultTeam() {return 1;}
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {return this.factory;}
 	
@@ -142,19 +142,16 @@ public class MonstruosityOfSin extends DarkestSoulsAbstractEntity implements Geo
 	@Override
 	protected void registerGoals() {
 
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
-
-
-
-		this.targetSelector.addGoal(1, new DarkestSoulsAbstractEntity.CopyOwnerTargetGoal(this));
-
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Villager.class, true));
-
 		this.goalSelector.addGoal(1, new MonstruosityOfSin.AttackGoal(this));
+		this.targetSelector.addGoal(1, (new DarkestSoulsAbstractEntity.HurtByTargetAlertTeamGoal(this)));
+		this.targetSelector.addGoal(2, new DarkestSoulsAbstractEntity.GetTargetByTeamGoal<>(this));
 
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, 1.0F));
-		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+
+
+
+		this.targetSelector.addGoal(2, new DarkestSoulsAbstractEntity.CopyOwnerTargetGoal(this));
+
 	}
 
 	@Override

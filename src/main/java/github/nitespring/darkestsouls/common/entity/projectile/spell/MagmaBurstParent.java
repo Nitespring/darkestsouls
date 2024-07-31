@@ -19,10 +19,6 @@ public class MagmaBurstParent extends MagmaBurstEntity{
     }
 
 
-    public MagmaBurstParent(EntityType<? extends AbstractHurtingProjectile> p_36826_, LivingEntity p_36827_, double p_36828_, double p_36829_, double p_36830_, Level p_36831_) {
-        super(p_36826_, p_36827_, p_36828_, p_36829_, p_36830_, p_36831_);
-    }
-
 
     @Override
     public void tick() {
@@ -59,7 +55,7 @@ public class MagmaBurstParent extends MagmaBurstEntity{
             if (e.isAlive() && !e.isInvulnerable() && e != livingentity && e instanceof LivingEntity) {
                 if (livingentity == null) {
                     e.hurt(this.level().damageSources().inFire(), 6.0F);
-                    e.setSecondsOnFire(2);
+                    e.setRemainingFireTicks(e.getRemainingFireTicks()+40);
                 } else {
                     if (livingentity.isAlliedTo(e)) {
                         return;
@@ -67,7 +63,7 @@ public class MagmaBurstParent extends MagmaBurstEntity{
 
                     e.hurt(this.level().damageSources().inFire(), damage);
                     ((LivingEntity)e).setLastHurtByMob(livingentity);
-                    e.setSecondsOnFire(2);
+                    e.setRemainingFireTicks(e.getRemainingFireTicks()+40);
                 }
             }
         }

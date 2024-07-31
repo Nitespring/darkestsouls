@@ -22,16 +22,19 @@ import github.nitespring.darkestsouls.common.entity.projectile.throwable.Molotov
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.Flame;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.MoonlightSlash;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.WindSlash;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.FrayedBladeFlameEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.HeavyWeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.entity.util.DamageHitboxEntity;
+import github.nitespring.darkestsouls.common.entity.util.SpawnGroupEntities.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
 
 public class EntityInit {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES,
@@ -90,6 +93,30 @@ public class EntityInit {
 			() -> EntityType.Builder.<GravetenderHollowBrokenStraightsword>of(GravetenderHollowBrokenStraightsword::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
 					.build("gravetender_hollow_broken_straightsword"));
+	public static final RegistryObject<EntityType<HollowSoldierCrossbow>> HOLLOW_CROSSBOW = ENTITIES.register("hollow_crossbow",
+			() -> EntityType.Builder.<HollowSoldierCrossbow>of(HollowSoldierCrossbow::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("hollow_crossbow"));
+	public static final RegistryObject<EntityType<GravetenderHollowCrossbow>> GRAVETENDER_HOLLOW_CROSSBOW = ENTITIES.register("gravetender_hollow_crossbow",
+			() -> EntityType.Builder.<GravetenderHollowCrossbow>of(GravetenderHollowCrossbow::new, MobCategory.MONSTER)
+					.sized(0.6f, 1.8f)
+					.build("gravetender_hollow_crossbow"));
+	public static final RegistryObject<EntityType<HuntsmanAxe>> HUNTSMAN_AXE = ENTITIES.register("huntsman_axe",
+			() -> EntityType.Builder.<HuntsmanAxe>of(HuntsmanAxe::new, MobCategory.MONSTER)
+					.sized(0.7f, 1.95f)
+					.build("huntsman_axe"));
+	public static final RegistryObject<EntityType<HuntsmanCutlass>> HUNTSMAN_CUTLASS = ENTITIES.register("huntsman_cutlass",
+			() -> EntityType.Builder.<HuntsmanCutlass>of(HuntsmanCutlass::new, MobCategory.MONSTER)
+					.sized(0.7f, 1.95f)
+					.build("huntsman_cutlass"));
+	public static final RegistryObject<EntityType<HuntsmanPitchfork>> HUNTSMAN_PITCHFORK = ENTITIES.register("huntsman_pitchfork",
+			() -> EntityType.Builder.<HuntsmanPitchfork>of(HuntsmanPitchfork::new, MobCategory.MONSTER)
+					.sized(0.7f, 1.95f)
+					.build("huntsman_pitchfork"));
+	public static final RegistryObject<EntityType<HuntsmanRifle>> HUNTSMAN_RIFLE = ENTITIES.register("huntsman_rifle",
+			() -> EntityType.Builder.<HuntsmanRifle>of(HuntsmanRifle::new, MobCategory.MONSTER)
+					.sized(0.7f, 1.95f)
+					.build("huntsman_rifle"));
 	public static final RegistryObject<EntityType<BeastPatient>> BEAST_PATIENT = ENTITIES.register("beast_patient",
 			() -> EntityType.Builder.<BeastPatient>of(BeastPatient::new, MobCategory.MONSTER)
 					.sized(0.6f, 1.8f)
@@ -134,6 +161,32 @@ public class EntityInit {
 			() -> EntityType.Builder.<Darkwraith>of(Darkwraith::new, MobCategory.MONSTER)
 					.sized(0.65f, 2.0f)
 					.build("darkwraith"));
+
+	//SpawnGroups
+	public static final RegistryObject<EntityType<HuntsmanSpawnGroupEntity>> HUNTSMAN_GROUP1 = ENTITIES.register("huntsman_group_1",
+			() -> EntityType.Builder.<HuntsmanSpawnGroupEntity>of(HuntsmanSpawnGroupEntity::new, MobCategory.MONSTER)
+					.sized(4.0f, 2.0f)
+					.build("huntsman_group_1"));
+	public static final RegistryObject<EntityType<ChurchDoctorSpawnGroupEntity>> CHURCH_DOCTOR_GROUP1 = ENTITIES.register("church_doctor_group_1",
+			() -> EntityType.Builder.<ChurchDoctorSpawnGroupEntity>of(ChurchDoctorSpawnGroupEntity::new, MobCategory.MONSTER)
+					.sized(6.0f, 2.0f)
+					.build("church_doctor_group_1"));
+	public static final RegistryObject<EntityType<HollowSoldierSpawnGroupEntity>> HOLLOW_SOLDIER_GROUP1 = ENTITIES.register("hollow_soldier_group_1",
+			() -> EntityType.Builder.<HollowSoldierSpawnGroupEntity>of(HollowSoldierSpawnGroupEntity::new, MobCategory.MONSTER)
+					.sized(4.0f, 2.0f)
+					.build("hollow_soldier_group_1"));
+	public static final RegistryObject<EntityType<GravetenderHollowSpawnGroupEntity>> GRAVETENDER_HOLLOW_GROUP1 = ENTITIES.register("gravetender_hollow_group_1",
+			() -> EntityType.Builder.<GravetenderHollowSpawnGroupEntity>of(GravetenderHollowSpawnGroupEntity::new, MobCategory.MONSTER)
+					.sized(4.0f, 2.0f)
+					.build("gravetender_hollow_group_1"));
+	public static final RegistryObject<EntityType<BeastPatientSpawnGroupEntity>> BEAST_PATIENT_GROUP1 = ENTITIES.register("beast_patient_group_1",
+			() -> EntityType.Builder.<BeastPatientSpawnGroupEntity>of(BeastPatientSpawnGroupEntity::new, MobCategory.MONSTER)
+					.sized(4.0f, 2.0f)
+					.build("beast_patient_group_1"));
+	public static final RegistryObject<EntityType<SkeletonSpawnGroupEntity>> SKELETON_GROUP1 = ENTITIES.register("skeleton_group_1",
+			() -> EntityType.Builder.<SkeletonSpawnGroupEntity>of(SkeletonSpawnGroupEntity::new, MobCategory.MONSTER)
+					.sized(4.0f, 2.0f)
+					.build("skeleton_group_1"));
 
 
 	public static final RegistryObject<EntityType<DamageHitboxEntity>> HITBOX_SMALL = ENTITIES.register("hitbox_small",

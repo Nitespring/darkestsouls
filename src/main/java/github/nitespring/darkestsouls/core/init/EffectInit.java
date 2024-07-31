@@ -5,6 +5,7 @@ import github.nitespring.darkestsouls.common.effect.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,7 +21,7 @@ public class EffectInit {
             () -> new BleedMobEffect(MobEffectCategory.HARMFUL,7673883));
 
     public static final RegistryObject<MobEffect> FROST =   EFFECTS.register("frost",
-            () -> new SimpleMobEffect(MobEffectCategory.HARMFUL,15072511)
+            () -> new FrostMobEffect(MobEffectCategory.HARMFUL,15072511)
                     .addAttributeModifier(Attributes.ARMOR,"648d7064-6A60-4F59-8ABE-C2C23A6DD7A9",
                             -2.0, AttributeModifier.Operation.ADDITION)
                     .addAttributeModifier(Attributes.ARMOR_TOUGHNESS,"648d7064-6A60-4F59-8ABE-C2C23A6DD7A9",
@@ -33,6 +34,8 @@ public class EffectInit {
 
     public static final RegistryObject<RotMobEffect> ROT =   EFFECTS.register("rot",
             () -> new RotMobEffect(MobEffectCategory.HARMFUL,7673883));
+    public static final RegistryObject<MobEffect> TOXIC =EFFECTS.register("toxic",
+            () -> new ToxicMobEffect(MobEffectCategory.HARMFUL, 5377115));
 
     public static final RegistryObject<ParasitesMobEffect> PARASITES =   EFFECTS.register("parasites",
             () -> new ParasitesMobEffect(MobEffectCategory.HARMFUL,7673883));

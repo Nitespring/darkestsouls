@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls;
 
 import com.mojang.logging.LogUtils;
+import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.config.Config;
 import github.nitespring.darkestsouls.core.init.*;
 import github.nitespring.darkestsouls.networking.DarkestSoulsPacketHandler;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 
+
 @Mod(DarkestSouls.MODID)
 public class DarkestSouls
 {
@@ -30,14 +32,14 @@ public class DarkestSouls
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::setup);
-        GeckoLib.initialize();
         SoundInit.SOUNDS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
-        ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
+        EnchantmentInit.ENCHANTMENTS.register(modEventBus);
+        ParticleInit.PARTICLES.register(modEventBus);
+        ItemInit.ITEMS.register(modEventBus);
         EffectInit.EFFECTS.register(modEventBus);
         CreativeTabInit.TABS.register(modEventBus);
-        EnchantmentInit.ENCHANTMENTS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
         

@@ -17,6 +17,6 @@ public abstract class Beast extends DarkestSoulsAbstractEntity {
 
     @Override
     protected int getDSDefaultTeam() {
-        return 0;
+        return 4;
     }
 }

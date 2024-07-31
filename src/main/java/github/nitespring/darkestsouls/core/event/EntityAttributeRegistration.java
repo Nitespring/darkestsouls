@@ -2,14 +2,16 @@ package github.nitespring.darkestsouls.core.event;
 
 
 import github.nitespring.darkestsouls.DarkestSouls;
+import github.nitespring.darkestsouls.common.entity.util.SpawnGroupEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import github.nitespring.darkestsouls.core.util.EntityAttributes;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
-@Mod.EventBusSubscriber(modid = DarkestSouls.MODID, bus = EventBusSubscriber.Bus.MOD)
+
+@EventBusSubscriber(modid = DarkestSouls.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class EntityAttributeRegistration {
 	
 	@SubscribeEvent
@@ -26,6 +28,8 @@ public class EntityAttributeRegistration {
 		event.put(EntityInit.HOLLOW_LONGSWORD.get(), EntityAttributes.setHollowSoldierLongswordAttributes().build());
 		event.put(EntityInit.HOLLOW_AXE.get(), EntityAttributes.setHollowSoldierAxeAttributes().build());
 		event.put(EntityInit.HOLLOW_ASSASSIN.get(), EntityAttributes.setHollowAssassinAttributes().build());
+		event.put(EntityInit.GRAVETENDER_HOLLOW_CROSSBOW.get(), EntityAttributes.setGravetenderHollowCrossbowAttributes().build());
+		event.put(EntityInit.HOLLOW_CROSSBOW.get(), EntityAttributes.setHollowSoldierCrossbowAttributes().build());
 		event.put(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), EntityAttributes.setMadHollowBrokenStraightswordAttributes().build());
 		event.put(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), EntityAttributes.setGravetenderHollowLongswordAttributes().build());
 		event.put(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), EntityAttributes.setGravetenderHollowBrokenStraightswordAttributes().build());
@@ -40,6 +44,18 @@ public class EntityAttributeRegistration {
 		event.put(EntityInit.CHURCH_DOCTOR_SCYTHE.get(), EntityAttributes.setChurchDoctorScytheAttributes().build());
 		event.put(EntityInit.CHURCH_DOCTOR_CRUCIFIX.get(), EntityAttributes.setChurchDoctorCrucifixAttributes().build());
 		event.put(EntityInit.DARKWRAITH.get(), EntityAttributes.setDarkwraithAttributes().build());
+		event.put(EntityInit.HUNTSMAN_AXE.get(), EntityAttributes.setHuntsmanAxeAttributes().build());
+		event.put(EntityInit.HUNTSMAN_CUTLASS.get(), EntityAttributes.setHuntsmanCutlassAttributes().build());
+		event.put(EntityInit.HUNTSMAN_PITCHFORK.get(), EntityAttributes.setHuntsmanPitchforkAttributes().build());
+		event.put(EntityInit.HUNTSMAN_RIFLE.get(), EntityAttributes.setHuntsmanRifleAttributes().build());
+
+
+		event.put(EntityInit.HUNTSMAN_GROUP1.get(), SpawnGroupEntity.setAttributes().build());
+		event.put(EntityInit.SKELETON_GROUP1.get(), SpawnGroupEntity.setAttributes().build());
+		event.put(EntityInit.GRAVETENDER_HOLLOW_GROUP1.get(), SpawnGroupEntity.setAttributes().build());
+		event.put(EntityInit.HOLLOW_SOLDIER_GROUP1.get(), SpawnGroupEntity.setAttributes().build());
+		event.put(EntityInit.BEAST_PATIENT_GROUP1.get(), SpawnGroupEntity.setAttributes().build());
+		event.put(EntityInit.CHURCH_DOCTOR_GROUP1.get(), SpawnGroupEntity.setAttributes().build());
 
 	}
 

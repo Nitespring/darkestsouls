@@ -1,5 +1,6 @@
 package github.nitespring.darkestsouls.config;
 
+
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class CommonConfig {
@@ -13,6 +14,7 @@ public class CommonConfig {
 		public static ForgeConfigSpec.BooleanValue spawn_mad_hollow;
 		public static ForgeConfigSpec.BooleanValue spawn_gravetender_hollow;
 		public static ForgeConfigSpec.BooleanValue spawn_hollow_longsword;
+		public static ForgeConfigSpec.BooleanValue spawn_hollow_crossbow;
 		public static ForgeConfigSpec.BooleanValue spawn_hollow_axe;
 		public static ForgeConfigSpec.BooleanValue spawn_hollow_assassin;
 		public static ForgeConfigSpec.BooleanValue spawn_skeleton_falchion;
@@ -31,7 +33,16 @@ public class CommonConfig {
 		public static ForgeConfigSpec.BooleanValue spawn_monstruosity_of_sin;
 		public static ForgeConfigSpec.BooleanValue spawn_sewer_centipede;
 		public static ForgeConfigSpec.BooleanValue spawn_leech;
-
+		public static ForgeConfigSpec.BooleanValue spawn_huntsman_axe;
+		public static ForgeConfigSpec.BooleanValue spawn_huntsman_cutlass;
+		public static ForgeConfigSpec.BooleanValue spawn_huntsman_pitchfork;
+		public static ForgeConfigSpec.BooleanValue spawn_huntsman_rifle;
+		public static ForgeConfigSpec.BooleanValue spawn_gravetender_hollow_group;
+		public static ForgeConfigSpec.BooleanValue spawn_hollow_soldier_group;
+		public static ForgeConfigSpec.BooleanValue spawn_huntsman_group;
+		public static ForgeConfigSpec.BooleanValue spawn_church_doctor_group;
+		public static ForgeConfigSpec.BooleanValue spawn_beast_patient_group;
+		public static ForgeConfigSpec.BooleanValue spawn_skeleton_group;
 		
 		
 		
@@ -41,9 +52,11 @@ public class CommonConfig {
 		do_special_attacks = server
 				.comment("Set to false to disable special attacks on common weapons")
 				.define("config.do_special_attacks", true);
+
 		do_special_weapon_attacks_left_click = server
 				.comment("Set to false to disable special attackson left click on special weapons")
 				.define("config.do_special_weapon_attacks_left_click", true);
+
 		do_special_weapon_attacks_right_click = server
 				.comment("Set to false to disable special attacks on right click on special weapons")
 				.define("config.do_special_weapon_attacks_right_click", true);
@@ -63,12 +76,27 @@ public class CommonConfig {
 		spawn_hollow_longsword = server
 				.comment("Set to false to disable Hollow Soldier (Longsword)")
 				.define("spawnconfig.spawn_hollow_longsword", true);
+		spawn_hollow_crossbow = server
+				.comment("Set to false to disable Hollow Soldier (Crossbow)")
+				.define("spawnconfig.spawn_hollow_crossbow", true);
 		spawn_hollow_axe = server
 				.comment("Set to false to disable Hollow Soldier (Axe)")
 				.define("spawnconfig.spawn_hollow_axe", true);
 		spawn_hollow_assassin = server
 				.comment("Set to false to disable Hollow Assassin")
 				.define("spawnconfig.spawn_hollow_assassin", true);
+		spawn_huntsman_axe = server
+				.comment("Set to false to disable Huntsman (Axe)")
+				.define("spawnconfig.spawn_huntsman_axe", true);
+		spawn_huntsman_cutlass = server
+				.comment("Set to false to disable Huntsman (Cutlass)")
+				.define("spawnconfig.spawn_huntsman_cutlass", true);
+		spawn_huntsman_pitchfork = server
+				.comment("Set to false to disable Huntsman (Pitchfork)")
+				.define("spawnconfig.spawn_huntsman_pitchfork", true);
+		spawn_huntsman_rifle = server
+				.comment("Set to false to disable Huntsman (Rifle)")
+				.define("spawnconfig.spawn_huntsman_rifle", true);
 		spawn_skeleton_falchion = server
 				.comment("Set to false to disable Skeleton (Falchion)")
 				.define("spawnconfig.spawn_skeleton_falchion", true);
@@ -120,6 +148,24 @@ public class CommonConfig {
 		spawn_darkwraith = server
 				.comment("Set to false to disable Darkwraith")
 				.define("spawnconfig.spawn_darkwraith", true);
+		spawn_gravetender_hollow_group = server
+				.comment("Set to false to disable Gravetender Hollow Groups")
+				.define("spawnconfig.spawn_gravetender_hollow_group", true);
+		spawn_hollow_soldier_group = server
+				.comment("Set to false to disable Hollow Soldier Groups")
+				.define("spawnconfig.spawn_hollow_soldier_group", true);
+		spawn_huntsman_group = server
+				.comment("Set to false to disable Huntsman Groups")
+				.define("spawnconfig.spawn_huntsman_group", true);
+		spawn_church_doctor_group = server
+				.comment("Set to false to disable Church Doctor Groups")
+				.define("spawnconfig.spawn_church_doctor_group", true);
+		spawn_beast_patient_group = server
+				.comment("Set to false to disable Beast Patient Groups")
+				.define("spawnconfig.spawn_beast_patient_group", true);
+		spawn_skeleton_group = server
+				.comment("Set to false to disable Skeleton Groups")
+				.define("spawnconfig.spawn_skeleton_group", true);
 
 		}
 

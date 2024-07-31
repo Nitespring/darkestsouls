@@ -1,6 +1,7 @@
 package github.nitespring.darkestsouls.client.render.entity.mob.hollow;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.brigadier.context.CommandContext;
 import com.mojang.math.Axis;
 import github.nitespring.darkestsouls.common.entity.mob.hollow.*;
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.Skeleton;
@@ -8,8 +9,15 @@ import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonCurvedS
 import github.nitespring.darkestsouls.common.entity.mob.skeleton.SkeletonFalchion;
 import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.client.renderer.MultiBufferSource;
+
+import net.minecraft.commands.arguments.CompoundTagArgument;
+import net.minecraft.commands.arguments.NbtTagArgument;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoRenderer;
@@ -35,11 +43,19 @@ public class HollowItemLayer<T extends Hollow & GeoEntity> extends BlockAndItemG
 				 return ItemInit.BROKEN_STRAIGHTSWORD.get().getDefaultInstance();
 			 }else if(animatable instanceof HollowAssassin) {
 				 return ItemInit.BANDIT_KNIFE.get().getDefaultInstance();
+			 }else if(animatable instanceof HollowSoldierCrossbow) {
+				 if(animatable.getAmmoLoaded()>=1){
+					 ItemStack itemStack = new ItemStack(Items.CROSSBOW.asItem(),1);
+					 CrossbowItem.setCharged(itemStack, true);
+					 return itemStack;
+				 }else {
+					 return Items.CROSSBOW.getDefaultInstance();
+				 }
 			 }else{
 				 return null;
 			 }
 		 }else{
-		return null;
+			return null;
 		
 		  }
 	}
@@ -80,6 +96,12 @@ protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack s
 			poseStack.mulPose(Axis.XP.rotationDegrees(0));
 			poseStack.mulPose(Axis.YP.rotationDegrees(0));
 			poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+		}else if(animatable instanceof HollowSoldierCrossbow) {
+			poseStack.scale(0.8f,0.8f,0.8f);
+			poseStack.translate(-0.15, -0.25, -0.1);
+			poseStack.mulPose(Axis.XP.rotationDegrees(-90));
+			poseStack.mulPose(Axis.YP.rotationDegrees(-70));
+			poseStack.mulPose(Axis.ZP.rotationDegrees(0));
 		}else {
 			poseStack.translate(0.00, 0.6, -0.5);
 			poseStack.mulPose(Axis.XP.rotationDegrees(0));

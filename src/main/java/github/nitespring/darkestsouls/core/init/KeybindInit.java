@@ -11,8 +11,8 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(modid = DarkestSouls.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class KeybindInit {
-	public static KeyMapping trickKeybind;
-	public static KeyMapping parryKeyBind;
+	public static KeyMapping TRICK_KEYBIND;
+
 	
 	    /*public static void register()
 	    {
@@ -28,9 +28,8 @@ public class KeybindInit {
 	    @SubscribeEvent
 	    public static void registerKeyBinds(RegisterKeyMappingsEvent event) {
 	    	
-	    	event.register(trickKeybind = new KeyMapping("key.transform", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.misc"));
-	       
-	    	event.register(parryKeyBind = new KeyMapping("key.parry", GLFW.GLFW_KEY_R, "key.categories.misc"));
+	    	event.register(TRICK_KEYBIND = new KeyMapping("key.transform", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.misc"));
+
 	    	
 	    }
 	

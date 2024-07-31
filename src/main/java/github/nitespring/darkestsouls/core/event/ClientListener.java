@@ -9,6 +9,7 @@ import github.nitespring.darkestsouls.client.render.entity.mob.abyss.Monstruosit
 import github.nitespring.darkestsouls.client.render.entity.mob.abyss.SewerCentipedeGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.beast.BeastPatientGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.church.doctor.ChurchDoctorGeoRenderer;
+import github.nitespring.darkestsouls.client.render.entity.mob.church.huntsman.HuntsmanGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.hollow.HollowGeoRenderer;
 import github.nitespring.darkestsouls.client.render.entity.mob.skeleton.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.*;
@@ -22,8 +23,12 @@ import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.*;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameModel;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeFlameRenderer;
 import github.nitespring.darkestsouls.client.render.entity.projectile.weapon.frayedblade.FrayedBladeRenderer;
+import github.nitespring.darkestsouls.client.render.equipment.armour.*;
+import github.nitespring.darkestsouls.client.render.item.gun.GatlingGunGeoRenderer;
+import github.nitespring.darkestsouls.common.item.child.guns.GatlingGun;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -32,8 +37,12 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+
 @Mod.EventBusSubscriber(modid = DarkestSouls.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientListener {
+
+
+
 
 
 	public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "square_texture"), "main");
@@ -41,7 +50,16 @@ public class ClientListener {
 	public static final ModelLayerLocation BULLET = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "bullet"), "main");
 	public static final ModelLayerLocation MOLOTOV = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "molotov"), "main");
 
-
+	public static final ModelLayerLocation TRICORN_OUTER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "hunter_tricorn"), "outer");
+	public static final ModelLayerLocation TRICORN_INNER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "hunter_tricorn"), "inner");
+	public static final ModelLayerLocation TOP_HAT_OUTER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "alchemist_top_hat"), "outer");
+	public static final ModelLayerLocation TOP_HAT_INNER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "alchemist_top_hat"), "inner");
+	public static final ModelLayerLocation SPECIALIST_OUTER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "specialist_armour"), "outer");
+	public static final ModelLayerLocation SPECIALIST_INNER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "specialist_armour"), "inner");
+	public static final ModelLayerLocation TATTERED_WIZARD_ROBE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "tattered_wizard_robe"), "main");
+	public static final ModelLayerLocation WIZARD_ROBE = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "wizard_robe"), "outer");
+	public static final ModelLayerLocation WIZARD_ROBE_INNER = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "wizard_robe"), "inner");
+	public static final ModelLayerLocation ELITE_KNIGHT = new ModelLayerLocation(new ResourceLocation(DarkestSouls.MODID, "elite_knight"), "main");
 	@SubscribeEvent
 	public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
 
@@ -49,6 +67,16 @@ public class ClientListener {
 		event.registerLayerDefinition(FRAYED_BLADE_FLAME, FrayedBladeFlameModel::createBodyLayer);
 		event.registerLayerDefinition(BULLET, BulletModel::createBodyLayer);
 		event.registerLayerDefinition(MOLOTOV, MolotovCocktailModel::createBodyLayer);
+		event.registerLayerDefinition(TRICORN_INNER, HunterTricornModel::createInnerLayer);
+		event.registerLayerDefinition(TRICORN_OUTER, HunterTricornModel::createOuterLayer);
+		event.registerLayerDefinition(TOP_HAT_INNER, AlchemistTopHatModel::createInnerLayer);
+		event.registerLayerDefinition(TOP_HAT_OUTER, AlchemistTopHatModel::createOuterLayer);
+		event.registerLayerDefinition(SPECIALIST_INNER, SpecialistArmourModel::createInnerLayer);
+		event.registerLayerDefinition(SPECIALIST_OUTER, SpecialistArmourModel::createOuterLayer);
+		event.registerLayerDefinition(TATTERED_WIZARD_ROBE, TatteredWizardRobeModel::createBodyLayer);
+		event.registerLayerDefinition(WIZARD_ROBE, WizardRobeModel::createOuterLayer);
+		event.registerLayerDefinition(WIZARD_ROBE_INNER, WizardRobeModel::createInnerLayer);
+		event.registerLayerDefinition(ELITE_KNIGHT, EliteKnightArmourModel::createBodyLayer);
 
 	}
 
@@ -67,6 +95,8 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_AXE.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_ASSASSIN.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_CROSSBOW.get(), HollowGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_CROSSBOW.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_LONGSWORD.get(), HollowGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_BROKEN_STRAIGHTSWORD.get(), HollowGeoRenderer::new);
@@ -81,6 +111,10 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_SCYTHE.get(), ChurchDoctorGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_CRUCIFIX.get(), ChurchDoctorGeoRenderer::new);
 		 event.registerEntityRenderer(EntityInit.DARKWRAITH.get(), DarkwraithGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HUNTSMAN_AXE.get(), HuntsmanGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HUNTSMAN_CUTLASS.get(), HuntsmanGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HUNTSMAN_PITCHFORK.get(), HuntsmanGeoRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HUNTSMAN_RIFLE.get(), HuntsmanGeoRenderer::new);
 
 		 event.registerEntityRenderer(EntityInit.HITBOX_SMALL.get(), InvisibleProjectileRenderer::new);
 		 event.registerEntityRenderer(EntityInit.HITBOX.get(), InvisibleProjectileRenderer::new);
@@ -135,6 +169,14 @@ public class ClientListener {
 		 event.registerEntityRenderer(EntityInit.BULLET.get(), BulletRenderer::new);
 		 event.registerEntityRenderer(EntityInit.FLAME.get(), FlameRenderer::new);
 		 event.registerEntityRenderer(EntityInit.MOONLIGHT_WAVE.get(), MoonlightSlashRenderer::new);
+
+		 event.registerEntityRenderer(EntityInit.SKELETON_GROUP1.get(), InvisibleProjectileRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HUNTSMAN_GROUP1.get(), InvisibleProjectileRenderer::new);
+		 event.registerEntityRenderer(EntityInit.HOLLOW_SOLDIER_GROUP1.get(), InvisibleProjectileRenderer::new);
+		 event.registerEntityRenderer(EntityInit.GRAVETENDER_HOLLOW_GROUP1.get(), InvisibleProjectileRenderer::new);
+		 event.registerEntityRenderer(EntityInit.CHURCH_DOCTOR_GROUP1.get(), InvisibleProjectileRenderer::new);
+		 event.registerEntityRenderer(EntityInit.BEAST_PATIENT_GROUP1.get(), InvisibleProjectileRenderer::new);
+
 
 		 
 	 }

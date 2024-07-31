@@ -25,8 +25,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.fluids.FluidType;
+//import net.minecraftforge.fml.common.Mod;
+
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -46,7 +47,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     protected AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     public Vec3 aimVec;
 
-    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f, false);
+    private static final EntityDimensions CRAWLING_BB = new EntityDimensions(0.9f, 0.8f,false);
 
     public HollowSoldierLongsword(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -149,9 +150,9 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_,CompoundTag tag) {
 
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_,tag);
     }
     @Override
     public void populateClothing(){
@@ -399,6 +400,7 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     }
                 }
                 if(getAnimationTick()==28) {
+                    if (aimVec == null) {aimVec = this.getLookAngle().normalize();}
                     //this.playSound(this.getAttackSound(), 0.2f,1.0f);
                     this.playSound(SoundEvents.EGG_THROW);
                     float x = (float) (pos.x + 0.6 * aimVec.x);
@@ -407,15 +409,16 @@ public class HollowSoldierLongsword extends Hollow implements GeoEntity {
                     FirebombEntity entity = new FirebombEntity(EntityInit.FIREBOMB.get(), levelIn);
                     entity.setPos(x,y,z);
                     float flyingPower = 0.25f;
-                    entity.xPower=flyingPower*aimVec.x;
+                    entity.xPower=aimVec.x*flyingPower;entity.yPower=aimVec.y*flyingPower;entity.zPower=aimVec.z*flyingPower;
+                    /*entity.xPower=flyingPower*aimVec.x;
                     entity.yPower=flyingPower*aimVec.y+0.01;
-                    entity.zPower=flyingPower*aimVec.z;
+                    entity.zPower=flyingPower*aimVec.z;*/
                     entity.setOwner(this);
                     entity.setAttackDamage((float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)*0.8f);
                     entity.setPoiseDamage(4);
                     entity.setGravPower(0.0015f);
-                    entity.setHorizontalSpread(1.0);
-                    entity.setVerticalSpread(1.0);
+                    entity.setHorizontalSpread(1.0f);
+                    entity.setVerticalSpread(1.0f);
                     levelIn.addFreshEntity(entity);
 
                 }

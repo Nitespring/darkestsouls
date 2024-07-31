@@ -1,0 +1,28 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:abyss_cleanser",
+    "darkestsouls:beast_hunter",
+    "darkestsouls:bloodblade",
+    "darkestsouls:child_of_the_thunder_god",
+    "darkestsouls:expanding_shot",
+    "darkestsouls:exploding_shot",
+    "darkestsouls:firepower",
+    "darkestsouls:flaming_shot",
+    "darkestsouls:frost_blade",
+    "darkestsouls:greater_firepower",
+    "darkestsouls:gunslinger",
+    "darkestsouls:miser_soul",
+    "darkestsouls:moon_blessing",
+    "darkestsouls:ophidian_bite",
+    "darkestsouls:piercing_shot",
+    "darkestsouls:poisoned_blade",
+    "darkestsouls:ricochet_shot",
+    "darkestsouls:rotten_blade",
+    "darkestsouls:serrated",
+    "darkestsouls:sharpshooter",
+    "darkestsouls:starpower",
+    "darkestsouls:toxic_blade",
+    "darkestsouls:withered_blade"
+  ]
+}

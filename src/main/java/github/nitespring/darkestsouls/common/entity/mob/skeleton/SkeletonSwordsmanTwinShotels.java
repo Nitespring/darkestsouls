@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+ import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -194,9 +194,9 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_,CompoundTag tag) {
 
-        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+        return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_,tag);
     }
     @Override
     public void populateClothing(){
@@ -882,6 +882,7 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
                 }
                 if(getAnimationTick()==5) {
                     //this.playSound(this.getAttackSound(), 0.2f,1.0f);
+                    if (aimVec == null) {aimVec = this.getLookAngle().normalize();}
                     this.playSound(SoundEvents.FISHING_BOBBER_THROW);
                     this.doRangedAttack();
 
@@ -933,6 +934,8 @@ public class SkeletonSwordsmanTwinShotels extends Skeleton implements GeoEntity 
             ThrowingKnifeEntity entity = new ThrowingKnifeEntity(EntityInit.THROWING_KNIFE.get(), levelIn);
             entity.setPos(x,y,z);
             float flyingPower = 0.15f;
+            entity.setDeltaMovement(aimVec);
+            //entity.accelerationPower=flyingPower;
             entity.xPower=flyingPower*(aimVec.x+aim1.x);
             entity.yPower=flyingPower*(aimVec.y+aim1.y);
             entity.zPower=flyingPower*(aimVec.z+aim1.z);

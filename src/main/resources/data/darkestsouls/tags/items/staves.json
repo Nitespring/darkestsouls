@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:sorcerer_staff_a",
+    "darkestsouls:sorcerer_staff_b",
+    "darkestsouls:crystal_staff",
+    "darkestsouls:crystal_staff_purple",
+    "darkestsouls:crystal_staff_blue",
+    "darkestsouls:chaos_staff"
+  ]
+}

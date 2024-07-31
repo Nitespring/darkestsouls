@@ -1,0 +1,13 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:saw_cleaver",
+    "darkestsouls:saw_cleaver_extended",
+    "darkestsouls:hunter_axe",
+    "darkestsouls:hunter_axe_extended",
+    "darkestsouls:chikage",
+    "darkestsouls:chikage_extended",
+    "darkestsouls:holy_moonlight_sword",
+    "darkestsouls:holy_moonlight_sword_lit"
+  ]
+}

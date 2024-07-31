@@ -88,6 +88,31 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 2,
+          "quality": 2,
+          "name": "darkestsouls:torn_cloth_piece",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": false
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "weight": 1,
           "quality": 2,
           "name": "darkestsouls:broken_straightsword",
@@ -100,6 +125,14 @@
                 "max": 1
               },
               "add": false
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 1
+              }
             },
             {
               "function": "minecraft:looting_enchant",

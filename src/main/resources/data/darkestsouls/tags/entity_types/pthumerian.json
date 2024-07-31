@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:church_doctor",
+    "darkestsouls:church_doctor_lantern",
+    "darkestsouls:church_doctor_scythe",
+    "darkestsouls:church_doctor_pistol",
+    "darkestsouls:church_doctor_flamesprayer",
+    "darkestsouls:church_doctor_crucifix"
+  ]
+}

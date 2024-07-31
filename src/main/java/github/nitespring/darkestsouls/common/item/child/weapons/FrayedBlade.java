@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -23,8 +24,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class FrayedBlade extends Weapon {
 
 
-    public FrayedBlade(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, poise, blood, poison, frost, rot, death, fire, holy, durability, enchantability, movementSpeed, maxTargets, properties);
+    public FrayedBlade(Tier tier, float attack, float speed, float reach, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy,int serrated, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, reach, knockback, poise, blood, poison, frost, rot, death, fire, holy, serrated, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override
@@ -45,18 +46,20 @@ public class FrayedBlade extends Weapon {
                 FrayedBladeAttackEntity entity = new FrayedBladeAttackEntity(EntityInit.FRAYED_BLADE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
                 entity.setOwner(playerIn);
                 entity.setItemStack(stackIn);
-                entity.setMaxTargets(this.getMaxTargets(stackIn));
+                entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
                 entity.setDamage(
                         this.getAttackDamage(playerIn, stackIn) - 4,
                         this.getPoiseDamage(playerIn, stackIn) - 7,
-                        this.getFireAttack(stackIn),
-                        this.getSmiteAttack(stackIn),
-                        this.getBaneOfArthropodsAttack(stackIn),
-                        this.getBloodAttack(stackIn) - 2,
-                        this.getPoisonAttack(stackIn),
-                        this.getRotAttack(stackIn),
-                        this.getFrostAttack(stackIn),
-                        this.getDeathAttack(stackIn));
+                        this.getFireAttack(playerIn, stackIn),
+                        this.getSmiteAttack(playerIn, stackIn),
+                        this.getBaneOfArthropodsAttack(playerIn, stackIn),
+                        this.getBeastHunterAttack(playerIn, stackIn),
+                        this.getBloodAttack(playerIn, stackIn) - 2,
+                        this.getPoisonAttack(playerIn, stackIn),
+                        this.getToxicAttack(playerIn, stackIn),
+                        this.getRotAttack(playerIn, stackIn),
+                        this.getFrostAttack(playerIn, stackIn),
+                        this.getWitherAttack(playerIn, stackIn));
                 entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
                 entity.configureTicks(14, 22, 1, 2);
                 levelIn.addFreshEntity(entity);
@@ -68,21 +71,28 @@ public class FrayedBlade extends Weapon {
     public void doRightClickAction(Player playerIn, ItemStack stackIn) {
 
         if(CommonConfig.do_special_weapon_attacks_right_click.get()) {
-
-            Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
-            double d0 = Math.min(posTarget.y, playerIn.getY());
-            double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;
-            float f = (float) Mth.atan2(posTarget.z - playerIn.getZ(), posTarget.x - playerIn.getX());
-            for (int l = 0; l < 18; ++l) {
-                double d2 = 0.5D * (double) (l + 1);
-                int j = l / 2;
-                this.createSpellEntity(playerIn, playerIn.getX() + (double) Mth.cos(f) * d2, playerIn.getZ() + (double) Mth.sin(f) * d2, d0, d1, f, j, stackIn);
+            if (!playerIn.level().isClientSide()) {
+                Vec3 posTarget = playerIn.position().add(playerIn.getLookAngle().scale(15.0));
+                double d0 = Math.min(posTarget.y, playerIn.getY());
+                double d1 = Math.max(posTarget.y, playerIn.getY()) + 1.0D;
+                float f = (float) Mth.atan2(posTarget.z - playerIn.getZ(), posTarget.x - playerIn.getX());
+                for (int l = 0; l < 18; ++l) {
+                    double d2 = 0.5D * (double) (l + 1);
+                    int j = l / 2;
+                    this.createSpellEntity(playerIn, playerIn.getX() + (double) Mth.cos(f) * d2, playerIn.getZ() + (double) Mth.sin(f) * d2, d0, d1, f, j, stackIn);
+                }
             }
-            stackIn.hurtAndBreak(5, playerIn, (p_43296_) -> {
-                p_43296_.broadcastBreakEvent(stackIn.getEquipmentSlot());
-            });
+            if (stackIn == playerIn.getItemInHand(InteractionHand.MAIN_HAND)) {
+                stackIn.hurtAndBreak(5, playerIn, (p_43276_) -> {
+                    p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+                });
+            }
+            if (stackIn == playerIn.getItemInHand(InteractionHand.OFF_HAND)) {
+                stackIn.hurtAndBreak(5, playerIn, (p_43276_) -> {
+                    p_43276_.broadcastBreakEvent(EquipmentSlot.OFFHAND);
+                });
+            }
         }
-
     }
 
     private void createSpellEntity(Player playerIn, double p_32673_, double p_32674_, double p_32675_, double p_32676_, float p_32677_, int p_32678_, ItemStack stackIn) {

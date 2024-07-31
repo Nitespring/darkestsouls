@@ -2726,7 +2726,7 @@
 				},
 				"bone9": {
 					"position": {
-						"vector": [0, "-0.5*MMath.cos(query.anim_time*360)", 0]
+						"vector": [0, "-0.5*Math.cos(query.anim_time*360)", 0]
 					}
 				},
 				"bone10": {

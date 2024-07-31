@@ -1,9 +1,7 @@
 package github.nitespring.darkestsouls.common.entity.projectile.weapon;
 
 import github.nitespring.darkestsouls.common.entity.mob.DarkestSoulsAbstractEntity;
-import github.nitespring.darkestsouls.common.entity.projectile.throwable.ThrowingKnifeEntity;
-import github.nitespring.darkestsouls.common.entity.util.CustomBlockTags;
-import github.nitespring.darkestsouls.core.init.EffectInit;
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -12,12 +10,9 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -67,9 +62,9 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
     public void setSize(float size){entityData.set(SIZE,size);}
     @Override
     protected void defineSynchedData() {
-        this.entityData.define(SIZE, 0.4f);
-        this.entityData.define(RICOCHET, 0);
-        this.entityData.define(FLYING_TIME, 60);
+        this.getEntityData().define(SIZE, 0.4f);
+        this.getEntityData().define(RICOCHET, 0);
+        this.getEntityData().define(FLYING_TIME, 60);
     }
     public int getRicochet() {return entityData.get(RICOCHET);}
     public void setRicochet(int ricochet) {entityData.set(RICOCHET,ricochet);}
@@ -88,7 +83,7 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
                     }
                 }
             }
-                e.setSecondsOnFire(5);
+                e.setRemainingFireTicks(e.getRemainingFireTicks()+100);
 
             }
         }
@@ -115,9 +110,9 @@ public class Flame extends AbstractHurtingProjectile implements ItemSupplier{
                 float r2 = 2 * (r.nextFloat() - 0.5f);
                 float r3 = 2 * (r.nextFloat() - 0.5f);
                 this.setDeltaMovement(-mov.x * (0.6 - 0.4 * r1), -mov.y * (0.6 - 0.4 * r2), -mov.z * (0.6 - 0.4 * r3));
-                this.xPower = -xPower * (0.6 - 0.4 * r1);
+                /*this.xPower = -xPower * (0.6 - 0.4 * r1);
                 this.yPower = -yPower * (0.6 - 0.4 * r2);
-                this.zPower = -zPower * (0.6 - 0.4 * r3);
+                this.zPower = -zPower * (0.6 - 0.4 * r3);*/
                 this.getOwner().level().playSound((Player) null, this.position().x(), this.position().y(), this.position().z(), SoundEvents.ANVIL_HIT, SoundSource.AMBIENT, 0.2F, 1.6f);
                 gravTick = 0;
 

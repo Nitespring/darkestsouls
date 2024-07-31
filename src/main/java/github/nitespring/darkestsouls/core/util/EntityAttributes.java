@@ -4,10 +4,63 @@ import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fml.common.Mod;
 
 public class EntityAttributes {
+	public static  AttributeSupplier.Builder setHuntsmanAxeAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 44.0D)
+				.add(Attributes.ARMOR, 2.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 6.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.5D)
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
+	}
+	public static  AttributeSupplier.Builder setHuntsmanCutlassAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 42.0D)
+				.add(Attributes.ARMOR, 2.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 5.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
+	}
+	public static  AttributeSupplier.Builder setHuntsmanPitchforkAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 40.0D)
+				.add(Attributes.ARMOR, 2.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 5.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 
+	}
+	public static  AttributeSupplier.Builder setHuntsmanRifleAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 32.0D)
+				.add(Attributes.ARMOR, 1.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 8.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
+				.add(Attributes.FOLLOW_RANGE, 40)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
+
+	}
 	public static  AttributeSupplier.Builder setHollowSoldierLongswordAttributes(){
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 32.0D)
@@ -18,7 +71,21 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
+	}
+	public static  AttributeSupplier.Builder setHollowSoldierCrossbowAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 26.0D)
+				.add(Attributes.ARMOR, 3.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 1.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 5.0D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.FOLLOW_RANGE, 35)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setHollowSoldierAxeAttributes(){
 		return Monster.createMonsterAttributes()
@@ -30,7 +97,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.25D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setHollowAssassinAttributes(){
 		return Monster.createMonsterAttributes()
@@ -42,7 +110,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
-				.add(Attributes.FOLLOW_RANGE, 22);
+				.add(Attributes.FOLLOW_RANGE, 22)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setMadHollowBrokenStraightswordAttributes(){
 		return Monster.createMonsterAttributes()
@@ -54,7 +123,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.0D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.4D)
-				.add(Attributes.FOLLOW_RANGE, 8);
+				.add(Attributes.FOLLOW_RANGE, 8)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setGravetenderHollowLongswordAttributes(){
 		return Monster.createMonsterAttributes()
@@ -66,7 +136,21 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
+	}
+	public static  AttributeSupplier.Builder setGravetenderHollowCrossbowAttributes(){
+		return Monster.createMonsterAttributes()
+				.add(Attributes.MAX_HEALTH, 22.0D)
+				.add(Attributes.ARMOR, 1.0D)
+				.add(Attributes.ARMOR_TOUGHNESS, 0.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.18D)
+				.add(Attributes.ATTACK_DAMAGE, 4.5D)
+				.add(Attributes.ATTACK_SPEED, 1.2D)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
+				.add(Attributes.FOLLOW_RANGE, 35)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setGravetenderHollowBrokenStraightswordAttributes(){
 		return Monster.createMonsterAttributes()
@@ -78,7 +162,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.0D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D)
-				.add(Attributes.FOLLOW_RANGE, 8);
+				.add(Attributes.FOLLOW_RANGE, 8)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setMonstruosityOfSinAttributes(){
 		return Monster.createMonsterAttributes()
@@ -90,19 +175,21 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 3.0D)
-				.add(Attributes.FOLLOW_RANGE, 15);
+				.add(Attributes.FOLLOW_RANGE, 15)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	  }
 	public static  AttributeSupplier.Builder setBonewheelAttributes() {
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 56.0D)
 				.add(Attributes.ARMOR, 8.0D)
 				.add(Attributes.ARMOR_TOUGHNESS, 2.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.21D)
+				.add(Attributes.MOVEMENT_SPEED, 0.16D)
 				.add(Attributes.ATTACK_DAMAGE, 4.0D)
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.2D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-				.add(Attributes.FOLLOW_RANGE, 25);
+				.add(Attributes.FOLLOW_RANGE, 25)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setSkeletonFalchionAttributes(){
 			return Monster.createMonsterAttributes()
@@ -114,7 +201,8 @@ public class EntityAttributes {
 					.add(Attributes.ATTACK_SPEED, 1.2D)
 					.add(Attributes.ATTACK_KNOCKBACK, 0.2D)
 					.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-					.add(Attributes.FOLLOW_RANGE, 25);
+					.add(Attributes.FOLLOW_RANGE, 25)
+					/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setSkeletonCurvedSwordsAttributes() {
 		return Monster.createMonsterAttributes()
@@ -126,7 +214,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.2D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-				.add(Attributes.FOLLOW_RANGE, 25);
+				.add(Attributes.FOLLOW_RANGE, 25)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 		public static  AttributeSupplier.Builder setSkeletonSpearAttributes(){
 			return Monster.createMonsterAttributes()
@@ -138,7 +227,8 @@ public class EntityAttributes {
 					.add(Attributes.ATTACK_SPEED, 1.2D)
 					.add(Attributes.ATTACK_KNOCKBACK, 0.2D)
 					.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-					.add(Attributes.FOLLOW_RANGE, 25);
+					.add(Attributes.FOLLOW_RANGE, 25)
+					/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setSkeletonSwordsmanTwinShotelsAttributes(){
 		return Monster.createMonsterAttributes()
@@ -150,7 +240,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.4D)
-				.add(Attributes.FOLLOW_RANGE, 25);
+				.add(Attributes.FOLLOW_RANGE, 25)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setSewerCentipedeAttributes(){
 		return Monster.createMonsterAttributes()
@@ -162,7 +253,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-				.add(Attributes.FOLLOW_RANGE, 25);
+				.add(Attributes.FOLLOW_RANGE, 25)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 
 	}
 	public static  AttributeSupplier.Builder setBeastPatientAttributes(){
@@ -175,7 +267,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.4D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
-				.add(Attributes.FOLLOW_RANGE, 30);
+				.add(Attributes.FOLLOW_RANGE, 30)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setCloakedBeastPatientAttributes(){
 		return Monster.createMonsterAttributes()
@@ -187,7 +280,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.5D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
-				.add(Attributes.FOLLOW_RANGE, 30);
+				.add(Attributes.FOLLOW_RANGE, 30)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setAshenBloodBeastPatientAttributes(){
 		return Monster.createMonsterAttributes()
@@ -199,7 +293,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
-				.add(Attributes.FOLLOW_RANGE, 50);
+				.add(Attributes.FOLLOW_RANGE, 50)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setLeechAttributes(){
 		return Monster.createMonsterAttributes()
@@ -212,7 +307,9 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_KNOCKBACK, 0.8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.2D)
 				.add(Attributes.FOLLOW_RANGE, 30)
-				.add(ForgeMod.SWIM_SPEED.get(),2.0f);
+				/*.add(Attributes.STEP_HEIGHT, 1)*/
+				.add(Attributes.FLYING_SPEED, 2.0f);
+				//.add(ForgeMod.SWIM_SPEED.get(),2.0f);
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorAttributes(){
 		return Monster.createMonsterAttributes()
@@ -224,7 +321,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorLanternAttributes(){
 		return Monster.createMonsterAttributes()
@@ -236,7 +334,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorPistolAttributes(){
 		return Monster.createMonsterAttributes()
@@ -248,7 +347,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorFlamesprayerAttributes(){
 		return Monster.createMonsterAttributes()
@@ -260,7 +360,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorScytheAttributes(){
 		return Monster.createMonsterAttributes()
@@ -272,7 +373,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setChurchDoctorCrucifixAttributes(){
 		return Monster.createMonsterAttributes()
@@ -284,7 +386,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.3D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.8D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 	public static  AttributeSupplier.Builder setDarkwraithAttributes(){
 		return Monster.createMonsterAttributes()
@@ -296,7 +399,8 @@ public class EntityAttributes {
 				.add(Attributes.ATTACK_SPEED, 1.2D)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.1D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1.6D)
-				.add(Attributes.FOLLOW_RANGE, 20);
+				.add(Attributes.FOLLOW_RANGE, 20)
+				/*.add(Attributes.STEP_HEIGHT, 1)*/;
 	}
 
 }

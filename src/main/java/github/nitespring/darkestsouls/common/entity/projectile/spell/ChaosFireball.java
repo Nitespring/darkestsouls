@@ -1,5 +1,8 @@
 package github.nitespring.darkestsouls.common.entity.projectile.spell;
 
+import github.nitespring.darkestsouls.core.util.CustomBlockTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -8,6 +11,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -54,7 +60,7 @@ public class ChaosFireball extends FireBallEntity implements GeoEntity {
         for (LivingEntity e : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3.5D, 1.5D, 3.5D))) {
             if(e!=this.getOwner()&&!(this.getOwner()!=null&&e.isAlliedTo(this.getOwner()))) {
                 e.hurt(e.level().damageSources().explosion(this, this.getOwner()), this.damage);
-                e.setRemainingFireTicks(80);
+                e.setRemainingFireTicks(e.getRemainingFireTicks()+80);
                 for(int i=0; i<=5; i++){
                     RandomSource r = this.random;
                     Vec3 off = new Vec3(r.nextFloat()-0.5, r.nextFloat()-0.5,r.nextFloat()-0.5).multiply(0.25f,0.25f,0.25f);
@@ -90,5 +96,39 @@ public class ChaosFireball extends FireBallEntity implements GeoEntity {
         this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.LAVA_AMBIENT, this.getSoundSource(), 0.2F, this.random.nextFloat() * 0.2F + 0.65F, false);
 
         this.doRemoval();
+        Vec3 pos = this.position();
+        Level world = this.level();
+        int xSpread = Math.toIntExact((long) (this.getBoundingBox().getXsize() * 1.0));
+        int zSpread = Math.toIntExact((long) (this.getBoundingBox().getZsize() * 1.0));
+        int ySpread = Math.toIntExact((long) (this.getBoundingBox().getYsize() * 1.0));
+        int x0 = this.blockPosition().getX();
+        int y0 = this.blockPosition().getY();
+        int z0 = this.blockPosition().getZ();
+        for(int i = 0; i<=24; i++) {
+            for (int j = 0; j <= zSpread; j++) {
+                for (int k = -ySpread; k <= ySpread; k++) {
+                    double a = Math.PI / 12;
+                    double d = j;
+                    int xVar = (int) (d * Math.sin(i * a));
+                    int yVar = k;
+                    int zVar = (int) (d * Math.cos(i * a));
+                    ;
+                    int x = x0 + xVar;
+                    int z = z0 + zVar;
+                    int y = y0 + yVar;
+
+                    BlockPos blockPos = new BlockPos(x, y, z);
+                    if (level().getBlockState(blockPos).is(CustomBlockTags.BOMB_BREAKABLE)) {
+                        level().destroyBlock(blockPos, true, this.getOwner());
+                        level().gameEvent(this, GameEvent.BLOCK_DESTROY, blockPos);
+                    }
+                    if(BaseFireBlock.canBePlacedAt(level(),blockPos, Direction.getNearest(pos.x,pos.y,pos.z))) {
+                        BlockState blockstate = BaseFireBlock.getState(level(), blockPos);
+                        level().setBlock(blockPos, blockstate, 11);
+                        level().gameEvent(this, GameEvent.BLOCK_PLACE, blockPos);
+                    }
+                }
+            }
+        }
     }
 }

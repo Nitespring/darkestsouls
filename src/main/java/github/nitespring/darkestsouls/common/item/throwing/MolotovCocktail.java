@@ -3,6 +3,7 @@ package github.nitespring.darkestsouls.common.item.throwing;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.FirebombEntity;
 import github.nitespring.darkestsouls.common.entity.projectile.throwable.MolotovCocktailEntity;
 import github.nitespring.darkestsouls.core.init.EntityInit;
+import github.nitespring.darkestsouls.core.util.ArmourUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -28,6 +29,10 @@ public class MolotovCocktail extends Item {
         this.poiseDamage=poiseDamage;
     }
 
+    public float getAttackDamage(Player playerIn) {
+        return attackDamage * (1+ ArmourUtils.getAlchemyBonus(playerIn));
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
         ItemStack stackIn = playerIn.getItemInHand(handIn);
@@ -45,11 +50,11 @@ public class MolotovCocktail extends Item {
         entity.yPower=flyingPower*aim.y;
         entity.zPower=flyingPower*aim.z;
         entity.setOwner(playerIn);
-        entity.setAttackDamage(this.attackDamage);
+        entity.setAttackDamage(this.getAttackDamage(playerIn));
         entity.setPoiseDamage(this.poiseDamage);
         entity.setGravPower(0.001f);
-        entity.setHorizontalSpread(4.0);
-        entity.setVerticalSpread(3.5);
+        entity.setHorizontalSpread(4.0f);
+        entity.setVerticalSpread(3.5f);
         levelIn.addFreshEntity(entity);
 
         playerIn.getCooldowns().addCooldown(stackIn.getItem(), useCooldown);

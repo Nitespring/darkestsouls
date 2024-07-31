@@ -2,9 +2,11 @@ package github.nitespring.darkestsouls.core.enums;
 
 
 import github.nitespring.darkestsouls.core.init.ItemInit;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
@@ -40,6 +42,13 @@ public enum Tiers implements Tier {
    public float getAttackDamageBonus() {
       return this.damage;
    }
+
+
+   public TagKey<Block> getIncorrectBlocksForDrops() {
+      return null;
+   }
+
+
 
    public int getLevel() {
       return this.level;

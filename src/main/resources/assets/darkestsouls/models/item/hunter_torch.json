@@ -3,8 +3,8 @@
     "forge_data": {
         "layers": {
             "0": {
-                "block_light": 12,
-                "sky_light": 12
+                "block_light": 0,
+                "sky_light": 0
             },
             "1": {
                 "block_light": 15,
@@ -15,8 +15,8 @@
     "loader": "forge:item_layers",
     "render_types": {},
 "textures": {
-    "layer0": "darkestsouls:item/weapon/hunter_torch",
-    "layer1": "darkestsouls:item/weapon/hunter_torch_emissive"
+    "layer0": "darkestsouls:item/weapon/torch/torch",
+    "layer1": "darkestsouls:item/weapon/torch/torch_emissive"
     },
 "display": {
     "thirdperson_righthand": {

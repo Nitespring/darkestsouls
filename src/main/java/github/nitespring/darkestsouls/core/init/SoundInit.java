@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import software.bernie.example.registry.SoundRegistry;
 
 @Mod.EventBusSubscriber(modid = DarkestSouls.MODID)
 public class SoundInit {

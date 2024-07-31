@@ -3,13 +3,14 @@ package github.nitespring.darkestsouls.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import github.nitespring.darkestsouls.DarkestSouls;
+
+
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 
-@Mod.EventBusSubscriber
+//@Mod.EventBusSubscriber
 public class Config {
 
 	private static final ForgeConfigSpec.Builder common_builder = new ForgeConfigSpec.Builder();
@@ -49,7 +50,7 @@ public class Config {
 		DarkestSouls.LOGGER.info("Built config" + path);
 		file.load();
 		DarkestSouls.LOGGER.info("Loaded config" + path);
-		config.setConfig(file);
+		config.correct(file);
 		
 	}
 	

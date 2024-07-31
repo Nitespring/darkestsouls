@@ -57,7 +57,7 @@ public class Leech extends DarkestSoulsAbstractEntity implements GeoEntity{
 	@Override
 	public boolean isBoss() {return false;}
 	@Override
-	public int getDSDefaultTeam() {return 0;}
+	public int getDSDefaultTeam() {return 1;}
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {return this.factory;}
 	

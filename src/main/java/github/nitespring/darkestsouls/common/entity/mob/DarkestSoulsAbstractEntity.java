@@ -2,7 +2,9 @@ package github.nitespring.darkestsouls.common.entity.mob;
 
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -20,16 +22,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -39,14 +33,19 @@ import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
+import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.hoglin.HoglinBase;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeConfig;
+
 import org.joml.Vector3f;
 
 public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
@@ -67,6 +66,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	private static final EntityDataAccessor<Integer> ENTITY_PHASE = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> TEAM = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> POISE_HEALTH = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> PROJECTILE_LOADED = SynchedEntityData.defineId(DarkestSoulsAbstractEntity.class, EntityDataSerializers.INT);
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS));
 
 
@@ -81,47 +81,84 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		this.groundNavigation = new GroundPathNavigation(this, p_21684_);
 	}
 
-	public int getAnimationState() {return this.entityData.get(ANIMATION_STATE);}
-
+	public int getAnimationState() {return this.getEntityData().get(ANIMATION_STATE);}
 	public void setAnimationState(int anim) {
-		this.entityData.set(ANIMATION_STATE, anim);
+		this.getEntityData().set(ANIMATION_STATE, anim);
 	}
-	public int getAnimationTick() {return this.entityData.get(ANIMATION_TICK);}
+	public int getAnimationTick() {return this.getEntityData().get(ANIMATION_TICK);}
 	public void setAnimationTick(int anim) {
-		this.entityData.set(ANIMATION_TICK, anim);
+		this.getEntityData().set(ANIMATION_TICK, anim);
 	}
-
-	public boolean shouldResetAnimation() {return this.entityData.get(SHOULD_RESET_ANIMATION);}
+	public int getAmmoLoaded() {return this.getEntityData().get(PROJECTILE_LOADED);}
+	public int getAmmoCapacity(){return 1;}
+	public void setAmmoLoaded(int i) {
+		this.getEntityData().set(PROJECTILE_LOADED, i);
+	}
+	public void loadAmmo(int i) {
+		int j = this.getAmmoLoaded();
+		if(j+i<=getAmmoCapacity()) {
+			this.setAmmoLoaded(j + i);
+		}else{
+			this.setAmmoLoaded(getAmmoCapacity());
+		}
+	}
+	public void unloadAmmo(int i) {
+		int j = this.getAmmoLoaded();
+		if(j-i>=0) {
+			this.setAmmoLoaded(j - i);
+		}else{
+			this.setAmmoLoaded(0);
+		}
+	}
+	public boolean isAmmoFull(){
+		return getAmmoLoaded()>=getAmmoCapacity();
+	}
+	public boolean isAmmoEmpty(){
+		return getAmmoLoaded()<=0;
+	}
+	public void fillAmmo(){
+		setAmmoLoaded(getAmmoCapacity());
+	}
+	public void emptyAmmo(){
+		setAmmoLoaded(0);
+	}
+	public void loadAmmo() {
+		this.loadAmmo(1);
+	}
+	public void unloadAmmo() {
+		this.unloadAmmo(1);
+	}
+	public boolean shouldResetAnimation() {return this.getEntityData().get(SHOULD_RESET_ANIMATION);}
 	public void setResetAnimation(boolean anim) {
-		this.entityData.set(SHOULD_RESET_ANIMATION, anim);
+		this.getEntityData().set(SHOULD_RESET_ANIMATION, anim);
 	}
 
 	public void increaseAnimationTick(int amount) {
-		this.entityData.set(ANIMATION_TICK, this.getAnimationTick()+amount);
+		this.getEntityData().set(ANIMATION_TICK, this.getAnimationTick()+amount);
 	}
 
 	public int getCombatState() {
-		return this.entityData.get(COMBAT_STATE);
+		return this.getEntityData().get(COMBAT_STATE);
 	}
 
 	public void setCombatState(int anim) {
-		this.entityData.set(COMBAT_STATE, anim);
+		this.getEntityData().set(COMBAT_STATE, anim);
 	}
 
 	public int getEntityState() {
-		return this.entityData.get(ENTITY_PHASE);
+		return this.getEntityData().get(ENTITY_PHASE);
 	}
 
 	public void setEntityState(int anim) {
-		this.entityData.set(ENTITY_PHASE, anim);
+		this.getEntityData().set(ENTITY_PHASE, anim);
 	}
 
 	public int getDSTeam() {
-		return this.entityData.get(TEAM);
+		return this.getEntityData().get(TEAM);
 	}
 
 	public void setDSTeam(int anim) {
-		this.entityData.set(TEAM, anim);
+		this.getEntityData().set(TEAM, anim);
 	}
 
 	public int getBloodResistance() {
@@ -133,11 +170,11 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	}
 
 	public int getPoiseHealth() {
-		return this.entityData.get(POISE_HEALTH);
+		return this.getEntityData().get(POISE_HEALTH);
 	}
 
 	public void setPoiseHealth(int i) {
-		this.entityData.set(POISE_HEALTH, i);
+		this.getEntityData().set(POISE_HEALTH, i);
 		//System.out.println("Poise: " + i + "/" + this.getMaxPoise());
 	}
 
@@ -161,18 +198,19 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	public void setStunAnimation() {
 		this.setAnimationState(this.getStunAnimation());
 	}
-
+	public boolean shouldResetCombatStateWhenIdle(){return true;}
 
 	@Override
 	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(ANIMATION_STATE, 0);
-		this.entityData.define(ANIMATION_TICK, 0);
-		this.entityData.define(SHOULD_RESET_ANIMATION, false);
-		this.entityData.define(COMBAT_STATE, 0);
-		this.entityData.define(ENTITY_PHASE, 0);
-		this.entityData.define(TEAM, getDSDefaultTeam());
-		this.entityData.define(POISE_HEALTH, getMaxPoise());
+		 super.defineSynchedData();
+		this.getEntityData().define(ANIMATION_STATE, 0);
+		this.getEntityData().define(ANIMATION_TICK, 0);
+		this.getEntityData().define(SHOULD_RESET_ANIMATION, false);
+		this.getEntityData().define(COMBAT_STATE, 0);
+		this.getEntityData().define(ENTITY_PHASE, 0);
+		this.getEntityData().define(TEAM, getDSDefaultTeam());
+		this.getEntityData().define(POISE_HEALTH, getMaxPoise());
+		this.getEntityData().define(PROJECTILE_LOADED, 0);
 	}
 
 	protected abstract int getDSDefaultTeam();
@@ -240,7 +278,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 			hitStunTicks--;
 		}
 
-		if (this.entityData.get(POISE_HEALTH) <= -1) {
+		if (this.getEntityData().get(POISE_HEALTH) <= -1) {
 			this.setStunAnimation();
 
 			//System.out.println("should Stun");
@@ -249,21 +287,29 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		super.tick();
 	}
 
+
+
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
-		if (!this.serializeNBT().contains("DSTeam")) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData, CompoundTag tag) {
+		spawnGroupData=super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData,tag);
+		if (!this.getPersistentData().contains("DSTeam")||getPersistentData().getInt("DSTeam")==0) {
 			this.setDSTeam(this.getDSDefaultTeam());
 		}
 		if (this.owner != null) {
-			if (this.owner.serializeNBT().contains("DSTeam")) {
-				this.setDSTeam(this.owner.serializeNBT().getInt("DSTeam"));
+			if (this.owner.getPersistentData().contains("DSTeam")) {
+				this.setDSTeam(this.owner.getPersistentData().getInt("DSTeam"));
 			} else if (this.owner instanceof Player) {
 				this.setDSTeam(4);
 			}
 		}
-		//this.resetPoiseHealth();
-		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+		return spawnGroupData;
+	}
+
+	@Override
+	public float getStepHeight() {
+		return 1.0f;
 	}
 
 	@Override
@@ -271,20 +317,63 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		if (this.getOwner() != null) {
 			return this.getOwner().isAlliedTo(e);
 		} else {
-			if (this.serializeNBT().contains("DSTeam")) {
-				int teamOwner = this.serializeNBT().getInt("DSTeam");
-				if (e.serializeNBT().contains("DSTeam")) {
-					int teamTarget = e.serializeNBT().getInt("DSTeam");
-
-					return teamOwner == teamTarget || super.isAlliedTo(e);
-				} else {
-
-					return super.isAlliedTo(e);
-
+				int teamOwner = this.getDSTeam();
+				switch(teamOwner) {
+					case 0:
+						return super.isAlliedTo(e);
+					case 1://Monster
+						if(e instanceof Monster && !e.getPersistentData().contains("DSTeam")){
+							return true;
+						}if(e instanceof DarkestSoulsAbstractEntity mob && mob.getDSTeam()==1){
+							return true;
+						}else if(e.getPersistentData().contains("DSTeam")&&e.getPersistentData().getInt("DSTeam")==1){
+							return true;
+						}else{return super.isAlliedTo(e);}
+					case 2://Hollow
+						if(e instanceof DarkestSoulsAbstractEntity mob && mob.getDSTeam()==2){
+							return true;
+						}else if(e.getPersistentData().contains("DSTeam")&&e.getPersistentData().getInt("DSTeam")==2){
+							return true;
+						}else{return super.isAlliedTo(e);}
+					case 3://Huntsman
+						if(e instanceof DarkestSoulsAbstractEntity mob && (mob.getDSTeam()==3||mob.getDSTeam()==5)){
+							return true;
+						}else if(e.getPersistentData().contains("DSTeam")&&e.getPersistentData().getInt("DSTeam")==3){
+							return true;
+						}else if(e instanceof Villager||e instanceof WanderingTrader){
+							return true;
+						}else{return super.isAlliedTo(e);}
+					case 4://Beast
+						if(e instanceof DarkestSoulsAbstractEntity mob && (mob.getDSTeam()==4 || mob.getDSTeam()==1)){
+							return true;
+						}else if(e.getPersistentData().contains("DSTeam")&&(e.getPersistentData().getInt("DSTeam")==4||e.getPersistentData().getInt("DSTeam")==1)){
+							return true;
+						}else{return super.isAlliedTo(e);}
+					case 5://Church
+						if(e instanceof DarkestSoulsAbstractEntity mob && (mob.getDSTeam()==3||mob.getDSTeam()==5)){
+							return true;
+						}else if(e.getPersistentData().contains("DSTeam")&&e.getPersistentData().getInt("DSTeam")==3){
+							return true;
+						}else if(e instanceof Villager||e instanceof WanderingTrader){
+							return true;
+						}else{return super.isAlliedTo(e);}
+					case 6://Skeleton
+						if(e instanceof DarkestSoulsAbstractEntity mob && (mob.getDSTeam()==1||mob.getDSTeam()==6)){
+							return true;
+						}else if(e.getPersistentData().contains("DSTeam")&&e.getPersistentData().getInt("DSTeam")==6){
+							return true;
+						}else if(e instanceof AbstractSkeleton){
+							return true;
+						}else{return super.isAlliedTo(e);}
+					default:
+						if(e instanceof DarkestSoulsAbstractEntity mob && mob.getDSTeam()== this.getDSTeam()){
+							return true;
+						}else if (e.getPersistentData().contains("DSTeam")&&teamOwner == e.getPersistentData().getInt("DSTeam")) {
+							return true;
+						} else {
+							return super.isAlliedTo(e);
+						}
 				}
-			} else {
-				return super.isAlliedTo(e);
-			}
 		}
 	}
 
@@ -325,7 +414,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 					this.spawnBloodParticles(source, f);
 				}
 			}
-
+		//System.out.println(this.getDSTeam());
 
 		}
 		return super.hurt(source, f);
@@ -362,7 +451,7 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 	}
 
 	@Override
-	public float getStepHeight() {
+	public float maxUpStep() {
 		return 1.0f;
 	}
 
@@ -383,17 +472,21 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		}
 	}
 
+
 	@Override
 	protected void registerGoals() {
 
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
+		/*this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Villager.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Villager.class, true));*/
+
+		this.targetSelector.addGoal(1, (new DarkestSoulsAbstractEntity.HurtByTargetAlertTeamGoal(this)));
+		this.targetSelector.addGoal(2, new DarkestSoulsAbstractEntity.GetTargetByTeamGoal<>(this));
 
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, 1.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
+		//this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
 
 		this.targetSelector.addGoal(2, new DarkestSoulsAbstractEntity.CopyOwnerTargetGoal(this));
 
@@ -470,7 +563,12 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 		}
 
 		public void start() {
+
 			this.mob.getNavigation().moveTo(this.wantedX, this.wantedY, this.wantedZ, this.speedModifier);
+			if(mob.shouldResetCombatStateWhenIdle()){
+				mob.setCombatState(0);
+			}
+
 		}
 
 		public void stop() {
@@ -507,6 +605,231 @@ public abstract class DarkestSoulsAbstractEntity extends PathfinderMob {
 			} else {
 				return this.mob.getRandom().nextFloat() >= this.probability ? LandRandomPos.getPos(this.mob, 10, 7) : super.getPosition();
 			}
+		}
+	}
+	public class GetTargetByTeamGoal<T extends DarkestSoulsAbstractEntity> extends TargetGoal {
+		protected final int randomInterval;
+		@Nullable
+		protected LivingEntity target;
+		protected TargetingConditions targetConditions;
+
+		public GetTargetByTeamGoal(DarkestSoulsAbstractEntity e) {
+			this(e, false, false);
+		}
+
+
+		public GetTargetByTeamGoal(DarkestSoulsAbstractEntity e, boolean mustSee, boolean mustReach) {
+			super(e, mustSee, mustReach);
+			this.randomInterval = reducedTickDelay(10);
+			this.setFlags(EnumSet.of(Goal.Flag.TARGET));
+			this.targetConditions = TargetingConditions.forCombat().range(this.getFollowDistance());
+		}
+		@Override
+		public boolean canUse() {
+			if (this.randomInterval > 0 && this.mob.getRandom().nextInt(this.randomInterval) != 0 && this.mob.getPersistentData().contains("DSTeam")) {
+				return false;
+			} else {
+				this.findTarget();
+				return this.target != null;
+			}
+		}
+		protected AABB getTargetSearchArea(double p_26069_) {
+			return this.mob.getBoundingBox().inflate(p_26069_, 4.0D, p_26069_);
+		}
+
+
+
+		protected void findTarget() {
+			int team = mob.getPersistentData().getInt("DSTeam");
+			if(mob instanceof DarkestSoulsAbstractEntity dsMob){
+				team = dsMob.getDSTeam();
+			}
+
+
+			Player playerTarget = mob.level().getNearestPlayer(this.targetConditions, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
+
+
+			switch(team) {
+				case 0:
+					this.target = playerTarget;
+					break;
+				case 1:   //MONSTER
+					if(playerTarget==null) {
+						this.target = this.findTargetByPredicate(
+								(t) -> {
+									CompoundTag nbt = t.getPersistentData();
+									return t instanceof Player || t instanceof IronGolem ||t instanceof SnowGolem;
+								}
+						);
+						break;
+					}else {
+						this.target = playerTarget;
+					}
+					break;
+				case 2:  //Hollow
+					this.target = playerTarget;
+					break;
+				case 3:   //HUNTSMAN
+					if(playerTarget==null) {
+						this.target = this.findTargetByPredicate(
+								(t) -> {
+									CompoundTag nbt = t.getPersistentData();
+									return (t instanceof DarkestSoulsAbstractEntity dst && dst.getDSTeam() == 4)
+											||(nbt.contains("DSTeam") && nbt.getInt("DSTeam") == 4)
+											|| t instanceof Player || (t instanceof Enemy && !(t instanceof Creeper));
+								}
+						);
+						break;
+					}else {
+						this.target = playerTarget;
+					}
+					break;
+				case 4:   //BEAST
+					if(playerTarget==null) {
+						this.target = this.findTargetByPredicate(
+								(t) -> {
+									CompoundTag nbt = t.getPersistentData();
+									return (t instanceof DarkestSoulsAbstractEntity dst && (dst.getDSTeam() == 3||dst.getDSTeam() == 5))
+											||(nbt.contains("DSTeam") && nbt.getInt("DSTeam") == 3)
+											|| t instanceof Player || t instanceof Villager || t instanceof IronGolem|| t instanceof SnowGolem||t instanceof WanderingTrader || (t instanceof Animal&&!(t instanceof Wolf||t instanceof HoglinBase));
+								}
+						);
+						break;
+					}else {
+						this.target = playerTarget;
+					}
+					break;
+				case 5:   //CHURCH
+					if(playerTarget==null) {
+						this.target = this.findTargetByPredicate(
+								(t) -> {
+									CompoundTag nbt = t.getPersistentData();
+									return (t instanceof DarkestSoulsAbstractEntity dst && dst.getDSTeam() == 4)
+											||(nbt.contains("DSTeam") && nbt.getInt("DSTeam") == 4)||t instanceof Player;
+								}
+						);
+						break;
+					}else {
+						this.target = playerTarget;
+					}
+					break;
+				case 6:   //SKELETON
+					if(playerTarget==null) {
+						this.target = this.findTargetByPredicate(
+								(t) -> {
+									CompoundTag nbt = t.getPersistentData();
+									return t instanceof Player || t instanceof IronGolem || t instanceof SnowGolem;
+								}
+						);
+						break;
+					}else {
+						this.target = playerTarget;
+					}
+					break;
+			}
+
+
+		}
+
+
+		protected LivingEntity findTargetByPredicate(Predicate<LivingEntity> predicate){
+
+			return this.mob.level().getNearestEntity(
+					this.mob.level().getEntitiesOfClass(LivingEntity.class, this.getTargetSearchArea(this.getFollowDistance()),
+							(p_148152_) -> {
+								return true;
+							}),
+					this.targetConditions.selector(predicate),
+					this.mob,
+					this.mob.getX(),
+					this.mob.getEyeY(),
+					this.mob.getZ());
+		}
+
+
+
+		@Override
+		public void start() {
+			this.mob.setTarget(this.target);
+			super.start();
+		}
+
+		public void setTarget(@Nullable LivingEntity p_26071_) {
+			this.target = p_26071_;
+		}
+	}
+	public class HurtByTargetAlertTeamGoal extends HurtByTargetGoal {
+
+		public HurtByTargetAlertTeamGoal(DarkestSoulsAbstractEntity p_26039_, Class<?>... p_26040_) {
+			super(p_26039_, p_26040_);
+			this.setAlertOthers();
+
+		}
+
+		@Override
+		protected void alertOthers() {
+			double d0 = this.getFollowDistance();
+			AABB aabb = AABB.unitCubeFromLowerCorner(this.mob.position()).inflate(d0, 10.0D, d0);
+			List<Mob> list = this.mob.level().getEntitiesOfClass(Mob.class, aabb, EntitySelector.NO_SPECTATORS);
+			if(mob instanceof DarkestSoulsAbstractEntity mob) {
+				for (int i = 0; i < list.size(); i++) {
+
+
+					if (list.get(i) instanceof DarkestSoulsAbstractEntity target) {
+						int ownerTeam = mob.getDSTeam();
+						int targetTeam = target.getDSTeam();
+
+
+						switch (ownerTeam) {
+							case 0, 1:
+								break;
+							case 2:
+								switch (targetTeam) {
+									case 2:
+										this.alertOther(list.get(i), mob.getLastHurtByMob());
+								}
+								break;
+							case 3:
+								switch (targetTeam) {
+									case 3:
+										this.alertOther(list.get(i),mob.getLastHurtByMob());
+									case 5:
+										this.alertOther(list.get(i),mob.getLastHurtByMob());
+								}
+								break;
+							case 4:
+								switch (targetTeam) {
+									case 4:
+										this.alertOther(list.get(i), this.mob.getLastHurtByMob());
+								}
+								break;
+							case 5:
+								switch (targetTeam) {
+									case 3:
+										this.alertOther(list.get(i), this.mob.getLastHurtByMob());
+									case 5:
+										this.alertOther(list.get(i), this.mob.getLastHurtByMob());
+								}
+								break;
+							case 6:
+								switch (targetTeam) {
+									case 6:
+										this.alertOther(list.get(i), this.mob.getLastHurtByMob());
+								}
+								break;
+							default:
+								if (ownerTeam == targetTeam) {
+									this.alertOther(list.get(i), this.mob.getLastHurtByMob());
+								}
+								break;
+
+						}
+
+					}
+				}
+			}
+
+
 		}
 	}
 }

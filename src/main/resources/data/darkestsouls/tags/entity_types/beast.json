@@ -1,0 +1,8 @@
+{
+  "replace" : false,
+  "values" : [
+    "darkestsouls:beast_patient",
+    "darkestsouls:cloaked_beast_patient",
+    "darkestsouls:ashen_blood_beast_patient"
+  ]
+}

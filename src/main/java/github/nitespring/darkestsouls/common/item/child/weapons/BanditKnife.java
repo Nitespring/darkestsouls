@@ -14,16 +14,8 @@ import net.minecraft.world.phys.Vec3;
 public class BanditKnife extends Weapon {
 
 
-    public BanditKnife(Tier tier, float attack, float speed, float knockback, int poise, int durability, int enchantability, float movementSpeed, Properties properties) {
-        super(tier, attack, speed, knockback, poise, durability, enchantability, movementSpeed, properties);
-    }
-
-    public BanditKnife(Tier tier, float attack, float speed, float knockback, int poise, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, poise, durability, enchantability, movementSpeed, maxTargets, properties);
-    }
-
-    public BanditKnife(Tier tier, float attack, float speed, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
-        super(tier, attack, speed, knockback, poise, blood, poison, frost, rot, death, fire, holy, durability, enchantability, movementSpeed, maxTargets, properties);
+    public BanditKnife(Tier tier, float attack, float speed, float reach, float knockback, int poise, int blood, int poison, int frost, int rot, int death, int fire, int holy,int serrated, int durability, int enchantability, float movementSpeed, int maxTargets, Properties properties) {
+        super(tier, attack, speed, reach, knockback, poise, blood, poison, frost, rot, death, fire, holy, serrated, durability, enchantability, movementSpeed, maxTargets, properties);
     }
 
     @Override
@@ -36,18 +28,20 @@ public class BanditKnife extends Weapon {
                 WeaponAttackEntity entity = new WeaponAttackEntity(EntityInit.BANDIT_KNIFE.get(), levelIn, pos, (float) Mth.atan2(pos.z - playerIn.getZ(), pos.x - playerIn.getX()));
                 entity.setOwner(playerIn);
                 entity.setItemStack(stackIn);
-                entity.setMaxTargets(this.getMaxTargets(stackIn));
+                entity.setMaxTargets(this.getMaxTargets(playerIn, stackIn));
                 entity.setDamage(
                         this.getAttackDamage(playerIn, stackIn),
                         this.getPoiseDamage(playerIn, stackIn),
-                        this.getFireAttack(stackIn),
-                        this.getSmiteAttack(stackIn),
-                        this.getBaneOfArthropodsAttack(stackIn),
-                        this.getBloodAttack(stackIn),
-                        this.getPoisonAttack(stackIn),
-                        this.getRotAttack(stackIn),
-                        this.getFrostAttack(stackIn),
-                        this.getDeathAttack(stackIn));
+                        this.getFireAttack(playerIn,stackIn),
+                        this.getSmiteAttack(playerIn,stackIn),
+                        this.getBaneOfArthropodsAttack(playerIn,stackIn),
+                        this.getBeastHunterAttack(playerIn,stackIn),
+                        this.getBloodAttack(playerIn,stackIn),
+                        this.getPoisonAttack(playerIn,stackIn),
+                        this.getToxicAttack(playerIn,stackIn),
+                        this.getRotAttack(playerIn,stackIn),
+                        this.getFrostAttack(playerIn,stackIn),
+                        this.getWitherAttack(playerIn,stackIn));
                 entity.setHitboxModifications(1.2f, 0f, 0.4f, 1.5f);
                 entity.configureTicks(3, 6, 2, 3);
                 levelIn.addFreshEntity(entity);

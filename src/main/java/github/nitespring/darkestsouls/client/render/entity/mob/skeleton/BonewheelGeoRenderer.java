@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
@@ -33,7 +34,7 @@ public class BonewheelGeoRenderer extends GeoEntityRenderer<Bonewheel>{
 	}
 	
 	@Override
-	public int getPackedOverlay(Bonewheel animatable, float u) {
+	public int getPackedOverlay(Bonewheel animatable, float u, float partialTick) {
 
 		return OverlayTexture.NO_OVERLAY;
 	}

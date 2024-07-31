@@ -1,0 +1,8 @@
+{
+  "replace" : false,
+  "values" : [
+    "#darkestsouls:guns",
+    "#darkestsouls:staves",
+    "darkestsouls:flamesprayer"
+  ]
+}

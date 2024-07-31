@@ -5,11 +5,13 @@ import github.nitespring.darkestsouls.common.item.AlchemyTool;
 import github.nitespring.darkestsouls.core.init.EnchantmentInit;
 import github.nitespring.darkestsouls.core.init.EntityInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -89,12 +91,12 @@ public class Flamesprayer extends AlchemyTool {
                         this.shoot(player, level, stack);
                         if(player.getItemInHand(InteractionHand.MAIN_HAND)==stack) {
                             stack.hurtAndBreak(1, player, (p_43276_) -> {
-                                p_43276_.broadcastBreakEvent(InteractionHand.MAIN_HAND);
+                                p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
                             });
                         }
                         if(player.getItemInHand(InteractionHand.OFF_HAND)==stack) {
                             stack.hurtAndBreak(1, player, (p_43276_) -> {
-                                p_43276_.broadcastBreakEvent(InteractionHand.OFF_HAND);
+                                p_43276_.broadcastBreakEvent(EquipmentSlot.OFFHAND);
                             });
                         }
                     }
@@ -114,21 +116,23 @@ public class Flamesprayer extends AlchemyTool {
         Vec3 pos = player.position();
         Vec3 aim = player.getLookAngle();
         double a=  5*Math.PI/18;
-
+        if(!level.isClientSide()) {
 
         for(int i = 0; i<=4; i++) {
 
             Random r = new Random();
-            float rF = 2*(r.nextFloat()-0.5f);
-            float b = (float) (a*rF);
-            Vec3 aim1 = new Vec3((aim.x*Math.cos(b)-aim.z*Math.sin(b)),aim.y,(aim.z*Math.cos(b)+aim.x*Math.sin(b)));
-            float x = (float) (pos.x + 0.4 * aim.x+ 0.4 * aim1.x);
+            float rF = 2 * (r.nextFloat() - 0.5f);
+            float b = (float) (a * rF);
+            Vec3 aim1 = new Vec3((aim.x * Math.cos(b) - aim.z * Math.sin(b)), aim.y, (aim.z * Math.cos(b) + aim.x * Math.sin(b)));
+            float x = (float) (pos.x + 0.4 * aim.x + 0.4 * aim1.x);
             float y = (float) (pos.y + 0.8 + 0.6 * aim1.y);
-            float z = (float) (pos.z + 0.4 * aim.z+ 0.4 * aim1.z);
+            float z = (float) (pos.z + 0.4 * aim.z + 0.4 * aim1.z);
             Flame entity = new Flame(EntityInit.FLAME.get(), level);
             entity.setPos(x, y, z);
             float flyingPower = this.flyingPower(player, stackIn);
             //float flyingPower = 0.1f;
+            entity.setDeltaMovement(aim1.scale(flyingPower));
+            //entity.accelerationPower=flyingPower;
             entity.xPower = flyingPower * aim1.x;
             entity.yPower = flyingPower * aim1.y;
             entity.zPower = flyingPower * aim1.z;
@@ -145,6 +149,7 @@ public class Flamesprayer extends AlchemyTool {
             entity.setRicochet(this.getRicochet(player, stackIn));
             level.addFreshEntity(entity);
         }
+        }
 
 
         player.level().playSound((Player) null, player, SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0f);
@@ -159,10 +164,11 @@ public class Flamesprayer extends AlchemyTool {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Level context, List<Component> tooltip, TooltipFlag flag) {
+float attackDamage=this.getBaseAttackDamage()* (1 + 0.2f * EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.MOON_BLESSING.get(),stack))
+        + 2.0f * EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.STARPOWER.get(),stack);
+        tooltip.add(Component.literal("+").append(Component.literal(""+attackDamage)).append(Component.translatable("translation.darkestsouls.fire_damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
 
-        tooltip.add(Component.literal("+").append(Component.literal(""+this.getAttackDamage(null,stack))).append(Component.translatable("translation.darkestsouls.fire_damage")).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
-
-        super.appendHoverText(stack, level, tooltip, flag);
+        super.appendHoverText(stack, context, tooltip, flag);
     }
 }
