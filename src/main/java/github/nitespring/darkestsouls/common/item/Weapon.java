@@ -234,29 +234,29 @@ public class Weapon extends Item implements ILeftClickItem {
                 }
             }
             if (!target.getType().is(CustomEntityTags.ROT_IMMUNE)) {
-                if (this.getToxicAttack(playerIn,stackIn) >= 1) {
+                if (this.getRotAttack(playerIn,stackIn) >= 1) {
                     target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 90 + this.getRotAttack(playerIn,stackIn) * 45, this.getRotAttack(playerIn,stackIn) - 1), playerIn);
                 }
             }
             if (!target.getType().is(CustomEntityTags.FROST_IMMUNE)) {
-                if (this.getToxicAttack(playerIn,stackIn) >= 1) {
+                if (this.getFrostAttack(playerIn,stackIn) >= 1) {
                     target.addEffect(new MobEffectInstance(EffectInit.FROST.getHolder().get(), 90 + this.getFrostAttack(playerIn,stackIn) * 45, this.getFrostAttack(playerIn,stackIn) - 1), playerIn);
                 }
             }
             if (!target.getType().is(CustomEntityTags.WITHER_IMMUNE)) {
-                if (this.getPoisonAttack(playerIn,stackIn) >= 1) {
+                if (this.getWitherAttack(playerIn,stackIn) >= 1) {
                     target.addEffect(new MobEffectInstance(MobEffects.WITHER, 90 + this.getWitherAttack(playerIn,stackIn) * 45, this.getWitherAttack(playerIn,stackIn) - 1), playerIn);
                 }
             }
             if (!target.getType().is(CustomEntityTags.BLEED_IMMUNE)) {
                 if (this.getBloodAttack(playerIn,stackIn) >= 1) {
-                    if (target.hasEffect(EffectInit.ROT.getHolder().get())) {
-                        int amount = target.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier() + this.getBloodAttack(playerIn,stackIn);
-                        target.removeEffect(EffectInit.ROT.getHolder().get());
-                        target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 240, amount));
+                    if (target.hasEffect(EffectInit.BLEED.getHolder().get())) {
+                        int amount = target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier() + this.getBloodAttack(playerIn,stackIn);
+                        target.removeEffect(EffectInit.BLEED.getHolder().get());
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 240, amount));
                     } else {
                         int amount = this.getBloodAttack(playerIn,stackIn) - 1;
-                        target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 240, amount));
+                        target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 240, amount));
                     }
                 }
             }

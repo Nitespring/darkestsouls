@@ -111,12 +111,12 @@ public class Bullet extends AbstractHurtingProjectile {
                     mob.addEffect(new MobEffectInstance(MobEffects.POISON, 60, this.getPoison() - 1));
                 }
                 if (this.getBlood() >= 1) {
-                    if (mob.hasEffect(EffectInit.ROT.getHolder().get())) {
-                        int amount = mob.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier();
-                        mob.removeEffect(EffectInit.ROT.getHolder().get());
-                        mob.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 120, this.getBlood() + amount));
+                    if (mob.hasEffect(EffectInit.BLEED.getHolder().get())) {
+                        int amount = mob.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier();
+                        mob.removeEffect(EffectInit.BLEED.getHolder().get());
+                        mob.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 120, this.getBlood() + amount));
                     } else {
-                        mob.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 120, this.getBlood() - 1));
+                        mob.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 120, this.getBlood() - 1));
                     }
                 }
             }

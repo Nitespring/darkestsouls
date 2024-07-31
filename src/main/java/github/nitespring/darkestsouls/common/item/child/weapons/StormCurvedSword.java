@@ -1,6 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.weapons;
 
-import github.nitespring.darkestsouls.common.entity.projectile.spell.WindSlash;
+import github.nitespring.darkestsouls.common.entity.projectile.weapon.WindSlash;
 import github.nitespring.darkestsouls.common.item.Weapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;

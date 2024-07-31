@@ -132,14 +132,14 @@ public class EntityEvents {
 						if (!event.getEntity().getType().is(CustomEntityTags.BLEED_IMMUNE)) {
 							if (bloodLevel >= 1) {
 								int bloodLevelFinalized=1+bloodLevel*2;
-								if (event.getEntity().hasEffect(EffectInit.ROT.getHolder().get())) {
-									int amount = event.getEntity().getEffect(EffectInit.ROT.getHolder().get()).getAmplifier() + bloodLevelFinalized;
-									event.getEntity().removeEffect(EffectInit.ROT.getHolder().get());
-									event.getEntity().addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 240, amount));
+								if (event.getEntity().hasEffect(EffectInit.BLEED.getHolder().get())) {
+									int amount = event.getEntity().getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier() + bloodLevelFinalized;
+									event.getEntity().removeEffect(EffectInit.BLEED.getHolder().get());
+									event.getEntity().addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 240, amount));
 									System.out.println(amount);
 								} else {
 									int amount = bloodLevelFinalized - 1;
-									event.getEntity().addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 240, amount));
+									event.getEntity().addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 240, amount));
 									System.out.println(amount);
 								}
 								System.out.println(bloodLevelFinalized);
@@ -174,8 +174,8 @@ public class EntityEvents {
 					entity.removeEffect(EffectInit.TOXIC.getHolder().get());
 				}
 			}
-			if(entity.getType().is(CustomEntityTags.BLEED_IMMUNE)&&entity.hasEffect(EffectInit.ROT.getHolder().get())){
-				entity.removeEffect(EffectInit.ROT.getHolder().get());
+			if(entity.getType().is(CustomEntityTags.BLEED_IMMUNE)&&entity.hasEffect(EffectInit.BLEED.getHolder().get())){
+				entity.removeEffect(EffectInit.BLEED.getHolder().get());
 			}
 
 

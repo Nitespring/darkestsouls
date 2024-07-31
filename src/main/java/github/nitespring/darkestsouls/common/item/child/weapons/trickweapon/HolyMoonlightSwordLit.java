@@ -1,9 +1,6 @@
 package github.nitespring.darkestsouls.common.item.child.weapons.trickweapon;
 
-import github.nitespring.darkestsouls.common.entity.projectile.spell.LightningSpear;
-import github.nitespring.darkestsouls.common.entity.projectile.spell.WindSlash;
 import github.nitespring.darkestsouls.common.entity.projectile.weapon.MoonlightSlash;
-import github.nitespring.darkestsouls.common.entity.projectile.weapon.melee.WeaponAttackEntity;
 import github.nitespring.darkestsouls.common.item.TrickWeapon;
 import github.nitespring.darkestsouls.config.CommonConfig;
 import github.nitespring.darkestsouls.core.init.EntityInit;
@@ -11,7 +8,6 @@ import github.nitespring.darkestsouls.core.init.ItemInit;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;

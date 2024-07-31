@@ -1,4 +1,4 @@
-package github.nitespring.darkestsouls.common.entity.projectile.spell;
+package github.nitespring.darkestsouls.common.entity.projectile.weapon;
 
 import github.nitespring.darkestsouls.core.util.CustomBlockTags;
 import net.minecraft.core.BlockPos;

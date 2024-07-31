@@ -139,8 +139,8 @@ public class SkeletonSpear extends Skeleton implements GeoEntity {
 
     @Override
     public void tick() {
-        if(this.tickCount%5==0&&this.hasEffect(EffectInit.ROT.getHolder().get())){
-            this.removeEffect(EffectInit.ROT.getHolder().get());
+        if(this.tickCount%5==0&&this.hasEffect(EffectInit.BLEED.getHolder().get())){
+            this.removeEffect(EffectInit.BLEED.getHolder().get());
         }
         if(this.getAnimationState()!=0&&!this.isDeadOrDying()) {
             this.playAnimation();

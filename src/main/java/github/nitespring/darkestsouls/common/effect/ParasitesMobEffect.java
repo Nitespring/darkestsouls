@@ -47,12 +47,12 @@ public class ParasitesMobEffect extends MobEffect{
 			}
 			}
 
-		if(entityIn.hasEffect(EffectInit.ROT.getHolder().get())){
-			int amount= entityIn.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier()+ 1;
-			entityIn.removeEffect(EffectInit.ROT.getHolder().get());
-			entityIn.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 180, amount));
+		if(entityIn.hasEffect(EffectInit.BLEED.getHolder().get())){
+			int amount= entityIn.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier()+ 1;
+			entityIn.removeEffect(EffectInit.BLEED.getHolder().get());
+			entityIn.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 180, amount));
 		}else{
-			entityIn.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 180, 0));
+			entityIn.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 180, 0));
 		}
 	if(!(entityIn instanceof Player p && p.isCreative())) {
 		entityIn.hurt(entityIn.damageSources().dryOut(), 1);

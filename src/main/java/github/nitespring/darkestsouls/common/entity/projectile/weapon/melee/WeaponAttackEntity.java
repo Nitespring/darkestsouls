@@ -318,13 +318,13 @@ public class WeaponAttackEntity extends Entity {
                 }
                 if(!target.getType().is(CustomEntityTags.BLEED_IMMUNE)) {
                     if (this.bleed >= 1) {
-                        if (target.hasEffect(EffectInit.ROT.getHolder().get())) {
-                            int amount = target.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier() + this.bleed;
-                            target.removeEffect(EffectInit.ROT.getHolder().get());
-                            target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 180, amount));
+                        if (target.hasEffect(EffectInit.BLEED.getHolder().get())) {
+                            int amount = target.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier() + this.bleed;
+                            target.removeEffect(EffectInit.BLEED.getHolder().get());
+                            target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 180, amount));
                         } else {
                             int amount = this.bleed - 1;
-                            target.addEffect(new MobEffectInstance(EffectInit.ROT.getHolder().get(), 180, amount));
+                            target.addEffect(new MobEffectInstance(EffectInit.BLEED.getHolder().get(), 180, amount));
                         }
                     }
                 }

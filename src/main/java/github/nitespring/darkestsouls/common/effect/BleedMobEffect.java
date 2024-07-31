@@ -39,9 +39,9 @@ public class BleedMobEffect extends MobEffect {
 
 
         if(living.getType().is(CustomEntityTags.BLEED_IMMUNE)){
-            living.removeEffect(EffectInit.ROT.getHolder().get());
+            living.removeEffect(EffectInit.BLEED.getHolder().get());
         }else{
-        //int amount = living.getEffect(EffectInit.ROT.getHolder().get()).getAmplifier();
+        //int amount = living.getEffect(EffectInit.BLEED.getHolder().get()).getAmplifier();
             if(living instanceof DarkestSoulsAbstractEntity){
                 int res = ((DarkestSoulsAbstractEntity) living).getBloodResistance()-1;
                 if(amount>=res){
@@ -104,7 +104,7 @@ public class BleedMobEffect extends MobEffect {
         if(!(living instanceof Player p && p.isCreative())) {
             living.hurt(living.level().damageSources().genericKill(), dmg);
         }
-        living.removeEffect(EffectInit.ROT.getHolder().get());
+        living.removeEffect(EffectInit.BLEED.getHolder().get());
 
         ParticleOptions blood = new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.NETHER_WART_BLOCK));
         float width = living.getBbWidth() * 0.5f;
