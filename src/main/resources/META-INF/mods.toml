@@ -9,7 +9,7 @@ license="All Rights Reserved"
 # The modid of the mod
 modId="darkestsouls" #mandatory
 # The version number of the mod
-version="1.2.2.1" #mandatory
+version="1.2.2.2" #mandatory
 # A display name for the mod
 displayName="Darkest Souls" #mandatory
 logoFile="banner_small_final.png" #optional
