@@ -6,7 +6,6 @@
     "darkestsouls:sewer_centipede",
     "#skeletons",
     "iron_golem",
-    "snow_golem",
-    "#ignores_poison_and_regen"
+    "snow_golem"
   ]
 }
