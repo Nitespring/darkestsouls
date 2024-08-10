@@ -9,7 +9,7 @@ license="All Rights Reserved"
 # The modid of the mod
 modId="darkestsouls" #mandatory
 # The version number of the mod
-version="1.2.2.2" #mandatory
+version="1.2.2.4" #mandatory
 # A display name for the mod
 displayName="Darkest Souls" #mandatory
 logoFile="banner_small_final.png" #optional
@@ -31,6 +31,6 @@ description='''Miyazaki's Feet'''
 [[dependencies.darkestsouls]]
     modId="geckolib"
     mandatory=true
-    versionRange="[4.5.7,)"
+    versionRange="[4.5.8,)"
     ordering="NONE"
     side="BOTH"

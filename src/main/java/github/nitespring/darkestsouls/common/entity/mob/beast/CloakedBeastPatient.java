@@ -638,12 +638,18 @@ public class CloakedBeastPatient extends BeastPatientEntity implements GeoEntity
                     int r = this.mob.getRandom().nextInt(2048);
                     if (r <= 720) {
                         this.mob.setCombatState(0);
+                        this.mob.getNavigation().stop();
+                        this.mob.getNavigation().moveTo(this.path, this.getSpeedModifier());
+                        this.ticksUntilNextPathRecalculation=0;
                     }
                     this.lastCanUpdateStateCheck = 60;
                 }else{
                     int r = this.mob.getRandom().nextInt(2048);
                     if (r <= 360) {
                         this.mob.setCombatState(1);
+                        this.mob.getNavigation().stop();
+                        this.mob.getNavigation().moveTo(this.path, this.getSpeedModifier());
+                        this.ticksUntilNextPathRecalculation=0;
                     }
                     this.lastCanUpdateStateCheck = 260;
                 }

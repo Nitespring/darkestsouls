@@ -737,12 +737,18 @@ public class AshenBloodBeastPatient extends BeastPatientEntity implements GeoEnt
                     int r = this.mob.getRandom().nextInt(2048);
                     if (r <= 450) {
                         this.mob.setCombatState(0);
+                        this.mob.getNavigation().stop();
+                        this.mob.getNavigation().moveTo(this.path, this.getSpeedModifier());
+                        this.ticksUntilNextPathRecalculation=0;
                     }
                     this.lastCanUpdateStateCheck = 200;
                 }else{
                     int r = this.mob.getRandom().nextInt(2048);
                     if (r <= 450) {
                         this.mob.setCombatState(1);
+                        this.mob.getNavigation().stop();
+                        this.mob.getNavigation().moveTo(this.path, this.getSpeedModifier());
+                        this.ticksUntilNextPathRecalculation=0;
                     }
                     this.lastCanUpdateStateCheck = 180;
                 }
